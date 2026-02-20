@@ -35,10 +35,10 @@ jobs:
             --scorecard scorecards/default.yaml \
             --format json \
             --format html \
-            --metadata "github.requester=${{ github.triggering_actor }}" \
-            --metadata "github.workflow=${{ github.workflow }}" \
-            --metadata "github.run_id=${{ github.run_id }}" \
-            --metadata "github.repository=${{ github.repository }}"
+            --meta "github.requester=${{ github.triggering_actor }}" \
+            --meta "github.workflow=${{ github.workflow }}" \
+            --meta "github.run_id=${{ github.run_id }}" \
+            --meta "github.repository=${{ github.repository }}"
 
       - name: Commit and Push Reports
         run: |
