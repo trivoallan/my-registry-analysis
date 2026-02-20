@@ -17,7 +17,7 @@
       "trivy",
       "versioning"
     ],
-    "timestamp": "2026-02-20T06:38:37.904512+00:00"
+    "timestamp": "2026-02-20T06:44:32.252938+00:00"
   },
   "results": {
     "endoflife": {
@@ -158,7 +158,7 @@
       "analyzer": "popularity",
       "repository": "library/python",
       "available": true,
-      "pull_count": 8525802906,
+      "pull_count": 8525811093,
       "star_count": 10377,
       "description": "Python is an interpreted, interactive, object-oriented, open-source programming language.",
       "last_updated": "2026-02-12T07:09:06.656508Z",
@@ -22031,7 +22031,7 @@
   "metadata": {
     "github.requester": "trivoallan",
     "github.workflow": "Image Analysis",
-    "github.run_id": "22214168541",
+    "github.run_id": "22214312149",
     "github.repository": "trivoallan/my-registry-analysis"
   },
   "scorecards": [
@@ -22144,8 +22144,12 @@
       ],
       "links": [
         {
-          "label": "",
-          "url": "https://github.com/trivoallan/my-registry-analysis/actions/runs/22214168541"
+          "label": "JSON",
+          "url": "report.json"
+        },
+        {
+          "label": "Logs",
+          "url": "https://github.com/trivoallan/my-registry-analysis/actions/runs/22214312149"
         }
       ]
     }
@@ -22259,15 +22263,23 @@
     ],
     "links": [
       {
-        "label": "",
-        "url": "https://github.com/trivoallan/my-registry-analysis/actions/runs/22214168541"
+        "label": "JSON",
+        "url": "report.json"
+      },
+      {
+        "label": "Logs",
+        "url": "https://github.com/trivoallan/my-registry-analysis/actions/runs/22214312149"
       }
     ]
   },
   "links": [
     {
-      "label": "",
-      "url": "https://github.com/trivoallan/my-registry-analysis/actions/runs/22214168541"
+      "label": "JSON",
+      "url": "report.json"
+    },
+    {
+      "label": "Logs",
+      "url": "https://github.com/trivoallan/my-registry-analysis/actions/runs/22214312149"
     }
   ]
 }
