@@ -28,8 +28,7 @@ jobs:
         with:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
-          registry: ghcr.io
-          image: trivoallan/regis-cli:0.2
+          image: ghcr.io/trivoallan/regis-cli:0.2
           options: -v ${PWD}/reports:/app/reports
           run: |
             analyze "${{ github.event.inputs.image_url }}" \
