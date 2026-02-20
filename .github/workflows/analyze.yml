@@ -26,11 +26,12 @@ jobs:
       - name: Run regis-cli
         run: |
           mkdir -p reports
+          chmod 777 reports
           docker run --rm \
             -v ${PWD}/reports:/app/reports \
             -v ${PWD}/scorecards:/app/scorecards \
             ghcr.io/trivoallan/regis-cli:main \
-            analyze "${{ github.event.inputs.image_url }}" \
+            analyze "{% raw %}${{ github.event.inputs.image_url }}{% endraw %}" \
             -s scorecards/default.yaml \
             -f html -f json
 
@@ -52,7 +53,7 @@ jobs:
     runs-on: ubuntu-latest
     environment:
       name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
+      url: "{% raw %}${{ steps.deployment.outputs.page_url }}{% endraw %}"
     steps:
       - name: Deploy to GitHub Pages
         id: deployment
