@@ -11,6 +11,13 @@ levels:
 
 sections:
   - name: Security
+    levels:
+      - name: critical
+        color: "#ff0000"
+      - name: warning
+        color: "#ffa500"
+      - name: healthy
+        color: "#008000"
     rules:
       - name: no-root
         description: Image should not run as root.
@@ -25,6 +32,13 @@ sections:
           "<": [{ var: results.freshness.age_days }, 30]
 
   - name: Vulnerabilities
+    levels:
+      - name: critical
+        color: "#ff0000"
+      - name: warning
+        color: "#ffa500"
+      - name: healthy
+        color: "#008000"
     rules:
       - name: no-critical
         description: No critical vulnerabilities found by Trivy.
@@ -34,6 +48,6 @@ sections:
 
       - name: no-high
         description: No high vulnerabilities found by Trivy.
-        level: critical
+        level: warning
         condition:
           "==": [{ var: results.trivy.high_count }, 0]
