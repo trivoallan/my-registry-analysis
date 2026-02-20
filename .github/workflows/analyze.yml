@@ -33,12 +33,12 @@ jobs:
             ghcr.io/trivoallan/regis-cli:main \
             analyze "${{ github.event.inputs.image_url }}" \
             -s scorecards/default.yaml \
-            -f html -f json \
-            -f html -f json \
-            -m "github.requester={% raw %}${{ github.triggering_actor }}{% endraw %}" \
-            -m "github.workflow={% raw %}${{ github.workflow }}{% endraw %}" \
-            -m "github.run_id={% raw %}${{ github.run_id }}{% endraw %}" \
-            -m "github.repository={% raw %}${{ github.repository }}{% endraw %}"
+            --format json \
+            --format html \
+            -m "github.requester=${{ github.triggering_actor }}" \
+            -m "github.workflow=${{ github.workflow }}" \
+            -m "github.run_id=${{ github.run_id }}" \
+            -m "github.repository=${{ github.repository }}"
 
       - name: Commit and Push Reports
         run: |
