@@ -17,7 +17,7 @@
       "trivy",
       "versioning"
     ],
-    "timestamp": "2026-02-20T05:38:48.736610+00:00"
+    "timestamp": "2026-02-20T05:45:23.261074+00:00"
   },
   "results": {
     "endoflife": {
@@ -242,8 +242,8 @@
       "total_components": 569,
       "component_types": {
         "library": 567,
-        "application": 1,
-        "operating-system": 1
+        "operating-system": 1,
+        "application": 1
       },
       "total_dependencies": 570,
       "licenses": [
@@ -426,6 +426,13 @@
           ]
         },
         {
+          "name": "debian",
+          "version": "13.3",
+          "type": "operating-system",
+          "purl": null,
+          "licenses": []
+        },
+        {
           "name": "regis-cli",
           "version": "0.1.0",
           "type": "library",
@@ -438,13 +445,6 @@
           "name": "usr/local/bin/trivy",
           "version": null,
           "type": "application",
-          "purl": null,
-          "licenses": []
-        },
-        {
-          "name": "debian",
-          "version": "13.3",
-          "type": "operating-system",
           "purl": null,
           "licenses": []
         },
@@ -6860,14 +6860,14 @@
   "scorecards": [
     {
       "scorecard_name": "Default Security Scorecard",
-      "score": 33,
-      "total_rules": 3,
+      "score": 25,
+      "total_rules": 4,
       "passed_rules": 1,
       "pages": [
         {
           "name": "Default",
-          "score": 33,
-          "total_rules": 3,
+          "score": 25,
+          "total_rules": 4,
           "passed_rules": 1,
           "sections": [
             {
@@ -6908,7 +6908,7 @@
             {
               "name": "Vulnerabilities",
               "score": 0,
-              "total_rules": 1,
+              "total_rules": 2,
               "passed_rules": 0,
               "levels_summary": {},
               "tags_summary": {},
@@ -6921,8 +6921,19 @@
                   "analyzers": [],
                   "passed": false,
                   "status": "incomplete",
-                  "condition": "{\"==\": [{\"var\": \"trivy.vulnerability_counts.CRITICAL\"}, 0]}",
-                  "details": "trivy.vulnerability_counts.CRITICAL (MISSING) == 0"
+                  "condition": "{\"==\": [{\"var\": \"trivy.critical_count\"}, 0]}",
+                  "details": "trivy.critical_count (MISSING) == 0"
+                },
+                {
+                  "name": "no-high",
+                  "title": "no-high",
+                  "level": "warning",
+                  "tags": [],
+                  "analyzers": [],
+                  "passed": false,
+                  "status": "incomplete",
+                  "condition": "{\"==\": [{\"var\": \"trivy.high_count\"}, 0]}",
+                  "details": "trivy.high_count (MISSING) == 0"
                 }
               ],
               "render_order": [
@@ -6936,14 +6947,14 @@
   ],
   "scorecard": {
     "scorecard_name": "Default Security Scorecard",
-    "score": 33,
-    "total_rules": 3,
+    "score": 25,
+    "total_rules": 4,
     "passed_rules": 1,
     "pages": [
       {
         "name": "Default",
-        "score": 33,
-        "total_rules": 3,
+        "score": 25,
+        "total_rules": 4,
         "passed_rules": 1,
         "sections": [
           {
@@ -6984,7 +6995,7 @@
           {
             "name": "Vulnerabilities",
             "score": 0,
-            "total_rules": 1,
+            "total_rules": 2,
             "passed_rules": 0,
             "levels_summary": {},
             "tags_summary": {},
@@ -6997,8 +7008,19 @@
                 "analyzers": [],
                 "passed": false,
                 "status": "incomplete",
-                "condition": "{\"==\": [{\"var\": \"trivy.vulnerability_counts.CRITICAL\"}, 0]}",
-                "details": "trivy.vulnerability_counts.CRITICAL (MISSING) == 0"
+                "condition": "{\"==\": [{\"var\": \"trivy.critical_count\"}, 0]}",
+                "details": "trivy.critical_count (MISSING) == 0"
+              },
+              {
+                "name": "no-high",
+                "title": "no-high",
+                "level": "warning",
+                "tags": [],
+                "analyzers": [],
+                "passed": false,
+                "status": "incomplete",
+                "condition": "{\"==\": [{\"var\": \"trivy.high_count\"}, 0]}",
+                "details": "trivy.high_count (MISSING) == 0"
               }
             ],
             "render_order": [
