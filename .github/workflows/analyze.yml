@@ -32,7 +32,7 @@ jobs:
           regis-cli analyze "${{ github.event.inputs.image_url }}" \
             --format json \
             --format html \
-            --playbook /app/playbooks/default.yaml \
+            --playbook playbooks/default.yaml \
             --meta "github.requester=${{ github.triggering_actor }}" \
             --meta "github.workflow=${{ github.workflow }}" \
             --meta "github.run_id=${{ github.run_id }}" \
