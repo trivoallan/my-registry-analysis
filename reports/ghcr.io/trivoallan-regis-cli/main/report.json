@@ -17,7 +17,7 @@
       "trivy",
       "versioning"
     ],
-    "timestamp": "2026-02-20T05:58:25.756533+00:00"
+    "timestamp": "2026-02-20T06:00:46.476526+00:00"
   },
   "results": {
     "endoflife": {
@@ -241,9 +241,9 @@
       "sbom_version": "1.6",
       "total_components": 569,
       "component_types": {
+        "operating-system": 1,
         "library": 567,
-        "application": 1,
-        "operating-system": 1
+        "application": 1
       },
       "total_dependencies": 570,
       "licenses": [
@@ -417,18 +417,9 @@
       ],
       "components": [
         {
-          "name": "regis-cli",
-          "version": "0.1.0",
-          "type": "library",
-          "purl": "pkg:pypi/regis-cli@0.1.0",
-          "licenses": [
-            "MIT"
-          ]
-        },
-        {
-          "name": "usr/local/bin/trivy",
-          "version": null,
-          "type": "application",
+          "name": "debian",
+          "version": "13.3",
+          "type": "operating-system",
           "purl": null,
           "licenses": []
         },
@@ -442,9 +433,18 @@
           ]
         },
         {
-          "name": "debian",
-          "version": "13.3",
-          "type": "operating-system",
+          "name": "regis-cli",
+          "version": "0.1.0",
+          "type": "library",
+          "purl": "pkg:pypi/regis-cli@0.1.0",
+          "licenses": [
+            "MIT"
+          ]
+        },
+        {
+          "name": "usr/local/bin/trivy",
+          "version": null,
+          "type": "application",
           "purl": null,
           "licenses": []
         },
