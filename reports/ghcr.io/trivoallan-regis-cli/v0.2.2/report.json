@@ -1,0 +1,164 @@
+{
+  "request": {
+    "url": "ghcr.io/trivoallan/regis-cli:v0.2.2",
+    "registry": "ghcr.io",
+    "repository": "trivoallan/regis-cli",
+    "tag": "v0.2.2",
+    "analyzers": [
+      "endoflife",
+      "freshness",
+      "hadolint",
+      "popularity",
+      "provenance",
+      "sbom",
+      "scorecarddev",
+      "size",
+      "skopeo",
+      "trivy",
+      "versioning"
+    ],
+    "timestamp": "2026-02-20T17:11:20.783726+00:00",
+    "metadata": {
+      "github.requester": "trivoallan",
+      "github.workflow": "Image Analysis",
+      "github.run_id": "22233578273",
+      "github.repository": "trivoallan/my-registry-analysis"
+    }
+  },
+  "results": {
+    "endoflife": {
+      "analyzer": "endoflife",
+      "repository": "trivoallan/regis-cli",
+      "product": "regis-cli",
+      "product_found": false,
+      "tag": "v0.2.2",
+      "matched_cycle": null,
+      "is_eol": null,
+      "active_cycles_count": null,
+      "eol_cycles_count": null
+    },
+    "freshness": {
+      "analyzer": "freshness",
+      "repository": "trivoallan/regis-cli",
+      "tag": "v0.2.2",
+      "tag_created": null,
+      "latest_created": "2026-02-20T17:06:01.204200621Z",
+      "age_days": null,
+      "behind_latest_days": null,
+      "is_latest": false
+    },
+    "hadolint": {
+      "analyzer": "hadolint",
+      "error": {
+        "type": "validation",
+        "message": "Failed to fetch config for docker://ghcr.io/trivoallan/regis-cli:v0.2.2: time=\"2026-02-20T17:11:15Z\" level=fatal msg=\"Error parsing image name \\\"docker://ghcr.io/trivoallan/regis-cli:v0.2.2\\\": reading manifest v0.2.2 in ghcr.io/trivoallan/regis-cli: manifest unknown\"\n"
+      }
+    },
+    "popularity": {
+      "analyzer": "popularity",
+      "repository": "trivoallan/regis-cli",
+      "available": false,
+      "pull_count": null,
+      "star_count": null,
+      "description": null,
+      "last_updated": null,
+      "date_registered": null,
+      "is_official": false
+    },
+    "provenance": {
+      "analyzer": "provenance",
+      "repository": "trivoallan/regis-cli",
+      "tag": "v0.2.2",
+      "has_provenance": false,
+      "has_cosign_signature": false,
+      "source_tracked": false,
+      "indicators_count": 0,
+      "indicators": []
+    },
+    "sbom": {
+      "analyzer": "sbom",
+      "error": {
+        "type": "validation",
+        "message": "trivy sbom failed: 2026-02-20T17:11:16Z\tFATAL\tFatal error\trun error: image scan error: scan error: unable to initialize a scan service: unable to initialize artifact: unable to initialize container image: unable to find the specified image \"ghcr.io/trivoallan/regis-cli:v0.2.2\" in [\"docker\" \"containerd\" \"podman\" \"remote\"]: 4 errors occurred:\n\t* docker error: unable to inspect the image (ghcr.io/trivoallan/regis-cli:v0.2.2): Cannot connect to the Docker daemon at unix:///var/run/docker.sock. Is the docker daemon running?\n\t* containerd error: containerd socket not found: /run/containerd/containerd.sock\n\t* podman error: unable to initialize Podman client: no podman socket found: stat podman/podman.sock: no such file or directory\n\t* remote error: GET https://ghcr.io/v2/trivoallan/regis-cli/manifests/v0.2.2: MANIFEST_UNKNOWN: manifest unknown\n\n\n"
+      }
+    },
+    "scorecarddev": {
+      "analyzer": "scorecarddev",
+      "repository": "trivoallan/regis-cli",
+      "source_repo": null,
+      "scorecard_available": false,
+      "score": null,
+      "checks": []
+    },
+    "size": {
+      "analyzer": "size",
+      "error": {
+        "type": "validation",
+        "message": "Skopeo inspect failed for docker://ghcr.io/trivoallan/regis-cli:v0.2.2: time=\"2026-02-20T17:11:16Z\" level=fatal msg=\"Error parsing image name \\\"docker://ghcr.io/trivoallan/regis-cli:v0.2.2\\\": reading manifest v0.2.2 in ghcr.io/trivoallan/regis-cli: manifest unknown\"\n"
+      }
+    },
+    "skopeo": {
+      "analyzer": "skopeo",
+      "error": {
+        "type": "validation",
+        "message": "Skopeo inspect --raw failed for docker://ghcr.io/trivoallan/regis-cli:v0.2.2: time=\"2026-02-20T17:11:16Z\" level=fatal msg=\"Error parsing image name \\\"docker://ghcr.io/trivoallan/regis-cli:v0.2.2\\\": reading manifest v0.2.2 in ghcr.io/trivoallan/regis-cli: manifest unknown\"\n"
+      }
+    },
+    "trivy": {
+      "analyzer": "trivy",
+      "error": {
+        "type": "validation",
+        "message": "trivy failed: 2026-02-20T17:11:20Z\tFATAL\tFatal error\trun error: image scan error: scan error: unable to initialize a scan service: unable to initialize artifact: unable to initialize container image: unable to find the specified image \"ghcr.io/trivoallan/regis-cli:v0.2.2\" in [\"docker\" \"containerd\" \"podman\" \"remote\"]: 4 errors occurred:\n\t* docker error: unable to inspect the image (ghcr.io/trivoallan/regis-cli:v0.2.2): Cannot connect to the Docker daemon at unix:///var/run/docker.sock. Is the docker daemon running?\n\t* containerd error: containerd socket not found: /run/containerd/containerd.sock\n\t* podman error: unable to initialize Podman client: no podman socket found: stat podman/podman.sock: no such file or directory\n\t* remote error: GET https://ghcr.io/v2/trivoallan/regis-cli/manifests/v0.2.2: MANIFEST_UNKNOWN: manifest unknown\n\n\n"
+      }
+    },
+    "versioning": {
+      "analyzer": "versioning",
+      "repository": "trivoallan/regis-cli",
+      "total_tags": 28,
+      "dominant_pattern": "named",
+      "semver_compliant_percentage": 3.6,
+      "patterns": [
+        {
+          "pattern": "named",
+          "count": 26,
+          "percentage": 92.9,
+          "examples": [
+            "latest",
+            "main",
+            "sha-21b7549",
+            "sha-2823f64",
+            "sha-376c16e",
+            "sha-391d74f",
+            "sha-4113efb",
+            "sha-460871b",
+            "sha-4751370",
+            "sha-5f11d2d"
+          ]
+        },
+        {
+          "pattern": "numeric",
+          "count": 1,
+          "percentage": 3.6,
+          "examples": [
+            "0.2"
+          ]
+        },
+        {
+          "pattern": "semver",
+          "count": 1,
+          "percentage": 3.6,
+          "examples": [
+            "0.2.2"
+          ]
+        }
+      ],
+      "variants": []
+    }
+  },
+  "metadata": {
+    "github.requester": "trivoallan",
+    "github.workflow": "Image Analysis",
+    "github.run_id": "22233578273",
+    "github.repository": "trivoallan/my-registry-analysis"
+  }
+}

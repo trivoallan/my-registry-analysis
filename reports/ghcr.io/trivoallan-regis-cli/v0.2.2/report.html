@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>regis-cli Report — trivoallan/regis-cli:v0.2.2</title>
+<style>
+  @import url("https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css");
+
+:root {
+    --pico-font-size: 16px;
+}
+
+body {
+    padding: 0;
+    margin: 0;
+}
+
+#layout-wrapper {
+    display: flex;
+    min-height: 100vh;
+}
+
+#sidebar {
+    width: 280px;
+    background: var(--pico-card-background-color);
+    border-right: 1px solid var(--pico-muted-border-color);
+    padding: 1.5rem;
+    height: 100vh;
+    position: sticky;
+    top: 0;
+    overflow-y: auto;
+}
+
+#sidebar nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+#sidebar nav details {
+    border-bottom: none;
+    margin-bottom: 1rem;
+}
+
+#sidebar nav summary {
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    opacity: 0.6;
+    margin-bottom: 0.5rem;
+}
+
+#sidebar nav a {
+    display: block;
+    padding: 0.4rem 0.8rem;
+    border-radius: var(--pico-border-radius);
+    text-decoration: none;
+    color: var(--pico-color);
+    font-size: 0.95rem;
+    transition: background 0.2s;
+}
+
+#sidebar nav a:hover {
+    background: var(--pico-primary-background);
+    color: var(--pico-primary-inverse);
+    font-weight: bold;
+}
+
+#sidebar nav a.active {
+    background: var(--pico-primary-background);
+    color: var(--pico-primary-inverse);
+    font-weight: bold;
+}
+
+main.container {
+    flex: 1;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem 3rem;
+}
+
+header {
+    margin-bottom: 3rem;
+}
+
+header h1 {
+    margin-bottom: 0.5rem;
+}
+
+.meta {
+    font-size: 0.9rem;
+    opacity: 0.8;
+}
+
+article {
+    margin-bottom: 2rem;
+}
+
+.playbook-section {
+    margin-bottom: 1.5rem;
+    padding-left: 1rem;
+    border-left: 3px solid var(--pico-muted-border-color);
+}
+
+.section-hint {
+    font-size: 0.9rem;
+    opacity: 0.8;
+    margin-top: -1rem;
+    margin-bottom: 1rem;
+}
+
+.badge {
+    display: inline-block;
+    padding: 0.2rem 0.6rem;
+    border-radius: 4px;
+    font-size: 0.8rem;
+    font-weight: bold;
+    background: var(--pico-secondary-background);
+    color: var(--pico-secondary-inverse);
+    margin-right: 0.3rem;
+    white-space: nowrap;
+}
+
+.badge.success {
+    background: #22c55e;
+    color: white;
+}
+
+.badge.error {
+    background: #ef4444;
+    color: white;
+}
+
+.badge.outline {
+    background: transparent;
+    border: 1px solid var(--pico-muted-border-color);
+    color: inherit;
+}
+
+.status-passed {
+    color: #22c55e;
+}
+
+.status-failed {
+    color: #ef4444;
+}
+
+summary {
+    font-weight: bold;
+}
+
+footer {
+    text-align: center;
+    border-top: 1px solid var(--pico-muted-border-color);
+    padding-top: 2rem;
+    margin-top: 4rem;
+}
+
+.playbook-section .recommandation-nogo {
+    color: #ef4444;
+}
+
+.playbook-section .recommandation-go {
+    color: #22c55e;
+}
+
+header h1 {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+    text-align: center;
+}
+
+header h2 {
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
+    text-align: center;
+}
+</style>
+</head>
+<body>
+<div id="layout-wrapper">
+  <!-- Sidebar -->
+  <aside id="sidebar">
+    <nav>
+      
+      
+
+      
+    </nav>
+  </aside>
+
+  <!-- Main Content -->
+  <main class="container">
+    <header>
+      <h1>ghcr.io/trivoallan/regis-cli:v0.2.2</h1>
+      
+    </header>
+
+    
+    
+    
+
+    
+
+    
+    
+        
+    
+        
+    
+        
+            
+<article style="border-left: 5px solid #ef4444;">
+    <header>
+        <h3 style="color: #ef4444; margin: 0;">⚠️ hadolint Analyzer Error</h3>
+    </header>
+    <p><strong>validation:</strong> Failed to fetch config for docker://ghcr.io/trivoallan/regis-cli:v0.2.2: time=&#34;2026-02-20T17:11:15Z&#34; level=fatal msg=&#34;Error parsing image name \&#34;docker://ghcr.io/trivoallan/regis-cli:v0.2.2\&#34;: reading manifest v0.2.2 in ghcr.io/trivoallan/regis-cli: manifest unknown&#34;
+</p>
+</article>
+
+        
+    
+        
+    
+        
+    
+        
+            
+<article style="border-left: 5px solid #ef4444;">
+    <header>
+        <h3 style="color: #ef4444; margin: 0;">⚠️ sbom Analyzer Error</h3>
+    </header>
+    <p><strong>validation:</strong> trivy sbom failed: 2026-02-20T17:11:16Z	FATAL	Fatal error	run error: image scan error: scan error: unable to initialize a scan service: unable to initialize artifact: unable to initialize container image: unable to find the specified image &#34;ghcr.io/trivoallan/regis-cli:v0.2.2&#34; in [&#34;docker&#34; &#34;containerd&#34; &#34;podman&#34; &#34;remote&#34;]: 4 errors occurred:
+	* docker error: unable to inspect the image (ghcr.io/trivoallan/regis-cli:v0.2.2): Cannot connect to the Docker daemon at unix:///var/run/docker.sock. Is the docker daemon running?
+	* containerd error: containerd socket not found: /run/containerd/containerd.sock
+	* podman error: unable to initialize Podman client: no podman socket found: stat podman/podman.sock: no such file or directory
+	* remote error: GET https://ghcr.io/v2/trivoallan/regis-cli/manifests/v0.2.2: MANIFEST_UNKNOWN: manifest unknown
+
+
+</p>
+</article>
+
+        
+    
+        
+    
+        
+            
+<article style="border-left: 5px solid #ef4444;">
+    <header>
+        <h3 style="color: #ef4444; margin: 0;">⚠️ size Analyzer Error</h3>
+    </header>
+    <p><strong>validation:</strong> Skopeo inspect failed for docker://ghcr.io/trivoallan/regis-cli:v0.2.2: time=&#34;2026-02-20T17:11:16Z&#34; level=fatal msg=&#34;Error parsing image name \&#34;docker://ghcr.io/trivoallan/regis-cli:v0.2.2\&#34;: reading manifest v0.2.2 in ghcr.io/trivoallan/regis-cli: manifest unknown&#34;
+</p>
+</article>
+
+        
+    
+        
+            
+<article style="border-left: 5px solid #ef4444;">
+    <header>
+        <h3 style="color: #ef4444; margin: 0;">⚠️ skopeo Analyzer Error</h3>
+    </header>
+    <p><strong>validation:</strong> Skopeo inspect --raw failed for docker://ghcr.io/trivoallan/regis-cli:v0.2.2: time=&#34;2026-02-20T17:11:16Z&#34; level=fatal msg=&#34;Error parsing image name \&#34;docker://ghcr.io/trivoallan/regis-cli:v0.2.2\&#34;: reading manifest v0.2.2 in ghcr.io/trivoallan/regis-cli: manifest unknown&#34;
+</p>
+</article>
+
+        
+    
+        
+            
+<article style="border-left: 5px solid #ef4444;">
+    <header>
+        <h3 style="color: #ef4444; margin: 0;">⚠️ trivy Analyzer Error</h3>
+    </header>
+    <p><strong>validation:</strong> trivy failed: 2026-02-20T17:11:20Z	FATAL	Fatal error	run error: image scan error: scan error: unable to initialize a scan service: unable to initialize artifact: unable to initialize container image: unable to find the specified image &#34;ghcr.io/trivoallan/regis-cli:v0.2.2&#34; in [&#34;docker&#34; &#34;containerd&#34; &#34;podman&#34; &#34;remote&#34;]: 4 errors occurred:
+	* docker error: unable to inspect the image (ghcr.io/trivoallan/regis-cli:v0.2.2): Cannot connect to the Docker daemon at unix:///var/run/docker.sock. Is the docker daemon running?
+	* containerd error: containerd socket not found: /run/containerd/containerd.sock
+	* podman error: unable to initialize Podman client: no podman socket found: stat podman/podman.sock: no such file or directory
+	* remote error: GET https://ghcr.io/v2/trivoallan/regis-cli/manifests/v0.2.2: MANIFEST_UNKNOWN: manifest unknown
+
+
+</p>
+</article>
+
+        
+    
+        
+    
+
+
+    <footer>
+      <small>
+        Generated by <strong>regis-cli</strong> ·
+        <a href="report.json" target="_blank">JSON Report</a>
+      </small>
+    </footer>
+  </main>
+</div>
+</body>
+</html>
