@@ -24,19 +24,21 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Run regis-cli
-        run: |
-          mkdir -p reports
-          chmod 777 reports
-          docker run --rm \
-            -v ${PWD}/reports:/app/reports \
-            ghcr.io/trivoallan/regis-cli:0.2 \
+        uses: addnab/docker-run-action@v3
+        with:
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+          registry: gcr.io
+          image: trivoallan/regis-cli:0.2
+          options: -v ${PWD}/reports:/app/reports
+          run: |
             analyze "${{ github.event.inputs.image_url }}" \
-            --format json \
-            --format html \
-            --meta "github.requester=${{ github.triggering_actor }}" \
-            --meta "github.workflow=${{ github.workflow }}" \
-            --meta "github.run_id=${{ github.run_id }}" \
-            --meta "github.repository=${{ github.repository }}"
+              --format json \
+              --format html \
+              --meta "github.requester=${{ github.triggering_actor }}" \
+              --meta "github.workflow=${{ github.workflow }}" \
+              --meta "github.run_id=${{ github.run_id }}" \
+              --meta "github.repository=${{ github.repository }}"
 
       - name: Commit and Push Reports
         run: |
