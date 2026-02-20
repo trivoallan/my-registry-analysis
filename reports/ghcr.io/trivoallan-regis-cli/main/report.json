@@ -17,7 +17,7 @@
       "trivy",
       "versioning"
     ],
-    "timestamp": "2026-02-20T06:00:46.476526+00:00"
+    "timestamp": "2026-02-20T06:05:42.327179+00:00"
   },
   "results": {
     "endoflife": {
@@ -241,8 +241,8 @@
       "sbom_version": "1.6",
       "total_components": 569,
       "component_types": {
-        "operating-system": 1,
         "library": 567,
+        "operating-system": 1,
         "application": 1
       },
       "total_dependencies": 570,
@@ -417,13 +417,6 @@
       ],
       "components": [
         {
-          "name": "debian",
-          "version": "13.3",
-          "type": "operating-system",
-          "purl": null,
-          "licenses": []
-        },
-        {
           "name": "regis-cli",
           "version": "0.1.0",
           "type": "library",
@@ -431,6 +424,13 @@
           "licenses": [
             "MIT"
           ]
+        },
+        {
+          "name": "debian",
+          "version": "13.3",
+          "type": "operating-system",
+          "purl": null,
+          "licenses": []
         },
         {
           "name": "regis-cli",
@@ -5567,7 +5567,7 @@
       "repository": "trivoallan/regis-cli",
       "tag": "main",
       "multi_arch": true,
-      "total_compressed_bytes": 150820258,
+      "total_compressed_bytes": 150819376,
       "total_compressed_human": "143.8 MB",
       "layer_count": 12,
       "config_size_bytes": 0,
@@ -5575,14 +5575,14 @@
       "platforms": [
         {
           "platform": "linux/amd64",
-          "compressed_bytes": 150820258,
+          "compressed_bytes": 150819376,
           "compressed_human": "143.8 MB",
           "layer_count": 12
         },
         {
           "platform": "unknown/unknown",
-          "compressed_bytes": 31649,
-          "compressed_human": "30.9 KB",
+          "compressed_bytes": 31747,
+          "compressed_human": "31.0 KB",
           "layer_count": 1
         }
       ]
@@ -5596,13 +5596,13 @@
         {
           "architecture": "amd64",
           "os": "linux",
-          "digest": "sha256:da4706c6bb0637d692fbce7f680cab7786e08c86a7959bb37116a270d5150fcd",
-          "created": "2026-02-20T05:57:13.668300677Z",
+          "digest": "sha256:2918cce4d2bdff20c862a67b9410f4f55acf5740a00d3395989b6f922ab935da",
+          "created": "2026-02-20T06:05:26.149331702Z",
           "labels": {
-            "org.opencontainers.image.created": "2026-02-20T05:56:57.344Z",
+            "org.opencontainers.image.created": "2026-02-20T06:05:13.441Z",
             "org.opencontainers.image.description": "",
             "org.opencontainers.image.licenses": "",
-            "org.opencontainers.image.revision": "460871ba19698bfff3b33f40183f742501d80045",
+            "org.opencontainers.image.revision": "5f11d2d853d825065c949bce533de60229198359",
             "org.opencontainers.image.source": "https://github.com/trivoallan/regis-cli",
             "org.opencontainers.image.title": "regis-cli",
             "org.opencontainers.image.url": "https://github.com/trivoallan/regis-cli",
@@ -5614,7 +5614,7 @@
         {
           "architecture": "unknown",
           "os": "unknown",
-          "digest": "sha256:714d95f2f29e4c99c479b04a6ba69805c91760339c4d47f33aefc020d433dd83",
+          "digest": "sha256:2084132d511d78c66cda9181f2b71d53e792ae134613f54c812709a315661342",
           "created": null,
           "labels": {},
           "layers_count": 1,
@@ -6833,13 +6833,13 @@
     "versioning": {
       "analyzer": "versioning",
       "repository": "trivoallan/regis-cli",
-      "total_tags": 10,
+      "total_tags": 11,
       "dominant_pattern": "named",
       "semver_compliant_percentage": 0.0,
       "patterns": [
         {
           "pattern": "named",
-          "count": 10,
+          "count": 11,
           "percentage": 100.0,
           "examples": [
             "main",
@@ -6847,11 +6847,11 @@
             "sha-376c16e",
             "sha-391d74f",
             "sha-460871b",
+            "sha-5f11d2d",
             "sha-9cf4087",
             "sha-9ef6351",
             "sha-a5d06a6",
-            "sha-ddaba2c",
-            "sha-dfc66c6"
+            "sha-ddaba2c"
           ]
         }
       ],
@@ -6884,22 +6884,26 @@
                   "title": "no-root",
                   "level": "critical",
                   "tags": [],
-                  "analyzers": [],
+                  "analyzers": [
+                    "skopeo"
+                  ],
                   "passed": true,
                   "status": "passed",
-                  "condition": "{\"!=\": [{\"var\": \"skopeo.platforms.0.user\"}, \"root\"]}",
-                  "details": "skopeo.platforms.0.user (MISSING) != root"
+                  "condition": "{\"!=\": [{\"var\": \"results.skopeo.platforms.0.user\"}, \"root\"]}",
+                  "details": "results.skopeo.platforms.0.user (MISSING) != root"
                 },
                 {
                   "name": "freshness",
                   "title": "freshness",
                   "level": "warning",
                   "tags": [],
-                  "analyzers": [],
+                  "analyzers": [
+                    "freshness"
+                  ],
                   "passed": true,
                   "status": "passed",
-                  "condition": "{\"<\": [{\"var\": \"freshness.age_days\"}, 30]}",
-                  "details": "freshness.age_days (MISSING) < 30"
+                  "condition": "{\"<\": [{\"var\": \"results.freshness.age_days\"}, 30]}",
+                  "details": "results.freshness.age_days (0) < 30"
                 }
               ],
               "render_order": [
@@ -6919,22 +6923,26 @@
                   "title": "no-critical",
                   "level": "critical",
                   "tags": [],
-                  "analyzers": [],
+                  "analyzers": [
+                    "trivy"
+                  ],
                   "passed": true,
                   "status": "passed",
-                  "condition": "{\"==\": [{\"var\": \"trivy.critical_count\"}, 0]}",
-                  "details": "trivy.critical_count (MISSING) == 0"
+                  "condition": "{\"==\": [{\"var\": \"results.trivy.critical_count\"}, 0]}",
+                  "details": "results.trivy.critical_count (0) == 0"
                 },
                 {
                   "name": "no-high",
                   "title": "no-high",
-                  "level": "warning",
+                  "level": "critical",
                   "tags": [],
-                  "analyzers": [],
+                  "analyzers": [
+                    "trivy"
+                  ],
                   "passed": false,
                   "status": "failed",
-                  "condition": "{\"==\": [{\"var\": \"trivy.high_count\"}, 0]}",
-                  "details": "trivy.high_count (MISSING) == 0"
+                  "condition": "{\"==\": [{\"var\": \"results.trivy.high_count\"}, 0]}",
+                  "details": "results.trivy.high_count (9) == 0"
                 }
               ],
               "render_order": [
@@ -6971,22 +6979,26 @@
                 "title": "no-root",
                 "level": "critical",
                 "tags": [],
-                "analyzers": [],
+                "analyzers": [
+                  "skopeo"
+                ],
                 "passed": true,
                 "status": "passed",
-                "condition": "{\"!=\": [{\"var\": \"skopeo.platforms.0.user\"}, \"root\"]}",
-                "details": "skopeo.platforms.0.user (MISSING) != root"
+                "condition": "{\"!=\": [{\"var\": \"results.skopeo.platforms.0.user\"}, \"root\"]}",
+                "details": "results.skopeo.platforms.0.user (MISSING) != root"
               },
               {
                 "name": "freshness",
                 "title": "freshness",
                 "level": "warning",
                 "tags": [],
-                "analyzers": [],
+                "analyzers": [
+                  "freshness"
+                ],
                 "passed": true,
                 "status": "passed",
-                "condition": "{\"<\": [{\"var\": \"freshness.age_days\"}, 30]}",
-                "details": "freshness.age_days (MISSING) < 30"
+                "condition": "{\"<\": [{\"var\": \"results.freshness.age_days\"}, 30]}",
+                "details": "results.freshness.age_days (0) < 30"
               }
             ],
             "render_order": [
@@ -7006,22 +7018,26 @@
                 "title": "no-critical",
                 "level": "critical",
                 "tags": [],
-                "analyzers": [],
+                "analyzers": [
+                  "trivy"
+                ],
                 "passed": true,
                 "status": "passed",
-                "condition": "{\"==\": [{\"var\": \"trivy.critical_count\"}, 0]}",
-                "details": "trivy.critical_count (MISSING) == 0"
+                "condition": "{\"==\": [{\"var\": \"results.trivy.critical_count\"}, 0]}",
+                "details": "results.trivy.critical_count (0) == 0"
               },
               {
                 "name": "no-high",
                 "title": "no-high",
-                "level": "warning",
+                "level": "critical",
                 "tags": [],
-                "analyzers": [],
+                "analyzers": [
+                  "trivy"
+                ],
                 "passed": false,
                 "status": "failed",
-                "condition": "{\"==\": [{\"var\": \"trivy.high_count\"}, 0]}",
-                "details": "trivy.high_count (MISSING) == 0"
+                "condition": "{\"==\": [{\"var\": \"results.trivy.high_count\"}, 0]}",
+                "details": "results.trivy.high_count (9) == 0"
               }
             ],
             "render_order": [
