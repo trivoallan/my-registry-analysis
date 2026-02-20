@@ -2,7 +2,7 @@ name: Default Security Scorecard
 description: Basic security and freshness checks.
 
 links:
-  - name: Logs
+  - label: Logs
     url: https://github.com/trivoallan/my-registry-analysis/actions/runs/{metadata[github.run_id]}
 
 sections:
