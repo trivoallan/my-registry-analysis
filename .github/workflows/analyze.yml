@@ -20,7 +20,7 @@ jobs:
   analyze:
     runs-on: ubuntu-latest
     container:
-      image: ghcr.io/trivoallan/regis-cli:0.2
+      image: ghcr.io/trivoallan/regis-cli:0.3
       volumes:
         - ${{ github.workspace }}/reports:/app/reports
     steps:
