@@ -16,20 +16,20 @@ sections:
         color: "#ffa500"
     rules:
       - name: no-root
-        description: Image should not run as root.
+        title: Image should not run as root.
         level: critical
         tags: ["security"]
         condition:
           "!=": [{ var: results.skopeo.platforms.0.user }, root]
 
       - name: age
-        description: Image should be less than 30 days old.
+        title: Image should be less than 30 days old.
         level: warning
         tags: ["freshness"]
         condition:
           "<": [{ var: results.freshness.age_days }, 30]
       - name: no-critical
-        description: No critical vulnerabilities found by Trivy.
+        title: No critical vulnerabilities found by Trivy.
         level: critical
         tags: ["security"]
         condition:
