@@ -31,7 +31,7 @@ jobs:
             -v ${PWD}/reports:/app/reports \
             -v ${PWD}/scorecards:/app/scorecards \
             ghcr.io/trivoallan/regis-cli:main \
-            analyze "{% raw %}${{ github.event.inputs.image_url }}{% endraw %}" \
+            analyze "${{ github.event.inputs.image_url }}" \
             -s scorecards/default.yaml \
             -f html -f json
 
