@@ -19,25 +19,22 @@ concurrency:
 jobs:
   analyze:
     runs-on: ubuntu-latest
+    container:
+      image: ghcr.io/trivoallan/regis-cli:0.2
+      volumes:
+        - ${{ github.workspace }}/reports:/app/reports
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-
-      - name: Run regis-cli
-        uses: addnab/docker-run-action@v3
-        with:
-          username: ${{ github.actor }}
-          password: ${{ secrets.GITHUB_TOKEN }}
-          image: ghcr.io/trivoallan/regis-cli:0.2
-          options: -v ${{ github.workspace }}/reports:/app/reports
-          run: |
-            analyze "${{ github.event.inputs.image_url }}" \
-              --format json \
-              --format html \
-              --meta "github.requester=${{ github.triggering_actor }}" \
-              --meta "github.workflow=${{ github.workflow }}" \
-              --meta "github.run_id=${{ github.run_id }}" \
-              --meta "github.repository=${{ github.repository }}"
+      - name: Analyze Image
+        run: |
+          regis-cli analyze "${{ github.event.inputs.image_url }}" \
+            --format json \
+            --format html \
+            --meta "github.requester=${{ github.triggering_actor }}" \
+            --meta "github.workflow=${{ github.workflow }}" \
+            --meta "github.run_id=${{ github.run_id }}" \
+            --meta "github.repository=${{ github.repository }}"
 
       - name: Commit and Push Reports
         run: |
