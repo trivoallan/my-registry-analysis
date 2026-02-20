@@ -17,7 +17,7 @@
       "trivy",
       "versioning"
     ],
-    "timestamp": "2026-02-20T06:09:03.255892+00:00"
+    "timestamp": "2026-02-20T07:02:04.521670+00:00"
   },
   "results": {
     "endoflife": {
@@ -35,7 +35,7 @@
       "analyzer": "freshness",
       "repository": "trivoallan/regis-cli",
       "tag": "main",
-      "tag_created": "2026-02-20T06:05:26.149331702Z",
+      "tag_created": "2026-02-20T06:59:16.120282466Z",
       "latest_created": null,
       "age_days": 0,
       "behind_latest_days": null,
@@ -223,12 +223,12 @@
         {
           "type": "oci-annotation",
           "key": "org.opencontainers.image.revision",
-          "value": "5f11d2d853d825065c949bce533de60229198359"
+          "value": "83c00665ec27a1db1cf4f5e1cd12fdc87f72e912"
         },
         {
           "type": "oci-annotation",
           "key": "org.opencontainers.image.created",
-          "value": "2026-02-20T06:05:13.441Z"
+          "value": "2026-02-20T06:59:01.093Z"
         }
       ]
     },
@@ -241,8 +241,8 @@
       "sbom_version": "1.6",
       "total_components": 569,
       "component_types": {
-        "library": 567,
         "operating-system": 1,
+        "library": 567,
         "application": 1
       },
       "total_dependencies": 570,
@@ -417,6 +417,13 @@
       ],
       "components": [
         {
+          "name": "debian",
+          "version": "13.3",
+          "type": "operating-system",
+          "purl": null,
+          "licenses": []
+        },
+        {
           "name": "regis-cli",
           "version": "0.1.0",
           "type": "library",
@@ -424,13 +431,6 @@
           "licenses": [
             "MIT"
           ]
-        },
-        {
-          "name": "debian",
-          "version": "13.3",
-          "type": "operating-system",
-          "purl": null,
-          "licenses": []
         },
         {
           "name": "usr/local/bin/trivy",
@@ -5567,7 +5567,7 @@
       "repository": "trivoallan/regis-cli",
       "tag": "main",
       "multi_arch": true,
-      "total_compressed_bytes": 150819376,
+      "total_compressed_bytes": 150820119,
       "total_compressed_human": "143.8 MB",
       "layer_count": 12,
       "config_size_bytes": 0,
@@ -5575,14 +5575,14 @@
       "platforms": [
         {
           "platform": "linux/amd64",
-          "compressed_bytes": 150819376,
+          "compressed_bytes": 150820119,
           "compressed_human": "143.8 MB",
           "layer_count": 12
         },
         {
           "platform": "unknown/unknown",
-          "compressed_bytes": 31747,
-          "compressed_human": "31.0 KB",
+          "compressed_bytes": 31655,
+          "compressed_human": "30.9 KB",
           "layer_count": 1
         }
       ]
@@ -5596,13 +5596,13 @@
         {
           "architecture": "amd64",
           "os": "linux",
-          "digest": "sha256:2918cce4d2bdff20c862a67b9410f4f55acf5740a00d3395989b6f922ab935da",
-          "created": "2026-02-20T06:05:26.149331702Z",
+          "digest": "sha256:c92035e9a6e39fd0d3f93c27e021c2fcd69f6b98074d114192c89115998df0f5",
+          "created": "2026-02-20T06:59:16.120282466Z",
           "labels": {
-            "org.opencontainers.image.created": "2026-02-20T06:05:13.441Z",
+            "org.opencontainers.image.created": "2026-02-20T06:59:01.093Z",
             "org.opencontainers.image.description": "",
             "org.opencontainers.image.licenses": "",
-            "org.opencontainers.image.revision": "5f11d2d853d825065c949bce533de60229198359",
+            "org.opencontainers.image.revision": "83c00665ec27a1db1cf4f5e1cd12fdc87f72e912",
             "org.opencontainers.image.source": "https://github.com/trivoallan/regis-cli",
             "org.opencontainers.image.title": "regis-cli",
             "org.opencontainers.image.url": "https://github.com/trivoallan/regis-cli",
@@ -5614,7 +5614,7 @@
         {
           "architecture": "unknown",
           "os": "unknown",
-          "digest": "sha256:2084132d511d78c66cda9181f2b71d53e792ae134613f54c812709a315661342",
+          "digest": "sha256:6366d058bba22378c1d81760dc4f5b2941ca19d6e5548ff6c0861b813b407718",
           "created": null,
           "labels": {},
           "layers_count": 1,
@@ -6833,68 +6833,71 @@
     "versioning": {
       "analyzer": "versioning",
       "repository": "trivoallan/regis-cli",
-      "total_tags": 11,
+      "total_tags": 15,
       "dominant_pattern": "named",
       "semver_compliant_percentage": 0.0,
       "patterns": [
         {
           "pattern": "named",
-          "count": 11,
+          "count": 15,
           "percentage": 100.0,
           "examples": [
             "main",
             "sha-2823f64",
             "sha-376c16e",
             "sha-391d74f",
+            "sha-4113efb",
             "sha-460871b",
+            "sha-4751370",
             "sha-5f11d2d",
-            "sha-9cf4087",
-            "sha-9ef6351",
-            "sha-a5d06a6",
-            "sha-ddaba2c"
+            "sha-83c0066",
+            "sha-9cf4087"
           ]
         }
       ],
       "variants": []
     }
   },
+  "metadata": {
+    "github.requester": "trivoallan",
+    "github.workflow": "Image Analysis",
+    "github.run_id": "22214736552",
+    "github.repository": "trivoallan/my-registry-analysis"
+  },
   "scorecards": [
     {
-      "scorecard_name": "Default Security Scorecard",
-      "score": 75,
-      "total_rules": 4,
-      "passed_rules": 3,
+      "scorecard_name": "Default Scorecard",
+      "score": 80,
+      "total_rules": 5,
+      "passed_rules": 4,
       "pages": [
         {
           "name": "Default",
-          "score": 75,
-          "total_rules": 4,
-          "passed_rules": 3,
+          "score": 80,
+          "total_rules": 5,
+          "passed_rules": 4,
           "sections": [
             {
-              "name": "Security",
+              "name": "Mandatory",
               "score": 100,
-              "total_rules": 2,
-              "passed_rules": 2,
-              "levels_summary": {
-                "critical": {
-                  "total": 1,
-                  "passed": 1,
-                  "percentage": 100
-                },
-                "warning": {
-                  "total": 1,
-                  "passed": 1,
+              "total_rules": 3,
+              "passed_rules": 3,
+              "levels_summary": {},
+              "tags_summary": {
+                "security": {
+                  "total": 3,
+                  "passed": 3,
                   "percentage": 100
                 }
               },
-              "tags_summary": {},
               "rules": [
                 {
                   "name": "no-root",
-                  "title": "no-root",
+                  "title": "Image should not run as root.",
                   "level": "critical",
-                  "tags": [],
+                  "tags": [
+                    "security"
+                  ],
                   "analyzers": [
                     "skopeo"
                   ],
@@ -6904,10 +6907,80 @@
                   "details": "results.skopeo.platforms.0.user (MISSING) != root"
                 },
                 {
-                  "name": "freshness",
-                  "title": "freshness",
+                  "name": "no-critical",
+                  "title": "No CRITICAL vulnerabilities found by Trivy.",
+                  "level": "critical",
+                  "tags": [
+                    "security"
+                  ],
+                  "analyzers": [
+                    "trivy"
+                  ],
+                  "passed": true,
+                  "status": "passed",
+                  "condition": "{\"==\": [{\"var\": \"results.trivy.critical_count\"}, 0]}",
+                  "details": "results.trivy.critical_count (0) == 0"
+                },
+                {
+                  "name": "trusted-domaon",
+                  "title": "Image should be from a trusted domain.",
+                  "level": null,
+                  "tags": [
+                    "security"
+                  ],
+                  "analyzers": [],
+                  "passed": true,
+                  "status": "passed",
+                  "condition": "{\"in\": [{\"var\": \"request.registry\"}, [\"docker.io\", \"registry-1.docker.io\", \"quay.io\", \"ghcr.io\"]]}",
+                  "details": "request.registry (ghcr.io) in ['docker.io', 'registry-1.docker.io', 'quay.io', 'ghcr.io']"
+                }
+              ],
+              "render_order": [
+                "tags",
+                "rules"
+              ]
+            },
+            {
+              "name": "Recommended",
+              "score": 50,
+              "total_rules": 2,
+              "passed_rules": 1,
+              "levels_summary": {},
+              "tags_summary": {
+                "freshness": {
+                  "total": 1,
+                  "passed": 1,
+                  "percentage": 100
+                },
+                "security": {
+                  "total": 1,
+                  "passed": 0,
+                  "percentage": 0
+                }
+              },
+              "rules": [
+                {
+                  "name": "no-high",
+                  "title": "No HIGH vulnerabilities found by Trivy.",
                   "level": "warning",
-                  "tags": [],
+                  "tags": [
+                    "security"
+                  ],
+                  "analyzers": [
+                    "trivy"
+                  ],
+                  "passed": false,
+                  "status": "failed",
+                  "condition": "{\"==\": [{\"var\": \"results.trivy.high_count\"}, 0]}",
+                  "details": "results.trivy.high_count (9) == 0"
+                },
+                {
+                  "name": "age",
+                  "title": "Image should be less than 30 days old.",
+                  "level": "warning",
+                  "tags": [
+                    "freshness"
+                  ],
                   "analyzers": [
                     "freshness"
                   ],
@@ -6918,102 +6991,58 @@
                 }
               ],
               "render_order": [
-                "levels",
-                "rules"
-              ]
-            },
-            {
-              "name": "Vulnerabilities",
-              "score": 50,
-              "total_rules": 2,
-              "passed_rules": 1,
-              "levels_summary": {
-                "critical": {
-                  "total": 1,
-                  "passed": 1,
-                  "percentage": 100
-                },
-                "warning": {
-                  "total": 1,
-                  "passed": 0,
-                  "percentage": 0
-                }
-              },
-              "tags_summary": {},
-              "rules": [
-                {
-                  "name": "no-critical",
-                  "title": "no-critical",
-                  "level": "critical",
-                  "tags": [],
-                  "analyzers": [
-                    "trivy"
-                  ],
-                  "passed": true,
-                  "status": "passed",
-                  "condition": "{\"==\": [{\"var\": \"results.trivy.critical_count\"}, 0]}",
-                  "details": "results.trivy.critical_count (0) == 0"
-                },
-                {
-                  "name": "no-high",
-                  "title": "no-high",
-                  "level": "warning",
-                  "tags": [],
-                  "analyzers": [
-                    "trivy"
-                  ],
-                  "passed": false,
-                  "status": "failed",
-                  "condition": "{\"==\": [{\"var\": \"results.trivy.high_count\"}, 0]}",
-                  "details": "results.trivy.high_count (9) == 0"
-                }
-              ],
-              "render_order": [
-                "levels",
+                "tags",
                 "rules"
               ]
             }
           ]
         }
+      ],
+      "links": [
+        {
+          "label": "JSON Report",
+          "url": "report.json"
+        },
+        {
+          "label": "Execution Logs",
+          "url": "https://github.com/trivoallan/my-registry-analysis/actions/runs/22214736552"
+        }
       ]
     }
   ],
   "scorecard": {
-    "scorecard_name": "Default Security Scorecard",
-    "score": 75,
-    "total_rules": 4,
-    "passed_rules": 3,
+    "scorecard_name": "Default Scorecard",
+    "score": 80,
+    "total_rules": 5,
+    "passed_rules": 4,
     "pages": [
       {
         "name": "Default",
-        "score": 75,
-        "total_rules": 4,
-        "passed_rules": 3,
+        "score": 80,
+        "total_rules": 5,
+        "passed_rules": 4,
         "sections": [
           {
-            "name": "Security",
+            "name": "Mandatory",
             "score": 100,
-            "total_rules": 2,
-            "passed_rules": 2,
-            "levels_summary": {
-              "critical": {
-                "total": 1,
-                "passed": 1,
-                "percentage": 100
-              },
-              "warning": {
-                "total": 1,
-                "passed": 1,
+            "total_rules": 3,
+            "passed_rules": 3,
+            "levels_summary": {},
+            "tags_summary": {
+              "security": {
+                "total": 3,
+                "passed": 3,
                 "percentage": 100
               }
             },
-            "tags_summary": {},
             "rules": [
               {
                 "name": "no-root",
-                "title": "no-root",
+                "title": "Image should not run as root.",
                 "level": "critical",
-                "tags": [],
+                "tags": [
+                  "security"
+                ],
                 "analyzers": [
                   "skopeo"
                 ],
@@ -7023,10 +7052,80 @@
                 "details": "results.skopeo.platforms.0.user (MISSING) != root"
               },
               {
-                "name": "freshness",
-                "title": "freshness",
+                "name": "no-critical",
+                "title": "No CRITICAL vulnerabilities found by Trivy.",
+                "level": "critical",
+                "tags": [
+                  "security"
+                ],
+                "analyzers": [
+                  "trivy"
+                ],
+                "passed": true,
+                "status": "passed",
+                "condition": "{\"==\": [{\"var\": \"results.trivy.critical_count\"}, 0]}",
+                "details": "results.trivy.critical_count (0) == 0"
+              },
+              {
+                "name": "trusted-domaon",
+                "title": "Image should be from a trusted domain.",
+                "level": null,
+                "tags": [
+                  "security"
+                ],
+                "analyzers": [],
+                "passed": true,
+                "status": "passed",
+                "condition": "{\"in\": [{\"var\": \"request.registry\"}, [\"docker.io\", \"registry-1.docker.io\", \"quay.io\", \"ghcr.io\"]]}",
+                "details": "request.registry (ghcr.io) in ['docker.io', 'registry-1.docker.io', 'quay.io', 'ghcr.io']"
+              }
+            ],
+            "render_order": [
+              "tags",
+              "rules"
+            ]
+          },
+          {
+            "name": "Recommended",
+            "score": 50,
+            "total_rules": 2,
+            "passed_rules": 1,
+            "levels_summary": {},
+            "tags_summary": {
+              "freshness": {
+                "total": 1,
+                "passed": 1,
+                "percentage": 100
+              },
+              "security": {
+                "total": 1,
+                "passed": 0,
+                "percentage": 0
+              }
+            },
+            "rules": [
+              {
+                "name": "no-high",
+                "title": "No HIGH vulnerabilities found by Trivy.",
                 "level": "warning",
-                "tags": [],
+                "tags": [
+                  "security"
+                ],
+                "analyzers": [
+                  "trivy"
+                ],
+                "passed": false,
+                "status": "failed",
+                "condition": "{\"==\": [{\"var\": \"results.trivy.high_count\"}, 0]}",
+                "details": "results.trivy.high_count (9) == 0"
+              },
+              {
+                "name": "age",
+                "title": "Image should be less than 30 days old.",
+                "level": "warning",
+                "tags": [
+                  "freshness"
+                ],
                 "analyzers": [
                   "freshness"
                 ],
@@ -7037,63 +7136,32 @@
               }
             ],
             "render_order": [
-              "levels",
-              "rules"
-            ]
-          },
-          {
-            "name": "Vulnerabilities",
-            "score": 50,
-            "total_rules": 2,
-            "passed_rules": 1,
-            "levels_summary": {
-              "critical": {
-                "total": 1,
-                "passed": 1,
-                "percentage": 100
-              },
-              "warning": {
-                "total": 1,
-                "passed": 0,
-                "percentage": 0
-              }
-            },
-            "tags_summary": {},
-            "rules": [
-              {
-                "name": "no-critical",
-                "title": "no-critical",
-                "level": "critical",
-                "tags": [],
-                "analyzers": [
-                  "trivy"
-                ],
-                "passed": true,
-                "status": "passed",
-                "condition": "{\"==\": [{\"var\": \"results.trivy.critical_count\"}, 0]}",
-                "details": "results.trivy.critical_count (0) == 0"
-              },
-              {
-                "name": "no-high",
-                "title": "no-high",
-                "level": "warning",
-                "tags": [],
-                "analyzers": [
-                  "trivy"
-                ],
-                "passed": false,
-                "status": "failed",
-                "condition": "{\"==\": [{\"var\": \"results.trivy.high_count\"}, 0]}",
-                "details": "results.trivy.high_count (9) == 0"
-              }
-            ],
-            "render_order": [
-              "levels",
+              "tags",
               "rules"
             ]
           }
         ]
       }
+    ],
+    "links": [
+      {
+        "label": "JSON Report",
+        "url": "report.json"
+      },
+      {
+        "label": "Execution Logs",
+        "url": "https://github.com/trivoallan/my-registry-analysis/actions/runs/22214736552"
+      }
     ]
-  }
+  },
+  "links": [
+    {
+      "label": "JSON Report",
+      "url": "report.json"
+    },
+    {
+      "label": "Execution Logs",
+      "url": "https://github.com/trivoallan/my-registry-analysis/actions/runs/22214736552"
+    }
+  ]
 }

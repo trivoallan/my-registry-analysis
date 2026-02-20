@@ -93,8 +93,43 @@ footer {
     <h1>ghcr.io/trivoallan/regis-cli:main</h1>
     
     
+        <div class="metadata-badges" style="margin-bottom: 2rem;">
+            
+                <span class="badge ">
+    github.requester: trivoallan
+</span>
+            
+                <span class="badge ">
+    github.workflow: Image Analysis
+</span>
+            
+                <span class="badge ">
+    github.run_id: 22214736552
+</span>
+            
+                <span class="badge ">
+    github.repository: trivoallan/my-registry-analysis
+</span>
+            
+        </div>
+    
 
 
+    
+    <hr>
+    <section>
+      <div class="custom-links" style="margin-top: 1rem;">
+        
+          <a href="report.json" target="_blank" role="button" class="outline" style="margin-right: 0.5rem; margin-bottom: 0.5rem;">
+            JSON Report
+          </a>
+        
+          <a href="https://github.com/trivoallan/my-registry-analysis/actions/runs/22214736552" target="_blank" role="button" class="outline" style="margin-right: 0.5rem; margin-bottom: 0.5rem;">
+            Execution Logs
+          </a>
+        
+      </div>
+    </section>
     
   </header>
 
@@ -115,7 +150,7 @@ footer {
 
         
             <div class="scorecard-section">
-                <h4>Security</h4>
+                <h4>Mandatory</h4>
 
             
 
@@ -124,25 +159,18 @@ footer {
 
                 
                 
+
+                
+                
                 <div class="grid">
                     
-                        
                         <div>
-                            <strong> Critical</strong><br>
-                            1/1 passed (100%)
-                        </div>
-                    
-                        
-                        <div>
-                            <strong> Warning</strong><br>
-                            1/1 passed (100%)
+                            <strong>🏷️ Security</strong><br>
+                            3/3 passed (100%)
                         </div>
                     
                 </div>
                 <hr>
-                
-
-                
                 
 
                 
@@ -169,7 +197,7 @@ footer {
                         <thead>
                             <tr>
                                 <th>Status</th>
-                                <th>Level</th>
+                                
                                 <th>Rule</th>
                                 <th>Analyzers</th>
                             </tr>
@@ -178,9 +206,17 @@ footer {
                             
                             <tr>
                                 <td><span class="status-passed">✅</span></td>
-                                <td><small>Critical</small></td>
+                                
                                 <td>
-                                    <strong>no-root</strong>
+                                    <strong>Image should not run as root.</strong>
+                                    
+                                    <div style="margin-top: 0.2rem;">
+                                        
+                                        <span class="badge ">
+    security
+</span>
+                                        
+                                    </div>
                                     
                                     <div style="font-size: 0.8rem; opacity: 0.7; margin-top: 0.3rem;">results.skopeo.platforms.0.user (MISSING) != root</div>
                                 </td>
@@ -195,17 +231,46 @@ footer {
                             
                             <tr>
                                 <td><span class="status-passed">✅</span></td>
-                                <td><small>Warning</small></td>
+                                
                                 <td>
-                                    <strong>freshness</strong>
+                                    <strong>No CRITICAL vulnerabilities found by Trivy.</strong>
                                     
-                                    <div style="font-size: 0.8rem; opacity: 0.7; margin-top: 0.3rem;">results.freshness.age_days (0) &lt; 30</div>
+                                    <div style="margin-top: 0.2rem;">
+                                        
+                                        <span class="badge ">
+    security
+</span>
+                                        
+                                    </div>
+                                    
+                                    <div style="font-size: 0.8rem; opacity: 0.7; margin-top: 0.3rem;">results.trivy.critical_count (0) == 0</div>
                                 </td>
                                 <td>
                                     
                                     <small><span class="badge outline">
-    freshness
+    trivy
 </span></small>
+                                    
+                                </td>
+                            </tr>
+                            
+                            <tr>
+                                <td><span class="status-passed">✅</span></td>
+                                
+                                <td>
+                                    <strong>Image should be from a trusted domain.</strong>
+                                    
+                                    <div style="margin-top: 0.2rem;">
+                                        
+                                        <span class="badge ">
+    security
+</span>
+                                        
+                                    </div>
+                                    
+                                    <div style="font-size: 0.8rem; opacity: 0.7; margin-top: 0.3rem;">request.registry (ghcr.io) in [&#39;docker.io&#39;, &#39;registry-1.docker.io&#39;, &#39;quay.io&#39;, &#39;ghcr.io&#39;]</div>
+                                </td>
+                                <td>
                                     
                                 </td>
                             </tr>
@@ -224,7 +289,7 @@ footer {
 
         
             <div class="scorecard-section">
-                <h4>Vulnerabilities</h4>
+                <h4>Recommended</h4>
 
             
 
@@ -233,25 +298,23 @@ footer {
 
                 
                 
+
+                
+                
                 <div class="grid">
                     
-                        
                         <div>
-                            <strong> Critical</strong><br>
+                            <strong>🏷️ Freshness</strong><br>
                             1/1 passed (100%)
                         </div>
                     
-                        
                         <div>
-                            <strong> Warning</strong><br>
+                            <strong>🏷️ Security</strong><br>
                             0/1 passed (0%)
                         </div>
                     
                 </div>
                 <hr>
-                
-
-                
                 
 
                 
@@ -278,7 +341,7 @@ footer {
                         <thead>
                             <tr>
                                 <th>Status</th>
-                                <th>Level</th>
+                                
                                 <th>Rule</th>
                                 <th>Analyzers</th>
                             </tr>
@@ -286,12 +349,20 @@ footer {
                         <tbody>
                             
                             <tr>
-                                <td><span class="status-passed">✅</span></td>
-                                <td><small>Critical</small></td>
+                                <td><span class="status-failed">❌</span></td>
+                                
                                 <td>
-                                    <strong>no-critical</strong>
+                                    <strong>No HIGH vulnerabilities found by Trivy.</strong>
                                     
-                                    <div style="font-size: 0.8rem; opacity: 0.7; margin-top: 0.3rem;">results.trivy.critical_count (0) == 0</div>
+                                    <div style="margin-top: 0.2rem;">
+                                        
+                                        <span class="badge ">
+    security
+</span>
+                                        
+                                    </div>
+                                    
+                                    <div style="font-size: 0.8rem; opacity: 0.7; margin-top: 0.3rem;">results.trivy.high_count (9) == 0</div>
                                 </td>
                                 <td>
                                     
@@ -303,17 +374,25 @@ footer {
                             </tr>
                             
                             <tr>
-                                <td><span class="status-failed">❌</span></td>
-                                <td><small>Warning</small></td>
+                                <td><span class="status-passed">✅</span></td>
+                                
                                 <td>
-                                    <strong>no-high</strong>
+                                    <strong>Image should be less than 30 days old.</strong>
                                     
-                                    <div style="font-size: 0.8rem; opacity: 0.7; margin-top: 0.3rem;">results.trivy.high_count (9) == 0</div>
+                                    <div style="margin-top: 0.2rem;">
+                                        
+                                        <span class="badge ">
+    freshness
+</span>
+                                        
+                                    </div>
+                                    
+                                    <div style="font-size: 0.8rem; opacity: 0.7; margin-top: 0.3rem;">results.freshness.age_days (0) &lt; 30</div>
                                 </td>
                                 <td>
                                     
                                     <small><span class="badge outline">
-    trivy
+    freshness
 </span></small>
                                     
                                 </td>
@@ -379,7 +458,7 @@ footer {
       Generated by <strong>regis-cli</strong> · 
       <a href="report.json" target="_blank">JSON Report</a>
     </small>
-    <small>2026-02-20T06:09:03.255892+00:00</small>
+    <small>2026-02-20T07:02:04.521670+00:00</small>
   </footer>
 </main>
 </body>
