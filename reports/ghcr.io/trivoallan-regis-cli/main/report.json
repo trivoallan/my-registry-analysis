@@ -17,7 +17,7 @@
       "trivy",
       "versioning"
     ],
-    "timestamp": "2026-02-20T06:05:42.327179+00:00"
+    "timestamp": "2026-02-20T06:09:03.255892+00:00"
   },
   "results": {
     "endoflife": {
@@ -35,7 +35,7 @@
       "analyzer": "freshness",
       "repository": "trivoallan/regis-cli",
       "tag": "main",
-      "tag_created": "2026-02-20T05:57:13.668300677Z",
+      "tag_created": "2026-02-20T06:05:26.149331702Z",
       "latest_created": null,
       "age_days": 0,
       "behind_latest_days": null,
@@ -223,12 +223,12 @@
         {
           "type": "oci-annotation",
           "key": "org.opencontainers.image.revision",
-          "value": "460871ba19698bfff3b33f40183f742501d80045"
+          "value": "5f11d2d853d825065c949bce533de60229198359"
         },
         {
           "type": "oci-annotation",
           "key": "org.opencontainers.image.created",
-          "value": "2026-02-20T05:56:57.344Z"
+          "value": "2026-02-20T06:05:13.441Z"
         }
       ]
     },
@@ -433,6 +433,13 @@
           "licenses": []
         },
         {
+          "name": "usr/local/bin/trivy",
+          "version": null,
+          "type": "application",
+          "purl": null,
+          "licenses": []
+        },
+        {
           "name": "regis-cli",
           "version": "0.1.0",
           "type": "library",
@@ -440,13 +447,6 @@
           "licenses": [
             "MIT"
           ]
-        },
-        {
-          "name": "usr/local/bin/trivy",
-          "version": null,
-          "type": "application",
-          "purl": null,
-          "licenses": []
         },
         {
           "name": "adduser",
@@ -6876,7 +6876,18 @@
               "score": 100,
               "total_rules": 2,
               "passed_rules": 2,
-              "levels_summary": {},
+              "levels_summary": {
+                "critical": {
+                  "total": 1,
+                  "passed": 1,
+                  "percentage": 100
+                },
+                "warning": {
+                  "total": 1,
+                  "passed": 1,
+                  "percentage": 100
+                }
+              },
               "tags_summary": {},
               "rules": [
                 {
@@ -6907,6 +6918,7 @@
                 }
               ],
               "render_order": [
+                "levels",
                 "rules"
               ]
             },
@@ -6915,7 +6927,18 @@
               "score": 50,
               "total_rules": 2,
               "passed_rules": 1,
-              "levels_summary": {},
+              "levels_summary": {
+                "critical": {
+                  "total": 1,
+                  "passed": 1,
+                  "percentage": 100
+                },
+                "warning": {
+                  "total": 1,
+                  "passed": 0,
+                  "percentage": 0
+                }
+              },
               "tags_summary": {},
               "rules": [
                 {
@@ -6934,7 +6957,7 @@
                 {
                   "name": "no-high",
                   "title": "no-high",
-                  "level": "critical",
+                  "level": "warning",
                   "tags": [],
                   "analyzers": [
                     "trivy"
@@ -6946,6 +6969,7 @@
                 }
               ],
               "render_order": [
+                "levels",
                 "rules"
               ]
             }
@@ -6971,7 +6995,18 @@
             "score": 100,
             "total_rules": 2,
             "passed_rules": 2,
-            "levels_summary": {},
+            "levels_summary": {
+              "critical": {
+                "total": 1,
+                "passed": 1,
+                "percentage": 100
+              },
+              "warning": {
+                "total": 1,
+                "passed": 1,
+                "percentage": 100
+              }
+            },
             "tags_summary": {},
             "rules": [
               {
@@ -7002,6 +7037,7 @@
               }
             ],
             "render_order": [
+              "levels",
               "rules"
             ]
           },
@@ -7010,7 +7046,18 @@
             "score": 50,
             "total_rules": 2,
             "passed_rules": 1,
-            "levels_summary": {},
+            "levels_summary": {
+              "critical": {
+                "total": 1,
+                "passed": 1,
+                "percentage": 100
+              },
+              "warning": {
+                "total": 1,
+                "passed": 0,
+                "percentage": 0
+              }
+            },
             "tags_summary": {},
             "rules": [
               {
@@ -7029,7 +7076,7 @@
               {
                 "name": "no-high",
                 "title": "no-high",
-                "level": "critical",
+                "level": "warning",
                 "tags": [],
                 "analyzers": [
                   "trivy"
@@ -7041,6 +7088,7 @@
               }
             ],
             "render_order": [
+              "levels",
               "rules"
             ]
           }
