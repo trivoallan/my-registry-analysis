@@ -29,7 +29,7 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
           image: ghcr.io/trivoallan/regis-cli:0.2
-          options: -v ${PWD}/reports:/app/reports
+          options: -v ${{ github.workspace }}/reports:/app/reports
           run: |
             analyze "${{ github.event.inputs.image_url }}" \
               --format json \
