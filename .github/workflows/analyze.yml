@@ -28,7 +28,7 @@ jobs:
         with:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
-          registry: gcr.io
+          registry: ghcr.io
           image: trivoallan/regis-cli:0.2
           options: -v ${PWD}/reports:/app/reports
           run: |
