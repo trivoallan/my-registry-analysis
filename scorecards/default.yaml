@@ -2,10 +2,10 @@ name: Default Security Scorecard
 description: Basic security and freshness checks.
 
 links:
-  - label: JSON
+  - label: JSON Report
     url: report.json
-  - label: Logs
-    url: https://github.com/trivoallan/my-registry-analysis/actions/runs/{metadata[github.run_id]}
+  - label: Execution Logs
+    url: https://github.com/{metadata[github.repository]}/actions/runs/{metadata[github.run_id]}
 
 sections:
   - name: Security
@@ -22,10 +22,10 @@ sections:
         condition:
           "!=": [{ var: results.skopeo.platforms.0.user }, root]
 
-      - name: freshness
+      - name: age
         description: Image should be less than 30 days old.
         level: warning
-        tags: ["security"]
+        tags: ["freshness"]
         condition:
           "<": [{ var: results.freshness.age_days }, 30]
       - name: no-critical
