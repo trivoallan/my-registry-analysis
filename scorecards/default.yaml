@@ -1,13 +1,9 @@
 name: Default Security Scorecard
 description: Basic security and freshness checks.
 
-levels:
-  - name: critical
-    color: "#ff0000"
-  - name: warning
-    color: "#ffa500"
-  - name: healthy
-    color: "#008000"
+links:
+  - name: Logs
+    url: https://github.com/trivoallan/my-registry-analysis/actions/runs/{metadata[github.run_id]}
 
 sections:
   - name: Security
@@ -16,8 +12,6 @@ sections:
         color: "#ff0000"
       - name: warning
         color: "#ffa500"
-      - name: healthy
-        color: "#008000"
     rules:
       - name: no-root
         description: Image should not run as root.
