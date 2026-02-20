@@ -29,10 +29,8 @@ jobs:
           chmod 777 reports
           docker run --rm \
             -v ${PWD}/reports:/app/reports \
-            -v ${PWD}/scorecards:/app/scorecards \
-            ghcr.io/trivoallan/regis-cli:main \
+            ghcr.io/trivoallan/regis-cli:0.2 \
             analyze "${{ github.event.inputs.image_url }}" \
-            --scorecard scorecards/default.yaml \
             --format json \
             --format html \
             --meta "github.requester=${{ github.triggering_actor }}" \
