@@ -17,7 +17,7 @@
       "trivy",
       "versioning"
     ],
-    "timestamp": "2026-02-20T05:45:23.261074+00:00"
+    "timestamp": "2026-02-20T05:58:25.756533+00:00"
   },
   "results": {
     "endoflife": {
@@ -35,7 +35,7 @@
       "analyzer": "freshness",
       "repository": "trivoallan/regis-cli",
       "tag": "main",
-      "tag_created": "2026-02-20T05:36:22.725945023Z",
+      "tag_created": "2026-02-20T05:57:13.668300677Z",
       "latest_created": null,
       "age_days": 0,
       "behind_latest_days": null,
@@ -223,12 +223,12 @@
         {
           "type": "oci-annotation",
           "key": "org.opencontainers.image.revision",
-          "value": "ddaba2ceb4c931fca1f68555e63e6408a32baec6"
+          "value": "460871ba19698bfff3b33f40183f742501d80045"
         },
         {
           "type": "oci-annotation",
           "key": "org.opencontainers.image.created",
-          "value": "2026-02-20T05:36:04.408Z"
+          "value": "2026-02-20T05:56:57.344Z"
         }
       ]
     },
@@ -242,8 +242,8 @@
       "total_components": 569,
       "component_types": {
         "library": 567,
-        "operating-system": 1,
-        "application": 1
+        "application": 1,
+        "operating-system": 1
       },
       "total_dependencies": 570,
       "licenses": [
@@ -426,9 +426,9 @@
           ]
         },
         {
-          "name": "debian",
-          "version": "13.3",
-          "type": "operating-system",
+          "name": "usr/local/bin/trivy",
+          "version": null,
+          "type": "application",
           "purl": null,
           "licenses": []
         },
@@ -442,9 +442,9 @@
           ]
         },
         {
-          "name": "usr/local/bin/trivy",
-          "version": null,
-          "type": "application",
+          "name": "debian",
+          "version": "13.3",
+          "type": "operating-system",
           "purl": null,
           "licenses": []
         },
@@ -5567,7 +5567,7 @@
       "repository": "trivoallan/regis-cli",
       "tag": "main",
       "multi_arch": true,
-      "total_compressed_bytes": 150819328,
+      "total_compressed_bytes": 150820258,
       "total_compressed_human": "143.8 MB",
       "layer_count": 12,
       "config_size_bytes": 0,
@@ -5575,14 +5575,14 @@
       "platforms": [
         {
           "platform": "linux/amd64",
-          "compressed_bytes": 150819328,
+          "compressed_bytes": 150820258,
           "compressed_human": "143.8 MB",
           "layer_count": 12
         },
         {
           "platform": "unknown/unknown",
-          "compressed_bytes": 31709,
-          "compressed_human": "31.0 KB",
+          "compressed_bytes": 31649,
+          "compressed_human": "30.9 KB",
           "layer_count": 1
         }
       ]
@@ -5596,13 +5596,13 @@
         {
           "architecture": "amd64",
           "os": "linux",
-          "digest": "sha256:ee8cd2172b28c4e544dc6e83476d2b28d9769e9b4fe02977229520555ec30f3d",
-          "created": "2026-02-20T05:36:22.725945023Z",
+          "digest": "sha256:da4706c6bb0637d692fbce7f680cab7786e08c86a7959bb37116a270d5150fcd",
+          "created": "2026-02-20T05:57:13.668300677Z",
           "labels": {
-            "org.opencontainers.image.created": "2026-02-20T05:36:04.408Z",
+            "org.opencontainers.image.created": "2026-02-20T05:56:57.344Z",
             "org.opencontainers.image.description": "",
             "org.opencontainers.image.licenses": "",
-            "org.opencontainers.image.revision": "ddaba2ceb4c931fca1f68555e63e6408a32baec6",
+            "org.opencontainers.image.revision": "460871ba19698bfff3b33f40183f742501d80045",
             "org.opencontainers.image.source": "https://github.com/trivoallan/regis-cli",
             "org.opencontainers.image.title": "regis-cli",
             "org.opencontainers.image.url": "https://github.com/trivoallan/regis-cli",
@@ -5614,7 +5614,7 @@
         {
           "architecture": "unknown",
           "os": "unknown",
-          "digest": "sha256:cb60b4909fadaa0f4581c6febc13c203ae3c0a7dc037d86b4f5214f643a90140",
+          "digest": "sha256:714d95f2f29e4c99c479b04a6ba69805c91760339c4d47f33aefc020d433dd83",
           "created": null,
           "labels": {},
           "layers_count": 1,
@@ -6833,19 +6833,20 @@
     "versioning": {
       "analyzer": "versioning",
       "repository": "trivoallan/regis-cli",
-      "total_tags": 9,
+      "total_tags": 10,
       "dominant_pattern": "named",
       "semver_compliant_percentage": 0.0,
       "patterns": [
         {
           "pattern": "named",
-          "count": 9,
+          "count": 10,
           "percentage": 100.0,
           "examples": [
             "main",
             "sha-2823f64",
             "sha-376c16e",
             "sha-391d74f",
+            "sha-460871b",
             "sha-9cf4087",
             "sha-9ef6351",
             "sha-a5d06a6",
@@ -6860,21 +6861,21 @@
   "scorecards": [
     {
       "scorecard_name": "Default Security Scorecard",
-      "score": 25,
+      "score": 75,
       "total_rules": 4,
-      "passed_rules": 1,
+      "passed_rules": 3,
       "pages": [
         {
           "name": "Default",
-          "score": 25,
+          "score": 75,
           "total_rules": 4,
-          "passed_rules": 1,
+          "passed_rules": 3,
           "sections": [
             {
               "name": "Security",
-              "score": 50,
+              "score": 100,
               "total_rules": 2,
-              "passed_rules": 1,
+              "passed_rules": 2,
               "levels_summary": {},
               "tags_summary": {},
               "rules": [
@@ -6885,7 +6886,7 @@
                   "tags": [],
                   "analyzers": [],
                   "passed": true,
-                  "status": "incomplete",
+                  "status": "passed",
                   "condition": "{\"!=\": [{\"var\": \"skopeo.platforms.0.user\"}, \"root\"]}",
                   "details": "skopeo.platforms.0.user (MISSING) != root"
                 },
@@ -6895,8 +6896,8 @@
                   "level": "warning",
                   "tags": [],
                   "analyzers": [],
-                  "passed": false,
-                  "status": "incomplete",
+                  "passed": true,
+                  "status": "passed",
                   "condition": "{\"<\": [{\"var\": \"freshness.age_days\"}, 30]}",
                   "details": "freshness.age_days (MISSING) < 30"
                 }
@@ -6907,9 +6908,9 @@
             },
             {
               "name": "Vulnerabilities",
-              "score": 0,
+              "score": 50,
               "total_rules": 2,
-              "passed_rules": 0,
+              "passed_rules": 1,
               "levels_summary": {},
               "tags_summary": {},
               "rules": [
@@ -6919,8 +6920,8 @@
                   "level": "critical",
                   "tags": [],
                   "analyzers": [],
-                  "passed": false,
-                  "status": "incomplete",
+                  "passed": true,
+                  "status": "passed",
                   "condition": "{\"==\": [{\"var\": \"trivy.critical_count\"}, 0]}",
                   "details": "trivy.critical_count (MISSING) == 0"
                 },
@@ -6931,7 +6932,7 @@
                   "tags": [],
                   "analyzers": [],
                   "passed": false,
-                  "status": "incomplete",
+                  "status": "failed",
                   "condition": "{\"==\": [{\"var\": \"trivy.high_count\"}, 0]}",
                   "details": "trivy.high_count (MISSING) == 0"
                 }
@@ -6947,21 +6948,21 @@
   ],
   "scorecard": {
     "scorecard_name": "Default Security Scorecard",
-    "score": 25,
+    "score": 75,
     "total_rules": 4,
-    "passed_rules": 1,
+    "passed_rules": 3,
     "pages": [
       {
         "name": "Default",
-        "score": 25,
+        "score": 75,
         "total_rules": 4,
-        "passed_rules": 1,
+        "passed_rules": 3,
         "sections": [
           {
             "name": "Security",
-            "score": 50,
+            "score": 100,
             "total_rules": 2,
-            "passed_rules": 1,
+            "passed_rules": 2,
             "levels_summary": {},
             "tags_summary": {},
             "rules": [
@@ -6972,7 +6973,7 @@
                 "tags": [],
                 "analyzers": [],
                 "passed": true,
-                "status": "incomplete",
+                "status": "passed",
                 "condition": "{\"!=\": [{\"var\": \"skopeo.platforms.0.user\"}, \"root\"]}",
                 "details": "skopeo.platforms.0.user (MISSING) != root"
               },
@@ -6982,8 +6983,8 @@
                 "level": "warning",
                 "tags": [],
                 "analyzers": [],
-                "passed": false,
-                "status": "incomplete",
+                "passed": true,
+                "status": "passed",
                 "condition": "{\"<\": [{\"var\": \"freshness.age_days\"}, 30]}",
                 "details": "freshness.age_days (MISSING) < 30"
               }
@@ -6994,9 +6995,9 @@
           },
           {
             "name": "Vulnerabilities",
-            "score": 0,
+            "score": 50,
             "total_rules": 2,
-            "passed_rules": 0,
+            "passed_rules": 1,
             "levels_summary": {},
             "tags_summary": {},
             "rules": [
@@ -7006,8 +7007,8 @@
                 "level": "critical",
                 "tags": [],
                 "analyzers": [],
-                "passed": false,
-                "status": "incomplete",
+                "passed": true,
+                "status": "passed",
                 "condition": "{\"==\": [{\"var\": \"trivy.critical_count\"}, 0]}",
                 "details": "trivy.critical_count (MISSING) == 0"
               },
@@ -7018,7 +7019,7 @@
                 "tags": [],
                 "analyzers": [],
                 "passed": false,
-                "status": "incomplete",
+                "status": "failed",
                 "condition": "{\"==\": [{\"var\": \"trivy.high_count\"}, 0]}",
                 "details": "trivy.high_count (MISSING) == 0"
               }
