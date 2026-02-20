@@ -1,0 +1,3834 @@
+{
+  "request": {
+    "url": "httpd:2.4",
+    "registry": "registry-1.docker.io",
+    "repository": "library/httpd",
+    "tag": "2.4",
+    "analyzers": [
+      "endoflife",
+      "freshness",
+      "hadolint",
+      "popularity",
+      "provenance",
+      "sbom",
+      "scorecarddev",
+      "size",
+      "skopeo",
+      "trivy",
+      "versioning"
+    ],
+    "timestamp": "2026-02-20T06:12:25.797042+00:00"
+  },
+  "results": {
+    "endoflife": {
+      "analyzer": "endoflife",
+      "repository": "library/httpd",
+      "product": "apache-http-server",
+      "product_found": true,
+      "tag": "2.4",
+      "matched_cycle": {
+        "cycle": "2.4",
+        "release_date": "2012-02-21",
+        "eol": false,
+        "latest": "2.4.66",
+        "latest_release_date": "2025-12-04",
+        "lts": false
+      },
+      "is_eol": false,
+      "active_cycles_count": 1,
+      "eol_cycles_count": 3
+    },
+    "freshness": {
+      "analyzer": "freshness",
+      "repository": "library/httpd",
+      "tag": "2.4",
+      "tag_created": "2026-02-03T02:23:05.137173969Z",
+      "latest_created": "2026-02-03T02:23:05.137173969Z",
+      "age_days": 17,
+      "behind_latest_days": 0,
+      "is_latest": true
+    },
+    "hadolint": {
+      "analyzer": "hadolint",
+      "repository": "library/httpd",
+      "tag": "2.4",
+      "passed": false,
+      "issues_count": 13,
+      "issues_by_level": {
+        "error": 0,
+        "warning": 4,
+        "info": 9,
+        "style": 0
+      },
+      "issues": [
+        {
+          "code": "DL3059",
+          "level": "info",
+          "message": "Multiple consecutive `RUN` instructions. Consider consolidation.",
+          "line": 3
+        },
+        {
+          "code": "DL3059",
+          "level": "info",
+          "message": "Multiple consecutive `RUN` instructions. Consider consolidation.",
+          "line": 4
+        },
+        {
+          "code": "DL3008",
+          "level": "warning",
+          "message": "Pin versions in apt get install. Instead of `apt-get install <package>` use `apt-get install <package>=<version>`",
+          "line": 7
+        },
+        {
+          "code": "DL3059",
+          "level": "info",
+          "message": "Multiple consecutive `RUN` instructions. Consider consolidation.",
+          "line": 9
+        },
+        {
+          "code": "DL3059",
+          "level": "info",
+          "message": "Multiple consecutive `RUN` instructions. Consider consolidation.",
+          "line": 10
+        },
+        {
+          "code": "DL3047",
+          "level": "info",
+          "message": "Avoid use of wget without progress bar. Use `wget --progress=dot:giga <url>`. Or consider using `-q` or `-nv` (shorthands for `--quiet` or `--no-verbose`).",
+          "line": 11
+        },
+        {
+          "code": "DL3003",
+          "level": "warning",
+          "message": "Use WORKDIR to switch to a directory",
+          "line": 11
+        },
+        {
+          "code": "DL3008",
+          "level": "warning",
+          "message": "Pin versions in apt get install. Instead of `apt-get install <package>` use `apt-get install <package>=<version>`",
+          "line": 11
+        },
+        {
+          "code": "DL4006",
+          "level": "warning",
+          "message": "Set the SHELL option -o pipefail before RUN with a pipe in it. If you are using /bin/sh in an alpine image or if your shell is symlinked to busybox then consider explicitly setting your SHELL to /bin/ash, or disable this check",
+          "line": 11
+        },
+        {
+          "code": "SC2086",
+          "level": "info",
+          "message": "Double quote to prevent globbing and word splitting.",
+          "line": 11
+        },
+        {
+          "code": "DL3059",
+          "level": "info",
+          "message": "Multiple consecutive `RUN` instructions. Consider consolidation.",
+          "line": 13
+        },
+        {
+          "code": "DL3059",
+          "level": "info",
+          "message": "Multiple consecutive `RUN` instructions. Consider consolidation.",
+          "line": 14
+        },
+        {
+          "code": "DL3059",
+          "level": "info",
+          "message": "Multiple consecutive `RUN` instructions. Consider consolidation.",
+          "line": 15
+        }
+      ],
+      "dockerfile": "FROM scratch\nRUN # debian.sh --arch 'amd64' out/ 'trixie' '@1769990400'\nRUN ENV HTTPD_PREFIX=/usr/local/apache2\nRUN ENV PATH=/usr/local/apache2/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin\nRUN RUN /bin/sh -c mkdir -p \"$HTTPD_PREFIX\" \t&& chown www-data:www-data \"$HTTPD_PREFIX\" # buildkit\nRUN WORKDIR /usr/local/apache2\nRUN RUN /bin/sh -c set -eux; \tapt-get install --update -y --no-install-recommends \t\tca-certificates \t\tlibaprutil1-ldap \t\tlibldap-common \t; \tapt-get dist-clean # buildkit\nRUN ENV HTTPD_VERSION=2.4.66\nRUN ENV HTTPD_SHA256=94d7ff2b42acbb828e870ba29e4cbad48e558a79c623ad3596e4116efcfea25a\nRUN ENV HTTPD_PATCHES=\nRUN RUN /bin/sh -c set -eux; \t\tsavedAptMark=\"$(apt-mark showmanual)\"; \tapt-get install --update -y --no-install-recommends \t\tbzip2 \t\tdpkg-dev \t\tgcc \t\tgnupg \t\tlibapr1-dev \t\tlibaprutil1-dev \t\tlibbrotli-dev \t\tlibcurl4-openssl-dev \t\tlibjansson-dev \t\tliblua5.2-dev \t\tlibnghttp2-dev \t\tlibpcre2-dev \t\tlibssl-dev \t\tlibxml2-dev \t\tmake \t\tpatch \t\twget \t\tzlib1g-dev \t; \t\tddist() { \t\tlocal f=\"$1\"; shift; \t\tlocal distFile=\"$1\"; shift; \t\tlocal success=; \t\tlocal distUrl=; \t\tfor distUrl in \t\t\thttps://dlcdn.apache.org/ \t\t\thttps://archive.apache.org/dist/ \t\t; do \t\t\tif wget -O \"$f\" \"$distUrl$distFile\" && [ -s \"$f\" ]; then \t\t\t\tsuccess=1; \t\t\t\tbreak; \t\t\tfi; \t\tdone; \t\t[ -n \"$success\" ]; \t}; \t\tddist 'httpd.tar.bz2' \"httpd/httpd-$HTTPD_VERSION.tar.bz2\"; \techo \"$HTTPD_SHA256 *httpd.tar.bz2\" | sha256sum -c -; \t\tddist 'httpd.tar.bz2.asc' \"httpd/httpd-$HTTPD_VERSION.tar.bz2.asc\"; \texport GNUPGHOME=\"$(mktemp -d)\"; \tfor key in \t\tDE29FB3971E71543FD2DC049508EAEC5302DA568 \t\t13155B0E9E634F42BF6C163FDDBA64BA2C312D2F \t\t8B39757B1D8A994DF2433ED58B3A601F08C975E5 \t\t31EE1A81B8D066548156D37B7D6DBFD1F08E012A \t\tA10208FEC3152DD7C0C9B59B361522D782AB7BD1 \t\t3DE024AFDA7A4B15CB6C14410F81AA8AB0D5F771 \t\tEB138C6AF0FC691001B16D93344A844D751D7F27 \t\tCBA5A7C21EC143314C41393E5B968010E04F9A89 \t\t3C016F2B764621BB549C66B516A96495E2226795 \t\t937FB3994A242BA9BF49E93021454AF0CC8B0F7E \t\tEAD1359A4C0F2D37472AAF28F55DF0293A4E7AC9 \t\t4C1EADADB4EF5007579C919C6635B6C0DE885DD3 \t\t01E475360FCCF1D0F24B9D145D414AE1E005C9CB \t\t92CCEF0AA7DD46AC3A0F498BCA6939748103A37E \t\tD395C7573A68B9796D38C258153FA0CD75A67692 \t\tFA39B617B61493FD283503E7EED1EA392261D073 \t\t984FB3350C1D5C7A3282255BB31B213D208F5064 \t\tFE7A49DAA875E890B4167F76CCB2EB46E76CF6D0 \t\t39F6691A0ECF0C50E8BB849CF78875F642721F00 \t\t29A2BA848177B73878277FA475CAA2A3F39B3750 \t\t120A8667241AEDD4A78B46104C042818311A3DE5 \t\t453510BDA6C5855624E009236D0BC73A40581837 \t\t0DE5C55C6BF3B2352DABB89E13249B4FEC88A0BF \t\t7CDBED100806552182F98844E8E7E00B4DAA1988 \t\tA8BA9617EF3BCCAC3B29B869EDB105896F9522D8 \t\t3E6AC004854F3A7F03566B592FF06894E55B0D0E \t\t5B5181C2C0AB13E59DA3F7A3EC582EB639FF092C \t\tA93D62ECC3C8EA12DB220EC934EA76E6791485A8 \t\t65B2D44FE74BD5E3DE3AC3F082781DE46D5954FA \t\t8935926745E1CE7E3ED748F6EC99EE267EB5F61A \t\tE3480043595621FE56105F112AB12A7ADC55C003 \t\t93525CFCF6FDFFB3FD9700DD5A4B10AE43B56A27 \t\tC55AB7B9139EB2263CD1AABC19B033D1760C227B \t\t26F51EF9A82F4ACB43F1903ED377C9E7D1944C66 \t; do \t\tgpg --batch --keyserver keyserver.ubuntu.com --recv-keys \"$key\"; \tdone; \tgpg --batch --verify httpd.tar.bz2.asc httpd.tar.bz2; \tgpgconf --kill all; \trm -rf \"$GNUPGHOME\" httpd.tar.bz2.asc; \t\tmkdir -p src; \ttar -xf httpd.tar.bz2 -C src --strip-components=1; \trm httpd.tar.bz2; \tcd src; \t\tpatches() { \t\twhile [ \"$#\" -gt 0 ]; do \t\t\tlocal patchFile=\"$1\"; shift; \t\t\tlocal patchSha256=\"$1\"; shift; \t\t\tddist \"$patchFile\" \"httpd/patches/apply_to_$HTTPD_VERSION/$patchFile\"; \t\t\techo \"$patchSha256 *$patchFile\" | sha256sum -c -; \t\t\tpatch -p0 < \"$patchFile\"; \t\t\trm -f \"$patchFile\"; \t\tdone; \t}; \tpatches $HTTPD_PATCHES; \t\tgnuArch=\"$(dpkg-architecture --query DEB_BUILD_GNU_TYPE)\"; \tCFLAGS=\"$(dpkg-buildflags --get CFLAGS)\"; \tCPPFLAGS=\"$(dpkg-buildflags --get CPPFLAGS)\"; \tLDFLAGS=\"$(dpkg-buildflags --get LDFLAGS)\"; \t./configure \t\t--build=\"$gnuArch\" \t\t--prefix=\"$HTTPD_PREFIX\" \t\t--enable-mods-shared=reallyall \t\t--enable-mpms-shared=all \t\t--enable-pie \t\tCFLAGS=\"-pipe $CFLAGS\" \t\tCPPFLAGS=\"$CPPFLAGS\" \t\tLDFLAGS=\"-Wl,--as-needed $LDFLAGS\" \t; \tmake -j \"$(nproc)\"; \tmake install; \t\tcd ..; \trm -r src man manual; \t\tsed -ri \t\t-e 's!^(\\s*CustomLog)\\s+\\S+!\\1 /proc/self/fd/1!g' \t\t-e 's!^(\\s*ErrorLog)\\s+\\S+!\\1 /proc/self/fd/2!g' \t\t-e 's!^(\\s*TransferLog)\\s+\\S+!\\1 /proc/self/fd/1!g' \t\t-e 's!^(\\s*User)\\s+daemon\\s*$!\\1 www-data!g' \t\t-e 's!^(\\s*Group)\\s+daemon\\s*$!\\1 www-data!g' \t\t\"$HTTPD_PREFIX/conf/httpd.conf\" \t\t\"$HTTPD_PREFIX/conf/extra/httpd-ssl.conf\" \t; \tgrep -E '^\\s*User www-data$' \"$HTTPD_PREFIX/conf/httpd.conf\"; \tgrep -E '^\\s*Group www-data$' \"$HTTPD_PREFIX/conf/httpd.conf\"; \t\tapt-mark auto '.*' > /dev/null; \t[ -z \"$savedAptMark\" ] || apt-mark manual $savedAptMark; \tfind /usr/local -type f -executable -exec ldd '{}' ';' \t\t| awk '/=>/ { so = $(NF-1); if (index(so, \"/usr/local/\") == 1) { next }; gsub(\"^/(usr/)?\", \"\", so); printf \"*%s\\n\", so }' \t\t| sort -u \t\t| xargs -r dpkg-query --search \t\t| cut -d: -f1 \t\t| sort -u \t\t| xargs -r apt-mark manual \t; \tapt-get purge -y --auto-remove -o APT::AutoRemove::RecommendsImportant=false; \tapt-get dist-clean; \t\thttpd -v # buildkit\nRUN STOPSIGNAL SIGWINCH\nRUN COPY httpd-foreground /usr/local/bin/ # buildkit\nRUN EXPOSE map[80/tcp:{}]\nRUN CMD [\"httpd-foreground\"]"
+    },
+    "popularity": {
+      "analyzer": "popularity",
+      "repository": "library/httpd",
+      "available": true,
+      "pull_count": 4683840344,
+      "star_count": 4922,
+      "description": "The Apache HTTP Server Project",
+      "last_updated": "2026-02-03T12:52:47.755975Z",
+      "date_registered": "2014-11-03T20:13:35.098911Z",
+      "is_official": true
+    },
+    "provenance": {
+      "analyzer": "provenance",
+      "repository": "library/httpd",
+      "tag": "2.4",
+      "has_provenance": false,
+      "has_cosign_signature": false,
+      "source_tracked": false,
+      "indicators_count": 0,
+      "indicators": []
+    },
+    "sbom": {
+      "analyzer": "sbom",
+      "repository": "library/httpd",
+      "tag": "2.4",
+      "has_sbom": true,
+      "sbom_format": "CycloneDX",
+      "sbom_version": "1.6",
+      "total_components": 113,
+      "component_types": {
+        "operating-system": 1,
+        "library": 112
+      },
+      "total_dependencies": 114,
+      "licenses": [
+        "0BSD",
+        "Apache-2.0",
+        "Artistic-2",
+        "Artistic-2.0",
+        "Artistic-dist",
+        "BSD-2-Clause",
+        "BSD-2-Clause-NetBSD",
+        "BSD-2-clause-author",
+        "BSD-2-clause-verbatim",
+        "BSD-2.2-clause",
+        "BSD-3-Clause",
+        "BSD-3-Clause WITH weird-numbering",
+        "BSD-3-Clause-Attribution",
+        "BSD-3-Clause-Attribution and IBM-as-is",
+        "BSD-3-Clause-Variant",
+        "BSD-3-clause-Aaron-D-Gifford",
+        "BSD-3-clause-Berkeley",
+        "BSD-3-clause-California",
+        "BSD-3-clause-Cambridge WITH BINARY-LIBRARY-LIKE-PACKAGES-exception",
+        "BSD-3-clause-Carnegie",
+        "BSD-3-clause-GENERIC",
+        "BSD-3-clause-JANET",
+        "BSD-3-clause-John-Birrell",
+        "BSD-3-clause-Oracle",
+        "BSD-3-clause-PADL",
+        "BSD-3-clause-Regents",
+        "BSD-3-clause-WIDE",
+        "BSD-3-clause-author",
+        "BSD-3-clause-fjord",
+        "BSD-3-clause-variant",
+        "BSD-4-Clause",
+        "BSD-4-Clause-CMU",
+        "BSD-4-Clause-UC",
+        "BSD-4-clause-California",
+        "BSD-4-clause-POWERDOG",
+        "BSD-5-clause-Peter-Wemm",
+        "BSD-like-Spencer",
+        "BSD-tcp-wrappers",
+        "BSL-1",
+        "BSL-1.0",
+        "BSLA",
+        "BZIP",
+        "Beerware",
+        "CC-BY-3.0",
+        "CC0-1.0",
+        "CORE-MATH",
+        "Carnegie",
+        "Chromium",
+        "DEC",
+        "DONT-CHANGE-THE-GPL",
+        "Expat-ISC",
+        "Expat-UNM",
+        "F5",
+        "FSF-manpages",
+        "FSF-unlimited",
+        "FSFAP",
+        "FSFUL",
+        "FSFULLR",
+        "FreeSoftware",
+        "GAP",
+        "GFDL-1.2-only",
+        "GFDL-1.2-or-later",
+        "GFDL-1.3--no-invariant",
+        "GFDL-1.3-no-invariants-only",
+        "GFDL-1.3-no-invariants-or-later",
+        "GFDL-1.3-only",
+        "GFDL-1.3-or-later",
+        "GFDL-3",
+        "GPL-1.0-only",
+        "GPL-1.0-or-later",
+        "GPL-2.0-only",
+        "GPL-2.0-only WITH Linux-syscall-note-exception",
+        "GPL-2.0-only WITH autoconf-exception+",
+        "GPL-2.0-only WITH bison-exception+",
+        "GPL-2.0-or-later",
+        "GPL-2.0-or-later WITH Autoconf-data-exception",
+        "GPL-2.0-or-later WITH Autoconf-generic-exception",
+        "GPL-2.0-or-later WITH Libtool-Exception",
+        "GPL-2.0-or-later WITH Libtool-exception",
+        "GPL-2.0-or-later WITH Texinfo-exception",
+        "GPL-2.0-or-later WITH automake-exception",
+        "GPL-2.0-or-later WITH distribution-exception",
+        "GPL-2.0-or-later WITH link-exception",
+        "GPL-3.0-only",
+        "GPL-3.0-only WITH autoconf-exception+",
+        "GPL-3.0-or-later",
+        "GPL-3.0-or-later WITH Autoconf-data-exception",
+        "GPL-3.0-or-later WITH Autoconf-exception-macro",
+        "GPL-3.0-or-later WITH Autoconf-generic-exception",
+        "GPL-3.0-or-later WITH Bison-2.2-exception",
+        "GPL-3.0-or-later WITH Bison-exception",
+        "GPL-3.0-or-later WITH Libtool-exception",
+        "GPL-3.0-or-later WITH texinfo-exception",
+        "IBM",
+        "IBM-as-is",
+        "ISC",
+        "ISC-Original",
+        "Inner-Net",
+        "JCG",
+        "Kazlib",
+        "LGPL-2.0-only",
+        "LGPL-2.0-or-later",
+        "LGPL-2.1-only",
+        "LGPL-2.1-or-later",
+        "LGPL-2.1-or-later WITH link-exception",
+        "LGPL-3.0-only",
+        "LGPL-3.0-or-later",
+        "Latex2e",
+        "MIT",
+        "MIT-1",
+        "MIT-CMU",
+        "MIT-Export",
+        "MIT-OpenVision",
+        "MIT-US-export",
+        "MIT-X11",
+        "MIT-XC",
+        "MIT-like-Lord",
+        "MIT-old",
+        "MPL-1.1",
+        "MPL-2.0",
+        "MS-PL",
+        "NeoSoft-permissive",
+        "OLDAP-2.8",
+        "OpenLDAP",
+        "OpenLDAP-2.8",
+        "PCRE",
+        "PD",
+        "PD-debian",
+        "REGCOMP",
+        "RSA-MD",
+        "SDBM-PUBLIC-DOMAIN",
+        "SMAIL-GPL",
+        "Sleepycat",
+        "SunPro",
+        "TCL-like",
+        "TEXT-TABS",
+        "UMich",
+        "Unicode",
+        "Unicode-DFS-2016",
+        "Univ-Coimbra",
+        "X11",
+        "Zlib",
+        "all-permissive",
+        "curl",
+        "customFSFUL",
+        "customFSFULLRWD",
+        "gnulib",
+        "noderivs",
+        "none",
+        "pcre",
+        "permissive",
+        "permissive-nowarranty",
+        "public-domain",
+        "public-domain-md4",
+        "public-domain-md5",
+        "public-domain-s-s-d",
+        "public-domain-sha1",
+        "verbatim"
+      ],
+      "components": [
+        {
+          "name": "debian",
+          "version": "13.3",
+          "type": "operating-system",
+          "purl": null,
+          "licenses": []
+        },
+        {
+          "name": "adduser",
+          "version": "3.152",
+          "type": "library",
+          "purl": "pkg:deb/debian/adduser@3.152?arch=all&distro=debian-13.3",
+          "licenses": [
+            "GPL-2.0-or-later",
+            "GPL-2.0-only"
+          ]
+        },
+        {
+          "name": "apt",
+          "version": "3.0.3",
+          "type": "library",
+          "purl": "pkg:deb/debian/apt@3.0.3?arch=amd64&distro=debian-13.3",
+          "licenses": [
+            "GPL-2.0-or-later",
+            "curl",
+            "BSD-3-Clause",
+            "MIT",
+            "GPL-2.0-only"
+          ]
+        },
+        {
+          "name": "base-files",
+          "version": "13.8+deb13u3",
+          "type": "library",
+          "purl": "pkg:deb/debian/base-files@13.8%2Bdeb13u3?arch=amd64&distro=debian-13.3",
+          "licenses": [
+            "GPL-2.0-or-later",
+            "verbatim"
+          ]
+        },
+        {
+          "name": "base-passwd",
+          "version": "3.6.7",
+          "type": "library",
+          "purl": "pkg:deb/debian/base-passwd@3.6.7?arch=amd64&distro=debian-13.3",
+          "licenses": [
+            "GPL-2.0-only",
+            "public-domain"
+          ]
+        },
+        {
+          "name": "bash",
+          "version": "5.2.37-2+b7",
+          "type": "library",
+          "purl": "pkg:deb/debian/bash@5.2.37-2%2Bb7?arch=amd64&distro=debian-13.3",
+          "licenses": [
+            "GPL-3.0-or-later",
+            "GPL-3.0-only",
+            "GPL-3.0-or-later WITH Bison-exception",
+            "GPL-2.0-or-later",
+            "GPL-2.0-only",
+            "GFDL-1.3-no-invariants-only",
+            "GFDL-1.3-only",
+            "Latex2e",
+            "BSD-4-Clause-UC",
+            "MIT",
+            "permissive"
+          ]
+        },
+        {
+          "name": "bsdutils",
+          "version": "1:2.41-5",
+          "type": "library",
+          "purl": "pkg:deb/debian/bsdutils@2.41-5?arch=amd64&distro=debian-13.3&epoch=1",
+          "licenses": [
+            "GPL-2.0-or-later",
+            "GPL-2.0-only",
+            "GPL-3.0-or-later",
+            "LGPL-2.1-or-later",
+            "public-domain",
+            "BSD-4-Clause",
+            "MIT",
+            "ISC",
+            "BSD-3-Clause",
+            "BSLA",
+            "LGPL-2.0-or-later",
+            "BSD-2-Clause",
+            "LGPL-3.0-or-later",
+            "GPL-3.0-only",
+            "LGPL-2.0-only",
+            "LGPL-2.1-only",
+            "LGPL-3.0-only"
+          ]
+        },
+        {
+          "name": "ca-certificates",
+          "version": "20250419",
+          "type": "library",
+          "purl": "pkg:deb/debian/ca-certificates@20250419?arch=all&distro=debian-13.3",
+          "licenses": [
+            "GPL-2.0-or-later",
+            "GPL-2.0-only",
+            "MPL-2.0"
+          ]
+        },
+        {
+          "name": "coreutils",
+          "version": "9.7-3",
+          "type": "library",
+          "purl": "pkg:deb/debian/coreutils@9.7-3?arch=amd64&distro=debian-13.3",
+          "licenses": [
+            "GPL-3.0-or-later",
+            "BSD-4-Clause-UC",
+            "GPL-3.0-only",
+            "ISC",
+            "FSFULLR",
+            "GFDL-1.3-no-invariants-only",
+            "GFDL-1.3-only"
+          ]
+        },
+        {
+          "name": "dash",
+          "version": "0.5.12-12",
+          "type": "library",
+          "purl": "pkg:deb/debian/dash@0.5.12-12?arch=amd64&distro=debian-13.3",
+          "licenses": [
+            "BSD-3-Clause",
+            "public-domain",
+            "GPL-2.0-or-later",
+            "GPL-2.0-only"
+          ]
+        },
+        {
+          "name": "debconf",
+          "version": "1.5.91",
+          "type": "library",
+          "purl": "pkg:deb/debian/debconf@1.5.91?arch=all&distro=debian-13.3",
+          "licenses": [
+            "BSD-2-Clause"
+          ]
+        },
+        {
+          "name": "debian-archive-keyring",
+          "version": "2025.1",
+          "type": "library",
+          "purl": "pkg:deb/debian/debian-archive-keyring@2025.1?arch=all&distro=debian-13.3",
+          "licenses": [
+            "GPL-2.0-or-later"
+          ]
+        },
+        {
+          "name": "debianutils",
+          "version": "5.23.2",
+          "type": "library",
+          "purl": "pkg:deb/debian/debianutils@5.23.2?arch=amd64&distro=debian-13.3",
+          "licenses": [
+            "GPL-2.0-or-later",
+            "GPL-2.0-only",
+            "public-domain",
+            "SMAIL-GPL"
+          ]
+        },
+        {
+          "name": "diffutils",
+          "version": "1:3.10-4",
+          "type": "library",
+          "purl": "pkg:deb/debian/diffutils@3.10-4?arch=amd64&distro=debian-13.3&epoch=1",
+          "licenses": [
+            "GPL-3.0-or-later",
+            "FSFULLR",
+            "LGPL-2.1-or-later",
+            "GPL-3.0-only WITH autoconf-exception+",
+            "GPL-3.0-only",
+            "GPL-3.0-or-later WITH texinfo-exception",
+            "LGPL-2.0-or-later",
+            "GPL-2.0-or-later",
+            "X11",
+            "FSFAP",
+            "GFDL-1.3-no-invariants-only",
+            "LGPL-3.0-or-later",
+            "LGPL-3.0-only",
+            "public-domain",
+            "LGPL-2.0-only",
+            "LGPL-2.1-only",
+            "GPL-2.0-only",
+            "GFDL-1.3-only"
+          ]
+        },
+        {
+          "name": "dpkg",
+          "version": "1.22.21",
+          "type": "library",
+          "purl": "pkg:deb/debian/dpkg@1.22.21?arch=amd64&distro=debian-13.3",
+          "licenses": [
+            "GPL-2.0-or-later",
+            "public-domain-s-s-d",
+            "GPL-2.0-only"
+          ]
+        },
+        {
+          "name": "findutils",
+          "version": "4.10.0-3",
+          "type": "library",
+          "purl": "pkg:deb/debian/findutils@4.10.0-3?arch=amd64&distro=debian-13.3",
+          "licenses": [
+            "GFDL-1.3-no-invariants-or-later",
+            "GPL-3.0-or-later",
+            "FSFAP",
+            "GPL-2.0-or-later WITH Autoconf-data-exception",
+            "GPL-3.0-or-later WITH Autoconf-data-exception",
+            "FSFULLR",
+            "GPL-2.0-or-later",
+            "X11",
+            "public-domain",
+            "LGPL-2.1-or-later",
+            "GPL-2.0-or-later WITH automake-exception",
+            "LGPL-2.0-or-later",
+            "LGPL-3.0-or-later",
+            "BSD-3-Clause",
+            "GPL-3.0-or-later WITH Bison-2.2-exception",
+            "LGPL-3.0-only",
+            "ISC",
+            "GFDL-1.3-only",
+            "GPL-2.0-only",
+            "GPL-3.0-only",
+            "LGPL-2.0-only",
+            "LGPL-2.1-only"
+          ]
+        },
+        {
+          "name": "gcc-14-base",
+          "version": "14.2.0-19",
+          "type": "library",
+          "purl": "pkg:deb/debian/gcc-14-base@14.2.0-19?arch=amd64&distro=debian-13.3",
+          "licenses": [
+            "GPL-2.0-or-later",
+            "GPL-3.0-only",
+            "GFDL-1.2-only",
+            "Artistic-2.0",
+            "LGPL-2.0-or-later"
+          ]
+        },
+        {
+          "name": "grep",
+          "version": "3.11-4",
+          "type": "library",
+          "purl": "pkg:deb/debian/grep@3.11-4?arch=amd64&distro=debian-13.3",
+          "licenses": [
+            "GPL-3.0-or-later",
+            "GPL-3.0-only"
+          ]
+        },
+        {
+          "name": "gzip",
+          "version": "1.13-1",
+          "type": "library",
+          "purl": "pkg:deb/debian/gzip@1.13-1?arch=amd64&distro=debian-13.3",
+          "licenses": [
+            "GPL-3.0-or-later",
+            "GFDL-1.3--no-invariant",
+            "FSF-manpages",
+            "GPL-3.0-only",
+            "GFDL-3"
+          ]
+        },
+        {
+          "name": "hostname",
+          "version": "3.25",
+          "type": "library",
+          "purl": "pkg:deb/debian/hostname@3.25?arch=amd64&distro=debian-13.3",
+          "licenses": [
+            "GPL-2.0-only"
+          ]
+        },
+        {
+          "name": "init-system-helpers",
+          "version": "1.69~deb13u1",
+          "type": "library",
+          "purl": "pkg:deb/debian/init-system-helpers@1.69~deb13u1?arch=all&distro=debian-13.3",
+          "licenses": [
+            "BSD-3-Clause",
+            "GPL-2.0-or-later",
+            "GPL-2.0-only"
+          ]
+        },
+        {
+          "name": "libacl1",
+          "version": "2.3.2-2+b1",
+          "type": "library",
+          "purl": "pkg:deb/debian/libacl1@2.3.2-2%2Bb1?arch=amd64&distro=debian-13.3",
+          "licenses": [
+            "GPL-2.0-or-later",
+            "GPL-2.0-only",
+            "LGPL-2.0-or-later",
+            "LGPL-2.1-only"
+          ]
+        },
+        {
+          "name": "libapr1t64",
+          "version": "1.7.5-1",
+          "type": "library",
+          "purl": "pkg:deb/debian/libapr1t64@1.7.5-1?arch=amd64&distro=debian-13.3",
+          "licenses": [
+            "Apache-2.0"
+          ]
+        },
+        {
+          "name": "libaprutil1-ldap",
+          "version": "1.6.3-3+b1",
+          "type": "library",
+          "purl": "pkg:deb/debian/libaprutil1-ldap@1.6.3-3%2Bb1?arch=amd64&distro=debian-13.3",
+          "licenses": [
+            "Apache-2.0"
+          ]
+        },
+        {
+          "name": "libaprutil1t64",
+          "version": "1.6.3-3+b1",
+          "type": "library",
+          "purl": "pkg:deb/debian/libaprutil1t64@1.6.3-3%2Bb1?arch=amd64&distro=debian-13.3",
+          "licenses": [
+            "Apache-2.0"
+          ]
+        },
+        {
+          "name": "libapt-pkg7.0",
+          "version": "3.0.3",
+          "type": "library",
+          "purl": "pkg:deb/debian/libapt-pkg7.0@3.0.3?arch=amd64&distro=debian-13.3",
+          "licenses": [
+            "GPL-2.0-or-later",
+            "curl",
+            "BSD-3-Clause",
+            "MIT",
+            "GPL-2.0-only"
+          ]
+        },
+        {
+          "name": "libattr1",
+          "version": "1:2.5.2-3",
+          "type": "library",
+          "purl": "pkg:deb/debian/libattr1@2.5.2-3?arch=amd64&distro=debian-13.3&epoch=1",
+          "licenses": [
+            "GPL-2.0-or-later",
+            "GPL-2.0-only",
+            "LGPL-2.0-or-later",
+            "LGPL-2.1-only"
+          ]
+        },
+        {
+          "name": "libaudit-common",
+          "version": "1:4.0.2-2",
+          "type": "library",
+          "purl": "pkg:deb/debian/libaudit-common@4.0.2-2?arch=all&distro=debian-13.3&epoch=1",
+          "licenses": [
+            "GPL-2.0-only",
+            "LGPL-2.1-only",
+            "GPL-1.0-only"
+          ]
+        },
+        {
+          "name": "libaudit1",
+          "version": "1:4.0.2-2+b2",
+          "type": "library",
+          "purl": "pkg:deb/debian/libaudit1@4.0.2-2%2Bb2?arch=amd64&distro=debian-13.3&epoch=1",
+          "licenses": [
+            "GPL-2.0-only",
+            "LGPL-2.1-only",
+            "GPL-1.0-only"
+          ]
+        },
+        {
+          "name": "libblkid1",
+          "version": "2.41-5",
+          "type": "library",
+          "purl": "pkg:deb/debian/libblkid1@2.41-5?arch=amd64&distro=debian-13.3",
+          "licenses": [
+            "GPL-2.0-or-later",
+            "GPL-2.0-only",
+            "GPL-3.0-or-later",
+            "LGPL-2.1-or-later",
+            "public-domain",
+            "BSD-4-Clause",
+            "MIT",
+            "ISC",
+            "BSD-3-Clause",
+            "BSLA",
+            "LGPL-2.0-or-later",
+            "BSD-2-Clause",
+            "LGPL-3.0-or-later",
+            "GPL-3.0-only",
+            "LGPL-2.0-only",
+            "LGPL-2.1-only",
+            "LGPL-3.0-only"
+          ]
+        },
+        {
+          "name": "libbrotli1",
+          "version": "1.1.0-2+b7",
+          "type": "library",
+          "purl": "pkg:deb/debian/libbrotli1@1.1.0-2%2Bb7?arch=amd64&distro=debian-13.3",
+          "licenses": [
+            "MIT"
+          ]
+        },
+        {
+          "name": "libbsd0",
+          "version": "0.12.2-2",
+          "type": "library",
+          "purl": "pkg:deb/debian/libbsd0@0.12.2-2?arch=amd64&distro=debian-13.3",
+          "licenses": [
+            "BSD-3-Clause",
+            "BSD-3-clause-Regents",
+            "BSD-2-Clause-NetBSD",
+            "BSD-3-clause-author",
+            "BSD-3-clause-John-Birrell",
+            "BSD-5-clause-Peter-Wemm",
+            "BSD-2-Clause",
+            "BSD-2-clause-verbatim",
+            "BSD-2-clause-author",
+            "ISC",
+            "ISC-Original",
+            "MIT",
+            "public-domain",
+            "Beerware"
+          ]
+        },
+        {
+          "name": "libbz2-1.0",
+          "version": "1.0.8-6",
+          "type": "library",
+          "purl": "pkg:deb/debian/libbz2-1.0@1.0.8-6?arch=amd64&distro=debian-13.3",
+          "licenses": [
+            "BSD-3-Clause",
+            "GPL-2.0-only"
+          ]
+        },
+        {
+          "name": "libc-bin",
+          "version": "2.41-12+deb13u1",
+          "type": "library",
+          "purl": "pkg:deb/debian/libc-bin@2.41-12%2Bdeb13u1?arch=amd64&distro=debian-13.3",
+          "licenses": [
+            "LGPL-2.1-or-later",
+            "LGPL-2.0-or-later",
+            "LGPL-2.1-or-later WITH link-exception",
+            "LGPL-3.0-or-later",
+            "GPL-2.0-or-later",
+            "GPL-2.0-or-later WITH link-exception",
+            "GPL-2.0-only",
+            "GPL-3.0-or-later",
+            "FSFAP",
+            "Carnegie",
+            "Inner-Net",
+            "MIT-like-Lord",
+            "BSD-like-Spencer",
+            "PCRE",
+            "BSD-3-clause-Carnegie",
+            "Unicode-DFS-2016",
+            "BSL-1.0",
+            "SunPro",
+            "CORE-MATH",
+            "BSD-3-clause-Berkeley",
+            "BSD-3-clause-WIDE",
+            "BSD-2-Clause",
+            "BSD-3-clause-Oracle",
+            "DEC",
+            "IBM",
+            "ISC",
+            "Univ-Coimbra",
+            "public-domain",
+            "GPL-3.0-only",
+            "LGPL-2.0-only",
+            "LGPL-2.1-only",
+            "LGPL-3.0-only"
+          ]
+        },
+        {
+          "name": "libc6",
+          "version": "2.41-12+deb13u1",
+          "type": "library",
+          "purl": "pkg:deb/debian/libc6@2.41-12%2Bdeb13u1?arch=amd64&distro=debian-13.3",
+          "licenses": [
+            "LGPL-2.1-or-later",
+            "LGPL-2.0-or-later",
+            "LGPL-2.1-or-later WITH link-exception",
+            "LGPL-3.0-or-later",
+            "GPL-2.0-or-later",
+            "GPL-2.0-or-later WITH link-exception",
+            "GPL-2.0-only",
+            "GPL-3.0-or-later",
+            "FSFAP",
+            "Carnegie",
+            "Inner-Net",
+            "MIT-like-Lord",
+            "BSD-like-Spencer",
+            "PCRE",
+            "BSD-3-clause-Carnegie",
+            "Unicode-DFS-2016",
+            "BSL-1.0",
+            "SunPro",
+            "CORE-MATH",
+            "BSD-3-clause-Berkeley",
+            "BSD-3-clause-WIDE",
+            "BSD-2-Clause",
+            "BSD-3-clause-Oracle",
+            "DEC",
+            "IBM",
+            "ISC",
+            "Univ-Coimbra",
+            "public-domain",
+            "GPL-3.0-only",
+            "LGPL-2.0-only",
+            "LGPL-2.1-only",
+            "LGPL-3.0-only"
+          ]
+        },
+        {
+          "name": "libcap-ng0",
+          "version": "0.8.5-4+b1",
+          "type": "library",
+          "purl": "pkg:deb/debian/libcap-ng0@0.8.5-4%2Bb1?arch=amd64&distro=debian-13.3",
+          "licenses": [
+            "LGPL-2.1-or-later",
+            "GPL-2.0-or-later",
+            "GPL-3.0-only",
+            "LGPL-2.1-only",
+            "GPL-2.0-only"
+          ]
+        },
+        {
+          "name": "libcap2",
+          "version": "1:2.75-10+b3",
+          "type": "library",
+          "purl": "pkg:deb/debian/libcap2@2.75-10%2Bb3?arch=amd64&distro=debian-13.3&epoch=1",
+          "licenses": [
+            "BSD-3-Clause",
+            "GPL-2.0-only",
+            "GPL-2.0-or-later"
+          ]
+        },
+        {
+          "name": "libcom-err2",
+          "version": "1.47.2-3+b7",
+          "type": "library",
+          "purl": "pkg:deb/debian/libcom-err2@1.47.2-3%2Bb7?arch=amd64&distro=debian-13.3",
+          "licenses": [
+            "GPL-2.0-only",
+            "GPL-2.0-or-later",
+            "0BSD",
+            "MIT",
+            "BSD-3-Clause-Variant",
+            "BSD-3-Clause",
+            "BSD-4-Clause-CMU",
+            "LGPL-2.0-only",
+            "Apache-2.0",
+            "ISC",
+            "MIT-US-export",
+            "Kazlib",
+            "Latex2e",
+            "GPL-2.0-or-later WITH Texinfo-exception"
+          ]
+        },
+        {
+          "name": "libcrypt1",
+          "version": "1:4.4.38-1",
+          "type": "library",
+          "purl": "pkg:deb/debian/libcrypt1@4.4.38-1?arch=amd64&distro=debian-13.3&epoch=1",
+          "licenses": []
+        },
+        {
+          "name": "libcurl4t64",
+          "version": "8.14.1-2+deb13u2",
+          "type": "library",
+          "purl": "pkg:deb/debian/libcurl4t64@8.14.1-2%2Bdeb13u2?arch=amd64&distro=debian-13.3",
+          "licenses": [
+            "curl",
+            "OLDAP-2.8",
+            "ISC",
+            "GPL-2.0-or-later WITH Autoconf-data-exception",
+            "GPL-3.0-or-later WITH Autoconf-data-exception",
+            "GPL-2.0-or-later WITH Libtool-exception",
+            "BSD-3-Clause",
+            "BSD-4-Clause-UC",
+            "FSFULLR",
+            "X11",
+            "GPL-2.0-only"
+          ]
+        },
+        {
+          "name": "libdb5.3t64",
+          "version": "5.3.28+dfsg2-9",
+          "type": "library",
+          "purl": "pkg:deb/debian/libdb5.3t64@5.3.28%2Bdfsg2-9?arch=amd64&distro=debian-13.3",
+          "licenses": [
+            "Sleepycat",
+            "BSD-3-Clause",
+            "MS-PL",
+            "GPL-2.0-or-later",
+            "Artistic-2.0",
+            "X11",
+            "MIT-old",
+            "TCL-like",
+            "BSD-3-clause-fjord",
+            "GPL-3.0-only",
+            "Zlib"
+          ]
+        },
+        {
+          "name": "libdebconfclient0",
+          "version": "0.280",
+          "type": "library",
+          "purl": "pkg:deb/debian/libdebconfclient0@0.280?arch=amd64&distro=debian-13.3",
+          "licenses": [
+            "BSD-2-Clause",
+            "GPL-2.0-or-later",
+            "GPL-2.0-only"
+          ]
+        },
+        {
+          "name": "libexpat1",
+          "version": "2.7.1-2",
+          "type": "library",
+          "purl": "pkg:deb/debian/libexpat1@2.7.1-2?arch=amd64&distro=debian-13.3",
+          "licenses": [
+            "MIT"
+          ]
+        },
+        {
+          "name": "libffi8",
+          "version": "3.4.8-2",
+          "type": "library",
+          "purl": "pkg:deb/debian/libffi8@3.4.8-2?arch=amd64&distro=debian-13.3",
+          "licenses": [
+            "MIT",
+            "X11",
+            "GPL-2.0-or-later",
+            "GPL-3.0-or-later",
+            "MPL-1.1",
+            "LGPL-2.1-or-later",
+            "public-domain"
+          ]
+        },
+        {
+          "name": "libgcc-s1",
+          "version": "14.2.0-19",
+          "type": "library",
+          "purl": "pkg:deb/debian/libgcc-s1@14.2.0-19?arch=amd64&distro=debian-13.3",
+          "licenses": []
+        },
+        {
+          "name": "libgdbm6t64",
+          "version": "1.24-2",
+          "type": "library",
+          "purl": "pkg:deb/debian/libgdbm6t64@1.24-2?arch=amd64&distro=debian-13.3",
+          "licenses": [
+            "GPL-3.0-or-later",
+            "GPL-2.0-or-later",
+            "GFDL-1.3-no-invariants-or-later",
+            "GPL-3.0-only",
+            "GPL-2.0-only"
+          ]
+        },
+        {
+          "name": "libgmp10",
+          "version": "2:6.3.0+dfsg-3",
+          "type": "library",
+          "purl": "pkg:deb/debian/libgmp10@6.3.0%2Bdfsg-3?arch=amd64&distro=debian-13.3&epoch=2",
+          "licenses": [
+            "GPL-2.0-or-later",
+            "LGPL-3.0-or-later",
+            "GPL-3.0-or-later",
+            "GPL-3.0-or-later WITH Bison-exception",
+            "GPL-2.0-only",
+            "GPL-3.0-only",
+            "LGPL-3.0-only"
+          ]
+        },
+        {
+          "name": "libgnutls30t64",
+          "version": "3.8.9-3+deb13u1",
+          "type": "library",
+          "purl": "pkg:deb/debian/libgnutls30t64@3.8.9-3%2Bdeb13u1?arch=amd64&distro=debian-13.3",
+          "licenses": [
+            "LGPL-2.1-only",
+            "LGPL-2.0-or-later",
+            "LGPL-3.0-only",
+            "GPL-2.0-or-later",
+            "GPL-3.0-only",
+            "GFDL-1.3-only",
+            "CC0-1.0",
+            "MIT",
+            "Apache-2.0",
+            "LGPL-3.0-or-later",
+            "LGPL-2.1-or-later",
+            "GPL-3.0-or-later",
+            "BSD-3-Clause",
+            "FSFAP"
+          ]
+        },
+        {
+          "name": "libgssapi-krb5-2",
+          "version": "1.21.3-5",
+          "type": "library",
+          "purl": "pkg:deb/debian/libgssapi-krb5-2@1.21.3-5?arch=amd64&distro=debian-13.3",
+          "licenses": [
+            "GPL-2.0-only"
+          ]
+        },
+        {
+          "name": "libhogweed6t64",
+          "version": "3.10.1-1",
+          "type": "library",
+          "purl": "pkg:deb/debian/libhogweed6t64@3.10.1-1?arch=amd64&distro=debian-13.3",
+          "licenses": [
+            "LGPL-3.0-or-later",
+            "GPL-2.0-or-later",
+            "LGPL-2.0-or-later",
+            "LGPL-2.0-only",
+            "MIT",
+            "GPL-3.0-only WITH autoconf-exception+",
+            "public-domain",
+            "GPL-2.0-only",
+            "GAP"
+          ]
+        },
+        {
+          "name": "libidn2-0",
+          "version": "2.3.8-2",
+          "type": "library",
+          "purl": "pkg:deb/debian/libidn2-0@2.3.8-2?arch=amd64&distro=debian-13.3",
+          "licenses": [
+            "GPL-3.0-or-later",
+            "LGPL-3.0-or-later",
+            "GPL-2.0-or-later",
+            "MIT",
+            "Unicode",
+            "GPL-3.0-only",
+            "GPL-2.0-only",
+            "LGPL-3.0-only"
+          ]
+        },
+        {
+          "name": "libjansson4",
+          "version": "2.14-2+b3",
+          "type": "library",
+          "purl": "pkg:deb/debian/libjansson4@2.14-2%2Bb3?arch=amd64&distro=debian-13.3",
+          "licenses": [
+            "MIT"
+          ]
+        },
+        {
+          "name": "libk5crypto3",
+          "version": "1.21.3-5",
+          "type": "library",
+          "purl": "pkg:deb/debian/libk5crypto3@1.21.3-5?arch=amd64&distro=debian-13.3",
+          "licenses": [
+            "GPL-2.0-only"
+          ]
+        },
+        {
+          "name": "libkeyutils1",
+          "version": "1.6.3-6",
+          "type": "library",
+          "purl": "pkg:deb/debian/libkeyutils1@1.6.3-6?arch=amd64&distro=debian-13.3",
+          "licenses": [
+            "GPL-2.0-or-later",
+            "LGPL-2.0-or-later",
+            "GPL-2.0-only",
+            "LGPL-2.0-only"
+          ]
+        },
+        {
+          "name": "libkrb5-3",
+          "version": "1.21.3-5",
+          "type": "library",
+          "purl": "pkg:deb/debian/libkrb5-3@1.21.3-5?arch=amd64&distro=debian-13.3",
+          "licenses": [
+            "GPL-2.0-only"
+          ]
+        },
+        {
+          "name": "libkrb5support0",
+          "version": "1.21.3-5",
+          "type": "library",
+          "purl": "pkg:deb/debian/libkrb5support0@1.21.3-5?arch=amd64&distro=debian-13.3",
+          "licenses": [
+            "GPL-2.0-only"
+          ]
+        },
+        {
+          "name": "liblastlog2-2",
+          "version": "2.41-5",
+          "type": "library",
+          "purl": "pkg:deb/debian/liblastlog2-2@2.41-5?arch=amd64&distro=debian-13.3",
+          "licenses": [
+            "GPL-2.0-or-later",
+            "GPL-2.0-only",
+            "GPL-3.0-or-later",
+            "LGPL-2.1-or-later",
+            "public-domain",
+            "BSD-4-Clause",
+            "MIT",
+            "ISC",
+            "BSD-3-Clause",
+            "BSLA",
+            "LGPL-2.0-or-later",
+            "BSD-2-Clause",
+            "LGPL-3.0-or-later",
+            "GPL-3.0-only",
+            "LGPL-2.0-only",
+            "LGPL-2.1-only",
+            "LGPL-3.0-only"
+          ]
+        },
+        {
+          "name": "libldap-common",
+          "version": "2.6.10+dfsg-1",
+          "type": "library",
+          "purl": "pkg:deb/debian/libldap-common@2.6.10%2Bdfsg-1?arch=all&distro=debian-13.3",
+          "licenses": [
+            "OpenLDAP-2.8",
+            "FSF-unlimited",
+            "GPL-2.0-only WITH autoconf-exception+",
+            "GPL-3.0-only WITH autoconf-exception+",
+            "GPL-2.0-or-later WITH Libtool-exception",
+            "GPL-3.0-or-later WITH Libtool-exception",
+            "GPL-3.0-or-later",
+            "GPL-2.0-or-later",
+            "UMich",
+            "F5",
+            "JCG",
+            "MIT-XC",
+            "NeoSoft-permissive",
+            "BSD-3-Clause",
+            "Beerware",
+            "public-domain",
+            "BSD-4-clause-California",
+            "BSD-3-clause-variant",
+            "Expat-ISC",
+            "Expat-UNM",
+            "MIT",
+            "BSD-3-clause-California",
+            "GPL-2.0-only",
+            "GPL-3.0-only"
+          ]
+        },
+        {
+          "name": "libldap2",
+          "version": "2.6.10+dfsg-1",
+          "type": "library",
+          "purl": "pkg:deb/debian/libldap2@2.6.10%2Bdfsg-1?arch=amd64&distro=debian-13.3",
+          "licenses": [
+            "OpenLDAP-2.8",
+            "FSF-unlimited",
+            "GPL-2.0-only WITH autoconf-exception+",
+            "GPL-3.0-only WITH autoconf-exception+",
+            "GPL-2.0-or-later WITH Libtool-exception",
+            "GPL-3.0-or-later WITH Libtool-exception",
+            "GPL-3.0-or-later",
+            "GPL-2.0-or-later",
+            "UMich",
+            "F5",
+            "JCG",
+            "MIT-XC",
+            "NeoSoft-permissive",
+            "BSD-3-Clause",
+            "Beerware",
+            "public-domain",
+            "BSD-4-clause-California",
+            "BSD-3-clause-variant",
+            "Expat-ISC",
+            "Expat-UNM",
+            "MIT",
+            "BSD-3-clause-California",
+            "GPL-2.0-only",
+            "GPL-3.0-only"
+          ]
+        },
+        {
+          "name": "liblua5.2-0",
+          "version": "5.2.4-3+b3",
+          "type": "library",
+          "purl": "pkg:deb/debian/liblua5.2-0@5.2.4-3%2Bb3?arch=amd64&distro=debian-13.3",
+          "licenses": [
+            "MIT"
+          ]
+        },
+        {
+          "name": "liblz4-1",
+          "version": "1.10.0-4",
+          "type": "library",
+          "purl": "pkg:deb/debian/liblz4-1@1.10.0-4?arch=amd64&distro=debian-13.3",
+          "licenses": [
+            "GPL-2.0-or-later",
+            "BSD-2-Clause",
+            "GPL-2.0-only"
+          ]
+        },
+        {
+          "name": "liblzma5",
+          "version": "5.8.1-1",
+          "type": "library",
+          "purl": "pkg:deb/debian/liblzma5@5.8.1-1?arch=amd64&distro=debian-13.3",
+          "licenses": [
+            "0BSD",
+            "GPL-2.0-or-later",
+            "LGPL-2.1-or-later",
+            "FSFULLR",
+            "GPL-3.0-or-later WITH Autoconf-exception-macro",
+            "none",
+            "PD",
+            "permissive-nowarranty",
+            "FSFUL",
+            "noderivs",
+            "PD-debian",
+            "LGPL-2.1-only",
+            "GPL-2.0-only",
+            "GPL-3.0-only"
+          ]
+        },
+        {
+          "name": "libmd0",
+          "version": "1.1.0-2+b1",
+          "type": "library",
+          "purl": "pkg:deb/debian/libmd0@1.1.0-2%2Bb1?arch=amd64&distro=debian-13.3",
+          "licenses": [
+            "BSD-3-Clause",
+            "BSD-3-clause-Aaron-D-Gifford",
+            "BSD-2-Clause",
+            "BSD-2-Clause-NetBSD",
+            "ISC",
+            "Beerware",
+            "public-domain-md4",
+            "public-domain-md5",
+            "public-domain-sha1"
+          ]
+        },
+        {
+          "name": "libmount1",
+          "version": "2.41-5",
+          "type": "library",
+          "purl": "pkg:deb/debian/libmount1@2.41-5?arch=amd64&distro=debian-13.3",
+          "licenses": [
+            "GPL-2.0-or-later",
+            "GPL-2.0-only",
+            "GPL-3.0-or-later",
+            "LGPL-2.1-or-later",
+            "public-domain",
+            "BSD-4-Clause",
+            "MIT",
+            "ISC",
+            "BSD-3-Clause",
+            "BSLA",
+            "LGPL-2.0-or-later",
+            "BSD-2-Clause",
+            "LGPL-3.0-or-later",
+            "GPL-3.0-only",
+            "LGPL-2.0-only",
+            "LGPL-2.1-only",
+            "LGPL-3.0-only"
+          ]
+        },
+        {
+          "name": "libnettle8t64",
+          "version": "3.10.1-1",
+          "type": "library",
+          "purl": "pkg:deb/debian/libnettle8t64@3.10.1-1?arch=amd64&distro=debian-13.3",
+          "licenses": [
+            "LGPL-3.0-or-later",
+            "GPL-2.0-or-later",
+            "LGPL-2.0-or-later",
+            "LGPL-2.0-only",
+            "MIT",
+            "GPL-3.0-only WITH autoconf-exception+",
+            "public-domain",
+            "GPL-2.0-only",
+            "GAP"
+          ]
+        },
+        {
+          "name": "libnghttp2-14",
+          "version": "1.64.0-1.1",
+          "type": "library",
+          "purl": "pkg:deb/debian/libnghttp2-14@1.64.0-1.1?arch=amd64&distro=debian-13.3",
+          "licenses": [
+            "MIT",
+            "all-permissive",
+            "GPL-3.0-only WITH autoconf-exception+",
+            "BSD-2-Clause",
+            "GPL-3.0-only"
+          ]
+        },
+        {
+          "name": "libnghttp3-9",
+          "version": "1.8.0-1",
+          "type": "library",
+          "purl": "pkg:deb/debian/libnghttp3-9@1.8.0-1?arch=amd64&distro=debian-13.3",
+          "licenses": [
+            "MIT",
+            "FSFULLR",
+            "GPL-3.0-or-later WITH Autoconf-generic-exception",
+            "FSFUL",
+            "GPL-2.0-or-later WITH Autoconf-generic-exception",
+            "FSFAP",
+            "GPL-2.0-or-later WITH Libtool-Exception",
+            "GPL-3.0-or-later",
+            "GPL-2.0-only",
+            "GPL-3.0-only"
+          ]
+        },
+        {
+          "name": "libp11-kit0",
+          "version": "0.25.5-3",
+          "type": "library",
+          "purl": "pkg:deb/debian/libp11-kit0@0.25.5-3?arch=amd64&distro=debian-13.3",
+          "licenses": [
+            "BSD-3-Clause",
+            "FSFULLR",
+            "GPL-2.0-or-later WITH Autoconf-data-exception",
+            "GPL-3.0-or-later WITH Autoconf-data-exception",
+            "X11",
+            "ISC",
+            "customFSFULLRWD",
+            "LGPL-2.1-or-later",
+            "Apache-2.0",
+            "customFSFUL",
+            "FSFAP",
+            "LGPL-2.1-only"
+          ]
+        },
+        {
+          "name": "libpam-modules-bin",
+          "version": "1.7.0-5",
+          "type": "library",
+          "purl": "pkg:deb/debian/libpam-modules-bin@1.7.0-5?arch=amd64&distro=debian-13.3",
+          "licenses": [
+            "BSD-3-Clause",
+            "GPL-2.0-or-later",
+            "GPL-1.0-only",
+            "GPL-2.0-only",
+            "GPL-3.0-only",
+            "GPL-3.0-or-later WITH Bison-exception",
+            "BSD-tcp-wrappers",
+            "LGPL-2.0-or-later",
+            "LGPL-2.0-only",
+            "public-domain",
+            "Beerware"
+          ]
+        },
+        {
+          "name": "libpam-modules",
+          "version": "1.7.0-5",
+          "type": "library",
+          "purl": "pkg:deb/debian/libpam-modules@1.7.0-5?arch=amd64&distro=debian-13.3",
+          "licenses": [
+            "BSD-3-Clause",
+            "GPL-2.0-or-later",
+            "GPL-1.0-only",
+            "GPL-2.0-only",
+            "GPL-3.0-only",
+            "GPL-3.0-or-later WITH Bison-exception",
+            "BSD-tcp-wrappers",
+            "LGPL-2.0-or-later",
+            "LGPL-2.0-only",
+            "public-domain",
+            "Beerware"
+          ]
+        },
+        {
+          "name": "libpam-runtime",
+          "version": "1.7.0-5",
+          "type": "library",
+          "purl": "pkg:deb/debian/libpam-runtime@1.7.0-5?arch=all&distro=debian-13.3",
+          "licenses": [
+            "BSD-3-Clause",
+            "GPL-2.0-or-later",
+            "GPL-1.0-only",
+            "GPL-2.0-only",
+            "GPL-3.0-only",
+            "GPL-3.0-or-later WITH Bison-exception",
+            "BSD-tcp-wrappers",
+            "LGPL-2.0-or-later",
+            "LGPL-2.0-only",
+            "public-domain",
+            "Beerware"
+          ]
+        },
+        {
+          "name": "libpam0g",
+          "version": "1.7.0-5",
+          "type": "library",
+          "purl": "pkg:deb/debian/libpam0g@1.7.0-5?arch=amd64&distro=debian-13.3",
+          "licenses": [
+            "BSD-3-Clause",
+            "GPL-2.0-or-later",
+            "GPL-1.0-only",
+            "GPL-2.0-only",
+            "GPL-3.0-only",
+            "GPL-3.0-or-later WITH Bison-exception",
+            "BSD-tcp-wrappers",
+            "LGPL-2.0-or-later",
+            "LGPL-2.0-only",
+            "public-domain",
+            "Beerware"
+          ]
+        },
+        {
+          "name": "libpcre2-8-0",
+          "version": "10.46-1~deb13u1",
+          "type": "library",
+          "purl": "pkg:deb/debian/libpcre2-8-0@10.46-1~deb13u1?arch=amd64&distro=debian-13.3",
+          "licenses": [
+            "BSD-3-clause-Cambridge WITH BINARY-LIBRARY-LIKE-PACKAGES-exception",
+            "BSD-3-Clause",
+            "X11",
+            "BSD-2-Clause",
+            "public-domain"
+          ]
+        },
+        {
+          "name": "libpsl5t64",
+          "version": "0.21.2-1.1+b1",
+          "type": "library",
+          "purl": "pkg:deb/debian/libpsl5t64@0.21.2-1.1%2Bb1?arch=amd64&distro=debian-13.3",
+          "licenses": [
+            "MIT",
+            "gnulib",
+            "Chromium"
+          ]
+        },
+        {
+          "name": "librtmp1",
+          "version": "2.4+20151223.gitfa8646d.1-2+b5",
+          "type": "library",
+          "purl": "pkg:deb/debian/librtmp1@2.4%2B20151223.gitfa8646d.1-2%2Bb5?arch=amd64&distro=debian-13.3",
+          "licenses": [
+            "GPL-2.0-only",
+            "LGPL-2.1-only"
+          ]
+        },
+        {
+          "name": "libsasl2-2",
+          "version": "2.1.28+dfsg1-9",
+          "type": "library",
+          "purl": "pkg:deb/debian/libsasl2-2@2.1.28%2Bdfsg1-9?arch=amd64&distro=debian-13.3",
+          "licenses": [
+            "BSD-3-Clause-Attribution",
+            "BSD-3-Clause",
+            "BSD-2-Clause",
+            "GPL-3.0-or-later",
+            "GPL-3.0-only",
+            "BSD-4-Clause-UC",
+            "RSA-MD",
+            "BSD-3-Clause-Attribution and IBM-as-is",
+            "BSD-3-clause-JANET",
+            "BSD-3-clause-PADL",
+            "MIT-OpenVision",
+            "OpenLDAP",
+            "FSFULLR",
+            "MIT-CMU",
+            "MIT-Export",
+            "BSD-2.2-clause",
+            "IBM-as-is"
+          ]
+        },
+        {
+          "name": "libsasl2-modules-db",
+          "version": "2.1.28+dfsg1-9",
+          "type": "library",
+          "purl": "pkg:deb/debian/libsasl2-modules-db@2.1.28%2Bdfsg1-9?arch=amd64&distro=debian-13.3",
+          "licenses": [
+            "BSD-3-Clause-Attribution",
+            "BSD-3-Clause",
+            "BSD-2-Clause",
+            "GPL-3.0-or-later",
+            "GPL-3.0-only",
+            "BSD-4-Clause-UC",
+            "RSA-MD",
+            "BSD-3-Clause-Attribution and IBM-as-is",
+            "BSD-3-clause-JANET",
+            "BSD-3-clause-PADL",
+            "MIT-OpenVision",
+            "OpenLDAP",
+            "FSFULLR",
+            "MIT-CMU",
+            "MIT-Export",
+            "BSD-2.2-clause",
+            "IBM-as-is"
+          ]
+        },
+        {
+          "name": "libseccomp2",
+          "version": "2.6.0-2",
+          "type": "library",
+          "purl": "pkg:deb/debian/libseccomp2@2.6.0-2?arch=amd64&distro=debian-13.3",
+          "licenses": [
+            "LGPL-2.1-only"
+          ]
+        },
+        {
+          "name": "libselinux1",
+          "version": "3.8.1-1",
+          "type": "library",
+          "purl": "pkg:deb/debian/libselinux1@3.8.1-1?arch=amd64&distro=debian-13.3",
+          "licenses": [
+            "public-domain",
+            "GPL-2.0-only"
+          ]
+        },
+        {
+          "name": "libsemanage-common",
+          "version": "3.8.1-1",
+          "type": "library",
+          "purl": "pkg:deb/debian/libsemanage-common@3.8.1-1?arch=all&distro=debian-13.3",
+          "licenses": [
+            "LGPL-2.1-or-later",
+            "LGPL-2.1-only",
+            "GPL-2.0-only"
+          ]
+        },
+        {
+          "name": "libsemanage2",
+          "version": "3.8.1-1",
+          "type": "library",
+          "purl": "pkg:deb/debian/libsemanage2@3.8.1-1?arch=amd64&distro=debian-13.3",
+          "licenses": [
+            "LGPL-2.1-or-later",
+            "LGPL-2.1-only",
+            "GPL-2.0-only"
+          ]
+        },
+        {
+          "name": "libsepol2",
+          "version": "3.8.1-1",
+          "type": "library",
+          "purl": "pkg:deb/debian/libsepol2@3.8.1-1?arch=amd64&distro=debian-13.3",
+          "licenses": [
+            "LGPL-2.1-or-later",
+            "LGPL-2.1-only",
+            "Zlib",
+            "GPL-2.0-only",
+            "GPL-2.0-or-later"
+          ]
+        },
+        {
+          "name": "libsmartcols1",
+          "version": "2.41-5",
+          "type": "library",
+          "purl": "pkg:deb/debian/libsmartcols1@2.41-5?arch=amd64&distro=debian-13.3",
+          "licenses": [
+            "GPL-2.0-or-later",
+            "GPL-2.0-only",
+            "GPL-3.0-or-later",
+            "LGPL-2.1-or-later",
+            "public-domain",
+            "BSD-4-Clause",
+            "MIT",
+            "ISC",
+            "BSD-3-Clause",
+            "BSLA",
+            "LGPL-2.0-or-later",
+            "BSD-2-Clause",
+            "LGPL-3.0-or-later",
+            "GPL-3.0-only",
+            "LGPL-2.0-only",
+            "LGPL-2.1-only",
+            "LGPL-3.0-only"
+          ]
+        },
+        {
+          "name": "libsqlite3-0",
+          "version": "3.46.1-7",
+          "type": "library",
+          "purl": "pkg:deb/debian/libsqlite3-0@3.46.1-7?arch=amd64&distro=debian-13.3",
+          "licenses": [
+            "public-domain",
+            "GPL-2.0-or-later",
+            "GPL-2.0-only"
+          ]
+        },
+        {
+          "name": "libssh2-1t64",
+          "version": "1.11.1-1",
+          "type": "library",
+          "purl": "pkg:deb/debian/libssh2-1t64@1.11.1-1?arch=amd64&distro=debian-13.3",
+          "licenses": [
+            "BSD-3-Clause",
+            "ISC"
+          ]
+        },
+        {
+          "name": "libssl3t64",
+          "version": "3.5.4-1~deb13u2",
+          "type": "library",
+          "purl": "pkg:deb/debian/libssl3t64@3.5.4-1~deb13u2?arch=amd64&distro=debian-13.3",
+          "licenses": [
+            "Apache-2.0",
+            "Artistic-2.0",
+            "GPL-1.0-or-later",
+            "GPL-1.0-only"
+          ]
+        },
+        {
+          "name": "libstdc++6",
+          "version": "14.2.0-19",
+          "type": "library",
+          "purl": "pkg:deb/debian/libstdc%2B%2B6@14.2.0-19?arch=amd64&distro=debian-13.3",
+          "licenses": []
+        },
+        {
+          "name": "libsystemd0",
+          "version": "257.9-1~deb13u1",
+          "type": "library",
+          "purl": "pkg:deb/debian/libsystemd0@257.9-1~deb13u1?arch=amd64&distro=debian-13.3",
+          "licenses": [
+            "LGPL-2.1-or-later",
+            "CC0-1.0",
+            "GPL-2.0-only WITH Linux-syscall-note-exception",
+            "MIT",
+            "public-domain",
+            "GPL-2.0-or-later",
+            "GPL-2.0-only",
+            "LGPL-2.1-only"
+          ]
+        },
+        {
+          "name": "libtasn1-6",
+          "version": "4.20.0-2",
+          "type": "library",
+          "purl": "pkg:deb/debian/libtasn1-6@4.20.0-2?arch=amd64&distro=debian-13.3",
+          "licenses": [
+            "LGPL-2.0-or-later",
+            "LGPL-2.1-only",
+            "GPL-3.0-only",
+            "GFDL-1.3-only"
+          ]
+        },
+        {
+          "name": "libtinfo6",
+          "version": "6.5+20250216-2",
+          "type": "library",
+          "purl": "pkg:deb/debian/libtinfo6@6.5%2B20250216-2?arch=amd64&distro=debian-13.3",
+          "licenses": [
+            "MIT-X11",
+            "X11",
+            "BSD-3-Clause"
+          ]
+        },
+        {
+          "name": "libudev1",
+          "version": "257.9-1~deb13u1",
+          "type": "library",
+          "purl": "pkg:deb/debian/libudev1@257.9-1~deb13u1?arch=amd64&distro=debian-13.3",
+          "licenses": [
+            "LGPL-2.1-or-later",
+            "CC0-1.0",
+            "GPL-2.0-only WITH Linux-syscall-note-exception",
+            "MIT",
+            "public-domain",
+            "GPL-2.0-or-later",
+            "GPL-2.0-only",
+            "LGPL-2.1-only"
+          ]
+        },
+        {
+          "name": "libunistring5",
+          "version": "1.3-2",
+          "type": "library",
+          "purl": "pkg:deb/debian/libunistring5@1.3-2?arch=amd64&distro=debian-13.3",
+          "licenses": [
+            "GPL-3.0-or-later",
+            "LGPL-3.0-or-later",
+            "LGPL-2.0-or-later",
+            "GFDL-1.3-or-later",
+            "GFDL-1.2-or-later",
+            "LGPL-3.0-only",
+            "LGPL-2.1-or-later",
+            "BSD-3-Clause",
+            "ISC",
+            "Unicode-DFS-2016",
+            "public-domain",
+            "FreeSoftware",
+            "GPL-2.0-or-later",
+            "GPL-2.0-or-later WITH distribution-exception",
+            "MIT",
+            "X11",
+            "GPL-3.0-only",
+            "GPL-2.0-only",
+            "LGPL-2.0-only",
+            "LGPL-2.1-only"
+          ]
+        },
+        {
+          "name": "libuuid1",
+          "version": "2.41-5",
+          "type": "library",
+          "purl": "pkg:deb/debian/libuuid1@2.41-5?arch=amd64&distro=debian-13.3",
+          "licenses": [
+            "GPL-2.0-or-later",
+            "GPL-2.0-only",
+            "GPL-3.0-or-later",
+            "LGPL-2.1-or-later",
+            "public-domain",
+            "BSD-4-Clause",
+            "MIT",
+            "ISC",
+            "BSD-3-Clause",
+            "BSLA",
+            "LGPL-2.0-or-later",
+            "BSD-2-Clause",
+            "LGPL-3.0-or-later",
+            "GPL-3.0-only",
+            "LGPL-2.0-only",
+            "LGPL-2.1-only",
+            "LGPL-3.0-only"
+          ]
+        },
+        {
+          "name": "libxml2",
+          "version": "2.12.7+dfsg+really2.9.14-2.1+deb13u2",
+          "type": "library",
+          "purl": "pkg:deb/debian/libxml2@2.12.7%2Bdfsg%2Breally2.9.14-2.1%2Bdeb13u2?arch=amd64&distro=debian-13.3",
+          "licenses": [
+            "MIT-1",
+            "ISC"
+          ]
+        },
+        {
+          "name": "libxxhash0",
+          "version": "0.8.3-2",
+          "type": "library",
+          "purl": "pkg:deb/debian/libxxhash0@0.8.3-2?arch=amd64&distro=debian-13.3",
+          "licenses": [
+            "BSD-2-Clause",
+            "GPL-2.0-or-later",
+            "GPL-2.0-only"
+          ]
+        },
+        {
+          "name": "libzstd1",
+          "version": "1.5.7+dfsg-1",
+          "type": "library",
+          "purl": "pkg:deb/debian/libzstd1@1.5.7%2Bdfsg-1?arch=amd64&distro=debian-13.3",
+          "licenses": [
+            "BSD-3-Clause",
+            "GPL-2.0-only",
+            "Zlib",
+            "MIT"
+          ]
+        },
+        {
+          "name": "login.defs",
+          "version": "1:4.17.4-2",
+          "type": "library",
+          "purl": "pkg:deb/debian/login.defs@4.17.4-2?arch=all&distro=debian-13.3&epoch=1",
+          "licenses": [
+            "BSD-3-Clause",
+            "GPL-1.0-only",
+            "GPL-2.0-or-later",
+            "GPL-2.0-only"
+          ]
+        },
+        {
+          "name": "login",
+          "version": "1:4.16.0-2+really2.41-5",
+          "type": "library",
+          "purl": "pkg:deb/debian/login@4.16.0-2%2Breally2.41-5?arch=amd64&distro=debian-13.3&epoch=1",
+          "licenses": [
+            "GPL-2.0-or-later",
+            "GPL-2.0-only",
+            "GPL-3.0-or-later",
+            "LGPL-2.1-or-later",
+            "public-domain",
+            "BSD-4-Clause",
+            "MIT",
+            "ISC",
+            "BSD-3-Clause",
+            "BSLA",
+            "LGPL-2.0-or-later",
+            "BSD-2-Clause",
+            "LGPL-3.0-or-later",
+            "GPL-3.0-only",
+            "LGPL-2.0-only",
+            "LGPL-2.1-only",
+            "LGPL-3.0-only"
+          ]
+        },
+        {
+          "name": "mawk",
+          "version": "1.3.4.20250131-1",
+          "type": "library",
+          "purl": "pkg:deb/debian/mawk@1.3.4.20250131-1?arch=amd64&distro=debian-13.3",
+          "licenses": [
+            "GPL-2.0-only",
+            "X11",
+            "CC-BY-3.0"
+          ]
+        },
+        {
+          "name": "mount",
+          "version": "2.41-5",
+          "type": "library",
+          "purl": "pkg:deb/debian/mount@2.41-5?arch=amd64&distro=debian-13.3",
+          "licenses": [
+            "GPL-2.0-or-later",
+            "GPL-2.0-only",
+            "GPL-3.0-or-later",
+            "LGPL-2.1-or-later",
+            "public-domain",
+            "BSD-4-Clause",
+            "MIT",
+            "ISC",
+            "BSD-3-Clause",
+            "BSLA",
+            "LGPL-2.0-or-later",
+            "BSD-2-Clause",
+            "LGPL-3.0-or-later",
+            "GPL-3.0-only",
+            "LGPL-2.0-only",
+            "LGPL-2.1-only",
+            "LGPL-3.0-only"
+          ]
+        },
+        {
+          "name": "ncurses-base",
+          "version": "6.5+20250216-2",
+          "type": "library",
+          "purl": "pkg:deb/debian/ncurses-base@6.5%2B20250216-2?arch=all&distro=debian-13.3",
+          "licenses": [
+            "MIT-X11",
+            "X11",
+            "BSD-3-Clause"
+          ]
+        },
+        {
+          "name": "ncurses-bin",
+          "version": "6.5+20250216-2",
+          "type": "library",
+          "purl": "pkg:deb/debian/ncurses-bin@6.5%2B20250216-2?arch=amd64&distro=debian-13.3",
+          "licenses": [
+            "MIT-X11",
+            "X11",
+            "BSD-3-Clause"
+          ]
+        },
+        {
+          "name": "openssl-provider-legacy",
+          "version": "3.5.4-1~deb13u2",
+          "type": "library",
+          "purl": "pkg:deb/debian/openssl-provider-legacy@3.5.4-1~deb13u2?arch=amd64&distro=debian-13.3",
+          "licenses": [
+            "Apache-2.0",
+            "Artistic-2.0",
+            "GPL-1.0-or-later",
+            "GPL-1.0-only"
+          ]
+        },
+        {
+          "name": "openssl",
+          "version": "3.5.4-1~deb13u2",
+          "type": "library",
+          "purl": "pkg:deb/debian/openssl@3.5.4-1~deb13u2?arch=amd64&distro=debian-13.3",
+          "licenses": [
+            "Apache-2.0",
+            "Artistic-2.0",
+            "GPL-1.0-or-later",
+            "GPL-1.0-only"
+          ]
+        },
+        {
+          "name": "passwd",
+          "version": "1:4.17.4-2",
+          "type": "library",
+          "purl": "pkg:deb/debian/passwd@4.17.4-2?arch=amd64&distro=debian-13.3&epoch=1",
+          "licenses": [
+            "BSD-3-Clause",
+            "GPL-1.0-only",
+            "GPL-2.0-or-later",
+            "GPL-2.0-only"
+          ]
+        },
+        {
+          "name": "perl-base",
+          "version": "5.40.1-6",
+          "type": "library",
+          "purl": "pkg:deb/debian/perl-base@5.40.1-6?arch=amd64&distro=debian-13.3",
+          "licenses": [
+            "GPL-1.0-or-later",
+            "Artistic-2.0",
+            "MIT",
+            "REGCOMP",
+            "GPL-2.0-only WITH bison-exception+",
+            "Unicode",
+            "BZIP",
+            "Zlib",
+            "GPL-2.0-or-later",
+            "FSFAP",
+            "BSD-3-Clause WITH weird-numbering",
+            "CC0-1.0",
+            "TEXT-TABS",
+            "BSD-4-clause-POWERDOG",
+            "BSD-3-clause-GENERIC",
+            "BSD-3-Clause",
+            "SDBM-PUBLIC-DOMAIN",
+            "DONT-CHANGE-THE-GPL",
+            "Artistic-dist",
+            "LGPL-2.1-only",
+            "GPL-1.0-only",
+            "GPL-2.0-only",
+            "Artistic-2"
+          ]
+        },
+        {
+          "name": "sed",
+          "version": "4.9-2",
+          "type": "library",
+          "purl": "pkg:deb/debian/sed@4.9-2?arch=amd64&distro=debian-13.3",
+          "licenses": [
+            "GPL-3.0-or-later",
+            "GPL-3.0-only",
+            "X11",
+            "GFDL-1.3-no-invariants-or-later",
+            "GFDL-1.3-only",
+            "ISC",
+            "BSD-4-Clause-UC",
+            "BSL-1",
+            "pcre"
+          ]
+        },
+        {
+          "name": "sqv",
+          "version": "1.3.0-3+b2",
+          "type": "library",
+          "purl": "pkg:deb/debian/sqv@1.3.0-3%2Bb2?arch=amd64&distro=debian-13.3",
+          "licenses": [
+            "LGPL-2.0-or-later",
+            "LGPL-2.0-only"
+          ]
+        },
+        {
+          "name": "sysvinit-utils",
+          "version": "3.14-4",
+          "type": "library",
+          "purl": "pkg:deb/debian/sysvinit-utils@3.14-4?arch=amd64&distro=debian-13.3",
+          "licenses": [
+            "GPL-2.0-or-later",
+            "LGPL-2.1-or-later",
+            "GPL-3.0-only",
+            "GPL-2.0-only",
+            "LGPL-2.1-only"
+          ]
+        },
+        {
+          "name": "tar",
+          "version": "1.35+dfsg-3.1",
+          "type": "library",
+          "purl": "pkg:deb/debian/tar@1.35%2Bdfsg-3.1?arch=amd64&distro=debian-13.3",
+          "licenses": [
+            "GPL-3.0-or-later",
+            "GPL-3.0-only",
+            "GPL-3.0-or-later WITH Bison-exception",
+            "LGPL-2.1-or-later",
+            "LGPL-2.1-only",
+            "LGPL-3.0-or-later",
+            "LGPL-3.0-only",
+            "GPL-2.0-or-later",
+            "GPL-2.0-only"
+          ]
+        },
+        {
+          "name": "tzdata",
+          "version": "2025b-4+deb13u1",
+          "type": "library",
+          "purl": "pkg:deb/debian/tzdata@2025b-4%2Bdeb13u1?arch=all&distro=debian-13.3",
+          "licenses": [
+            "public-domain"
+          ]
+        },
+        {
+          "name": "util-linux",
+          "version": "2.41-5",
+          "type": "library",
+          "purl": "pkg:deb/debian/util-linux@2.41-5?arch=amd64&distro=debian-13.3",
+          "licenses": [
+            "GPL-2.0-or-later",
+            "GPL-2.0-only",
+            "GPL-3.0-or-later",
+            "LGPL-2.1-or-later",
+            "public-domain",
+            "BSD-4-Clause",
+            "MIT",
+            "ISC",
+            "BSD-3-Clause",
+            "BSLA",
+            "LGPL-2.0-or-later",
+            "BSD-2-Clause",
+            "LGPL-3.0-or-later",
+            "GPL-3.0-only",
+            "LGPL-2.0-only",
+            "LGPL-2.1-only",
+            "LGPL-3.0-only"
+          ]
+        },
+        {
+          "name": "zlib1g",
+          "version": "1:1.3.dfsg+really1.3.1-1+b1",
+          "type": "library",
+          "purl": "pkg:deb/debian/zlib1g@1.3.dfsg%2Breally1.3.1-1%2Bb1?arch=amd64&distro=debian-13.3&epoch=1",
+          "licenses": [
+            "Zlib"
+          ]
+        }
+      ]
+    },
+    "scorecarddev": {
+      "analyzer": "scorecarddev",
+      "repository": "library/httpd",
+      "source_repo": "https://github.com/docker-library/httpd",
+      "scorecard_available": false,
+      "score": null,
+      "checks": []
+    },
+    "size": {
+      "analyzer": "size",
+      "repository": "library/httpd",
+      "tag": "2.4",
+      "multi_arch": true,
+      "total_compressed_bytes": 45228235,
+      "total_compressed_human": "43.1 MB",
+      "layer_count": 6,
+      "config_size_bytes": 0,
+      "layers": [],
+      "platforms": [
+        {
+          "platform": "linux/amd64",
+          "compressed_bytes": 45228235,
+          "compressed_human": "43.1 MB",
+          "layer_count": 6
+        },
+        {
+          "platform": "unknown/unknown",
+          "compressed_bytes": 2330156,
+          "compressed_human": "2.2 MB",
+          "layer_count": 2
+        },
+        {
+          "platform": "linux/arm/v5",
+          "compressed_bytes": 42852622,
+          "compressed_human": "40.9 MB",
+          "layer_count": 6
+        },
+        {
+          "platform": "unknown/unknown",
+          "compressed_bytes": 2333326,
+          "compressed_human": "2.2 MB",
+          "layer_count": 2
+        },
+        {
+          "platform": "linux/arm/v7",
+          "compressed_bytes": 40557978,
+          "compressed_human": "38.7 MB",
+          "layer_count": 6
+        },
+        {
+          "platform": "unknown/unknown",
+          "compressed_bytes": 2331841,
+          "compressed_human": "2.2 MB",
+          "layer_count": 2
+        },
+        {
+          "platform": "linux/arm64/v8",
+          "compressed_bytes": 45501478,
+          "compressed_human": "43.4 MB",
+          "layer_count": 6
+        },
+        {
+          "platform": "unknown/unknown",
+          "compressed_bytes": 2330683,
+          "compressed_human": "2.2 MB",
+          "layer_count": 2
+        },
+        {
+          "platform": "linux/386",
+          "compressed_bytes": 46571414,
+          "compressed_human": "44.4 MB",
+          "layer_count": 6
+        },
+        {
+          "platform": "unknown/unknown",
+          "compressed_bytes": 2327198,
+          "compressed_human": "2.2 MB",
+          "layer_count": 2
+        },
+        {
+          "platform": "linux/ppc64le",
+          "compressed_bytes": 50159639,
+          "compressed_human": "47.8 MB",
+          "layer_count": 6
+        },
+        {
+          "platform": "unknown/unknown",
+          "compressed_bytes": 2334078,
+          "compressed_human": "2.2 MB",
+          "layer_count": 2
+        },
+        {
+          "platform": "linux/riscv64",
+          "compressed_bytes": 43394297,
+          "compressed_human": "41.4 MB",
+          "layer_count": 6
+        },
+        {
+          "platform": "unknown/unknown",
+          "compressed_bytes": 2324325,
+          "compressed_human": "2.2 MB",
+          "layer_count": 2
+        },
+        {
+          "platform": "linux/s390x",
+          "compressed_bytes": 45497839,
+          "compressed_human": "43.4 MB",
+          "layer_count": 6
+        },
+        {
+          "platform": "unknown/unknown",
+          "compressed_bytes": 2331563,
+          "compressed_human": "2.2 MB",
+          "layer_count": 2
+        }
+      ]
+    },
+    "skopeo": {
+      "analyzer": "skopeo",
+      "repository": "library/httpd",
+      "tag": "2.4",
+      "inspect": {},
+      "platforms": [
+        {
+          "architecture": "amd64",
+          "os": "linux",
+          "digest": "sha256:60a9de5582b60c45a649018786180bf75d57f43d6fefe799670d5acae8462799",
+          "created": "2026-02-03T02:23:05.137173969Z",
+          "labels": {},
+          "layers_count": 6,
+          "user": ""
+        },
+        {
+          "architecture": "unknown",
+          "os": "unknown",
+          "digest": "sha256:12dc10c83de52a7fc54e8569637ba7f0d494ae9e8614791266f4507a6a656de8",
+          "created": null,
+          "labels": {},
+          "layers_count": 2,
+          "user": ""
+        },
+        {
+          "architecture": "arm",
+          "os": "linux",
+          "digest": "sha256:defb3fc53fb49b922ed4fd309eb51fe2e36168e355a845e88ec9e6c8491eef5a",
+          "variant": "v5",
+          "created": "2026-02-03T02:19:35.023278094Z",
+          "labels": {},
+          "layers_count": 6,
+          "user": ""
+        },
+        {
+          "architecture": "unknown",
+          "os": "unknown",
+          "digest": "sha256:e6534af9f3289e77a730e751178355fef9ab0da5fc93a1d2278e295bb6f8b99c",
+          "created": null,
+          "labels": {},
+          "layers_count": 2,
+          "user": ""
+        },
+        {
+          "architecture": "arm",
+          "os": "linux",
+          "digest": "sha256:384cfc584234cbc8f12fb1c435b86d30ccf4d40efc1658dcaea43044fd67b82b",
+          "variant": "v7",
+          "created": "2026-02-03T02:21:14.808164724Z",
+          "labels": {},
+          "layers_count": 6,
+          "user": ""
+        },
+        {
+          "architecture": "unknown",
+          "os": "unknown",
+          "digest": "sha256:1b2443c094c6b34305047319a07fc112282acd1a908b34f9ac3fca887cd2bab7",
+          "created": null,
+          "labels": {},
+          "layers_count": 2,
+          "user": ""
+        },
+        {
+          "architecture": "arm64",
+          "os": "linux",
+          "digest": "sha256:ddad64538f8dfb47a43f6e5627970b60f04a55221f16931f1a2c08e6dbe9721f",
+          "variant": "v8",
+          "created": "2026-02-03T02:22:53.14102857Z",
+          "labels": {},
+          "layers_count": 6,
+          "user": ""
+        },
+        {
+          "architecture": "unknown",
+          "os": "unknown",
+          "digest": "sha256:1271bea87ac280d33fbd5c9e2890ecd5ffda97310922bd9921771e76383c1a8f",
+          "created": null,
+          "labels": {},
+          "layers_count": 2,
+          "user": ""
+        },
+        {
+          "architecture": "386",
+          "os": "linux",
+          "digest": "sha256:06ee06f258043941e308483589d52536fb6966affc870b3442ed8ccc8771b2ef",
+          "created": "2026-02-03T02:19:28.069076801Z",
+          "labels": {},
+          "layers_count": 6,
+          "user": ""
+        },
+        {
+          "architecture": "unknown",
+          "os": "unknown",
+          "digest": "sha256:9213e8361997e052918672c2e5a421e5f418d39c705e4c98a30100f828775416",
+          "created": null,
+          "labels": {},
+          "layers_count": 2,
+          "user": ""
+        },
+        {
+          "architecture": "ppc64le",
+          "os": "linux",
+          "digest": "sha256:5b98e1c188599af52c56af1967081fde9d8388670ee57c60382f980c8641a3f9",
+          "created": "2026-02-03T02:28:42.155494855Z",
+          "labels": {},
+          "layers_count": 6,
+          "user": ""
+        },
+        {
+          "architecture": "unknown",
+          "os": "unknown",
+          "digest": "sha256:f75c2e429d1327f5ee6248c7a8dddddd9434800129747c62afe7744e74eda84b",
+          "created": null,
+          "labels": {},
+          "layers_count": 2,
+          "user": ""
+        },
+        {
+          "architecture": "riscv64",
+          "os": "linux",
+          "digest": "sha256:48671cf53b207bbec1549b9001b961546a9deecf057527108840fe2611b5f093",
+          "created": "2026-02-03T11:18:38.240266741Z",
+          "labels": {},
+          "layers_count": 6,
+          "user": ""
+        },
+        {
+          "architecture": "unknown",
+          "os": "unknown",
+          "digest": "sha256:23ae84443f37dd635ec9350a87175918d33f7a6c43e28ff46dc14f6f7d550eb2",
+          "created": null,
+          "labels": {},
+          "layers_count": 2,
+          "user": ""
+        },
+        {
+          "architecture": "s390x",
+          "os": "linux",
+          "digest": "sha256:ca38480683973707f3dc85daba9565899d28053875e811750532844ab08604e4",
+          "created": "2026-02-03T02:21:15.062346227Z",
+          "labels": {},
+          "layers_count": 6,
+          "user": ""
+        },
+        {
+          "architecture": "unknown",
+          "os": "unknown",
+          "digest": "sha256:d27f2206ab2147911d4b8f243eb37dc09aa5d976ba4c657f2915ce38e40d89fe",
+          "created": null,
+          "labels": {},
+          "layers_count": 2,
+          "user": ""
+        }
+      ]
+    },
+    "trivy": {
+      "analyzer": "trivy",
+      "repository": "library/httpd",
+      "tag": "2.4",
+      "trivy_version": "2",
+      "vulnerability_count": 109,
+      "critical_count": 0,
+      "high_count": 2,
+      "medium_count": 21,
+      "low_count": 86,
+      "unknown_count": 0,
+      "targets": [
+        {
+          "Target": "library/httpd:2.4 (debian 13.3)",
+          "Vulnerabilities": [
+            {
+              "VulnerabilityID": "CVE-2011-3374",
+              "PkgName": "apt",
+              "InstalledVersion": "3.0.3",
+              "FixedVersion": "",
+              "Severity": "LOW",
+              "Title": "It was found that apt-key in apt, all versions, do not correctly valid ...",
+              "Description": "It was found that apt-key in apt, all versions, do not correctly validate gpg keys with the master keyring, leading to a potential man-in-the-middle attack."
+            },
+            {
+              "VulnerabilityID": "TEMP-0841856-B18BAF",
+              "PkgName": "bash",
+              "InstalledVersion": "5.2.37-2+b7",
+              "FixedVersion": "",
+              "Severity": "LOW",
+              "Title": "[Privilege escalation possible to other user than root]",
+              "Description": ""
+            },
+            {
+              "VulnerabilityID": "CVE-2025-14104",
+              "PkgName": "bsdutils",
+              "InstalledVersion": "1:2.41-5",
+              "FixedVersion": "",
+              "Severity": "MEDIUM",
+              "Title": "util-linux: util-linux: Heap buffer overread in setpwnam() when processing 256-byte usernames",
+              "Description": "A flaw was found in util-linux. This vulnerability allows a heap buffer overread when processing 256-byte usernames, specifically within the `setpwnam()` function, affecting SUID (Set User ID) login-utils utilities writing to the password database."
+            },
+            {
+              "VulnerabilityID": "CVE-2022-0563",
+              "PkgName": "bsdutils",
+              "InstalledVersion": "1:2.41-5",
+              "FixedVersion": "",
+              "Severity": "LOW",
+              "Title": "util-linux: partial disclosure of arbitrary files in chfn and chsh when compiled with libreadline",
+              "Description": "A flaw was found in the util-linux chfn and chsh utilities when compiled with Readline support. The Readline library uses an \"INPUTRC\" environment variable to get a path to the library config file. When the library cannot parse the specified file, it prints an error message containing data from the file. This flaw allows an unprivileged user to read root-owned files, potentially leading to privilege escalation. This flaw affects util-linux versions prior to 2.37.4."
+            },
+            {
+              "VulnerabilityID": "CVE-2017-18018",
+              "PkgName": "coreutils",
+              "InstalledVersion": "9.7-3",
+              "FixedVersion": "",
+              "Severity": "LOW",
+              "Title": "coreutils: race condition vulnerability in chown and chgrp",
+              "Description": "In GNU Coreutils through 8.29, chown-core.c in chown and chgrp does not prevent replacement of a plain file with a symlink during use of the POSIX \"-R -L\" options, which allows local users to modify the ownership of arbitrary files by leveraging a race condition."
+            },
+            {
+              "VulnerabilityID": "CVE-2025-5278",
+              "PkgName": "coreutils",
+              "InstalledVersion": "9.7-3",
+              "FixedVersion": "",
+              "Severity": "LOW",
+              "Title": "coreutils: Heap Buffer Under-Read in GNU Coreutils sort via Key Specification",
+              "Description": "A flaw was found in GNU Coreutils. The sort utility's begfield() function is vulnerable to a heap buffer under-read. The program may access memory outside the allocated buffer if a user runs a crafted command using the traditional key format. A malicious input could lead to a crash or leak sensitive data."
+            },
+            {
+              "VulnerabilityID": "CVE-2011-3374",
+              "PkgName": "libapt-pkg7.0",
+              "InstalledVersion": "3.0.3",
+              "FixedVersion": "",
+              "Severity": "LOW",
+              "Title": "It was found that apt-key in apt, all versions, do not correctly valid ...",
+              "Description": "It was found that apt-key in apt, all versions, do not correctly validate gpg keys with the master keyring, leading to a potential man-in-the-middle attack."
+            },
+            {
+              "VulnerabilityID": "CVE-2025-14104",
+              "PkgName": "libblkid1",
+              "InstalledVersion": "2.41-5",
+              "FixedVersion": "",
+              "Severity": "MEDIUM",
+              "Title": "util-linux: util-linux: Heap buffer overread in setpwnam() when processing 256-byte usernames",
+              "Description": "A flaw was found in util-linux. This vulnerability allows a heap buffer overread when processing 256-byte usernames, specifically within the `setpwnam()` function, affecting SUID (Set User ID) login-utils utilities writing to the password database."
+            },
+            {
+              "VulnerabilityID": "CVE-2022-0563",
+              "PkgName": "libblkid1",
+              "InstalledVersion": "2.41-5",
+              "FixedVersion": "",
+              "Severity": "LOW",
+              "Title": "util-linux: partial disclosure of arbitrary files in chfn and chsh when compiled with libreadline",
+              "Description": "A flaw was found in the util-linux chfn and chsh utilities when compiled with Readline support. The Readline library uses an \"INPUTRC\" environment variable to get a path to the library config file. When the library cannot parse the specified file, it prints an error message containing data from the file. This flaw allows an unprivileged user to read root-owned files, potentially leading to privilege escalation. This flaw affects util-linux versions prior to 2.37.4."
+            },
+            {
+              "VulnerabilityID": "CVE-2026-0861",
+              "PkgName": "libc-bin",
+              "InstalledVersion": "2.41-12+deb13u1",
+              "FixedVersion": "",
+              "Severity": "HIGH",
+              "Title": "glibc: Integer overflow in memalign leads to heap corruption",
+              "Description": "Passing too large an alignment to the memalign suite of functions (memalign, posix_memalign, aligned_alloc) in the GNU C Library version 2.30 to 2.42 may result in an integer overflow, which could consequently result in a heap corruption.\n\nNote that the attacker must have control over both, the size as well as the alignment arguments of the memalign function to be able to exploit this.  The size parameter must be close enough to PTRDIFF_MAX so as to overflow size_t along with the large alignment argument.  This limits the malicious inputs for the alignment for memalign to the range [1<<62+ 1, 1<<63] and exactly 1<<63 for posix_memalign and aligned_alloc.\n\nTypically the alignment argument passed to such functions is a known constrained quantity (e.g. page size, block size, struct sizes) and is not attacker controlled, because of which this may not be easily exploitable in practice.  An application bug could potentially result in the input alignment being too large, e.g. due to a different buffer overflow or integer overflow in the application or its dependent libraries, but that is again an uncommon usage pattern given typical sources of alignments."
+            },
+            {
+              "VulnerabilityID": "CVE-2025-15281",
+              "PkgName": "libc-bin",
+              "InstalledVersion": "2.41-12+deb13u1",
+              "FixedVersion": "",
+              "Severity": "MEDIUM",
+              "Title": "glibc: wordexp with WRDE_REUSE and WRDE_APPEND may return uninitialized memory",
+              "Description": "Calling wordexp with WRDE_REUSE in conjunction with WRDE_APPEND in the GNU C Library version 2.0 to version 2.42 may cause the interface to return uninitialized memory in the we_wordv member, which on subsequent calls to wordfree may abort the process."
+            },
+            {
+              "VulnerabilityID": "CVE-2026-0915",
+              "PkgName": "libc-bin",
+              "InstalledVersion": "2.41-12+deb13u1",
+              "FixedVersion": "",
+              "Severity": "MEDIUM",
+              "Title": "glibc: glibc: Information disclosure via zero-valued network query",
+              "Description": "Calling getnetbyaddr or getnetbyaddr_r with a configured nsswitch.conf that specifies the library's DNS backend for networks and queries for a zero-valued network in the GNU C Library version 2.0 to version 2.42 can leak stack contents to the configured DNS resolver."
+            },
+            {
+              "VulnerabilityID": "CVE-2010-4756",
+              "PkgName": "libc-bin",
+              "InstalledVersion": "2.41-12+deb13u1",
+              "FixedVersion": "",
+              "Severity": "LOW",
+              "Title": "glibc: glob implementation can cause excessive CPU and memory consumption due to crafted glob expressions",
+              "Description": "The glob implementation in the GNU C Library (aka glibc or libc6) allows remote authenticated users to cause a denial of service (CPU and memory consumption) via crafted glob expressions that do not match any pathnames, as demonstrated by glob expressions in STAT commands to an FTP daemon, a different vulnerability than CVE-2010-2632."
+            },
+            {
+              "VulnerabilityID": "CVE-2018-20796",
+              "PkgName": "libc-bin",
+              "InstalledVersion": "2.41-12+deb13u1",
+              "FixedVersion": "",
+              "Severity": "LOW",
+              "Title": "glibc: uncontrolled recursion in function check_dst_limits_calc_pos_1 in posix/regexec.c",
+              "Description": "In the GNU C Library (aka glibc or libc6) through 2.29, check_dst_limits_calc_pos_1 in posix/regexec.c has Uncontrolled Recursion, as demonstrated by '(\\227|)(\\\\1\\\\1|t1|\\\\\\2537)+' in grep."
+            },
+            {
+              "VulnerabilityID": "CVE-2019-1010022",
+              "PkgName": "libc-bin",
+              "InstalledVersion": "2.41-12+deb13u1",
+              "FixedVersion": "",
+              "Severity": "LOW",
+              "Title": "glibc: stack guard protection bypass",
+              "Description": "GNU Libc current is affected by: Mitigation bypass. The impact is: Attacker may bypass stack guard protection. The component is: nptl. The attack vector is: Exploit stack buffer overflow vulnerability and use this bypass vulnerability to bypass stack guard. NOTE: Upstream comments indicate \"this is being treated as a non-security bug and no real threat."
+            },
+            {
+              "VulnerabilityID": "CVE-2019-1010023",
+              "PkgName": "libc-bin",
+              "InstalledVersion": "2.41-12+deb13u1",
+              "FixedVersion": "",
+              "Severity": "LOW",
+              "Title": "glibc: running ldd on malicious ELF leads to code execution because of wrong size computation",
+              "Description": "GNU Libc current is affected by: Re-mapping current loaded library with malicious ELF file. The impact is: In worst case attacker may evaluate privileges. The component is: libld. The attack vector is: Attacker sends 2 ELF files to victim and asks to run ldd on it. ldd execute code. NOTE: Upstream comments indicate \"this is being treated as a non-security bug and no real threat."
+            },
+            {
+              "VulnerabilityID": "CVE-2019-1010024",
+              "PkgName": "libc-bin",
+              "InstalledVersion": "2.41-12+deb13u1",
+              "FixedVersion": "",
+              "Severity": "LOW",
+              "Title": "glibc: ASLR bypass using cache of thread stack and heap",
+              "Description": "GNU Libc current is affected by: Mitigation bypass. The impact is: Attacker may bypass ASLR using cache of thread stack and heap. The component is: glibc. NOTE: Upstream comments indicate \"this is being treated as a non-security bug and no real threat."
+            },
+            {
+              "VulnerabilityID": "CVE-2019-1010025",
+              "PkgName": "libc-bin",
+              "InstalledVersion": "2.41-12+deb13u1",
+              "FixedVersion": "",
+              "Severity": "LOW",
+              "Title": "glibc: information disclosure of heap addresses of pthread_created thread",
+              "Description": "GNU Libc current is affected by: Mitigation bypass. The impact is: Attacker may guess the heap addresses of pthread_created thread. The component is: glibc. NOTE: the vendor's position is \"ASLR bypass itself is not a vulnerability."
+            },
+            {
+              "VulnerabilityID": "CVE-2019-9192",
+              "PkgName": "libc-bin",
+              "InstalledVersion": "2.41-12+deb13u1",
+              "FixedVersion": "",
+              "Severity": "LOW",
+              "Title": "glibc: uncontrolled recursion in function check_dst_limits_calc_pos_1 in posix/regexec.c",
+              "Description": "In the GNU C Library (aka glibc or libc6) through 2.29, check_dst_limits_calc_pos_1 in posix/regexec.c has Uncontrolled Recursion, as demonstrated by '(|)(\\\\1\\\\1)*' in grep, a different issue than CVE-2018-20796. NOTE: the software maintainer disputes that this is a vulnerability because the behavior occurs only with a crafted pattern"
+            },
+            {
+              "VulnerabilityID": "CVE-2026-0861",
+              "PkgName": "libc6",
+              "InstalledVersion": "2.41-12+deb13u1",
+              "FixedVersion": "",
+              "Severity": "HIGH",
+              "Title": "glibc: Integer overflow in memalign leads to heap corruption",
+              "Description": "Passing too large an alignment to the memalign suite of functions (memalign, posix_memalign, aligned_alloc) in the GNU C Library version 2.30 to 2.42 may result in an integer overflow, which could consequently result in a heap corruption.\n\nNote that the attacker must have control over both, the size as well as the alignment arguments of the memalign function to be able to exploit this.  The size parameter must be close enough to PTRDIFF_MAX so as to overflow size_t along with the large alignment argument.  This limits the malicious inputs for the alignment for memalign to the range [1<<62+ 1, 1<<63] and exactly 1<<63 for posix_memalign and aligned_alloc.\n\nTypically the alignment argument passed to such functions is a known constrained quantity (e.g. page size, block size, struct sizes) and is not attacker controlled, because of which this may not be easily exploitable in practice.  An application bug could potentially result in the input alignment being too large, e.g. due to a different buffer overflow or integer overflow in the application or its dependent libraries, but that is again an uncommon usage pattern given typical sources of alignments."
+            },
+            {
+              "VulnerabilityID": "CVE-2025-15281",
+              "PkgName": "libc6",
+              "InstalledVersion": "2.41-12+deb13u1",
+              "FixedVersion": "",
+              "Severity": "MEDIUM",
+              "Title": "glibc: wordexp with WRDE_REUSE and WRDE_APPEND may return uninitialized memory",
+              "Description": "Calling wordexp with WRDE_REUSE in conjunction with WRDE_APPEND in the GNU C Library version 2.0 to version 2.42 may cause the interface to return uninitialized memory in the we_wordv member, which on subsequent calls to wordfree may abort the process."
+            },
+            {
+              "VulnerabilityID": "CVE-2026-0915",
+              "PkgName": "libc6",
+              "InstalledVersion": "2.41-12+deb13u1",
+              "FixedVersion": "",
+              "Severity": "MEDIUM",
+              "Title": "glibc: glibc: Information disclosure via zero-valued network query",
+              "Description": "Calling getnetbyaddr or getnetbyaddr_r with a configured nsswitch.conf that specifies the library's DNS backend for networks and queries for a zero-valued network in the GNU C Library version 2.0 to version 2.42 can leak stack contents to the configured DNS resolver."
+            },
+            {
+              "VulnerabilityID": "CVE-2010-4756",
+              "PkgName": "libc6",
+              "InstalledVersion": "2.41-12+deb13u1",
+              "FixedVersion": "",
+              "Severity": "LOW",
+              "Title": "glibc: glob implementation can cause excessive CPU and memory consumption due to crafted glob expressions",
+              "Description": "The glob implementation in the GNU C Library (aka glibc or libc6) allows remote authenticated users to cause a denial of service (CPU and memory consumption) via crafted glob expressions that do not match any pathnames, as demonstrated by glob expressions in STAT commands to an FTP daemon, a different vulnerability than CVE-2010-2632."
+            },
+            {
+              "VulnerabilityID": "CVE-2018-20796",
+              "PkgName": "libc6",
+              "InstalledVersion": "2.41-12+deb13u1",
+              "FixedVersion": "",
+              "Severity": "LOW",
+              "Title": "glibc: uncontrolled recursion in function check_dst_limits_calc_pos_1 in posix/regexec.c",
+              "Description": "In the GNU C Library (aka glibc or libc6) through 2.29, check_dst_limits_calc_pos_1 in posix/regexec.c has Uncontrolled Recursion, as demonstrated by '(\\227|)(\\\\1\\\\1|t1|\\\\\\2537)+' in grep."
+            },
+            {
+              "VulnerabilityID": "CVE-2019-1010022",
+              "PkgName": "libc6",
+              "InstalledVersion": "2.41-12+deb13u1",
+              "FixedVersion": "",
+              "Severity": "LOW",
+              "Title": "glibc: stack guard protection bypass",
+              "Description": "GNU Libc current is affected by: Mitigation bypass. The impact is: Attacker may bypass stack guard protection. The component is: nptl. The attack vector is: Exploit stack buffer overflow vulnerability and use this bypass vulnerability to bypass stack guard. NOTE: Upstream comments indicate \"this is being treated as a non-security bug and no real threat."
+            },
+            {
+              "VulnerabilityID": "CVE-2019-1010023",
+              "PkgName": "libc6",
+              "InstalledVersion": "2.41-12+deb13u1",
+              "FixedVersion": "",
+              "Severity": "LOW",
+              "Title": "glibc: running ldd on malicious ELF leads to code execution because of wrong size computation",
+              "Description": "GNU Libc current is affected by: Re-mapping current loaded library with malicious ELF file. The impact is: In worst case attacker may evaluate privileges. The component is: libld. The attack vector is: Attacker sends 2 ELF files to victim and asks to run ldd on it. ldd execute code. NOTE: Upstream comments indicate \"this is being treated as a non-security bug and no real threat."
+            },
+            {
+              "VulnerabilityID": "CVE-2019-1010024",
+              "PkgName": "libc6",
+              "InstalledVersion": "2.41-12+deb13u1",
+              "FixedVersion": "",
+              "Severity": "LOW",
+              "Title": "glibc: ASLR bypass using cache of thread stack and heap",
+              "Description": "GNU Libc current is affected by: Mitigation bypass. The impact is: Attacker may bypass ASLR using cache of thread stack and heap. The component is: glibc. NOTE: Upstream comments indicate \"this is being treated as a non-security bug and no real threat."
+            },
+            {
+              "VulnerabilityID": "CVE-2019-1010025",
+              "PkgName": "libc6",
+              "InstalledVersion": "2.41-12+deb13u1",
+              "FixedVersion": "",
+              "Severity": "LOW",
+              "Title": "glibc: information disclosure of heap addresses of pthread_created thread",
+              "Description": "GNU Libc current is affected by: Mitigation bypass. The impact is: Attacker may guess the heap addresses of pthread_created thread. The component is: glibc. NOTE: the vendor's position is \"ASLR bypass itself is not a vulnerability."
+            },
+            {
+              "VulnerabilityID": "CVE-2019-9192",
+              "PkgName": "libc6",
+              "InstalledVersion": "2.41-12+deb13u1",
+              "FixedVersion": "",
+              "Severity": "LOW",
+              "Title": "glibc: uncontrolled recursion in function check_dst_limits_calc_pos_1 in posix/regexec.c",
+              "Description": "In the GNU C Library (aka glibc or libc6) through 2.29, check_dst_limits_calc_pos_1 in posix/regexec.c has Uncontrolled Recursion, as demonstrated by '(|)(\\\\1\\\\1)*' in grep, a different issue than CVE-2018-20796. NOTE: the software maintainer disputes that this is a vulnerability because the behavior occurs only with a crafted pattern"
+            },
+            {
+              "VulnerabilityID": "CVE-2025-13034",
+              "PkgName": "libcurl4t64",
+              "InstalledVersion": "8.14.1-2+deb13u2",
+              "FixedVersion": "",
+              "Severity": "MEDIUM",
+              "Title": "When using `CURLOPT_PINNEDPUBLICKEY` option with libcurl or `--pinnedp ...",
+              "Description": "When using `CURLOPT_PINNEDPUBLICKEY` option with libcurl or `--pinnedpubkey`\nwith the curl tool,curl should check the public key of the server certificate\nto verify the peer.\n\nThis check was skipped in a certain condition that would then make curl allow\nthe connection without performing the proper check, thus not noticing a\npossible impostor. To skip this check, the connection had to be done with QUIC\nwith ngtcp2 built to use GnuTLS and the user had to explicitly disable the\nstandard certificate verification."
+            },
+            {
+              "VulnerabilityID": "CVE-2025-10966",
+              "PkgName": "libcurl4t64",
+              "InstalledVersion": "8.14.1-2+deb13u2",
+              "FixedVersion": "",
+              "Severity": "LOW",
+              "Title": "curl: Curl missing SFTP host verification with wolfSSH backend",
+              "Description": "curl's code for managing SSH connections when SFTP was done using the wolfSSH\npowered backend was flawed and missed host verification mechanisms.\n\nThis prevents curl from detecting MITM attackers and more."
+            },
+            {
+              "VulnerabilityID": "CVE-2025-14017",
+              "PkgName": "libcurl4t64",
+              "InstalledVersion": "8.14.1-2+deb13u2",
+              "FixedVersion": "",
+              "Severity": "LOW",
+              "Title": "curl: curl: Security bypass due to global TLS option changes in multi-threaded LDAPS transfers",
+              "Description": "When doing multi-threaded LDAPS transfers (LDAP over TLS) with libcurl,\nchanging TLS options in one thread would inadvertently change them globally\nand therefore possibly also affect other concurrently setup transfers.\n\nDisabling certificate verification for a specific transfer could\nunintentionally disable the feature for other threads as well."
+            },
+            {
+              "VulnerabilityID": "CVE-2025-14524",
+              "PkgName": "libcurl4t64",
+              "InstalledVersion": "8.14.1-2+deb13u2",
+              "FixedVersion": "",
+              "Severity": "LOW",
+              "Title": "When an OAuth2 bearer token is used for an HTTP(S) transfer, and that  ...",
+              "Description": "When an OAuth2 bearer token is used for an HTTP(S) transfer, and that transfer\nperforms a cross-protocol redirect to a second URL that uses an IMAP, LDAP,\nPOP3 or SMTP scheme, curl might wrongly pass on the bearer token to the new\ntarget host."
+            },
+            {
+              "VulnerabilityID": "CVE-2025-14819",
+              "PkgName": "libcurl4t64",
+              "InstalledVersion": "8.14.1-2+deb13u2",
+              "FixedVersion": "",
+              "Severity": "LOW",
+              "Title": "When doing TLS related transfers with reused easy or multi handles and ...",
+              "Description": "When doing TLS related transfers with reused easy or multi handles and\naltering the  `CURLSSLOPT_NO_PARTIALCHAIN` option, libcurl could accidentally\nreuse a CA store cached in memory for which the partial chain option was\nreversed. Contrary to the user's wishes and expectations. This could make\nlibcurl find and accept a trust chain that it otherwise would not."
+            },
+            {
+              "VulnerabilityID": "CVE-2025-15079",
+              "PkgName": "libcurl4t64",
+              "InstalledVersion": "8.14.1-2+deb13u2",
+              "FixedVersion": "",
+              "Severity": "LOW",
+              "Title": "When doing SSH-based transfers using either SCP or SFTP, and setting t ...",
+              "Description": "When doing SSH-based transfers using either SCP or SFTP, and setting the\nknown_hosts file, libcurl could still mistakenly accept connecting to hosts\n*not present* in the specified file if they were added as recognized in the\nlibssh *global* known_hosts file."
+            },
+            {
+              "VulnerabilityID": "CVE-2025-15224",
+              "PkgName": "libcurl4t64",
+              "InstalledVersion": "8.14.1-2+deb13u2",
+              "FixedVersion": "",
+              "Severity": "LOW",
+              "Title": "When doing SSH-based transfers using either SCP or SFTP, and asked to  ...",
+              "Description": "When doing SSH-based transfers using either SCP or SFTP, and asked to do\npublic key authentication, curl would wrongly still ask and authenticate using\na locally running SSH agent."
+            },
+            {
+              "VulnerabilityID": "CVE-2025-59375",
+              "PkgName": "libexpat1",
+              "InstalledVersion": "2.7.1-2",
+              "FixedVersion": "",
+              "Severity": "MEDIUM",
+              "Title": "expat: libexpat in Expat allows attackers to trigger large dynamic memory allocations via a small document that is submitted for parsing",
+              "Description": "libexpat in Expat before 2.7.2 allows attackers to trigger large dynamic memory allocations via a small document that is submitted for parsing."
+            },
+            {
+              "VulnerabilityID": "CVE-2025-66382",
+              "PkgName": "libexpat1",
+              "InstalledVersion": "2.7.1-2",
+              "FixedVersion": "",
+              "Severity": "MEDIUM",
+              "Title": "libexpat: libexpat: Denial of service via crafted file processing",
+              "Description": "In libexpat through 2.7.3, a crafted file with an approximate size of 2 MiB can lead to dozens of seconds of processing time."
+            },
+            {
+              "VulnerabilityID": "CVE-2026-25210",
+              "PkgName": "libexpat1",
+              "InstalledVersion": "2.7.1-2",
+              "FixedVersion": "",
+              "Severity": "MEDIUM",
+              "Title": "libexpat: libexpat: Information disclosure and data integrity issues due to integer overflow in buffer reallocation",
+              "Description": "In libexpat before 2.7.4, the doContent function does not properly determine the buffer size bufSize because there is no integer overflow check for tag buffer reallocation."
+            },
+            {
+              "VulnerabilityID": "CVE-2026-24515",
+              "PkgName": "libexpat1",
+              "InstalledVersion": "2.7.1-2",
+              "FixedVersion": "",
+              "Severity": "LOW",
+              "Title": "libexpat: libexpat null pointer dereference",
+              "Description": "In libexpat before 2.7.4, XML_ExternalEntityParserCreate does not copy unknown encoding handler user data."
+            },
+            {
+              "VulnerabilityID": "CVE-2025-14831",
+              "PkgName": "libgnutls30t64",
+              "InstalledVersion": "3.8.9-3+deb13u1",
+              "FixedVersion": "3.8.9-3+deb13u2",
+              "Severity": "MEDIUM",
+              "Title": "gnutls: GnuTLS: Denial of Service via excessive resource consumption during certificate verification",
+              "Description": "A flaw was found in GnuTLS. This vulnerability allows a denial of service (DoS) by excessive CPU (Central Processing Unit) and memory consumption via specially crafted malicious certificates containing a large number of name constraints and subject alternative names (SANs)."
+            },
+            {
+              "VulnerabilityID": "CVE-2011-3389",
+              "PkgName": "libgnutls30t64",
+              "InstalledVersion": "3.8.9-3+deb13u1",
+              "FixedVersion": "",
+              "Severity": "LOW",
+              "Title": "HTTPS: block-wise chosen-plaintext attack against SSL/TLS (BEAST)",
+              "Description": "The SSL protocol, as used in certain configurations in Microsoft Windows and Microsoft Internet Explorer, Mozilla Firefox, Google Chrome, Opera, and other products, encrypts data by using CBC mode with chained initialization vectors, which allows man-in-the-middle attackers to obtain plaintext HTTP headers via a blockwise chosen-boundary attack (BCBA) on an HTTPS session, in conjunction with JavaScript code that uses (1) the HTML5 WebSocket API, (2) the Java URLConnection API, or (3) the Silverlight WebClient API, aka a \"BEAST\" attack."
+            },
+            {
+              "VulnerabilityID": "CVE-2018-5709",
+              "PkgName": "libgssapi-krb5-2",
+              "InstalledVersion": "1.21.3-5",
+              "FixedVersion": "",
+              "Severity": "LOW",
+              "Title": "krb5: integer overflow in dbentry->n_key_data in kadmin/dbutil/dump.c",
+              "Description": "An issue was discovered in MIT Kerberos 5 (aka krb5) through 1.16. There is a variable \"dbentry->n_key_data\" in kadmin/dbutil/dump.c that can store 16-bit data but unknowingly the developer has assigned a \"u4\" variable to it, which is for 32-bit data. An attacker can use this vulnerability to affect other artifacts of the database as we know that a Kerberos database dump file contains trusted data."
+            },
+            {
+              "VulnerabilityID": "CVE-2024-26458",
+              "PkgName": "libgssapi-krb5-2",
+              "InstalledVersion": "1.21.3-5",
+              "FixedVersion": "",
+              "Severity": "LOW",
+              "Title": "krb5: Memory leak at /krb5/src/lib/rpc/pmap_rmt.c",
+              "Description": "Kerberos 5 (aka krb5) 1.21.2 contains a memory leak in /krb5/src/lib/rpc/pmap_rmt.c."
+            },
+            {
+              "VulnerabilityID": "CVE-2024-26461",
+              "PkgName": "libgssapi-krb5-2",
+              "InstalledVersion": "1.21.3-5",
+              "FixedVersion": "",
+              "Severity": "LOW",
+              "Title": "krb5: Memory leak at /krb5/src/lib/gssapi/krb5/k5sealv3.c",
+              "Description": "Kerberos 5 (aka krb5) 1.21.2 contains a memory leak vulnerability in /krb5/src/lib/gssapi/krb5/k5sealv3.c."
+            },
+            {
+              "VulnerabilityID": "CVE-2020-36325",
+              "PkgName": "libjansson4",
+              "InstalledVersion": "2.14-2+b3",
+              "FixedVersion": "",
+              "Severity": "LOW",
+              "Title": "jansson: out-of-bounds read in json_loads() due to a parsing error",
+              "Description": "An issue was discovered in Jansson through 2.13.1. Due to a parsing error in json_loads, there's an out-of-bounds read-access bug. NOTE: the vendor reports that this only occurs when a programmer fails to follow the API specification"
+            },
+            {
+              "VulnerabilityID": "CVE-2018-5709",
+              "PkgName": "libk5crypto3",
+              "InstalledVersion": "1.21.3-5",
+              "FixedVersion": "",
+              "Severity": "LOW",
+              "Title": "krb5: integer overflow in dbentry->n_key_data in kadmin/dbutil/dump.c",
+              "Description": "An issue was discovered in MIT Kerberos 5 (aka krb5) through 1.16. There is a variable \"dbentry->n_key_data\" in kadmin/dbutil/dump.c that can store 16-bit data but unknowingly the developer has assigned a \"u4\" variable to it, which is for 32-bit data. An attacker can use this vulnerability to affect other artifacts of the database as we know that a Kerberos database dump file contains trusted data."
+            },
+            {
+              "VulnerabilityID": "CVE-2024-26458",
+              "PkgName": "libk5crypto3",
+              "InstalledVersion": "1.21.3-5",
+              "FixedVersion": "",
+              "Severity": "LOW",
+              "Title": "krb5: Memory leak at /krb5/src/lib/rpc/pmap_rmt.c",
+              "Description": "Kerberos 5 (aka krb5) 1.21.2 contains a memory leak in /krb5/src/lib/rpc/pmap_rmt.c."
+            },
+            {
+              "VulnerabilityID": "CVE-2024-26461",
+              "PkgName": "libk5crypto3",
+              "InstalledVersion": "1.21.3-5",
+              "FixedVersion": "",
+              "Severity": "LOW",
+              "Title": "krb5: Memory leak at /krb5/src/lib/gssapi/krb5/k5sealv3.c",
+              "Description": "Kerberos 5 (aka krb5) 1.21.2 contains a memory leak vulnerability in /krb5/src/lib/gssapi/krb5/k5sealv3.c."
+            },
+            {
+              "VulnerabilityID": "CVE-2018-5709",
+              "PkgName": "libkrb5-3",
+              "InstalledVersion": "1.21.3-5",
+              "FixedVersion": "",
+              "Severity": "LOW",
+              "Title": "krb5: integer overflow in dbentry->n_key_data in kadmin/dbutil/dump.c",
+              "Description": "An issue was discovered in MIT Kerberos 5 (aka krb5) through 1.16. There is a variable \"dbentry->n_key_data\" in kadmin/dbutil/dump.c that can store 16-bit data but unknowingly the developer has assigned a \"u4\" variable to it, which is for 32-bit data. An attacker can use this vulnerability to affect other artifacts of the database as we know that a Kerberos database dump file contains trusted data."
+            },
+            {
+              "VulnerabilityID": "CVE-2024-26458",
+              "PkgName": "libkrb5-3",
+              "InstalledVersion": "1.21.3-5",
+              "FixedVersion": "",
+              "Severity": "LOW",
+              "Title": "krb5: Memory leak at /krb5/src/lib/rpc/pmap_rmt.c",
+              "Description": "Kerberos 5 (aka krb5) 1.21.2 contains a memory leak in /krb5/src/lib/rpc/pmap_rmt.c."
+            },
+            {
+              "VulnerabilityID": "CVE-2024-26461",
+              "PkgName": "libkrb5-3",
+              "InstalledVersion": "1.21.3-5",
+              "FixedVersion": "",
+              "Severity": "LOW",
+              "Title": "krb5: Memory leak at /krb5/src/lib/gssapi/krb5/k5sealv3.c",
+              "Description": "Kerberos 5 (aka krb5) 1.21.2 contains a memory leak vulnerability in /krb5/src/lib/gssapi/krb5/k5sealv3.c."
+            },
+            {
+              "VulnerabilityID": "CVE-2018-5709",
+              "PkgName": "libkrb5support0",
+              "InstalledVersion": "1.21.3-5",
+              "FixedVersion": "",
+              "Severity": "LOW",
+              "Title": "krb5: integer overflow in dbentry->n_key_data in kadmin/dbutil/dump.c",
+              "Description": "An issue was discovered in MIT Kerberos 5 (aka krb5) through 1.16. There is a variable \"dbentry->n_key_data\" in kadmin/dbutil/dump.c that can store 16-bit data but unknowingly the developer has assigned a \"u4\" variable to it, which is for 32-bit data. An attacker can use this vulnerability to affect other artifacts of the database as we know that a Kerberos database dump file contains trusted data."
+            },
+            {
+              "VulnerabilityID": "CVE-2024-26458",
+              "PkgName": "libkrb5support0",
+              "InstalledVersion": "1.21.3-5",
+              "FixedVersion": "",
+              "Severity": "LOW",
+              "Title": "krb5: Memory leak at /krb5/src/lib/rpc/pmap_rmt.c",
+              "Description": "Kerberos 5 (aka krb5) 1.21.2 contains a memory leak in /krb5/src/lib/rpc/pmap_rmt.c."
+            },
+            {
+              "VulnerabilityID": "CVE-2024-26461",
+              "PkgName": "libkrb5support0",
+              "InstalledVersion": "1.21.3-5",
+              "FixedVersion": "",
+              "Severity": "LOW",
+              "Title": "krb5: Memory leak at /krb5/src/lib/gssapi/krb5/k5sealv3.c",
+              "Description": "Kerberos 5 (aka krb5) 1.21.2 contains a memory leak vulnerability in /krb5/src/lib/gssapi/krb5/k5sealv3.c."
+            },
+            {
+              "VulnerabilityID": "CVE-2025-14104",
+              "PkgName": "liblastlog2-2",
+              "InstalledVersion": "2.41-5",
+              "FixedVersion": "",
+              "Severity": "MEDIUM",
+              "Title": "util-linux: util-linux: Heap buffer overread in setpwnam() when processing 256-byte usernames",
+              "Description": "A flaw was found in util-linux. This vulnerability allows a heap buffer overread when processing 256-byte usernames, specifically within the `setpwnam()` function, affecting SUID (Set User ID) login-utils utilities writing to the password database."
+            },
+            {
+              "VulnerabilityID": "CVE-2022-0563",
+              "PkgName": "liblastlog2-2",
+              "InstalledVersion": "2.41-5",
+              "FixedVersion": "",
+              "Severity": "LOW",
+              "Title": "util-linux: partial disclosure of arbitrary files in chfn and chsh when compiled with libreadline",
+              "Description": "A flaw was found in the util-linux chfn and chsh utilities when compiled with Readline support. The Readline library uses an \"INPUTRC\" environment variable to get a path to the library config file. When the library cannot parse the specified file, it prints an error message containing data from the file. This flaw allows an unprivileged user to read root-owned files, potentially leading to privilege escalation. This flaw affects util-linux versions prior to 2.37.4."
+            },
+            {
+              "VulnerabilityID": "CVE-2015-3276",
+              "PkgName": "libldap-common",
+              "InstalledVersion": "2.6.10+dfsg-1",
+              "FixedVersion": "",
+              "Severity": "LOW",
+              "Title": "openldap: incorrect multi-keyword mode cipherstring parsing",
+              "Description": "The nss_parse_ciphers function in libraries/libldap/tls_m.c in OpenLDAP does not properly parse OpenSSL-style multi-keyword mode cipher strings, which might cause a weaker than intended cipher to be used and allow remote attackers to have unspecified impact via unknown vectors."
+            },
+            {
+              "VulnerabilityID": "CVE-2017-14159",
+              "PkgName": "libldap-common",
+              "InstalledVersion": "2.6.10+dfsg-1",
+              "FixedVersion": "",
+              "Severity": "LOW",
+              "Title": "openldap: Privilege escalation via PID file manipulation",
+              "Description": "slapd in OpenLDAP 2.4.45 and earlier creates a PID file after dropping privileges to a non-root account, which might allow local users to kill arbitrary processes by leveraging access to this non-root account for PID file modification before a root script executes a \"kill `cat /pathname`\" command, as demonstrated by openldap-initscript."
+            },
+            {
+              "VulnerabilityID": "CVE-2017-17740",
+              "PkgName": "libldap-common",
+              "InstalledVersion": "2.6.10+dfsg-1",
+              "FixedVersion": "",
+              "Severity": "LOW",
+              "Title": "openldap: contrib/slapd-modules/nops/nops.c attempts to free stack buffer allowing remote attackers to cause a denial of service",
+              "Description": "contrib/slapd-modules/nops/nops.c in OpenLDAP through 2.4.45, when both the nops module and the memberof overlay are enabled, attempts to free a buffer that was allocated on the stack, which allows remote attackers to cause a denial of service (slapd crash) via a member MODDN operation."
+            },
+            {
+              "VulnerabilityID": "CVE-2020-15719",
+              "PkgName": "libldap-common",
+              "InstalledVersion": "2.6.10+dfsg-1",
+              "FixedVersion": "",
+              "Severity": "LOW",
+              "Title": "openldap: Certificate validation incorrectly matches name against CN-ID",
+              "Description": "libldap in certain third-party OpenLDAP packages has a certificate-validation flaw when the third-party package is asserting RFC6125 support. It considers CN even when there is a non-matching subjectAltName (SAN). This is fixed in, for example, openldap-2.4.46-10.el8 in Red Hat Enterprise Linux."
+            },
+            {
+              "VulnerabilityID": "CVE-2026-22185",
+              "PkgName": "libldap-common",
+              "InstalledVersion": "2.6.10+dfsg-1",
+              "FixedVersion": "",
+              "Severity": "LOW",
+              "Title": "OpenLDAP: OpenLDAP LMDB: Denial of Service and Information Disclosure via Heap Buffer Underflow",
+              "Description": "OpenLDAP Lightning Memory-Mapped Database (LMDB) versions up to and including 0.9.14, prior to commit 8e1fda8, contain a heap buffer underflow in the readline() function of mdb_load. When processing malformed input containing an embedded NUL byte, an unsigned offset calculation can underflow and cause an out-of-bounds read of one byte before the allocated heap buffer. This can cause mdb_load to crash, leading to a limited denial-of-service condition."
+            },
+            {
+              "VulnerabilityID": "CVE-2015-3276",
+              "PkgName": "libldap2",
+              "InstalledVersion": "2.6.10+dfsg-1",
+              "FixedVersion": "",
+              "Severity": "LOW",
+              "Title": "openldap: incorrect multi-keyword mode cipherstring parsing",
+              "Description": "The nss_parse_ciphers function in libraries/libldap/tls_m.c in OpenLDAP does not properly parse OpenSSL-style multi-keyword mode cipher strings, which might cause a weaker than intended cipher to be used and allow remote attackers to have unspecified impact via unknown vectors."
+            },
+            {
+              "VulnerabilityID": "CVE-2017-14159",
+              "PkgName": "libldap2",
+              "InstalledVersion": "2.6.10+dfsg-1",
+              "FixedVersion": "",
+              "Severity": "LOW",
+              "Title": "openldap: Privilege escalation via PID file manipulation",
+              "Description": "slapd in OpenLDAP 2.4.45 and earlier creates a PID file after dropping privileges to a non-root account, which might allow local users to kill arbitrary processes by leveraging access to this non-root account for PID file modification before a root script executes a \"kill `cat /pathname`\" command, as demonstrated by openldap-initscript."
+            },
+            {
+              "VulnerabilityID": "CVE-2017-17740",
+              "PkgName": "libldap2",
+              "InstalledVersion": "2.6.10+dfsg-1",
+              "FixedVersion": "",
+              "Severity": "LOW",
+              "Title": "openldap: contrib/slapd-modules/nops/nops.c attempts to free stack buffer allowing remote attackers to cause a denial of service",
+              "Description": "contrib/slapd-modules/nops/nops.c in OpenLDAP through 2.4.45, when both the nops module and the memberof overlay are enabled, attempts to free a buffer that was allocated on the stack, which allows remote attackers to cause a denial of service (slapd crash) via a member MODDN operation."
+            },
+            {
+              "VulnerabilityID": "CVE-2020-15719",
+              "PkgName": "libldap2",
+              "InstalledVersion": "2.6.10+dfsg-1",
+              "FixedVersion": "",
+              "Severity": "LOW",
+              "Title": "openldap: Certificate validation incorrectly matches name against CN-ID",
+              "Description": "libldap in certain third-party OpenLDAP packages has a certificate-validation flaw when the third-party package is asserting RFC6125 support. It considers CN even when there is a non-matching subjectAltName (SAN). This is fixed in, for example, openldap-2.4.46-10.el8 in Red Hat Enterprise Linux."
+            },
+            {
+              "VulnerabilityID": "CVE-2026-22185",
+              "PkgName": "libldap2",
+              "InstalledVersion": "2.6.10+dfsg-1",
+              "FixedVersion": "",
+              "Severity": "LOW",
+              "Title": "OpenLDAP: OpenLDAP LMDB: Denial of Service and Information Disclosure via Heap Buffer Underflow",
+              "Description": "OpenLDAP Lightning Memory-Mapped Database (LMDB) versions up to and including 0.9.14, prior to commit 8e1fda8, contain a heap buffer underflow in the readline() function of mdb_load. When processing malformed input containing an embedded NUL byte, an unsigned offset calculation can underflow and cause an out-of-bounds read of one byte before the allocated heap buffer. This can cause mdb_load to crash, leading to a limited denial-of-service condition."
+            },
+            {
+              "VulnerabilityID": "CVE-2025-14104",
+              "PkgName": "libmount1",
+              "InstalledVersion": "2.41-5",
+              "FixedVersion": "",
+              "Severity": "MEDIUM",
+              "Title": "util-linux: util-linux: Heap buffer overread in setpwnam() when processing 256-byte usernames",
+              "Description": "A flaw was found in util-linux. This vulnerability allows a heap buffer overread when processing 256-byte usernames, specifically within the `setpwnam()` function, affecting SUID (Set User ID) login-utils utilities writing to the password database."
+            },
+            {
+              "VulnerabilityID": "CVE-2022-0563",
+              "PkgName": "libmount1",
+              "InstalledVersion": "2.41-5",
+              "FixedVersion": "",
+              "Severity": "LOW",
+              "Title": "util-linux: partial disclosure of arbitrary files in chfn and chsh when compiled with libreadline",
+              "Description": "A flaw was found in the util-linux chfn and chsh utilities when compiled with Readline support. The Readline library uses an \"INPUTRC\" environment variable to get a path to the library config file. When the library cannot parse the specified file, it prints an error message containing data from the file. This flaw allows an unprivileged user to read root-owned files, potentially leading to privilege escalation. This flaw affects util-linux versions prior to 2.37.4."
+            },
+            {
+              "VulnerabilityID": "CVE-2025-14104",
+              "PkgName": "libsmartcols1",
+              "InstalledVersion": "2.41-5",
+              "FixedVersion": "",
+              "Severity": "MEDIUM",
+              "Title": "util-linux: util-linux: Heap buffer overread in setpwnam() when processing 256-byte usernames",
+              "Description": "A flaw was found in util-linux. This vulnerability allows a heap buffer overread when processing 256-byte usernames, specifically within the `setpwnam()` function, affecting SUID (Set User ID) login-utils utilities writing to the password database."
+            },
+            {
+              "VulnerabilityID": "CVE-2022-0563",
+              "PkgName": "libsmartcols1",
+              "InstalledVersion": "2.41-5",
+              "FixedVersion": "",
+              "Severity": "LOW",
+              "Title": "util-linux: partial disclosure of arbitrary files in chfn and chsh when compiled with libreadline",
+              "Description": "A flaw was found in the util-linux chfn and chsh utilities when compiled with Readline support. The Readline library uses an \"INPUTRC\" environment variable to get a path to the library config file. When the library cannot parse the specified file, it prints an error message containing data from the file. This flaw allows an unprivileged user to read root-owned files, potentially leading to privilege escalation. This flaw affects util-linux versions prior to 2.37.4."
+            },
+            {
+              "VulnerabilityID": "CVE-2025-7709",
+              "PkgName": "libsqlite3-0",
+              "InstalledVersion": "3.46.1-7",
+              "FixedVersion": "",
+              "Severity": "MEDIUM",
+              "Title": "An integer overflow exists in the  FTS5 https://sqlite.org/fts5.html e ...",
+              "Description": "An integer overflow exists in the  FTS5 https://sqlite.org/fts5.html  extension. It occurs when the size of an array of tombstone pointers is calculated and truncated into a 32-bit integer. A pointer to partially controlled data can then be written out of bounds."
+            },
+            {
+              "VulnerabilityID": "CVE-2021-45346",
+              "PkgName": "libsqlite3-0",
+              "InstalledVersion": "3.46.1-7",
+              "FixedVersion": "",
+              "Severity": "LOW",
+              "Title": "sqlite: crafted SQL query allows a malicious user to obtain sensitive information",
+              "Description": "A Memory Leak vulnerability exists in SQLite Project SQLite3 3.35.1 and 3.37.0 via maliciously crafted SQL Queries (made via editing the Database File), it is possible to query a record, and leak subsequent bytes of memory that extend beyond the record, which could let a malicious user obtain sensitive information. NOTE: The developer disputes this as a vulnerability stating that If you give SQLite a corrupted database file and submit a query against the database, it might read parts of the database that you did not intend or expect."
+            },
+            {
+              "VulnerabilityID": "CVE-2013-4392",
+              "PkgName": "libsystemd0",
+              "InstalledVersion": "257.9-1~deb13u1",
+              "FixedVersion": "",
+              "Severity": "LOW",
+              "Title": "systemd: TOCTOU race condition when updating file permissions and SELinux security contexts",
+              "Description": "systemd, when updating file permissions, allows local users to change the permissions and SELinux security contexts for arbitrary files via a symlink attack on unspecified files."
+            },
+            {
+              "VulnerabilityID": "CVE-2023-31437",
+              "PkgName": "libsystemd0",
+              "InstalledVersion": "257.9-1~deb13u1",
+              "FixedVersion": "",
+              "Severity": "LOW",
+              "Title": "An issue was discovered in systemd 253. An attacker can modify a seale ...",
+              "Description": "An issue was discovered in systemd 253. An attacker can modify a sealed log file such that, in some views, not all existing and sealed log messages are displayed. NOTE: the vendor reportedly sent \"a reply denying that any of the finding was a security vulnerability.\""
+            },
+            {
+              "VulnerabilityID": "CVE-2023-31438",
+              "PkgName": "libsystemd0",
+              "InstalledVersion": "257.9-1~deb13u1",
+              "FixedVersion": "",
+              "Severity": "LOW",
+              "Title": "An issue was discovered in systemd 253. An attacker can truncate a sea ...",
+              "Description": "An issue was discovered in systemd 253. An attacker can truncate a sealed log file and then resume log sealing such that checking the integrity shows no error, despite modifications. NOTE: the vendor reportedly sent \"a reply denying that any of the finding was a security vulnerability.\""
+            },
+            {
+              "VulnerabilityID": "CVE-2023-31439",
+              "PkgName": "libsystemd0",
+              "InstalledVersion": "257.9-1~deb13u1",
+              "FixedVersion": "",
+              "Severity": "LOW",
+              "Title": "An issue was discovered in systemd 253. An attacker can modify the con ...",
+              "Description": "An issue was discovered in systemd 253. An attacker can modify the contents of past events in a sealed log file and then adjust the file such that checking the integrity shows no error, despite modifications. NOTE: the vendor reportedly sent \"a reply denying that any of the finding was a security vulnerability.\""
+            },
+            {
+              "VulnerabilityID": "CVE-2025-13151",
+              "PkgName": "libtasn1-6",
+              "InstalledVersion": "4.20.0-2",
+              "FixedVersion": "",
+              "Severity": "MEDIUM",
+              "Title": "libtasn1: libtasn1: Denial of Service via stack-based buffer overflow in asn1_expend_octet_string",
+              "Description": "Stack-based buffer overflow in libtasn1 version: v4.20.0. The function fails to validate the size of input data resulting in a buffer overflow in asn1_expend_octet_string."
+            },
+            {
+              "VulnerabilityID": "CVE-2025-6141",
+              "PkgName": "libtinfo6",
+              "InstalledVersion": "6.5+20250216-2",
+              "FixedVersion": "",
+              "Severity": "LOW",
+              "Title": "gnu-ncurses: ncurses Stack Buffer Overflow",
+              "Description": "A vulnerability has been found in GNU ncurses up to 6.5-20250322 and classified as problematic. This vulnerability affects the function postprocess_termcap of the file tinfo/parse_entry.c. The manipulation leads to stack-based buffer overflow. The attack needs to be approached locally. Upgrading to version 6.5-20250329 is able to address this issue. It is recommended to upgrade the affected component."
+            },
+            {
+              "VulnerabilityID": "CVE-2013-4392",
+              "PkgName": "libudev1",
+              "InstalledVersion": "257.9-1~deb13u1",
+              "FixedVersion": "",
+              "Severity": "LOW",
+              "Title": "systemd: TOCTOU race condition when updating file permissions and SELinux security contexts",
+              "Description": "systemd, when updating file permissions, allows local users to change the permissions and SELinux security contexts for arbitrary files via a symlink attack on unspecified files."
+            },
+            {
+              "VulnerabilityID": "CVE-2023-31437",
+              "PkgName": "libudev1",
+              "InstalledVersion": "257.9-1~deb13u1",
+              "FixedVersion": "",
+              "Severity": "LOW",
+              "Title": "An issue was discovered in systemd 253. An attacker can modify a seale ...",
+              "Description": "An issue was discovered in systemd 253. An attacker can modify a sealed log file such that, in some views, not all existing and sealed log messages are displayed. NOTE: the vendor reportedly sent \"a reply denying that any of the finding was a security vulnerability.\""
+            },
+            {
+              "VulnerabilityID": "CVE-2023-31438",
+              "PkgName": "libudev1",
+              "InstalledVersion": "257.9-1~deb13u1",
+              "FixedVersion": "",
+              "Severity": "LOW",
+              "Title": "An issue was discovered in systemd 253. An attacker can truncate a sea ...",
+              "Description": "An issue was discovered in systemd 253. An attacker can truncate a sealed log file and then resume log sealing such that checking the integrity shows no error, despite modifications. NOTE: the vendor reportedly sent \"a reply denying that any of the finding was a security vulnerability.\""
+            },
+            {
+              "VulnerabilityID": "CVE-2023-31439",
+              "PkgName": "libudev1",
+              "InstalledVersion": "257.9-1~deb13u1",
+              "FixedVersion": "",
+              "Severity": "LOW",
+              "Title": "An issue was discovered in systemd 253. An attacker can modify the con ...",
+              "Description": "An issue was discovered in systemd 253. An attacker can modify the contents of past events in a sealed log file and then adjust the file such that checking the integrity shows no error, despite modifications. NOTE: the vendor reportedly sent \"a reply denying that any of the finding was a security vulnerability.\""
+            },
+            {
+              "VulnerabilityID": "CVE-2025-14104",
+              "PkgName": "libuuid1",
+              "InstalledVersion": "2.41-5",
+              "FixedVersion": "",
+              "Severity": "MEDIUM",
+              "Title": "util-linux: util-linux: Heap buffer overread in setpwnam() when processing 256-byte usernames",
+              "Description": "A flaw was found in util-linux. This vulnerability allows a heap buffer overread when processing 256-byte usernames, specifically within the `setpwnam()` function, affecting SUID (Set User ID) login-utils utilities writing to the password database."
+            },
+            {
+              "VulnerabilityID": "CVE-2022-0563",
+              "PkgName": "libuuid1",
+              "InstalledVersion": "2.41-5",
+              "FixedVersion": "",
+              "Severity": "LOW",
+              "Title": "util-linux: partial disclosure of arbitrary files in chfn and chsh when compiled with libreadline",
+              "Description": "A flaw was found in the util-linux chfn and chsh utilities when compiled with Readline support. The Readline library uses an \"INPUTRC\" environment variable to get a path to the library config file. When the library cannot parse the specified file, it prints an error message containing data from the file. This flaw allows an unprivileged user to read root-owned files, potentially leading to privilege escalation. This flaw affects util-linux versions prior to 2.37.4."
+            },
+            {
+              "VulnerabilityID": "CVE-2026-0990",
+              "PkgName": "libxml2",
+              "InstalledVersion": "2.12.7+dfsg+really2.9.14-2.1+deb13u2",
+              "FixedVersion": "",
+              "Severity": "MEDIUM",
+              "Title": "libxml2: libxml2: Denial of Service via uncontrolled recursion in XML catalog processing",
+              "Description": "A flaw was found in libxml2, an XML parsing library. This uncontrolled recursion vulnerability occurs in the xmlCatalogXMLResolveURI function when an XML catalog contains a delegate URI entry that references itself. A remote attacker could exploit this configuration-dependent issue by providing a specially crafted XML catalog, leading to infinite recursion and call stack exhaustion. This ultimately results in a segmentation fault, causing a Denial of Service (DoS) by crashing affected applications."
+            },
+            {
+              "VulnerabilityID": "CVE-2025-8732",
+              "PkgName": "libxml2",
+              "InstalledVersion": "2.12.7+dfsg+really2.9.14-2.1+deb13u2",
+              "FixedVersion": "",
+              "Severity": "LOW",
+              "Title": "libxml2: libxml2: Uncontrolled Recursion Vulnerability",
+              "Description": "A vulnerability was found in libxml2 up to 2.14.5. It has been declared as problematic. This vulnerability affects the function xmlParseSGMLCatalog of the component xmlcatalog. The manipulation leads to uncontrolled recursion. Attacking locally is a requirement. The exploit has been disclosed to the public and may be used. The real existence of this vulnerability is still doubted at the moment. The code maintainer explains, that \"[t]he issue can only be triggered with untrusted SGML catalogs and it makes absolutely no sense to use untrusted catalogs. I also doubt that anyone is still using SGML catalogs at all.\""
+            },
+            {
+              "VulnerabilityID": "CVE-2026-0989",
+              "PkgName": "libxml2",
+              "InstalledVersion": "2.12.7+dfsg+really2.9.14-2.1+deb13u2",
+              "FixedVersion": "",
+              "Severity": "LOW",
+              "Title": "libxml2: Unbounded RelaxNG Include Recursion Leading to Stack Overflow",
+              "Description": "A flaw was identified in the RelaxNG parser of libxml2 related to how external schema inclusions are handled. The parser does not enforce a limit on inclusion depth when resolving nested <include> directives. Specially crafted or overly complex schemas can cause excessive recursion during parsing. This may lead to stack exhaustion and application crashes, creating a denial-of-service risk."
+            },
+            {
+              "VulnerabilityID": "CVE-2026-0992",
+              "PkgName": "libxml2",
+              "InstalledVersion": "2.12.7+dfsg+really2.9.14-2.1+deb13u2",
+              "FixedVersion": "",
+              "Severity": "LOW",
+              "Title": "libxml2: libxml2: Denial of Service via crafted XML catalogs",
+              "Description": "A flaw was found in the libxml2 library. This uncontrolled resource consumption vulnerability occurs when processing XML catalogs that contain repeated <nextCatalog> elements pointing to the same downstream catalog. A remote attacker can exploit this by supplying crafted catalogs, causing the parser to redundantly traverse catalog chains. This leads to excessive CPU consumption and degrades application availability, resulting in a denial-of-service condition."
+            },
+            {
+              "VulnerabilityID": "CVE-2026-1757",
+              "PkgName": "libxml2",
+              "InstalledVersion": "2.12.7+dfsg+really2.9.14-2.1+deb13u2",
+              "FixedVersion": "",
+              "Severity": "LOW",
+              "Title": "libxml2: Memory Leak Leading to Local Denial of Service in xmllint Interactive Shell",
+              "Description": "A flaw was identified in the interactive shell of the xmllint utility, part of the libxml2 project, where memory allocated for user input is not properly released under certain conditions. When a user submits input consisting only of whitespace, the program skips command execution but fails to free the allocated buffer. Repeating this action causes memory to continuously accumulate. Over time, this can exhaust system memory and terminate the xmllint process, creating a denial-of-service condition on the local system."
+            },
+            {
+              "VulnerabilityID": "CVE-2025-14104",
+              "PkgName": "login",
+              "InstalledVersion": "1:4.16.0-2+really2.41-5",
+              "FixedVersion": "",
+              "Severity": "MEDIUM",
+              "Title": "util-linux: util-linux: Heap buffer overread in setpwnam() when processing 256-byte usernames",
+              "Description": "A flaw was found in util-linux. This vulnerability allows a heap buffer overread when processing 256-byte usernames, specifically within the `setpwnam()` function, affecting SUID (Set User ID) login-utils utilities writing to the password database."
+            },
+            {
+              "VulnerabilityID": "CVE-2022-0563",
+              "PkgName": "login",
+              "InstalledVersion": "1:4.16.0-2+really2.41-5",
+              "FixedVersion": "",
+              "Severity": "LOW",
+              "Title": "util-linux: partial disclosure of arbitrary files in chfn and chsh when compiled with libreadline",
+              "Description": "A flaw was found in the util-linux chfn and chsh utilities when compiled with Readline support. The Readline library uses an \"INPUTRC\" environment variable to get a path to the library config file. When the library cannot parse the specified file, it prints an error message containing data from the file. This flaw allows an unprivileged user to read root-owned files, potentially leading to privilege escalation. This flaw affects util-linux versions prior to 2.37.4."
+            },
+            {
+              "VulnerabilityID": "CVE-2007-5686",
+              "PkgName": "login.defs",
+              "InstalledVersion": "1:4.17.4-2",
+              "FixedVersion": "",
+              "Severity": "LOW",
+              "Title": "initscripts in rPath Linux 1 sets insecure permissions for the /var/lo ...",
+              "Description": "initscripts in rPath Linux 1 sets insecure permissions for the /var/log/btmp file, which allows local users to obtain sensitive information regarding authentication attempts.  NOTE: because sshd detects the insecure permissions and does not log certain events, this also prevents sshd from logging failed authentication attempts by remote attackers."
+            },
+            {
+              "VulnerabilityID": "CVE-2024-56433",
+              "PkgName": "login.defs",
+              "InstalledVersion": "1:4.17.4-2",
+              "FixedVersion": "",
+              "Severity": "LOW",
+              "Title": "shadow-utils: Default subordinate ID configuration in /etc/login.defs could lead to compromise",
+              "Description": "shadow-utils (aka shadow) 4.4 through 4.17.0 establishes a default /etc/subuid behavior (e.g., uid 100000 through 165535 for the first user account) that can realistically conflict with the uids of users defined on locally administered networks, potentially leading to account takeover, e.g., by leveraging newuidmap for access to an NFS home directory (or same-host resources in the case of remote logins by these local network users). NOTE: it may also be argued that system administrators should not have assigned uids, within local networks, that are within the range that can occur in /etc/subuid."
+            },
+            {
+              "VulnerabilityID": "TEMP-0628843-DBAD28",
+              "PkgName": "login.defs",
+              "InstalledVersion": "1:4.17.4-2",
+              "FixedVersion": "",
+              "Severity": "LOW",
+              "Title": "[more related to CVE-2005-4890]",
+              "Description": ""
+            },
+            {
+              "VulnerabilityID": "CVE-2025-14104",
+              "PkgName": "mount",
+              "InstalledVersion": "2.41-5",
+              "FixedVersion": "",
+              "Severity": "MEDIUM",
+              "Title": "util-linux: util-linux: Heap buffer overread in setpwnam() when processing 256-byte usernames",
+              "Description": "A flaw was found in util-linux. This vulnerability allows a heap buffer overread when processing 256-byte usernames, specifically within the `setpwnam()` function, affecting SUID (Set User ID) login-utils utilities writing to the password database."
+            },
+            {
+              "VulnerabilityID": "CVE-2022-0563",
+              "PkgName": "mount",
+              "InstalledVersion": "2.41-5",
+              "FixedVersion": "",
+              "Severity": "LOW",
+              "Title": "util-linux: partial disclosure of arbitrary files in chfn and chsh when compiled with libreadline",
+              "Description": "A flaw was found in the util-linux chfn and chsh utilities when compiled with Readline support. The Readline library uses an \"INPUTRC\" environment variable to get a path to the library config file. When the library cannot parse the specified file, it prints an error message containing data from the file. This flaw allows an unprivileged user to read root-owned files, potentially leading to privilege escalation. This flaw affects util-linux versions prior to 2.37.4."
+            },
+            {
+              "VulnerabilityID": "CVE-2025-6141",
+              "PkgName": "ncurses-base",
+              "InstalledVersion": "6.5+20250216-2",
+              "FixedVersion": "",
+              "Severity": "LOW",
+              "Title": "gnu-ncurses: ncurses Stack Buffer Overflow",
+              "Description": "A vulnerability has been found in GNU ncurses up to 6.5-20250322 and classified as problematic. This vulnerability affects the function postprocess_termcap of the file tinfo/parse_entry.c. The manipulation leads to stack-based buffer overflow. The attack needs to be approached locally. Upgrading to version 6.5-20250329 is able to address this issue. It is recommended to upgrade the affected component."
+            },
+            {
+              "VulnerabilityID": "CVE-2025-6141",
+              "PkgName": "ncurses-bin",
+              "InstalledVersion": "6.5+20250216-2",
+              "FixedVersion": "",
+              "Severity": "LOW",
+              "Title": "gnu-ncurses: ncurses Stack Buffer Overflow",
+              "Description": "A vulnerability has been found in GNU ncurses up to 6.5-20250322 and classified as problematic. This vulnerability affects the function postprocess_termcap of the file tinfo/parse_entry.c. The manipulation leads to stack-based buffer overflow. The attack needs to be approached locally. Upgrading to version 6.5-20250329 is able to address this issue. It is recommended to upgrade the affected component."
+            },
+            {
+              "VulnerabilityID": "CVE-2007-5686",
+              "PkgName": "passwd",
+              "InstalledVersion": "1:4.17.4-2",
+              "FixedVersion": "",
+              "Severity": "LOW",
+              "Title": "initscripts in rPath Linux 1 sets insecure permissions for the /var/lo ...",
+              "Description": "initscripts in rPath Linux 1 sets insecure permissions for the /var/log/btmp file, which allows local users to obtain sensitive information regarding authentication attempts.  NOTE: because sshd detects the insecure permissions and does not log certain events, this also prevents sshd from logging failed authentication attempts by remote attackers."
+            },
+            {
+              "VulnerabilityID": "CVE-2024-56433",
+              "PkgName": "passwd",
+              "InstalledVersion": "1:4.17.4-2",
+              "FixedVersion": "",
+              "Severity": "LOW",
+              "Title": "shadow-utils: Default subordinate ID configuration in /etc/login.defs could lead to compromise",
+              "Description": "shadow-utils (aka shadow) 4.4 through 4.17.0 establishes a default /etc/subuid behavior (e.g., uid 100000 through 165535 for the first user account) that can realistically conflict with the uids of users defined on locally administered networks, potentially leading to account takeover, e.g., by leveraging newuidmap for access to an NFS home directory (or same-host resources in the case of remote logins by these local network users). NOTE: it may also be argued that system administrators should not have assigned uids, within local networks, that are within the range that can occur in /etc/subuid."
+            },
+            {
+              "VulnerabilityID": "TEMP-0628843-DBAD28",
+              "PkgName": "passwd",
+              "InstalledVersion": "1:4.17.4-2",
+              "FixedVersion": "",
+              "Severity": "LOW",
+              "Title": "[more related to CVE-2005-4890]",
+              "Description": ""
+            },
+            {
+              "VulnerabilityID": "CVE-2011-4116",
+              "PkgName": "perl-base",
+              "InstalledVersion": "5.40.1-6",
+              "FixedVersion": "",
+              "Severity": "LOW",
+              "Title": "perl: File:: Temp insecure temporary file handling",
+              "Description": "_is_safe in the File::Temp module for Perl does not properly handle symlinks."
+            },
+            {
+              "VulnerabilityID": "TEMP-0517018-A83CE6",
+              "PkgName": "sysvinit-utils",
+              "InstalledVersion": "3.14-4",
+              "FixedVersion": "",
+              "Severity": "LOW",
+              "Title": "[sysvinit: no-root option in expert installer exposes locally exploitable security flaw]",
+              "Description": ""
+            },
+            {
+              "VulnerabilityID": "CVE-2005-2541",
+              "PkgName": "tar",
+              "InstalledVersion": "1.35+dfsg-3.1",
+              "FixedVersion": "",
+              "Severity": "LOW",
+              "Title": "tar: does not properly warn the user when extracting setuid or setgid files",
+              "Description": "Tar 1.15.1 does not properly warn the user when extracting setuid or setgid files, which may allow local users or remote attackers to gain privileges."
+            },
+            {
+              "VulnerabilityID": "TEMP-0290435-0B57B5",
+              "PkgName": "tar",
+              "InstalledVersion": "1.35+dfsg-3.1",
+              "FixedVersion": "",
+              "Severity": "LOW",
+              "Title": "[tar's rmt command may have undesired side effects]",
+              "Description": ""
+            },
+            {
+              "VulnerabilityID": "CVE-2025-14104",
+              "PkgName": "util-linux",
+              "InstalledVersion": "2.41-5",
+              "FixedVersion": "",
+              "Severity": "MEDIUM",
+              "Title": "util-linux: util-linux: Heap buffer overread in setpwnam() when processing 256-byte usernames",
+              "Description": "A flaw was found in util-linux. This vulnerability allows a heap buffer overread when processing 256-byte usernames, specifically within the `setpwnam()` function, affecting SUID (Set User ID) login-utils utilities writing to the password database."
+            },
+            {
+              "VulnerabilityID": "CVE-2022-0563",
+              "PkgName": "util-linux",
+              "InstalledVersion": "2.41-5",
+              "FixedVersion": "",
+              "Severity": "LOW",
+              "Title": "util-linux: partial disclosure of arbitrary files in chfn and chsh when compiled with libreadline",
+              "Description": "A flaw was found in the util-linux chfn and chsh utilities when compiled with Readline support. The Readline library uses an \"INPUTRC\" environment variable to get a path to the library config file. When the library cannot parse the specified file, it prints an error message containing data from the file. This flaw allows an unprivileged user to read root-owned files, potentially leading to privilege escalation. This flaw affects util-linux versions prior to 2.37.4."
+            },
+            {
+              "VulnerabilityID": "CVE-2026-27171",
+              "PkgName": "zlib1g",
+              "InstalledVersion": "1:1.3.dfsg+really1.3.1-1+b1",
+              "FixedVersion": "",
+              "Severity": "LOW",
+              "Title": "zlib: zlib: Denial of Service via infinite loop in CRC32 combine functions",
+              "Description": "zlib before 1.3.2 allows CPU consumption via crc32_combine64 and crc32_combine_gen64 because x2nmodp can do right shifts within a loop that has no termination condition."
+            }
+          ]
+        }
+      ]
+    },
+    "versioning": {
+      "analyzer": "versioning",
+      "repository": "library/httpd",
+      "total_tags": 187,
+      "dominant_pattern": "semver-variant",
+      "semver_compliant_percentage": 71.7,
+      "patterns": [
+        {
+          "pattern": "named",
+          "count": 50,
+          "percentage": 26.7,
+          "examples": [
+            "2-alpine",
+            "2-alpine3.13",
+            "2-alpine3.14",
+            "2-alpine3.15",
+            "2-alpine3.16",
+            "2-alpine3.17",
+            "2-alpine3.18",
+            "2-alpine3.19",
+            "2-alpine3.20",
+            "2-alpine3.21"
+          ]
+        },
+        {
+          "pattern": "numeric",
+          "count": 3,
+          "percentage": 1.6,
+          "examples": [
+            "2",
+            "2.2",
+            "2.4"
+          ]
+        },
+        {
+          "pattern": "semver",
+          "count": 45,
+          "percentage": 24.1,
+          "examples": [
+            "2.2.29",
+            "2.2.31",
+            "2.2.32",
+            "2.2.34",
+            "2.4.10",
+            "2.4.12",
+            "2.4.16",
+            "2.4.17",
+            "2.4.18",
+            "2.4.20"
+          ]
+        },
+        {
+          "pattern": "semver-variant",
+          "count": 89,
+          "percentage": 47.6,
+          "examples": [
+            "2.2.31-alpine",
+            "2.2.32-alpine",
+            "2.2.34-alpine",
+            "2.4.23-alpine",
+            "2.4.25-alpine",
+            "2.4.27-alpine",
+            "2.4.28-alpine",
+            "2.4.29-alpine",
+            "2.4.32-alpine",
+            "2.4.33-alpine"
+          ]
+        }
+      ],
+      "variants": [
+        {
+          "name": "alpine",
+          "count": 42,
+          "percentage": 22.5,
+          "examples": [
+            "2-alpine",
+            "2.2-alpine",
+            "2.2.31-alpine",
+            "2.2.32-alpine",
+            "2.2.34-alpine",
+            "2.4-alpine",
+            "2.4.23-alpine",
+            "2.4.25-alpine",
+            "2.4.27-alpine",
+            "2.4.28-alpine"
+          ]
+        },
+        {
+          "name": "bookworm",
+          "count": 12,
+          "percentage": 6.4,
+          "examples": [
+            "2-bookworm",
+            "2.4-bookworm",
+            "2.4.57-bookworm",
+            "2.4.58-bookworm",
+            "2.4.59-bookworm",
+            "2.4.60-bookworm",
+            "2.4.61-bookworm",
+            "2.4.62-bookworm",
+            "2.4.63-bookworm",
+            "2.4.64-bookworm"
+          ]
+        },
+        {
+          "name": "bullseye",
+          "count": 10,
+          "percentage": 5.3,
+          "examples": [
+            "2-bullseye",
+            "2.4-bullseye",
+            "2.4.51-bullseye",
+            "2.4.52-bullseye",
+            "2.4.53-bullseye",
+            "2.4.54-bullseye",
+            "2.4.55-bullseye",
+            "2.4.56-bullseye",
+            "2.4.57-bullseye",
+            "bullseye"
+          ]
+        },
+        {
+          "name": "alpine3.14",
+          "count": 7,
+          "percentage": 3.7,
+          "examples": [
+            "2-alpine3.14",
+            "2.4-alpine3.14",
+            "2.4.48-alpine3.14",
+            "2.4.49-alpine3.14",
+            "2.4.50-alpine3.14",
+            "2.4.51-alpine3.14",
+            "alpine3.14"
+          ]
+        },
+        {
+          "name": "alpine3.17",
+          "count": 7,
+          "percentage": 3.7,
+          "examples": [
+            "2-alpine3.17",
+            "2.4-alpine3.17",
+            "2.4.54-alpine3.17",
+            "2.4.55-alpine3.17",
+            "2.4.56-alpine3.17",
+            "2.4.57-alpine3.17",
+            "alpine3.17"
+          ]
+        },
+        {
+          "name": "alpine3.20",
+          "count": 7,
+          "percentage": 3.7,
+          "examples": [
+            "2-alpine3.20",
+            "2.4-alpine3.20",
+            "2.4.59-alpine3.20",
+            "2.4.60-alpine3.20",
+            "2.4.61-alpine3.20",
+            "2.4.62-alpine3.20",
+            "alpine3.20"
+          ]
+        },
+        {
+          "name": "alpine3.22",
+          "count": 7,
+          "percentage": 3.7,
+          "examples": [
+            "2-alpine3.22",
+            "2.4-alpine3.22",
+            "2.4.63-alpine3.22",
+            "2.4.64-alpine3.22",
+            "2.4.65-alpine3.22",
+            "2.4.66-alpine3.22",
+            "alpine3.22"
+          ]
+        },
+        {
+          "name": "buster",
+          "count": 7,
+          "percentage": 3.7,
+          "examples": [
+            "2-buster",
+            "2.4-buster",
+            "2.4.48-buster",
+            "2.4.49-buster",
+            "2.4.50-buster",
+            "2.4.51-buster",
+            "buster"
+          ]
+        },
+        {
+          "name": "alpine3.15",
+          "count": 6,
+          "percentage": 3.2,
+          "examples": [
+            "2-alpine3.15",
+            "2.4-alpine3.15",
+            "2.4.51-alpine3.15",
+            "2.4.52-alpine3.15",
+            "2.4.53-alpine3.15",
+            "alpine3.15"
+          ]
+        },
+        {
+          "name": "alpine3.16",
+          "count": 5,
+          "percentage": 2.7,
+          "examples": [
+            "2-alpine3.16",
+            "2.4-alpine3.16",
+            "2.4.53-alpine3.16",
+            "2.4.54-alpine3.16",
+            "alpine3.16"
+          ]
+        },
+        {
+          "name": "alpine3.18",
+          "count": 5,
+          "percentage": 2.7,
+          "examples": [
+            "2-alpine3.18",
+            "2.4-alpine3.18",
+            "2.4.57-alpine3.18",
+            "2.4.58-alpine3.18",
+            "alpine3.18"
+          ]
+        },
+        {
+          "name": "alpine3.19",
+          "count": 5,
+          "percentage": 2.7,
+          "examples": [
+            "2-alpine3.19",
+            "2.4-alpine3.19",
+            "2.4.58-alpine3.19",
+            "2.4.59-alpine3.19",
+            "alpine3.19"
+          ]
+        },
+        {
+          "name": "alpine3.21",
+          "count": 5,
+          "percentage": 2.7,
+          "examples": [
+            "2-alpine3.21",
+            "2.4-alpine3.21",
+            "2.4.62-alpine3.21",
+            "2.4.63-alpine3.21",
+            "alpine3.21"
+          ]
+        },
+        {
+          "name": "trixie",
+          "count": 5,
+          "percentage": 2.7,
+          "examples": [
+            "2-trixie",
+            "2.4-trixie",
+            "2.4.65-trixie",
+            "2.4.66-trixie",
+            "trixie"
+          ]
+        },
+        {
+          "name": "alpine3.13",
+          "count": 4,
+          "percentage": 2.1,
+          "examples": [
+            "2-alpine3.13",
+            "2.4-alpine3.13",
+            "2.4.48-alpine3.13",
+            "alpine3.13"
+          ]
+        },
+        {
+          "name": "alpine3.23",
+          "count": 4,
+          "percentage": 2.1,
+          "examples": [
+            "2-alpine3.23",
+            "2.4-alpine3.23",
+            "2.4.66-alpine3.23",
+            "alpine3.23"
+          ]
+        }
+      ]
+    }
+  },
+  "scorecards": [
+    {
+      "scorecard_name": "Default Security Scorecard",
+      "score": 75,
+      "total_rules": 4,
+      "passed_rules": 3,
+      "pages": [
+        {
+          "name": "Default",
+          "score": 75,
+          "total_rules": 4,
+          "passed_rules": 3,
+          "sections": [
+            {
+              "name": "Security",
+              "score": 75,
+              "total_rules": 4,
+              "passed_rules": 3,
+              "levels_summary": {
+                "critical": {
+                  "total": 2,
+                  "passed": 2,
+                  "percentage": 100
+                },
+                "warning": {
+                  "total": 2,
+                  "passed": 1,
+                  "percentage": 50
+                }
+              },
+              "tags_summary": {
+                "security": {
+                  "total": 4,
+                  "passed": 3,
+                  "percentage": 75
+                }
+              },
+              "rules": [
+                {
+                  "name": "no-root",
+                  "title": "no-root",
+                  "level": "critical",
+                  "tags": [
+                    "security"
+                  ],
+                  "analyzers": [
+                    "skopeo"
+                  ],
+                  "passed": true,
+                  "status": "passed",
+                  "condition": "{\"!=\": [{\"var\": \"results.skopeo.platforms.0.user\"}, \"root\"]}",
+                  "details": "results.skopeo.platforms.0.user (MISSING) != root"
+                },
+                {
+                  "name": "freshness",
+                  "title": "freshness",
+                  "level": "warning",
+                  "tags": [
+                    "security"
+                  ],
+                  "analyzers": [
+                    "freshness"
+                  ],
+                  "passed": true,
+                  "status": "passed",
+                  "condition": "{\"<\": [{\"var\": \"results.freshness.age_days\"}, 30]}",
+                  "details": "results.freshness.age_days (17) < 30"
+                },
+                {
+                  "name": "no-critical",
+                  "title": "no-critical",
+                  "level": "critical",
+                  "tags": [
+                    "security"
+                  ],
+                  "analyzers": [
+                    "trivy"
+                  ],
+                  "passed": true,
+                  "status": "passed",
+                  "condition": "{\"==\": [{\"var\": \"results.trivy.critical_count\"}, 0]}",
+                  "details": "results.trivy.critical_count (0) == 0"
+                },
+                {
+                  "name": "no-high",
+                  "title": "no-high",
+                  "level": "warning",
+                  "tags": [
+                    "security"
+                  ],
+                  "analyzers": [
+                    "trivy"
+                  ],
+                  "passed": false,
+                  "status": "failed",
+                  "condition": "{\"==\": [{\"var\": \"results.trivy.high_count\"}, 0]}",
+                  "details": "results.trivy.high_count (2) == 0"
+                }
+              ],
+              "render_order": [
+                "levels",
+                "tags",
+                "rules"
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "scorecard": {
+    "scorecard_name": "Default Security Scorecard",
+    "score": 75,
+    "total_rules": 4,
+    "passed_rules": 3,
+    "pages": [
+      {
+        "name": "Default",
+        "score": 75,
+        "total_rules": 4,
+        "passed_rules": 3,
+        "sections": [
+          {
+            "name": "Security",
+            "score": 75,
+            "total_rules": 4,
+            "passed_rules": 3,
+            "levels_summary": {
+              "critical": {
+                "total": 2,
+                "passed": 2,
+                "percentage": 100
+              },
+              "warning": {
+                "total": 2,
+                "passed": 1,
+                "percentage": 50
+              }
+            },
+            "tags_summary": {
+              "security": {
+                "total": 4,
+                "passed": 3,
+                "percentage": 75
+              }
+            },
+            "rules": [
+              {
+                "name": "no-root",
+                "title": "no-root",
+                "level": "critical",
+                "tags": [
+                  "security"
+                ],
+                "analyzers": [
+                  "skopeo"
+                ],
+                "passed": true,
+                "status": "passed",
+                "condition": "{\"!=\": [{\"var\": \"results.skopeo.platforms.0.user\"}, \"root\"]}",
+                "details": "results.skopeo.platforms.0.user (MISSING) != root"
+              },
+              {
+                "name": "freshness",
+                "title": "freshness",
+                "level": "warning",
+                "tags": [
+                  "security"
+                ],
+                "analyzers": [
+                  "freshness"
+                ],
+                "passed": true,
+                "status": "passed",
+                "condition": "{\"<\": [{\"var\": \"results.freshness.age_days\"}, 30]}",
+                "details": "results.freshness.age_days (17) < 30"
+              },
+              {
+                "name": "no-critical",
+                "title": "no-critical",
+                "level": "critical",
+                "tags": [
+                  "security"
+                ],
+                "analyzers": [
+                  "trivy"
+                ],
+                "passed": true,
+                "status": "passed",
+                "condition": "{\"==\": [{\"var\": \"results.trivy.critical_count\"}, 0]}",
+                "details": "results.trivy.critical_count (0) == 0"
+              },
+              {
+                "name": "no-high",
+                "title": "no-high",
+                "level": "warning",
+                "tags": [
+                  "security"
+                ],
+                "analyzers": [
+                  "trivy"
+                ],
+                "passed": false,
+                "status": "failed",
+                "condition": "{\"==\": [{\"var\": \"results.trivy.high_count\"}, 0]}",
+                "details": "results.trivy.high_count (2) == 0"
+              }
+            ],
+            "render_order": [
+              "levels",
+              "tags",
+              "rules"
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}
