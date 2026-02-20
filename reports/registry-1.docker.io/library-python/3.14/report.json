@@ -17,7 +17,7 @@
       "trivy",
       "versioning"
     ],
-    "timestamp": "2026-02-20T06:44:32.252938+00:00"
+    "timestamp": "2026-02-20T06:51:24.235635+00:00"
   },
   "results": {
     "endoflife": {
@@ -158,7 +158,7 @@
       "analyzer": "popularity",
       "repository": "library/python",
       "available": true,
-      "pull_count": 8525811093,
+      "pull_count": 8525819874,
       "star_count": 10377,
       "description": "Python is an interpreted, interactive, object-oriented, open-source programming language.",
       "last_updated": "2026-02-12T07:09:06.656508Z",
@@ -22031,7 +22031,7 @@
   "metadata": {
     "github.requester": "trivoallan",
     "github.workflow": "Image Analysis",
-    "github.run_id": "22214312149",
+    "github.run_id": "22214479309",
     "github.repository": "trivoallan/my-registry-analysis"
   },
   "scorecards": [
@@ -22065,16 +22065,21 @@
                 }
               },
               "tags_summary": {
+                "freshness": {
+                  "total": 1,
+                  "passed": 1,
+                  "percentage": 100
+                },
                 "security": {
-                  "total": 4,
-                  "passed": 3,
-                  "percentage": 75
+                  "total": 3,
+                  "passed": 2,
+                  "percentage": 67
                 }
               },
               "rules": [
                 {
                   "name": "no-root",
-                  "title": "no-root",
+                  "title": "Image should not run as root.",
                   "level": "critical",
                   "tags": [
                     "security"
@@ -22088,11 +22093,11 @@
                   "details": "results.skopeo.platforms.0.user (MISSING) != root"
                 },
                 {
-                  "name": "freshness",
-                  "title": "freshness",
+                  "name": "age",
+                  "title": "Image should be less than 30 days old.",
                   "level": "warning",
                   "tags": [
-                    "security"
+                    "freshness"
                   ],
                   "analyzers": [
                     "freshness"
@@ -22104,7 +22109,7 @@
                 },
                 {
                   "name": "no-critical",
-                  "title": "no-critical",
+                  "title": "No critical vulnerabilities found by Trivy.",
                   "level": "critical",
                   "tags": [
                     "security"
@@ -22144,12 +22149,12 @@
       ],
       "links": [
         {
-          "label": "JSON",
+          "label": "JSON Report",
           "url": "report.json"
         },
         {
-          "label": "Logs",
-          "url": "https://github.com/trivoallan/my-registry-analysis/actions/runs/22214312149"
+          "label": "Execution Logs",
+          "url": "https://github.com/trivoallan/my-registry-analysis/actions/runs/22214479309"
         }
       ]
     }
@@ -22184,16 +22189,21 @@
               }
             },
             "tags_summary": {
+              "freshness": {
+                "total": 1,
+                "passed": 1,
+                "percentage": 100
+              },
               "security": {
-                "total": 4,
-                "passed": 3,
-                "percentage": 75
+                "total": 3,
+                "passed": 2,
+                "percentage": 67
               }
             },
             "rules": [
               {
                 "name": "no-root",
-                "title": "no-root",
+                "title": "Image should not run as root.",
                 "level": "critical",
                 "tags": [
                   "security"
@@ -22207,11 +22217,11 @@
                 "details": "results.skopeo.platforms.0.user (MISSING) != root"
               },
               {
-                "name": "freshness",
-                "title": "freshness",
+                "name": "age",
+                "title": "Image should be less than 30 days old.",
                 "level": "warning",
                 "tags": [
-                  "security"
+                  "freshness"
                 ],
                 "analyzers": [
                   "freshness"
@@ -22223,7 +22233,7 @@
               },
               {
                 "name": "no-critical",
-                "title": "no-critical",
+                "title": "No critical vulnerabilities found by Trivy.",
                 "level": "critical",
                 "tags": [
                   "security"
@@ -22263,23 +22273,23 @@
     ],
     "links": [
       {
-        "label": "JSON",
+        "label": "JSON Report",
         "url": "report.json"
       },
       {
-        "label": "Logs",
-        "url": "https://github.com/trivoallan/my-registry-analysis/actions/runs/22214312149"
+        "label": "Execution Logs",
+        "url": "https://github.com/trivoallan/my-registry-analysis/actions/runs/22214479309"
       }
     ]
   },
   "links": [
     {
-      "label": "JSON",
+      "label": "JSON Report",
       "url": "report.json"
     },
     {
-      "label": "Logs",
-      "url": "https://github.com/trivoallan/my-registry-analysis/actions/runs/22214312149"
+      "label": "Execution Logs",
+      "url": "https://github.com/trivoallan/my-registry-analysis/actions/runs/22214479309"
     }
   ]
 }
