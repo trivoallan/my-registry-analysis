@@ -31,6 +31,7 @@ sections:
         level: critical
         condition:
           "==": [{ var: trivy.critical_count }, 0]
+
       - name: no-high
         description: No high vulnerabilities found by Trivy.
         level: warning
