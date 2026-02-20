@@ -1,0 +1,4982 @@
+{
+  "request": {
+    "url": "eclipse-temurin:17-jdk",
+    "registry": "registry-1.docker.io",
+    "repository": "library/eclipse-temurin",
+    "tag": "17-jdk",
+    "analyzers": [
+      "endoflife",
+      "freshness",
+      "hadolint",
+      "popularity",
+      "provenance",
+      "sbom",
+      "scorecarddev",
+      "size",
+      "skopeo",
+      "trivy",
+      "versioning"
+    ],
+    "timestamp": "2026-02-20T18:26:54.567875+00:00",
+    "metadata": {
+      "github.requester": "trivoallan",
+      "github.workflow": "Image Analysis",
+      "github.run_id": "22236055370",
+      "github.repository": "trivoallan/my-registry-analysis"
+    }
+  },
+  "results": {
+    "endoflife": {
+      "analyzer": "endoflife",
+      "repository": "library/eclipse-temurin",
+      "product": "eclipse-temurin",
+      "product_found": true,
+      "tag": "17-jdk",
+      "matched_cycle": {
+        "cycle": "17",
+        "release_date": "2021-09-22",
+        "eol": "2027-10-31",
+        "latest": "17.0.18+8",
+        "latest_release_date": "2026-01-21",
+        "lts": true
+      },
+      "is_eol": true,
+      "active_cycles_count": 0,
+      "eol_cycles_count": 12
+    },
+    "freshness": {
+      "analyzer": "freshness",
+      "repository": "library/eclipse-temurin",
+      "tag": "17-jdk",
+      "tag_created": "2026-02-17T20:19:46.641644714Z",
+      "latest_created": "2026-02-17T20:20:40.620406888Z",
+      "age_days": 2,
+      "behind_latest_days": 0,
+      "is_latest": true
+    },
+    "hadolint": {
+      "analyzer": "hadolint",
+      "repository": "library/eclipse-temurin",
+      "tag": "17-jdk",
+      "passed": false,
+      "issues_count": 9,
+      "issues_by_level": {
+        "error": 1,
+        "warning": 3,
+        "info": 5,
+        "style": 0
+      },
+      "issues": [
+        {
+          "code": "DL3020",
+          "level": "error",
+          "message": "Use COPY instead of ADD for files and folders",
+          "line": 6
+        },
+        {
+          "code": "DL3059",
+          "level": "info",
+          "message": "Multiple consecutive `RUN` instructions. Consider consolidation.",
+          "line": 9
+        },
+        {
+          "code": "DL3059",
+          "level": "info",
+          "message": "Multiple consecutive `RUN` instructions. Consider consolidation.",
+          "line": 10
+        },
+        {
+          "code": "DL3008",
+          "level": "warning",
+          "message": "Pin versions in apt get install. Instead of `apt-get install <package>` use `apt-get install <package>=<version>`",
+          "line": 11
+        },
+        {
+          "code": "DL4006",
+          "level": "warning",
+          "message": "Set the SHELL option -o pipefail before RUN with a pipe in it. If you are using /bin/sh in an alpine image or if your shell is symlinked to busybox then consider explicitly setting your SHELL to /bin/ash, or disable this check",
+          "line": 13
+        },
+        {
+          "code": "SC2086",
+          "level": "info",
+          "message": "Double quote to prevent globbing and word splitting.",
+          "line": 13
+        },
+        {
+          "code": "DL4006",
+          "level": "warning",
+          "message": "Set the SHELL option -o pipefail before RUN with a pipe in it. If you are using /bin/sh in an alpine image or if your shell is symlinked to busybox then consider explicitly setting your SHELL to /bin/ash, or disable this check",
+          "line": 14
+        },
+        {
+          "code": "DL3059",
+          "level": "info",
+          "message": "Multiple consecutive `RUN` instructions. Consider consolidation.",
+          "line": 16
+        },
+        {
+          "code": "DL3059",
+          "level": "info",
+          "message": "Multiple consecutive `RUN` instructions. Consider consolidation.",
+          "line": 17
+        }
+      ],
+      "dockerfile": "FROM scratch\nARG RELEASE\nARG LAUNCHPAD_BUILD_ARCH\nLABEL org.opencontainers.image.ref.name=ubuntu\nLABEL org.opencontainers.image.version=24.04\nADD file:1ae27d2ef4369361104b699712f3897141e394785df5d193d67b44626f57eb87 in /\nCMD [\"/bin/bash\"]\nRUN ENV JAVA_HOME=/opt/java/openjdk\nRUN ENV PATH=/opt/java/openjdk/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin\nRUN ENV LANG=en_US.UTF-8 LANGUAGE=en_US:en LC_ALL=en_US.UTF-8\nRUN RUN /bin/sh -c set -eux;     apt-get update;     DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends         curl         wget         gnupg         fontconfig         ca-certificates p11-kit         binutils         tzdata         locales     ;     echo \"en_US.UTF-8 UTF-8\" >> /etc/locale.gen;     locale-gen en_US.UTF-8;     rm -rf /var/lib/apt/lists/* # buildkit\nRUN ENV JAVA_VERSION=jdk-17.0.18+8\nRUN RUN /bin/sh -c set -eux;     ARCH=\"$(dpkg --print-architecture)\";     case \"${ARCH}\" in        amd64)          ESUM='0c94cbb54325c40dcf026143eb621562017db5525727f2d9131a11250f72c450';          BINARY_URL='https://github.com/adoptium/temurin17-binaries/releases/download/jdk-17.0.18%2B8/OpenJDK17U-jdk_x64_linux_hotspot_17.0.18_8.tar.gz';          ;;        arm64)          ESUM='592a6702b3a07a0e0b82cb38aaab149bfce1b0c24d6b57ddb410bd9009333095';          BINARY_URL='https://github.com/adoptium/temurin17-binaries/releases/download/jdk-17.0.18%2B8/OpenJDK17U-jdk_aarch64_linux_hotspot_17.0.18_8.tar.gz';          ;;        armhf)          ESUM='21050b8325b62cb3fca4f871aadbddc04c67e21f3ab57236439aa951cbcb17ae';          BINARY_URL='https://github.com/adoptium/temurin17-binaries/releases/download/jdk-17.0.18%2B8/OpenJDK17U-jdk_arm_linux_hotspot_17.0.18_8.tar.gz';          ;;        ppc64el)          ESUM='5ab89fbde560e1a09386f389dd7881715b896f49c6e9aa974f72d551337dba5e';          BINARY_URL='https://github.com/adoptium/temurin17-binaries/releases/download/jdk-17.0.18%2B8/OpenJDK17U-jdk_ppc64le_linux_hotspot_17.0.18_8.tar.gz';          ;;        riscv64)          ESUM='485f49ec3f7048b466c3b8e5b543932c8aae845a1ba95ebb30fc527019371ed4';          BINARY_URL='https://github.com/adoptium/temurin17-binaries/releases/download/jdk-17.0.18%2B8/OpenJDK17U-jdk_riscv64_linux_hotspot_17.0.18_8.tar.gz';          ;;        s390x)          ESUM='3693469655bcfa2fa5e70907245a2b3bc4236db7d9fa1b9feb0ab7abd235da09';          BINARY_URL='https://github.com/adoptium/temurin17-binaries/releases/download/jdk-17.0.18%2B8/OpenJDK17U-jdk_s390x_linux_hotspot_17.0.18_8.tar.gz';          ;;        *)          echo \"Unsupported arch: ${ARCH}\";          exit 1;          ;;     esac;     wget --progress=dot:giga -O /tmp/openjdk.tar.gz ${BINARY_URL};     wget --progress=dot:giga -O /tmp/openjdk.tar.gz.sig ${BINARY_URL}.sig;     export GNUPGHOME=\"$(mktemp -d)\";     gpg --batch --keyserver keyserver.ubuntu.com --recv-keys 3B04D753C9050D9A5D343F39843C48A565F8F04B;     gpg --batch --verify /tmp/openjdk.tar.gz.sig /tmp/openjdk.tar.gz;     rm -rf \"${GNUPGHOME}\" /tmp/openjdk.tar.gz.sig;     echo \"${ESUM} */tmp/openjdk.tar.gz\" | sha256sum -c -;     mkdir -p \"$JAVA_HOME\";     tar --extract         --file /tmp/openjdk.tar.gz         --directory \"$JAVA_HOME\"         --strip-components 1         --no-same-owner     ;     rm -f /tmp/openjdk.tar.gz ${JAVA_HOME}/lib/src.zip;     find \"$JAVA_HOME/lib\" -name '*.so' -exec dirname '{}' ';' | sort -u > /etc/ld.so.conf.d/docker-openjdk.conf;     ldconfig;     java -Xshare:dump; # buildkit\nRUN RUN /bin/sh -c set -eux;     echo \"Verifying install ...\";     fileEncoding=\"$(echo 'System.out.println(System.getProperty(\"file.encoding\"))' | jshell -s -)\"; [ \"$fileEncoding\" = 'UTF-8' ]; rm -rf ~/.java;     echo \"javac --version\"; javac --version;     echo \"java --version\"; java --version;     echo \"Complete.\" # buildkit\nRUN COPY --chmod=755 entrypoint.sh /__cacert_entrypoint.sh # buildkit\nRUN ENTRYPOINT [\"/__cacert_entrypoint.sh\"]\nRUN CMD [\"jshell\"]"
+    },
+    "popularity": {
+      "analyzer": "popularity",
+      "repository": "library/eclipse-temurin",
+      "available": true,
+      "pull_count": 249814038,
+      "star_count": 755,
+      "description": "Official Images for OpenJDK binaries built by Eclipse Temurin.",
+      "last_updated": "2026-02-18T23:12:30.259094Z",
+      "date_registered": "2021-08-13T21:48:42.393375Z",
+      "is_official": true
+    },
+    "provenance": {
+      "analyzer": "provenance",
+      "repository": "library/eclipse-temurin",
+      "tag": "17-jdk",
+      "has_provenance": false,
+      "has_cosign_signature": false,
+      "source_tracked": false,
+      "indicators_count": 0,
+      "indicators": []
+    },
+    "sbom": {
+      "analyzer": "sbom",
+      "repository": "library/eclipse-temurin",
+      "tag": "17-jdk",
+      "has_sbom": true,
+      "sbom_format": "CycloneDX",
+      "sbom_version": "1.6",
+      "total_components": 146,
+      "component_types": {
+        "operating-system": 1,
+        "library": 145
+      },
+      "total_dependencies": 147,
+      "licenses": [
+        "All-permissive",
+        "Apache-2.0",
+        "Artistic-2",
+        "Artistic-2.0",
+        "Artistic-dist",
+        "Autoconf",
+        "BSD-2-Clause",
+        "BSD-2-Clause-NetBSD",
+        "BSD-2.2-clause",
+        "BSD-3-Clause",
+        "BSD-3-Clause WITH advertising-clause",
+        "BSD-3-Clause WITH weird-numbering",
+        "BSD-3-Clause-Attribution",
+        "BSD-3-Clause-Attribution and IBM-as-is",
+        "BSD-3-clause-Aaron-D-Gifford",
+        "BSD-3-clause-California",
+        "BSD-3-clause-Cambridge WITH BINARY-LIBRARY-LIKE-PACKAGES-exception",
+        "BSD-3-clause-GENERIC",
+        "BSD-3-clause-JANET",
+        "BSD-3-clause-PADL",
+        "BSD-3-clause-and-or-GPL-3+",
+        "BSD-3-clause-fjord",
+        "BSD-3-clause-variant",
+        "BSD-4-Clause",
+        "BSD-4-Clause-UC",
+        "BSD-4-clause-California",
+        "BSD-4-clause-POWERDOG",
+        "BSD-tcp-wrappers",
+        "BSL-1",
+        "BSL-1.0",
+        "BSLA",
+        "BZIP",
+        "Beerware",
+        "Bitstream-Vera",
+        "CC-BY-3.0",
+        "CC0-1.0",
+        "Chromium",
+        "DONT-CHANGE-THE-GPL",
+        "Expat-ISC",
+        "Expat-UNM",
+        "F5",
+        "FSF-manpages",
+        "FSF-unlimited",
+        "FSFAP",
+        "FSFUL",
+        "FSFULLR",
+        "FTL",
+        "FreeSoftware",
+        "GAP",
+        "GAP-FSF",
+        "GFDL-1.2-no-invariants-or-later",
+        "GFDL-1.2-only",
+        "GFDL-1.3--no-invariant",
+        "GFDL-1.3-no-invariants-only",
+        "GFDL-1.3-no-invariants-or-later",
+        "GFDL-1.3-only",
+        "GFDL-1.3-or-later",
+        "GFDL-3",
+        "GPL-1.0-only",
+        "GPL-1.0-or-later",
+        "GPL-2.0-only",
+        "GPL-2.0-only WITH Linux-syscall-note-exception",
+        "GPL-2.0-only WITH autoconf-exception+",
+        "GPL-2.0-only WITH bison-exception+",
+        "GPL-2.0-or-later",
+        "GPL-2.0-or-later WITH Autoconf-data-exception",
+        "GPL-2.0-or-later WITH Libtool-exception",
+        "GPL-2.0-or-later WITH Texinfo-exception",
+        "GPL-2.0-or-later WITH automake-exception",
+        "GPL-2.0-or-later WITH distribution-exception",
+        "GPL-2.0-or-later WITH libtool-exception",
+        "GPL-3.0-only",
+        "GPL-3.0-only WITH autoconf-exception+",
+        "GPL-3.0-or-later",
+        "GPL-3.0-or-later WITH Autoconf-data-exception",
+        "GPL-3.0-or-later WITH Bison-2.2-exception",
+        "GPL-3.0-or-later WITH Bison-exception",
+        "GPL-3.0-or-later WITH Libtool-exception",
+        "GPL-3.0-or-later WITH texinfo-exception",
+        "IBM-as-is",
+        "ICU",
+        "ISC",
+        "ISC-and-or-LGPL-2.1+",
+        "ISC-no-attribution",
+        "JCG",
+        "Kazlib",
+        "LGPL-2.0-only",
+        "LGPL-2.0-or-later",
+        "LGPL-2.1--OpenSSL",
+        "LGPL-2.1-only",
+        "LGPL-2.1-or-later",
+        "LGPL-3.0-only",
+        "LGPL-3.0-or-later",
+        "Latex2e",
+        "Libpng",
+        "Libpng OR Apache-2.0 OR BSD-3-Clause",
+        "MIT",
+        "MIT-CMU",
+        "MIT-Export",
+        "MIT-Modern-Variant",
+        "MIT-OpenVision",
+        "MIT-SMC",
+        "MIT-US-export",
+        "MIT-X11",
+        "MIT-XC",
+        "MIT-old",
+        "MPL-1.1",
+        "MPL-2.0",
+        "MS-PL",
+        "NeoSoft-permissive",
+        "OLDAP-2.8",
+        "OpenGroup-MIT",
+        "OpenLDAP",
+        "OpenLDAP-2.8",
+        "PD",
+        "PD-debian",
+        "Public-Domain",
+        "REGCOMP",
+        "RFC-Reference",
+        "RSA-MD",
+        "SDBM-PUBLIC-DOMAIN",
+        "SMAIL-GPL",
+        "Sleepycat",
+        "TCL-like",
+        "TEXT-TABS",
+        "TinySCHEME",
+        "UMich",
+        "Unicode",
+        "X11",
+        "Zlib",
+        "all-permissive",
+        "config-h",
+        "configure",
+        "curl",
+        "customFSFUL",
+        "customFSFULLRWD",
+        "g10-permissive",
+        "gnulib",
+        "installsh",
+        "noderivs",
+        "none",
+        "pcre",
+        "permissive",
+        "permissive-fsf",
+        "permissive-nowarranty",
+        "probably-PD",
+        "public-domain",
+        "public-domain-md4",
+        "public-domain-md5",
+        "public-domain-s-s-d",
+        "public-domain-sha1"
+      ],
+      "components": [
+        {
+          "name": "ubuntu",
+          "version": "24.04",
+          "type": "operating-system",
+          "purl": null,
+          "licenses": []
+        },
+        {
+          "name": "adduser",
+          "version": "3.137ubuntu1",
+          "type": "library",
+          "purl": "pkg:deb/ubuntu/adduser@3.137ubuntu1?arch=all&distro=ubuntu-24.04",
+          "licenses": [
+            "GPL-2.0-or-later",
+            "GPL-2.0-only"
+          ]
+        },
+        {
+          "name": "apt",
+          "version": "2.8.3",
+          "type": "library",
+          "purl": "pkg:deb/ubuntu/apt@2.8.3?arch=amd64&distro=ubuntu-24.04",
+          "licenses": [
+            "GPL-2.0-or-later",
+            "GPL-2.0-only",
+            "BSD-3-Clause",
+            "MIT"
+          ]
+        },
+        {
+          "name": "base-files",
+          "version": "13ubuntu10.4",
+          "type": "library",
+          "purl": "pkg:deb/ubuntu/base-files@13ubuntu10.4?arch=amd64&distro=ubuntu-24.04",
+          "licenses": [
+            "GPL-2.0-or-later"
+          ]
+        },
+        {
+          "name": "base-passwd",
+          "version": "3.6.3build1",
+          "type": "library",
+          "purl": "pkg:deb/ubuntu/base-passwd@3.6.3build1?arch=amd64&distro=ubuntu-24.04",
+          "licenses": [
+            "GPL-2.0-only",
+            "public-domain"
+          ]
+        },
+        {
+          "name": "bash",
+          "version": "5.2.21-2ubuntu4",
+          "type": "library",
+          "purl": "pkg:deb/ubuntu/bash@5.2.21-2ubuntu4?arch=amd64&distro=ubuntu-24.04",
+          "licenses": [
+            "GPL-3.0-or-later",
+            "GPL-3.0-only",
+            "GPL-3.0-or-later WITH Bison-exception",
+            "GPL-2.0-or-later",
+            "GPL-2.0-only",
+            "GFDL-1.3-no-invariants-only",
+            "GFDL-1.3-only",
+            "Latex2e",
+            "BSD-4-Clause-UC",
+            "MIT",
+            "permissive"
+          ]
+        },
+        {
+          "name": "binutils-common",
+          "version": "2.42-4ubuntu2.8",
+          "type": "library",
+          "purl": "pkg:deb/ubuntu/binutils-common@2.42-4ubuntu2.8?arch=amd64&distro=ubuntu-24.04",
+          "licenses": [
+            "GPL-2.0-or-later",
+            "LGPL-2.0-or-later",
+            "GFDL-1.3-or-later"
+          ]
+        },
+        {
+          "name": "binutils-x86-64-linux-gnu",
+          "version": "2.42-4ubuntu2.8",
+          "type": "library",
+          "purl": "pkg:deb/ubuntu/binutils-x86-64-linux-gnu@2.42-4ubuntu2.8?arch=amd64&distro=ubuntu-24.04",
+          "licenses": []
+        },
+        {
+          "name": "binutils",
+          "version": "2.42-4ubuntu2.8",
+          "type": "library",
+          "purl": "pkg:deb/ubuntu/binutils@2.42-4ubuntu2.8?arch=amd64&distro=ubuntu-24.04",
+          "licenses": [
+            "GPL-2.0-or-later",
+            "LGPL-2.0-or-later",
+            "GFDL-1.3-or-later"
+          ]
+        },
+        {
+          "name": "bsdutils",
+          "version": "1:2.39.3-9ubuntu6.4",
+          "type": "library",
+          "purl": "pkg:deb/ubuntu/bsdutils@2.39.3-9ubuntu6.4?arch=amd64&distro=ubuntu-24.04&epoch=1",
+          "licenses": [
+            "GPL-2.0-or-later",
+            "GPL-2.0-only",
+            "GPL-3.0-or-later",
+            "public-domain",
+            "BSD-4-Clause",
+            "MIT",
+            "BSD-3-Clause",
+            "BSLA",
+            "LGPL-2.0-or-later",
+            "LGPL-2.1-or-later",
+            "LGPL-3.0-or-later",
+            "GPL-3.0-only",
+            "LGPL-2.0-only",
+            "LGPL-2.1-only",
+            "LGPL-3.0-only"
+          ]
+        },
+        {
+          "name": "ca-certificates",
+          "version": "20240203",
+          "type": "library",
+          "purl": "pkg:deb/ubuntu/ca-certificates@20240203?arch=all&distro=ubuntu-24.04",
+          "licenses": [
+            "GPL-2.0-or-later",
+            "GPL-2.0-only",
+            "MPL-2.0"
+          ]
+        },
+        {
+          "name": "coreutils",
+          "version": "9.4-3ubuntu6.1",
+          "type": "library",
+          "purl": "pkg:deb/ubuntu/coreutils@9.4-3ubuntu6.1?arch=amd64&distro=ubuntu-24.04",
+          "licenses": [
+            "GPL-3.0-or-later",
+            "BSD-4-Clause-UC",
+            "GPL-3.0-only",
+            "ISC",
+            "FSFULLR",
+            "GFDL-1.3-no-invariants-only",
+            "GFDL-1.3-only"
+          ]
+        },
+        {
+          "name": "curl",
+          "version": "8.5.0-2ubuntu10.6",
+          "type": "library",
+          "purl": "pkg:deb/ubuntu/curl@8.5.0-2ubuntu10.6?arch=amd64&distro=ubuntu-24.04",
+          "licenses": [
+            "curl",
+            "OLDAP-2.8",
+            "ISC",
+            "GPL-2.0-or-later WITH Autoconf-data-exception",
+            "GPL-3.0-or-later WITH Autoconf-data-exception",
+            "GPL-2.0-or-later WITH Libtool-exception",
+            "BSD-3-Clause",
+            "BSD-4-Clause-UC",
+            "FSFULLR",
+            "X11",
+            "GPL-2.0-only"
+          ]
+        },
+        {
+          "name": "dash",
+          "version": "0.5.12-6ubuntu5",
+          "type": "library",
+          "purl": "pkg:deb/ubuntu/dash@0.5.12-6ubuntu5?arch=amd64&distro=ubuntu-24.04",
+          "licenses": [
+            "BSD-3-Clause",
+            "public-domain",
+            "GPL-2.0-or-later",
+            "GPL-2.0-only"
+          ]
+        },
+        {
+          "name": "debconf",
+          "version": "1.5.86ubuntu1",
+          "type": "library",
+          "purl": "pkg:deb/ubuntu/debconf@1.5.86ubuntu1?arch=all&distro=ubuntu-24.04",
+          "licenses": [
+            "BSD-2-Clause"
+          ]
+        },
+        {
+          "name": "debianutils",
+          "version": "5.17build1",
+          "type": "library",
+          "purl": "pkg:deb/ubuntu/debianutils@5.17build1?arch=amd64&distro=ubuntu-24.04",
+          "licenses": [
+            "GPL-2.0-or-later",
+            "GPL-2.0-only",
+            "public-domain",
+            "SMAIL-GPL"
+          ]
+        },
+        {
+          "name": "diffutils",
+          "version": "1:3.10-1build1",
+          "type": "library",
+          "purl": "pkg:deb/ubuntu/diffutils@3.10-1build1?arch=amd64&distro=ubuntu-24.04&epoch=1",
+          "licenses": [
+            "GPL-3.0-or-later",
+            "FSFULLR",
+            "LGPL-2.1-or-later",
+            "GPL-3.0-only WITH autoconf-exception+",
+            "GPL-3.0-only",
+            "GPL-3.0-or-later WITH texinfo-exception",
+            "LGPL-2.0-or-later",
+            "GPL-2.0-or-later",
+            "X11",
+            "FSFAP",
+            "GFDL-1.3-no-invariants-only",
+            "LGPL-3.0-or-later",
+            "LGPL-3.0-only",
+            "public-domain",
+            "LGPL-2.0-only",
+            "LGPL-2.1-only",
+            "GPL-2.0-only",
+            "GFDL-1.3-only"
+          ]
+        },
+        {
+          "name": "dirmngr",
+          "version": "2.4.4-2ubuntu17.4",
+          "type": "library",
+          "purl": "pkg:deb/ubuntu/dirmngr@2.4.4-2ubuntu17.4?arch=amd64&distro=ubuntu-24.04",
+          "licenses": [
+            "GPL-3.0-or-later",
+            "permissive",
+            "LGPL-2.1-or-later",
+            "LGPL-3.0-or-later",
+            "GPL-2.0-or-later",
+            "MIT",
+            "BSD-3-Clause",
+            "RFC-Reference",
+            "TinySCHEME",
+            "CC0-1.0",
+            "GPL-3.0-only",
+            "LGPL-3.0-only",
+            "LGPL-2.1-only",
+            "GPL-2.0-only"
+          ]
+        },
+        {
+          "name": "dpkg",
+          "version": "1.22.6ubuntu6.5",
+          "type": "library",
+          "purl": "pkg:deb/ubuntu/dpkg@1.22.6ubuntu6.5?arch=amd64&distro=ubuntu-24.04",
+          "licenses": [
+            "GPL-2.0-or-later",
+            "public-domain-s-s-d",
+            "GPL-2.0-only"
+          ]
+        },
+        {
+          "name": "e2fsprogs",
+          "version": "1.47.0-2.4~exp1ubuntu4.1",
+          "type": "library",
+          "purl": "pkg:deb/ubuntu/e2fsprogs@1.47.0-2.4~exp1ubuntu4.1?arch=amd64&distro=ubuntu-24.04",
+          "licenses": [
+            "GPL-2.0-only",
+            "LGPL-2.0-only",
+            "BSD-3-Clause",
+            "Apache-2.0",
+            "ISC",
+            "GPL-2.0-or-later",
+            "MIT-US-export",
+            "Kazlib",
+            "Latex2e",
+            "GPL-2.0-or-later WITH Texinfo-exception"
+          ]
+        },
+        {
+          "name": "findutils",
+          "version": "4.9.0-5build1",
+          "type": "library",
+          "purl": "pkg:deb/ubuntu/findutils@4.9.0-5build1?arch=amd64&distro=ubuntu-24.04",
+          "licenses": [
+            "GFDL-1.3-no-invariants-or-later",
+            "GPL-3.0-or-later",
+            "FSFAP",
+            "GPL-3.0-or-later WITH Autoconf-data-exception",
+            "FSFULLR",
+            "GPL-2.0-or-later WITH Autoconf-data-exception",
+            "GPL-2.0-or-later",
+            "X11",
+            "public-domain",
+            "GPL-2.0-or-later WITH automake-exception",
+            "LGPL-2.1-or-later",
+            "LGPL-2.0-or-later",
+            "LGPL-3.0-or-later",
+            "BSD-3-clause-and-or-GPL-3+",
+            "GPL-3.0-or-later WITH Bison-2.2-exception",
+            "LGPL-3.0-only",
+            "ISC-and-or-LGPL-2.1+",
+            "BSD-3-Clause",
+            "GFDL-1.3-only",
+            "GPL-2.0-only",
+            "GPL-3.0-only",
+            "ISC",
+            "LGPL-2.0-only",
+            "LGPL-2.1-only"
+          ]
+        },
+        {
+          "name": "fontconfig-config",
+          "version": "2.15.0-1.1ubuntu2",
+          "type": "library",
+          "purl": "pkg:deb/ubuntu/fontconfig-config@2.15.0-1.1ubuntu2?arch=amd64&distro=ubuntu-24.04",
+          "licenses": []
+        },
+        {
+          "name": "fontconfig",
+          "version": "2.15.0-1.1ubuntu2",
+          "type": "library",
+          "purl": "pkg:deb/ubuntu/fontconfig@2.15.0-1.1ubuntu2?arch=amd64&distro=ubuntu-24.04",
+          "licenses": []
+        },
+        {
+          "name": "fonts-dejavu-core",
+          "version": "2.37-8",
+          "type": "library",
+          "purl": "pkg:deb/ubuntu/fonts-dejavu-core@2.37-8?arch=all&distro=ubuntu-24.04",
+          "licenses": [
+            "Bitstream-Vera",
+            "GPL-2.0-or-later",
+            "GPL-2.0-only"
+          ]
+        },
+        {
+          "name": "fonts-dejavu-mono",
+          "version": "2.37-8",
+          "type": "library",
+          "purl": "pkg:deb/ubuntu/fonts-dejavu-mono@2.37-8?arch=all&distro=ubuntu-24.04",
+          "licenses": [
+            "Bitstream-Vera",
+            "GPL-2.0-or-later",
+            "GPL-2.0-only"
+          ]
+        },
+        {
+          "name": "gcc-14-base",
+          "version": "14.2.0-4ubuntu2~24.04",
+          "type": "library",
+          "purl": "pkg:deb/ubuntu/gcc-14-base@14.2.0-4ubuntu2~24.04?arch=amd64&distro=ubuntu-24.04",
+          "licenses": [
+            "GPL-2.0-or-later",
+            "GPL-3.0-only",
+            "GFDL-1.2-only",
+            "Artistic-2.0",
+            "LGPL-2.0-or-later"
+          ]
+        },
+        {
+          "name": "gnupg-utils",
+          "version": "2.4.4-2ubuntu17.4",
+          "type": "library",
+          "purl": "pkg:deb/ubuntu/gnupg-utils@2.4.4-2ubuntu17.4?arch=amd64&distro=ubuntu-24.04",
+          "licenses": [
+            "GPL-3.0-or-later",
+            "permissive",
+            "LGPL-2.1-or-later",
+            "LGPL-3.0-or-later",
+            "GPL-2.0-or-later",
+            "MIT",
+            "BSD-3-Clause",
+            "RFC-Reference",
+            "TinySCHEME",
+            "CC0-1.0",
+            "GPL-3.0-only",
+            "LGPL-3.0-only",
+            "LGPL-2.1-only",
+            "GPL-2.0-only"
+          ]
+        },
+        {
+          "name": "gnupg",
+          "version": "2.4.4-2ubuntu17.4",
+          "type": "library",
+          "purl": "pkg:deb/ubuntu/gnupg@2.4.4-2ubuntu17.4?arch=all&distro=ubuntu-24.04",
+          "licenses": [
+            "GPL-3.0-or-later",
+            "permissive",
+            "LGPL-2.1-or-later",
+            "LGPL-3.0-or-later",
+            "GPL-2.0-or-later",
+            "MIT",
+            "BSD-3-Clause",
+            "RFC-Reference",
+            "TinySCHEME",
+            "CC0-1.0",
+            "GPL-3.0-only",
+            "LGPL-3.0-only",
+            "LGPL-2.1-only",
+            "GPL-2.0-only"
+          ]
+        },
+        {
+          "name": "gpg-agent",
+          "version": "2.4.4-2ubuntu17.4",
+          "type": "library",
+          "purl": "pkg:deb/ubuntu/gpg-agent@2.4.4-2ubuntu17.4?arch=amd64&distro=ubuntu-24.04",
+          "licenses": [
+            "GPL-3.0-or-later",
+            "permissive",
+            "LGPL-2.1-or-later",
+            "LGPL-3.0-or-later",
+            "GPL-2.0-or-later",
+            "MIT",
+            "BSD-3-Clause",
+            "RFC-Reference",
+            "TinySCHEME",
+            "CC0-1.0",
+            "GPL-3.0-only",
+            "LGPL-3.0-only",
+            "LGPL-2.1-only",
+            "GPL-2.0-only"
+          ]
+        },
+        {
+          "name": "gpg",
+          "version": "2.4.4-2ubuntu17.4",
+          "type": "library",
+          "purl": "pkg:deb/ubuntu/gpg@2.4.4-2ubuntu17.4?arch=amd64&distro=ubuntu-24.04",
+          "licenses": [
+            "GPL-3.0-or-later",
+            "permissive",
+            "LGPL-2.1-or-later",
+            "LGPL-3.0-or-later",
+            "GPL-2.0-or-later",
+            "MIT",
+            "BSD-3-Clause",
+            "RFC-Reference",
+            "TinySCHEME",
+            "CC0-1.0",
+            "GPL-3.0-only",
+            "LGPL-3.0-only",
+            "LGPL-2.1-only",
+            "GPL-2.0-only"
+          ]
+        },
+        {
+          "name": "gpgconf",
+          "version": "2.4.4-2ubuntu17.4",
+          "type": "library",
+          "purl": "pkg:deb/ubuntu/gpgconf@2.4.4-2ubuntu17.4?arch=amd64&distro=ubuntu-24.04",
+          "licenses": [
+            "GPL-3.0-or-later",
+            "permissive",
+            "LGPL-2.1-or-later",
+            "LGPL-3.0-or-later",
+            "GPL-2.0-or-later",
+            "MIT",
+            "BSD-3-Clause",
+            "RFC-Reference",
+            "TinySCHEME",
+            "CC0-1.0",
+            "GPL-3.0-only",
+            "LGPL-3.0-only",
+            "LGPL-2.1-only",
+            "GPL-2.0-only"
+          ]
+        },
+        {
+          "name": "gpgsm",
+          "version": "2.4.4-2ubuntu17.4",
+          "type": "library",
+          "purl": "pkg:deb/ubuntu/gpgsm@2.4.4-2ubuntu17.4?arch=amd64&distro=ubuntu-24.04",
+          "licenses": [
+            "GPL-3.0-or-later",
+            "permissive",
+            "LGPL-2.1-or-later",
+            "LGPL-3.0-or-later",
+            "GPL-2.0-or-later",
+            "MIT",
+            "BSD-3-Clause",
+            "RFC-Reference",
+            "TinySCHEME",
+            "CC0-1.0",
+            "GPL-3.0-only",
+            "LGPL-3.0-only",
+            "LGPL-2.1-only",
+            "GPL-2.0-only"
+          ]
+        },
+        {
+          "name": "gpgv",
+          "version": "2.4.4-2ubuntu17.4",
+          "type": "library",
+          "purl": "pkg:deb/ubuntu/gpgv@2.4.4-2ubuntu17.4?arch=amd64&distro=ubuntu-24.04",
+          "licenses": [
+            "GPL-3.0-or-later",
+            "permissive",
+            "LGPL-2.1-or-later",
+            "LGPL-3.0-or-later",
+            "GPL-2.0-or-later",
+            "MIT",
+            "BSD-3-Clause",
+            "RFC-Reference",
+            "TinySCHEME",
+            "CC0-1.0",
+            "GPL-3.0-only",
+            "LGPL-3.0-only",
+            "LGPL-2.1-only",
+            "GPL-2.0-only"
+          ]
+        },
+        {
+          "name": "grep",
+          "version": "3.11-4build1",
+          "type": "library",
+          "purl": "pkg:deb/ubuntu/grep@3.11-4build1?arch=amd64&distro=ubuntu-24.04",
+          "licenses": [
+            "GPL-3.0-or-later",
+            "GPL-3.0-only"
+          ]
+        },
+        {
+          "name": "gzip",
+          "version": "1.12-1ubuntu3.1",
+          "type": "library",
+          "purl": "pkg:deb/ubuntu/gzip@1.12-1ubuntu3.1?arch=amd64&distro=ubuntu-24.04",
+          "licenses": [
+            "GPL-3.0-or-later",
+            "GFDL-1.3--no-invariant",
+            "FSF-manpages",
+            "GPL-3.0-only",
+            "GFDL-3"
+          ]
+        },
+        {
+          "name": "hostname",
+          "version": "3.23+nmu2ubuntu2",
+          "type": "library",
+          "purl": "pkg:deb/ubuntu/hostname@3.23%2Bnmu2ubuntu2?arch=amd64&distro=ubuntu-24.04",
+          "licenses": [
+            "GPL-2.0-only"
+          ]
+        },
+        {
+          "name": "init-system-helpers",
+          "version": "1.66ubuntu1",
+          "type": "library",
+          "purl": "pkg:deb/ubuntu/init-system-helpers@1.66ubuntu1?arch=all&distro=ubuntu-24.04",
+          "licenses": [
+            "BSD-3-Clause",
+            "GPL-2.0-or-later",
+            "GPL-2.0-only"
+          ]
+        },
+        {
+          "name": "keyboxd",
+          "version": "2.4.4-2ubuntu17.4",
+          "type": "library",
+          "purl": "pkg:deb/ubuntu/keyboxd@2.4.4-2ubuntu17.4?arch=amd64&distro=ubuntu-24.04",
+          "licenses": [
+            "GPL-3.0-or-later",
+            "permissive",
+            "LGPL-2.1-or-later",
+            "LGPL-3.0-or-later",
+            "GPL-2.0-or-later",
+            "MIT",
+            "BSD-3-Clause",
+            "RFC-Reference",
+            "TinySCHEME",
+            "CC0-1.0",
+            "GPL-3.0-only",
+            "LGPL-3.0-only",
+            "LGPL-2.1-only",
+            "GPL-2.0-only"
+          ]
+        },
+        {
+          "name": "libacl1",
+          "version": "2.3.2-1build1.1",
+          "type": "library",
+          "purl": "pkg:deb/ubuntu/libacl1@2.3.2-1build1.1?arch=amd64&distro=ubuntu-24.04",
+          "licenses": [
+            "GPL-2.0-or-later",
+            "GPL-2.0-only",
+            "LGPL-2.0-or-later",
+            "LGPL-2.1-only"
+          ]
+        },
+        {
+          "name": "libapt-pkg6.0t64",
+          "version": "2.8.3",
+          "type": "library",
+          "purl": "pkg:deb/ubuntu/libapt-pkg6.0t64@2.8.3?arch=amd64&distro=ubuntu-24.04",
+          "licenses": [
+            "GPL-2.0-or-later",
+            "GPL-2.0-only",
+            "BSD-3-Clause",
+            "MIT"
+          ]
+        },
+        {
+          "name": "libassuan0",
+          "version": "2.5.6-1build1",
+          "type": "library",
+          "purl": "pkg:deb/ubuntu/libassuan0@2.5.6-1build1?arch=amd64&distro=ubuntu-24.04",
+          "licenses": [
+            "LGPL-2.1-or-later",
+            "GAP-FSF",
+            "LGPL-3.0-or-later",
+            "LGPL-3.0-only",
+            "GPL-2.0-or-later WITH libtool-exception",
+            "GPL-2.0-only",
+            "GPL-3.0-or-later",
+            "GPL-3.0-only",
+            "GAP",
+            "GPL-2.0-or-later",
+            "LGPL-2.1-only"
+          ]
+        },
+        {
+          "name": "libattr1",
+          "version": "1:2.5.2-1build1.1",
+          "type": "library",
+          "purl": "pkg:deb/ubuntu/libattr1@2.5.2-1build1.1?arch=amd64&distro=ubuntu-24.04&epoch=1",
+          "licenses": [
+            "GPL-2.0-or-later",
+            "GPL-2.0-only",
+            "LGPL-2.0-or-later",
+            "LGPL-2.1-only"
+          ]
+        },
+        {
+          "name": "libaudit-common",
+          "version": "1:3.1.2-2.1build1.1",
+          "type": "library",
+          "purl": "pkg:deb/ubuntu/libaudit-common@3.1.2-2.1build1.1?arch=all&distro=ubuntu-24.04&epoch=1",
+          "licenses": [
+            "GPL-2.0-only",
+            "LGPL-2.1-only",
+            "GPL-1.0-only"
+          ]
+        },
+        {
+          "name": "libaudit1",
+          "version": "1:3.1.2-2.1build1.1",
+          "type": "library",
+          "purl": "pkg:deb/ubuntu/libaudit1@3.1.2-2.1build1.1?arch=amd64&distro=ubuntu-24.04&epoch=1",
+          "licenses": [
+            "GPL-2.0-only",
+            "LGPL-2.1-only",
+            "GPL-1.0-only"
+          ]
+        },
+        {
+          "name": "libbinutils",
+          "version": "2.42-4ubuntu2.8",
+          "type": "library",
+          "purl": "pkg:deb/ubuntu/libbinutils@2.42-4ubuntu2.8?arch=amd64&distro=ubuntu-24.04",
+          "licenses": []
+        },
+        {
+          "name": "libblkid1",
+          "version": "2.39.3-9ubuntu6.4",
+          "type": "library",
+          "purl": "pkg:deb/ubuntu/libblkid1@2.39.3-9ubuntu6.4?arch=amd64&distro=ubuntu-24.04",
+          "licenses": [
+            "GPL-2.0-or-later",
+            "GPL-2.0-only",
+            "GPL-3.0-or-later",
+            "public-domain",
+            "BSD-4-Clause",
+            "MIT",
+            "BSD-3-Clause",
+            "BSLA",
+            "LGPL-2.0-or-later",
+            "LGPL-2.1-or-later",
+            "LGPL-3.0-or-later",
+            "GPL-3.0-only",
+            "LGPL-2.0-only",
+            "LGPL-2.1-only",
+            "LGPL-3.0-only"
+          ]
+        },
+        {
+          "name": "libbrotli1",
+          "version": "1.1.0-2build2",
+          "type": "library",
+          "purl": "pkg:deb/ubuntu/libbrotli1@1.1.0-2build2?arch=amd64&distro=ubuntu-24.04",
+          "licenses": [
+            "MIT"
+          ]
+        },
+        {
+          "name": "libbz2-1.0",
+          "version": "1.0.8-5.1build0.1",
+          "type": "library",
+          "purl": "pkg:deb/ubuntu/libbz2-1.0@1.0.8-5.1build0.1?arch=amd64&distro=ubuntu-24.04",
+          "licenses": [
+            "BSD-3-Clause",
+            "GPL-2.0-only"
+          ]
+        },
+        {
+          "name": "libc-bin",
+          "version": "2.39-0ubuntu8.7",
+          "type": "library",
+          "purl": "pkg:deb/ubuntu/libc-bin@2.39-0ubuntu8.7?arch=amd64&distro=ubuntu-24.04",
+          "licenses": [
+            "LGPL-2.1-only",
+            "GPL-2.0-only",
+            "GFDL-1.3-only"
+          ]
+        },
+        {
+          "name": "libc6",
+          "version": "2.39-0ubuntu8.7",
+          "type": "library",
+          "purl": "pkg:deb/ubuntu/libc6@2.39-0ubuntu8.7?arch=amd64&distro=ubuntu-24.04",
+          "licenses": [
+            "LGPL-2.1-only",
+            "GPL-2.0-only",
+            "GFDL-1.3-only"
+          ]
+        },
+        {
+          "name": "libcap-ng0",
+          "version": "0.8.4-2build2",
+          "type": "library",
+          "purl": "pkg:deb/ubuntu/libcap-ng0@0.8.4-2build2?arch=amd64&distro=ubuntu-24.04",
+          "licenses": [
+            "LGPL-2.1-or-later",
+            "GPL-2.0-or-later",
+            "GPL-3.0-only",
+            "LGPL-2.1-only",
+            "GPL-2.0-only"
+          ]
+        },
+        {
+          "name": "libcap2",
+          "version": "1:2.66-5ubuntu2.2",
+          "type": "library",
+          "purl": "pkg:deb/ubuntu/libcap2@2.66-5ubuntu2.2?arch=amd64&distro=ubuntu-24.04&epoch=1",
+          "licenses": [
+            "BSD-3-Clause",
+            "GPL-2.0-only",
+            "GPL-2.0-or-later"
+          ]
+        },
+        {
+          "name": "libcom-err2",
+          "version": "1.47.0-2.4~exp1ubuntu4.1",
+          "type": "library",
+          "purl": "pkg:deb/ubuntu/libcom-err2@1.47.0-2.4~exp1ubuntu4.1?arch=amd64&distro=ubuntu-24.04",
+          "licenses": [
+            "GPL-2.0-only",
+            "LGPL-2.0-only",
+            "BSD-3-Clause",
+            "Apache-2.0",
+            "ISC",
+            "GPL-2.0-or-later",
+            "MIT-US-export",
+            "Kazlib",
+            "Latex2e",
+            "GPL-2.0-or-later WITH Texinfo-exception"
+          ]
+        },
+        {
+          "name": "libcrypt1",
+          "version": "1:4.4.36-4build1",
+          "type": "library",
+          "purl": "pkg:deb/ubuntu/libcrypt1@4.4.36-4build1?arch=amd64&distro=ubuntu-24.04&epoch=1",
+          "licenses": []
+        },
+        {
+          "name": "libctf-nobfd0",
+          "version": "2.42-4ubuntu2.8",
+          "type": "library",
+          "purl": "pkg:deb/ubuntu/libctf-nobfd0@2.42-4ubuntu2.8?arch=amd64&distro=ubuntu-24.04",
+          "licenses": [
+            "GPL-2.0-or-later",
+            "LGPL-2.0-or-later",
+            "GFDL-1.3-or-later"
+          ]
+        },
+        {
+          "name": "libctf0",
+          "version": "2.42-4ubuntu2.8",
+          "type": "library",
+          "purl": "pkg:deb/ubuntu/libctf0@2.42-4ubuntu2.8?arch=amd64&distro=ubuntu-24.04",
+          "licenses": []
+        },
+        {
+          "name": "libcurl4t64",
+          "version": "8.5.0-2ubuntu10.6",
+          "type": "library",
+          "purl": "pkg:deb/ubuntu/libcurl4t64@8.5.0-2ubuntu10.6?arch=amd64&distro=ubuntu-24.04",
+          "licenses": [
+            "curl",
+            "OLDAP-2.8",
+            "ISC",
+            "GPL-2.0-or-later WITH Autoconf-data-exception",
+            "GPL-3.0-or-later WITH Autoconf-data-exception",
+            "GPL-2.0-or-later WITH Libtool-exception",
+            "BSD-3-Clause",
+            "BSD-4-Clause-UC",
+            "FSFULLR",
+            "X11",
+            "GPL-2.0-only"
+          ]
+        },
+        {
+          "name": "libdb5.3t64",
+          "version": "5.3.28+dfsg2-7",
+          "type": "library",
+          "purl": "pkg:deb/ubuntu/libdb5.3t64@5.3.28%2Bdfsg2-7?arch=amd64&distro=ubuntu-24.04",
+          "licenses": [
+            "Sleepycat",
+            "BSD-3-Clause",
+            "MS-PL",
+            "GPL-2.0-or-later",
+            "Artistic-2.0",
+            "X11",
+            "MIT-old",
+            "TCL-like",
+            "BSD-3-clause-fjord",
+            "GPL-3.0-only",
+            "Zlib"
+          ]
+        },
+        {
+          "name": "libdebconfclient0",
+          "version": "0.271ubuntu3",
+          "type": "library",
+          "purl": "pkg:deb/ubuntu/libdebconfclient0@0.271ubuntu3?arch=amd64&distro=ubuntu-24.04",
+          "licenses": [
+            "BSD-2-Clause",
+            "GPL-2.0-or-later",
+            "GPL-2.0-only"
+          ]
+        },
+        {
+          "name": "libexpat1",
+          "version": "2.6.1-2ubuntu0.4",
+          "type": "library",
+          "purl": "pkg:deb/ubuntu/libexpat1@2.6.1-2ubuntu0.4?arch=amd64&distro=ubuntu-24.04",
+          "licenses": [
+            "MIT"
+          ]
+        },
+        {
+          "name": "libext2fs2t64",
+          "version": "1.47.0-2.4~exp1ubuntu4.1",
+          "type": "library",
+          "purl": "pkg:deb/ubuntu/libext2fs2t64@1.47.0-2.4~exp1ubuntu4.1?arch=amd64&distro=ubuntu-24.04",
+          "licenses": [
+            "GPL-2.0-only",
+            "LGPL-2.0-only",
+            "BSD-3-Clause",
+            "Apache-2.0",
+            "ISC",
+            "GPL-2.0-or-later",
+            "MIT-US-export",
+            "Kazlib",
+            "Latex2e",
+            "GPL-2.0-or-later WITH Texinfo-exception"
+          ]
+        },
+        {
+          "name": "libffi8",
+          "version": "3.4.6-1build1",
+          "type": "library",
+          "purl": "pkg:deb/ubuntu/libffi8@3.4.6-1build1?arch=amd64&distro=ubuntu-24.04",
+          "licenses": [
+            "MIT",
+            "X11",
+            "GPL-2.0-or-later",
+            "GPL-3.0-or-later",
+            "MPL-1.1",
+            "LGPL-2.1-or-later",
+            "public-domain"
+          ]
+        },
+        {
+          "name": "libfontconfig1",
+          "version": "2.15.0-1.1ubuntu2",
+          "type": "library",
+          "purl": "pkg:deb/ubuntu/libfontconfig1@2.15.0-1.1ubuntu2?arch=amd64&distro=ubuntu-24.04",
+          "licenses": []
+        },
+        {
+          "name": "libfreetype6",
+          "version": "2.13.2+dfsg-1build3",
+          "type": "library",
+          "purl": "pkg:deb/ubuntu/libfreetype6@2.13.2%2Bdfsg-1build3?arch=amd64&distro=ubuntu-24.04",
+          "licenses": [
+            "FTL",
+            "MIT",
+            "BSD-3-Clause",
+            "FSFAP",
+            "GPL-3.0-or-later",
+            "GPL-2.0-or-later",
+            "Public-Domain",
+            "MIT-SMC",
+            "BSL-1.0",
+            "MIT-Modern-Variant",
+            "Zlib",
+            "OpenGroup-MIT",
+            "GPL-2.0-only",
+            "GPL-3.0-only"
+          ]
+        },
+        {
+          "name": "libgcc-s1",
+          "version": "14.2.0-4ubuntu2~24.04",
+          "type": "library",
+          "purl": "pkg:deb/ubuntu/libgcc-s1@14.2.0-4ubuntu2~24.04?arch=amd64&distro=ubuntu-24.04",
+          "licenses": []
+        },
+        {
+          "name": "libgcrypt20",
+          "version": "1.10.3-2build1",
+          "type": "library",
+          "purl": "pkg:deb/ubuntu/libgcrypt20@1.10.3-2build1?arch=amd64&distro=ubuntu-24.04",
+          "licenses": [
+            "LGPL-2.0-or-later",
+            "GPL-2.0-only"
+          ]
+        },
+        {
+          "name": "libgmp10",
+          "version": "2:6.3.0+dfsg-2ubuntu6.1",
+          "type": "library",
+          "purl": "pkg:deb/ubuntu/libgmp10@6.3.0%2Bdfsg-2ubuntu6.1?arch=amd64&distro=ubuntu-24.04&epoch=2",
+          "licenses": [
+            "GPL-2.0-or-later",
+            "LGPL-3.0-or-later",
+            "GPL-3.0-or-later",
+            "GPL-3.0-or-later WITH Bison-exception",
+            "GPL-2.0-only",
+            "GPL-3.0-only",
+            "LGPL-3.0-only"
+          ]
+        },
+        {
+          "name": "libgnutls30t64",
+          "version": "3.8.3-1.1ubuntu3.4",
+          "type": "library",
+          "purl": "pkg:deb/ubuntu/libgnutls30t64@3.8.3-1.1ubuntu3.4?arch=amd64&distro=ubuntu-24.04",
+          "licenses": [
+            "LGPL-2.1-only",
+            "LGPL-2.0-or-later",
+            "LGPL-3.0-only",
+            "GPL-2.0-or-later",
+            "GPL-3.0-only",
+            "GFDL-1.3-only",
+            "CC0-1.0",
+            "MIT",
+            "Apache-2.0",
+            "LGPL-3.0-or-later",
+            "LGPL-2.1-or-later",
+            "GPL-3.0-or-later",
+            "BSD-3-Clause"
+          ]
+        },
+        {
+          "name": "libgpg-error0",
+          "version": "1.47-3build2.1",
+          "type": "library",
+          "purl": "pkg:deb/ubuntu/libgpg-error0@1.47-3build2.1?arch=amd64&distro=ubuntu-24.04",
+          "licenses": [
+            "LGPL-2.1-or-later",
+            "BSD-3-Clause",
+            "g10-permissive",
+            "GPL-3.0-or-later",
+            "LGPL-2.1-only",
+            "GPL-3.0-only"
+          ]
+        },
+        {
+          "name": "libgprofng0",
+          "version": "2.42-4ubuntu2.8",
+          "type": "library",
+          "purl": "pkg:deb/ubuntu/libgprofng0@2.42-4ubuntu2.8?arch=amd64&distro=ubuntu-24.04",
+          "licenses": []
+        },
+        {
+          "name": "libgssapi-krb5-2",
+          "version": "1.20.1-6ubuntu2.6",
+          "type": "library",
+          "purl": "pkg:deb/ubuntu/libgssapi-krb5-2@1.20.1-6ubuntu2.6?arch=amd64&distro=ubuntu-24.04",
+          "licenses": [
+            "GPL-2.0-only"
+          ]
+        },
+        {
+          "name": "libhogweed6t64",
+          "version": "3.9.1-2.2build1.1",
+          "type": "library",
+          "purl": "pkg:deb/ubuntu/libhogweed6t64@3.9.1-2.2build1.1?arch=amd64&distro=ubuntu-24.04",
+          "licenses": [
+            "LGPL-3.0-or-later",
+            "GPL-2.0-or-later",
+            "LGPL-2.0-or-later",
+            "LGPL-2.0-only",
+            "MIT",
+            "GPL-3.0-only WITH autoconf-exception+",
+            "public-domain",
+            "GPL-2.0-only",
+            "GAP"
+          ]
+        },
+        {
+          "name": "libidn2-0",
+          "version": "2.3.7-2build1.1",
+          "type": "library",
+          "purl": "pkg:deb/ubuntu/libidn2-0@2.3.7-2build1.1?arch=amd64&distro=ubuntu-24.04",
+          "licenses": [
+            "GPL-3.0-or-later",
+            "LGPL-3.0-or-later",
+            "GPL-2.0-or-later",
+            "Unicode",
+            "GPL-3.0-only",
+            "GPL-2.0-only",
+            "LGPL-3.0-only"
+          ]
+        },
+        {
+          "name": "libjansson4",
+          "version": "2.14-2build2",
+          "type": "library",
+          "purl": "pkg:deb/ubuntu/libjansson4@2.14-2build2?arch=amd64&distro=ubuntu-24.04",
+          "licenses": [
+            "MIT"
+          ]
+        },
+        {
+          "name": "libk5crypto3",
+          "version": "1.20.1-6ubuntu2.6",
+          "type": "library",
+          "purl": "pkg:deb/ubuntu/libk5crypto3@1.20.1-6ubuntu2.6?arch=amd64&distro=ubuntu-24.04",
+          "licenses": [
+            "GPL-2.0-only"
+          ]
+        },
+        {
+          "name": "libkeyutils1",
+          "version": "1.6.3-3build1",
+          "type": "library",
+          "purl": "pkg:deb/ubuntu/libkeyutils1@1.6.3-3build1?arch=amd64&distro=ubuntu-24.04",
+          "licenses": [
+            "GPL-2.0-or-later",
+            "LGPL-2.0-or-later",
+            "GPL-2.0-only",
+            "LGPL-2.0-only"
+          ]
+        },
+        {
+          "name": "libkrb5-3",
+          "version": "1.20.1-6ubuntu2.6",
+          "type": "library",
+          "purl": "pkg:deb/ubuntu/libkrb5-3@1.20.1-6ubuntu2.6?arch=amd64&distro=ubuntu-24.04",
+          "licenses": [
+            "GPL-2.0-only"
+          ]
+        },
+        {
+          "name": "libkrb5support0",
+          "version": "1.20.1-6ubuntu2.6",
+          "type": "library",
+          "purl": "pkg:deb/ubuntu/libkrb5support0@1.20.1-6ubuntu2.6?arch=amd64&distro=ubuntu-24.04",
+          "licenses": [
+            "GPL-2.0-only"
+          ]
+        },
+        {
+          "name": "libksba8",
+          "version": "1.6.6-1build1",
+          "type": "library",
+          "purl": "pkg:deb/ubuntu/libksba8@1.6.6-1build1?arch=amd64&distro=ubuntu-24.04",
+          "licenses": [
+            "GPL-3.0-only",
+            "FSFUL",
+            "LGPL-2.1-or-later"
+          ]
+        },
+        {
+          "name": "libldap2",
+          "version": "2.6.10+dfsg-0ubuntu0.24.04.1",
+          "type": "library",
+          "purl": "pkg:deb/ubuntu/libldap2@2.6.10%2Bdfsg-0ubuntu0.24.04.1?arch=amd64&distro=ubuntu-24.04",
+          "licenses": [
+            "OpenLDAP-2.8",
+            "FSF-unlimited",
+            "GPL-2.0-only WITH autoconf-exception+",
+            "GPL-3.0-only WITH autoconf-exception+",
+            "GPL-2.0-or-later WITH Libtool-exception",
+            "GPL-3.0-or-later WITH Libtool-exception",
+            "GPL-3.0-or-later",
+            "GPL-2.0-or-later",
+            "UMich",
+            "F5",
+            "JCG",
+            "MIT-XC",
+            "NeoSoft-permissive",
+            "BSD-3-Clause",
+            "Beerware",
+            "public-domain",
+            "BSD-4-clause-California",
+            "BSD-3-clause-variant",
+            "Expat-ISC",
+            "Expat-UNM",
+            "MIT",
+            "BSD-3-clause-California",
+            "GPL-2.0-only",
+            "GPL-3.0-only"
+          ]
+        },
+        {
+          "name": "liblz4-1",
+          "version": "1.9.4-1build1.1",
+          "type": "library",
+          "purl": "pkg:deb/ubuntu/liblz4-1@1.9.4-1build1.1?arch=amd64&distro=ubuntu-24.04",
+          "licenses": [
+            "BSD-2-Clause",
+            "GPL-2.0-or-later",
+            "GPL-2.0-only"
+          ]
+        },
+        {
+          "name": "liblzma5",
+          "version": "5.6.1+really5.4.5-1ubuntu0.2",
+          "type": "library",
+          "purl": "pkg:deb/ubuntu/liblzma5@5.6.1%2Breally5.4.5-1ubuntu0.2?arch=amd64&distro=ubuntu-24.04",
+          "licenses": [
+            "PD",
+            "probably-PD",
+            "GPL-2.0-or-later",
+            "LGPL-2.1-or-later",
+            "permissive-fsf",
+            "Autoconf",
+            "permissive-nowarranty",
+            "GPL-2.0-only",
+            "none",
+            "config-h",
+            "LGPL-2.0-only",
+            "LGPL-2.1-only",
+            "noderivs",
+            "PD-debian",
+            "GPL-3.0-only"
+          ]
+        },
+        {
+          "name": "libmd0",
+          "version": "1.1.0-2build1.1",
+          "type": "library",
+          "purl": "pkg:deb/ubuntu/libmd0@1.1.0-2build1.1?arch=amd64&distro=ubuntu-24.04",
+          "licenses": [
+            "BSD-3-Clause",
+            "BSD-3-clause-Aaron-D-Gifford",
+            "BSD-2-Clause",
+            "BSD-2-Clause-NetBSD",
+            "ISC",
+            "Beerware",
+            "public-domain-md4",
+            "public-domain-md5",
+            "public-domain-sha1"
+          ]
+        },
+        {
+          "name": "libmount1",
+          "version": "2.39.3-9ubuntu6.4",
+          "type": "library",
+          "purl": "pkg:deb/ubuntu/libmount1@2.39.3-9ubuntu6.4?arch=amd64&distro=ubuntu-24.04",
+          "licenses": [
+            "GPL-2.0-or-later",
+            "GPL-2.0-only",
+            "GPL-3.0-or-later",
+            "public-domain",
+            "BSD-4-Clause",
+            "MIT",
+            "BSD-3-Clause",
+            "BSLA",
+            "LGPL-2.0-or-later",
+            "LGPL-2.1-or-later",
+            "LGPL-3.0-or-later",
+            "GPL-3.0-only",
+            "LGPL-2.0-only",
+            "LGPL-2.1-only",
+            "LGPL-3.0-only"
+          ]
+        },
+        {
+          "name": "libncursesw6",
+          "version": "6.4+20240113-1ubuntu2",
+          "type": "library",
+          "purl": "pkg:deb/ubuntu/libncursesw6@6.4%2B20240113-1ubuntu2?arch=amd64&distro=ubuntu-24.04",
+          "licenses": []
+        },
+        {
+          "name": "libnettle8t64",
+          "version": "3.9.1-2.2build1.1",
+          "type": "library",
+          "purl": "pkg:deb/ubuntu/libnettle8t64@3.9.1-2.2build1.1?arch=amd64&distro=ubuntu-24.04",
+          "licenses": [
+            "LGPL-3.0-or-later",
+            "GPL-2.0-or-later",
+            "LGPL-2.0-or-later",
+            "LGPL-2.0-only",
+            "MIT",
+            "GPL-3.0-only WITH autoconf-exception+",
+            "public-domain",
+            "GPL-2.0-only",
+            "GAP"
+          ]
+        },
+        {
+          "name": "libnghttp2-14",
+          "version": "1.59.0-1ubuntu0.2",
+          "type": "library",
+          "purl": "pkg:deb/ubuntu/libnghttp2-14@1.59.0-1ubuntu0.2?arch=amd64&distro=ubuntu-24.04",
+          "licenses": [
+            "MIT",
+            "all-permissive",
+            "GPL-3.0-only WITH autoconf-exception+",
+            "BSD-2-Clause",
+            "GPL-3.0-only"
+          ]
+        },
+        {
+          "name": "libnpth0t64",
+          "version": "1.6-3.1build1",
+          "type": "library",
+          "purl": "pkg:deb/ubuntu/libnpth0t64@1.6-3.1build1?arch=amd64&distro=ubuntu-24.04",
+          "licenses": [
+            "LGPL-2.1-or-later",
+            "LGPL-2.1-only"
+          ]
+        },
+        {
+          "name": "libp11-kit0",
+          "version": "0.25.3-4ubuntu2.1",
+          "type": "library",
+          "purl": "pkg:deb/ubuntu/libp11-kit0@0.25.3-4ubuntu2.1?arch=amd64&distro=ubuntu-24.04",
+          "licenses": [
+            "BSD-3-Clause",
+            "FSFULLR",
+            "GPL-2.0-or-later WITH Autoconf-data-exception",
+            "GPL-3.0-or-later WITH Autoconf-data-exception",
+            "X11",
+            "ISC",
+            "customFSFULLRWD",
+            "Apache-2.0",
+            "LGPL-2.1-or-later",
+            "customFSFUL",
+            "FSFAP",
+            "LGPL-2.1-only"
+          ]
+        },
+        {
+          "name": "libpam-modules-bin",
+          "version": "1.5.3-5ubuntu5.5",
+          "type": "library",
+          "purl": "pkg:deb/ubuntu/libpam-modules-bin@1.5.3-5ubuntu5.5?arch=amd64&distro=ubuntu-24.04",
+          "licenses": [
+            "BSD-3-Clause",
+            "GPL-2.0-or-later",
+            "GPL-2.0-only",
+            "GPL-3.0-only",
+            "GPL-3.0-or-later WITH Bison-exception",
+            "BSD-tcp-wrappers",
+            "LGPL-2.0-or-later",
+            "LGPL-2.0-only",
+            "public-domain",
+            "Beerware"
+          ]
+        },
+        {
+          "name": "libpam-modules",
+          "version": "1.5.3-5ubuntu5.5",
+          "type": "library",
+          "purl": "pkg:deb/ubuntu/libpam-modules@1.5.3-5ubuntu5.5?arch=amd64&distro=ubuntu-24.04",
+          "licenses": [
+            "BSD-3-Clause",
+            "GPL-2.0-or-later",
+            "GPL-2.0-only",
+            "GPL-3.0-only",
+            "GPL-3.0-or-later WITH Bison-exception",
+            "BSD-tcp-wrappers",
+            "LGPL-2.0-or-later",
+            "LGPL-2.0-only",
+            "public-domain",
+            "Beerware"
+          ]
+        },
+        {
+          "name": "libpam-runtime",
+          "version": "1.5.3-5ubuntu5.5",
+          "type": "library",
+          "purl": "pkg:deb/ubuntu/libpam-runtime@1.5.3-5ubuntu5.5?arch=all&distro=ubuntu-24.04",
+          "licenses": [
+            "BSD-3-Clause",
+            "GPL-2.0-or-later",
+            "GPL-2.0-only",
+            "GPL-3.0-only",
+            "GPL-3.0-or-later WITH Bison-exception",
+            "BSD-tcp-wrappers",
+            "LGPL-2.0-or-later",
+            "LGPL-2.0-only",
+            "public-domain",
+            "Beerware"
+          ]
+        },
+        {
+          "name": "libpam0g",
+          "version": "1.5.3-5ubuntu5.5",
+          "type": "library",
+          "purl": "pkg:deb/ubuntu/libpam0g@1.5.3-5ubuntu5.5?arch=amd64&distro=ubuntu-24.04",
+          "licenses": [
+            "BSD-3-Clause",
+            "GPL-2.0-or-later",
+            "GPL-2.0-only",
+            "GPL-3.0-only",
+            "GPL-3.0-or-later WITH Bison-exception",
+            "BSD-tcp-wrappers",
+            "LGPL-2.0-or-later",
+            "LGPL-2.0-only",
+            "public-domain",
+            "Beerware"
+          ]
+        },
+        {
+          "name": "libpcre2-8-0",
+          "version": "10.42-4ubuntu2.1",
+          "type": "library",
+          "purl": "pkg:deb/ubuntu/libpcre2-8-0@10.42-4ubuntu2.1?arch=amd64&distro=ubuntu-24.04",
+          "licenses": [
+            "BSD-3-clause-Cambridge WITH BINARY-LIBRARY-LIKE-PACKAGES-exception",
+            "BSD-3-Clause",
+            "X11",
+            "BSD-2-Clause",
+            "public-domain"
+          ]
+        },
+        {
+          "name": "libpng16-16t64",
+          "version": "1.6.43-5ubuntu0.5",
+          "type": "library",
+          "purl": "pkg:deb/ubuntu/libpng16-16t64@1.6.43-5ubuntu0.5?arch=amd64&distro=ubuntu-24.04",
+          "licenses": [
+            "Libpng",
+            "MIT",
+            "GPL-2.0-or-later",
+            "BSD-3-Clause WITH advertising-clause",
+            "Libpng OR Apache-2.0 OR BSD-3-Clause",
+            "Apache-2.0",
+            "GPL-2.0-only",
+            "BSD-3-Clause"
+          ]
+        },
+        {
+          "name": "libproc2-0",
+          "version": "2:4.0.4-4ubuntu3.2",
+          "type": "library",
+          "purl": "pkg:deb/ubuntu/libproc2-0@4.0.4-4ubuntu3.2?arch=amd64&distro=ubuntu-24.04&epoch=2",
+          "licenses": [
+            "LGPL-2.1-or-later",
+            "LGPL-2.0-or-later",
+            "GPL-2.0-or-later",
+            "GPL-2.0-only",
+            "LGPL-2.0-only",
+            "LGPL-2.1-only"
+          ]
+        },
+        {
+          "name": "libpsl5t64",
+          "version": "0.21.2-1.1build1",
+          "type": "library",
+          "purl": "pkg:deb/ubuntu/libpsl5t64@0.21.2-1.1build1?arch=amd64&distro=ubuntu-24.04",
+          "licenses": [
+            "MIT",
+            "gnulib",
+            "Chromium"
+          ]
+        },
+        {
+          "name": "libreadline8t64",
+          "version": "8.2-4build1",
+          "type": "library",
+          "purl": "pkg:deb/ubuntu/libreadline8t64@8.2-4build1?arch=amd64&distro=ubuntu-24.04",
+          "licenses": [
+            "GPL-3.0-or-later",
+            "GPL-3.0-only",
+            "GPL-2.0-or-later",
+            "GPL-2.0-only",
+            "GFDL-1.3-no-invariants-or-later",
+            "GFDL-1.3-or-later",
+            "ISC-no-attribution"
+          ]
+        },
+        {
+          "name": "librtmp1",
+          "version": "2.4+20151223.gitfa8646d.1-2build7",
+          "type": "library",
+          "purl": "pkg:deb/ubuntu/librtmp1@2.4%2B20151223.gitfa8646d.1-2build7?arch=amd64&distro=ubuntu-24.04",
+          "licenses": [
+            "GPL-2.0-only",
+            "LGPL-2.1-only"
+          ]
+        },
+        {
+          "name": "libsasl2-2",
+          "version": "2.1.28+dfsg1-5ubuntu3.1",
+          "type": "library",
+          "purl": "pkg:deb/ubuntu/libsasl2-2@2.1.28%2Bdfsg1-5ubuntu3.1?arch=amd64&distro=ubuntu-24.04",
+          "licenses": [
+            "BSD-3-Clause-Attribution",
+            "BSD-3-Clause",
+            "BSD-2-Clause",
+            "GPL-3.0-or-later",
+            "GPL-3.0-only",
+            "BSD-4-Clause-UC",
+            "RSA-MD",
+            "BSD-3-Clause-Attribution and IBM-as-is",
+            "BSD-3-clause-JANET",
+            "BSD-3-clause-PADL",
+            "MIT-OpenVision",
+            "OpenLDAP",
+            "FSFULLR",
+            "MIT-CMU",
+            "MIT-Export",
+            "BSD-2.2-clause",
+            "IBM-as-is"
+          ]
+        },
+        {
+          "name": "libsasl2-modules-db",
+          "version": "2.1.28+dfsg1-5ubuntu3.1",
+          "type": "library",
+          "purl": "pkg:deb/ubuntu/libsasl2-modules-db@2.1.28%2Bdfsg1-5ubuntu3.1?arch=amd64&distro=ubuntu-24.04",
+          "licenses": [
+            "BSD-3-Clause-Attribution",
+            "BSD-3-Clause",
+            "BSD-2-Clause",
+            "GPL-3.0-or-later",
+            "GPL-3.0-only",
+            "BSD-4-Clause-UC",
+            "RSA-MD",
+            "BSD-3-Clause-Attribution and IBM-as-is",
+            "BSD-3-clause-JANET",
+            "BSD-3-clause-PADL",
+            "MIT-OpenVision",
+            "OpenLDAP",
+            "FSFULLR",
+            "MIT-CMU",
+            "MIT-Export",
+            "BSD-2.2-clause",
+            "IBM-as-is"
+          ]
+        },
+        {
+          "name": "libseccomp2",
+          "version": "2.5.5-1ubuntu3.1",
+          "type": "library",
+          "purl": "pkg:deb/ubuntu/libseccomp2@2.5.5-1ubuntu3.1?arch=amd64&distro=ubuntu-24.04",
+          "licenses": [
+            "LGPL-2.1-only"
+          ]
+        },
+        {
+          "name": "libselinux1",
+          "version": "3.5-2ubuntu2.1",
+          "type": "library",
+          "purl": "pkg:deb/ubuntu/libselinux1@3.5-2ubuntu2.1?arch=amd64&distro=ubuntu-24.04",
+          "licenses": [
+            "public-domain",
+            "GPL-2.0-only"
+          ]
+        },
+        {
+          "name": "libsemanage-common",
+          "version": "3.5-1build5",
+          "type": "library",
+          "purl": "pkg:deb/ubuntu/libsemanage-common@3.5-1build5?arch=all&distro=ubuntu-24.04",
+          "licenses": [
+            "LGPL-2.1-or-later",
+            "LGPL-2.1-only",
+            "GPL-2.0-only"
+          ]
+        },
+        {
+          "name": "libsemanage2",
+          "version": "3.5-1build5",
+          "type": "library",
+          "purl": "pkg:deb/ubuntu/libsemanage2@3.5-1build5?arch=amd64&distro=ubuntu-24.04",
+          "licenses": [
+            "LGPL-2.1-or-later",
+            "LGPL-2.1-only",
+            "GPL-2.0-only"
+          ]
+        },
+        {
+          "name": "libsepol2",
+          "version": "3.5-2build1",
+          "type": "library",
+          "purl": "pkg:deb/ubuntu/libsepol2@3.5-2build1?arch=amd64&distro=ubuntu-24.04",
+          "licenses": [
+            "LGPL-2.1-or-later",
+            "LGPL-2.1-only",
+            "Zlib",
+            "GPL-2.0-only",
+            "GPL-2.0-or-later"
+          ]
+        },
+        {
+          "name": "libsframe1",
+          "version": "2.42-4ubuntu2.8",
+          "type": "library",
+          "purl": "pkg:deb/ubuntu/libsframe1@2.42-4ubuntu2.8?arch=amd64&distro=ubuntu-24.04",
+          "licenses": [
+            "GPL-2.0-or-later",
+            "LGPL-2.0-or-later",
+            "GFDL-1.3-or-later"
+          ]
+        },
+        {
+          "name": "libsmartcols1",
+          "version": "2.39.3-9ubuntu6.4",
+          "type": "library",
+          "purl": "pkg:deb/ubuntu/libsmartcols1@2.39.3-9ubuntu6.4?arch=amd64&distro=ubuntu-24.04",
+          "licenses": [
+            "GPL-2.0-or-later",
+            "GPL-2.0-only",
+            "GPL-3.0-or-later",
+            "public-domain",
+            "BSD-4-Clause",
+            "MIT",
+            "BSD-3-Clause",
+            "BSLA",
+            "LGPL-2.0-or-later",
+            "LGPL-2.1-or-later",
+            "LGPL-3.0-or-later",
+            "GPL-3.0-only",
+            "LGPL-2.0-only",
+            "LGPL-2.1-only",
+            "LGPL-3.0-only"
+          ]
+        },
+        {
+          "name": "libsqlite3-0",
+          "version": "3.45.1-1ubuntu2.5",
+          "type": "library",
+          "purl": "pkg:deb/ubuntu/libsqlite3-0@3.45.1-1ubuntu2.5?arch=amd64&distro=ubuntu-24.04",
+          "licenses": [
+            "public-domain",
+            "GPL-2.0-or-later",
+            "GPL-2.0-only"
+          ]
+        },
+        {
+          "name": "libss2",
+          "version": "1.47.0-2.4~exp1ubuntu4.1",
+          "type": "library",
+          "purl": "pkg:deb/ubuntu/libss2@1.47.0-2.4~exp1ubuntu4.1?arch=amd64&distro=ubuntu-24.04",
+          "licenses": [
+            "GPL-2.0-only",
+            "LGPL-2.0-only",
+            "BSD-3-Clause",
+            "Apache-2.0",
+            "ISC",
+            "GPL-2.0-or-later",
+            "MIT-US-export",
+            "Kazlib",
+            "Latex2e",
+            "GPL-2.0-or-later WITH Texinfo-exception"
+          ]
+        },
+        {
+          "name": "libssh-4",
+          "version": "0.10.6-2ubuntu0.2",
+          "type": "library",
+          "purl": "pkg:deb/ubuntu/libssh-4@0.10.6-2ubuntu0.2?arch=amd64&distro=ubuntu-24.04",
+          "licenses": [
+            "LGPL-2.1--OpenSSL",
+            "public-domain",
+            "LGPL-2.1-only",
+            "BSD-2-Clause",
+            "BSD-3-Clause"
+          ]
+        },
+        {
+          "name": "libssl3t64",
+          "version": "3.0.13-0ubuntu3.7",
+          "type": "library",
+          "purl": "pkg:deb/ubuntu/libssl3t64@3.0.13-0ubuntu3.7?arch=amd64&distro=ubuntu-24.04",
+          "licenses": [
+            "Apache-2.0",
+            "Artistic-2.0",
+            "GPL-1.0-or-later",
+            "GPL-1.0-only"
+          ]
+        },
+        {
+          "name": "libstdc++6",
+          "version": "14.2.0-4ubuntu2~24.04",
+          "type": "library",
+          "purl": "pkg:deb/ubuntu/libstdc%2B%2B6@14.2.0-4ubuntu2~24.04?arch=amd64&distro=ubuntu-24.04",
+          "licenses": []
+        },
+        {
+          "name": "libsystemd0",
+          "version": "255.4-1ubuntu8.12",
+          "type": "library",
+          "purl": "pkg:deb/ubuntu/libsystemd0@255.4-1ubuntu8.12?arch=amd64&distro=ubuntu-24.04",
+          "licenses": [
+            "LGPL-2.1-or-later",
+            "CC0-1.0",
+            "GPL-2.0-only WITH Linux-syscall-note-exception",
+            "MIT",
+            "public-domain",
+            "GPL-2.0-or-later",
+            "GPL-2.0-only",
+            "LGPL-2.1-only"
+          ]
+        },
+        {
+          "name": "libtasn1-6",
+          "version": "4.19.0-3ubuntu0.24.04.2",
+          "type": "library",
+          "purl": "pkg:deb/ubuntu/libtasn1-6@4.19.0-3ubuntu0.24.04.2?arch=amd64&distro=ubuntu-24.04",
+          "licenses": [
+            "LGPL-2.0-or-later",
+            "LGPL-2.1-only",
+            "GPL-3.0-only",
+            "GFDL-1.3-only"
+          ]
+        },
+        {
+          "name": "libtinfo6",
+          "version": "6.4+20240113-1ubuntu2",
+          "type": "library",
+          "purl": "pkg:deb/ubuntu/libtinfo6@6.4%2B20240113-1ubuntu2?arch=amd64&distro=ubuntu-24.04",
+          "licenses": [
+            "MIT-X11",
+            "X11",
+            "BSD-3-Clause"
+          ]
+        },
+        {
+          "name": "libudev1",
+          "version": "255.4-1ubuntu8.12",
+          "type": "library",
+          "purl": "pkg:deb/ubuntu/libudev1@255.4-1ubuntu8.12?arch=amd64&distro=ubuntu-24.04",
+          "licenses": [
+            "LGPL-2.1-or-later",
+            "CC0-1.0",
+            "GPL-2.0-only WITH Linux-syscall-note-exception",
+            "MIT",
+            "public-domain",
+            "GPL-2.0-or-later",
+            "GPL-2.0-only",
+            "LGPL-2.1-only"
+          ]
+        },
+        {
+          "name": "libunistring5",
+          "version": "1.1-2build1.1",
+          "type": "library",
+          "purl": "pkg:deb/ubuntu/libunistring5@1.1-2build1.1?arch=amd64&distro=ubuntu-24.04",
+          "licenses": [
+            "LGPL-3.0-or-later",
+            "GPL-2.0-or-later",
+            "FreeSoftware",
+            "GPL-3.0-or-later",
+            "GFDL-1.2-no-invariants-or-later",
+            "GPL-2.0-or-later WITH distribution-exception",
+            "MIT",
+            "X11",
+            "LGPL-3.0-only",
+            "GPL-3.0-only",
+            "GPL-2.0-only",
+            "GFDL-1.2-only"
+          ]
+        },
+        {
+          "name": "libuuid1",
+          "version": "2.39.3-9ubuntu6.4",
+          "type": "library",
+          "purl": "pkg:deb/ubuntu/libuuid1@2.39.3-9ubuntu6.4?arch=amd64&distro=ubuntu-24.04",
+          "licenses": [
+            "GPL-2.0-or-later",
+            "GPL-2.0-only",
+            "GPL-3.0-or-later",
+            "public-domain",
+            "BSD-4-Clause",
+            "MIT",
+            "BSD-3-Clause",
+            "BSLA",
+            "LGPL-2.0-or-later",
+            "LGPL-2.1-or-later",
+            "LGPL-3.0-or-later",
+            "GPL-3.0-only",
+            "LGPL-2.0-only",
+            "LGPL-2.1-only",
+            "LGPL-3.0-only"
+          ]
+        },
+        {
+          "name": "libxxhash0",
+          "version": "0.8.2-2build1",
+          "type": "library",
+          "purl": "pkg:deb/ubuntu/libxxhash0@0.8.2-2build1?arch=amd64&distro=ubuntu-24.04",
+          "licenses": [
+            "BSD-2-Clause",
+            "GPL-2.0-or-later",
+            "GPL-2.0-only"
+          ]
+        },
+        {
+          "name": "libzstd1",
+          "version": "1.5.5+dfsg2-2build1.1",
+          "type": "library",
+          "purl": "pkg:deb/ubuntu/libzstd1@1.5.5%2Bdfsg2-2build1.1?arch=amd64&distro=ubuntu-24.04",
+          "licenses": [
+            "BSD-3-Clause",
+            "GPL-2.0-only",
+            "Zlib",
+            "MIT"
+          ]
+        },
+        {
+          "name": "locales",
+          "version": "2.39-0ubuntu8.7",
+          "type": "library",
+          "purl": "pkg:deb/ubuntu/locales@2.39-0ubuntu8.7?arch=all&distro=ubuntu-24.04",
+          "licenses": [
+            "LGPL-2.1-only",
+            "GPL-2.0-only",
+            "GFDL-1.3-only"
+          ]
+        },
+        {
+          "name": "login",
+          "version": "1:4.13+dfsg1-4ubuntu3.2",
+          "type": "library",
+          "purl": "pkg:deb/ubuntu/login@4.13%2Bdfsg1-4ubuntu3.2?arch=amd64&distro=ubuntu-24.04&epoch=1",
+          "licenses": [
+            "BSD-3-Clause",
+            "GPL-1.0-only",
+            "GPL-2.0-or-later",
+            "public-domain",
+            "GPL-2.0-only"
+          ]
+        },
+        {
+          "name": "logsave",
+          "version": "1.47.0-2.4~exp1ubuntu4.1",
+          "type": "library",
+          "purl": "pkg:deb/ubuntu/logsave@1.47.0-2.4~exp1ubuntu4.1?arch=amd64&distro=ubuntu-24.04",
+          "licenses": [
+            "GPL-2.0-only",
+            "LGPL-2.0-only",
+            "BSD-3-Clause",
+            "Apache-2.0",
+            "ISC",
+            "GPL-2.0-or-later",
+            "MIT-US-export",
+            "Kazlib",
+            "Latex2e",
+            "GPL-2.0-or-later WITH Texinfo-exception"
+          ]
+        },
+        {
+          "name": "mawk",
+          "version": "1.3.4.20240123-1build1",
+          "type": "library",
+          "purl": "pkg:deb/ubuntu/mawk@1.3.4.20240123-1build1?arch=amd64&distro=ubuntu-24.04",
+          "licenses": [
+            "GPL-2.0-only",
+            "X11",
+            "CC-BY-3.0"
+          ]
+        },
+        {
+          "name": "mount",
+          "version": "2.39.3-9ubuntu6.4",
+          "type": "library",
+          "purl": "pkg:deb/ubuntu/mount@2.39.3-9ubuntu6.4?arch=amd64&distro=ubuntu-24.04",
+          "licenses": [
+            "GPL-2.0-or-later",
+            "GPL-2.0-only",
+            "GPL-3.0-or-later",
+            "public-domain",
+            "BSD-4-Clause",
+            "MIT",
+            "BSD-3-Clause",
+            "BSLA",
+            "LGPL-2.0-or-later",
+            "LGPL-2.1-or-later",
+            "LGPL-3.0-or-later",
+            "GPL-3.0-only",
+            "LGPL-2.0-only",
+            "LGPL-2.1-only",
+            "LGPL-3.0-only"
+          ]
+        },
+        {
+          "name": "ncurses-base",
+          "version": "6.4+20240113-1ubuntu2",
+          "type": "library",
+          "purl": "pkg:deb/ubuntu/ncurses-base@6.4%2B20240113-1ubuntu2?arch=all&distro=ubuntu-24.04",
+          "licenses": [
+            "MIT-X11",
+            "X11",
+            "BSD-3-Clause"
+          ]
+        },
+        {
+          "name": "ncurses-bin",
+          "version": "6.4+20240113-1ubuntu2",
+          "type": "library",
+          "purl": "pkg:deb/ubuntu/ncurses-bin@6.4%2B20240113-1ubuntu2?arch=amd64&distro=ubuntu-24.04",
+          "licenses": [
+            "MIT-X11",
+            "X11",
+            "BSD-3-Clause"
+          ]
+        },
+        {
+          "name": "openssl",
+          "version": "3.0.13-0ubuntu3.7",
+          "type": "library",
+          "purl": "pkg:deb/ubuntu/openssl@3.0.13-0ubuntu3.7?arch=amd64&distro=ubuntu-24.04",
+          "licenses": []
+        },
+        {
+          "name": "p11-kit-modules",
+          "version": "0.25.3-4ubuntu2.1",
+          "type": "library",
+          "purl": "pkg:deb/ubuntu/p11-kit-modules@0.25.3-4ubuntu2.1?arch=amd64&distro=ubuntu-24.04",
+          "licenses": []
+        },
+        {
+          "name": "p11-kit",
+          "version": "0.25.3-4ubuntu2.1",
+          "type": "library",
+          "purl": "pkg:deb/ubuntu/p11-kit@0.25.3-4ubuntu2.1?arch=amd64&distro=ubuntu-24.04",
+          "licenses": [
+            "BSD-3-Clause",
+            "FSFULLR",
+            "GPL-2.0-or-later WITH Autoconf-data-exception",
+            "GPL-3.0-or-later WITH Autoconf-data-exception",
+            "X11",
+            "ISC",
+            "customFSFULLRWD",
+            "Apache-2.0",
+            "LGPL-2.1-or-later",
+            "customFSFUL",
+            "FSFAP",
+            "LGPL-2.1-only"
+          ]
+        },
+        {
+          "name": "passwd",
+          "version": "1:4.13+dfsg1-4ubuntu3.2",
+          "type": "library",
+          "purl": "pkg:deb/ubuntu/passwd@4.13%2Bdfsg1-4ubuntu3.2?arch=amd64&distro=ubuntu-24.04&epoch=1",
+          "licenses": [
+            "BSD-3-Clause",
+            "GPL-1.0-only",
+            "GPL-2.0-or-later",
+            "public-domain",
+            "GPL-2.0-only"
+          ]
+        },
+        {
+          "name": "perl-base",
+          "version": "5.38.2-3.2ubuntu0.2",
+          "type": "library",
+          "purl": "pkg:deb/ubuntu/perl-base@5.38.2-3.2ubuntu0.2?arch=amd64&distro=ubuntu-24.04",
+          "licenses": [
+            "GPL-1.0-or-later",
+            "Artistic-2.0",
+            "MIT",
+            "REGCOMP",
+            "GPL-2.0-only WITH bison-exception+",
+            "Unicode",
+            "BZIP",
+            "Zlib",
+            "GPL-2.0-or-later",
+            "FSFAP",
+            "BSD-3-Clause WITH weird-numbering",
+            "CC0-1.0",
+            "TEXT-TABS",
+            "BSD-4-clause-POWERDOG",
+            "BSD-3-clause-GENERIC",
+            "BSD-3-Clause",
+            "SDBM-PUBLIC-DOMAIN",
+            "DONT-CHANGE-THE-GPL",
+            "Artistic-dist",
+            "LGPL-2.1-only",
+            "GPL-1.0-only",
+            "GPL-2.0-only",
+            "Artistic-2"
+          ]
+        },
+        {
+          "name": "pinentry-curses",
+          "version": "1.2.1-3ubuntu5",
+          "type": "library",
+          "purl": "pkg:deb/ubuntu/pinentry-curses@1.2.1-3ubuntu5?arch=amd64&distro=ubuntu-24.04",
+          "licenses": [
+            "GPL-2.0-or-later",
+            "GPL-2.0-only",
+            "X11",
+            "LGPL-3.0-or-later",
+            "LGPL-3.0-only"
+          ]
+        },
+        {
+          "name": "procps",
+          "version": "2:4.0.4-4ubuntu3.2",
+          "type": "library",
+          "purl": "pkg:deb/ubuntu/procps@4.0.4-4ubuntu3.2?arch=amd64&distro=ubuntu-24.04&epoch=2",
+          "licenses": [
+            "LGPL-2.1-or-later",
+            "LGPL-2.0-or-later",
+            "GPL-2.0-or-later",
+            "GPL-2.0-only",
+            "LGPL-2.0-only",
+            "LGPL-2.1-only"
+          ]
+        },
+        {
+          "name": "readline-common",
+          "version": "8.2-4build1",
+          "type": "library",
+          "purl": "pkg:deb/ubuntu/readline-common@8.2-4build1?arch=all&distro=ubuntu-24.04",
+          "licenses": [
+            "GPL-3.0-or-later",
+            "GPL-3.0-only",
+            "GPL-2.0-or-later",
+            "GPL-2.0-only",
+            "GFDL-1.3-no-invariants-or-later",
+            "GFDL-1.3-or-later",
+            "ISC-no-attribution"
+          ]
+        },
+        {
+          "name": "sed",
+          "version": "4.9-2build1",
+          "type": "library",
+          "purl": "pkg:deb/ubuntu/sed@4.9-2build1?arch=amd64&distro=ubuntu-24.04",
+          "licenses": [
+            "GPL-3.0-or-later",
+            "GPL-3.0-only",
+            "X11",
+            "GFDL-1.3-no-invariants-or-later",
+            "GFDL-1.3-only",
+            "ISC",
+            "BSD-4-Clause-UC",
+            "BSL-1",
+            "pcre"
+          ]
+        },
+        {
+          "name": "sensible-utils",
+          "version": "0.0.22",
+          "type": "library",
+          "purl": "pkg:deb/ubuntu/sensible-utils@0.0.22?arch=all&distro=ubuntu-24.04",
+          "licenses": [
+            "GPL-2.0-or-later",
+            "All-permissive",
+            "configure",
+            "installsh",
+            "BSD-2-Clause",
+            "GPL-2.0-only"
+          ]
+        },
+        {
+          "name": "sysvinit-utils",
+          "version": "3.08-6ubuntu3",
+          "type": "library",
+          "purl": "pkg:deb/ubuntu/sysvinit-utils@3.08-6ubuntu3?arch=amd64&distro=ubuntu-24.04",
+          "licenses": [
+            "GPL-2.0-or-later",
+            "LGPL-2.1-or-later",
+            "GPL-3.0-only",
+            "GPL-2.0-only",
+            "LGPL-2.1-only"
+          ]
+        },
+        {
+          "name": "tar",
+          "version": "1.35+dfsg-3build1",
+          "type": "library",
+          "purl": "pkg:deb/ubuntu/tar@1.35%2Bdfsg-3build1?arch=amd64&distro=ubuntu-24.04",
+          "licenses": [
+            "GPL-3.0-or-later",
+            "GPL-3.0-only",
+            "GPL-3.0-or-later WITH Bison-exception",
+            "LGPL-2.1-or-later",
+            "LGPL-2.1-only",
+            "LGPL-3.0-or-later",
+            "LGPL-3.0-only",
+            "GPL-2.0-or-later",
+            "GPL-2.0-only"
+          ]
+        },
+        {
+          "name": "tzdata",
+          "version": "2025b-0ubuntu0.24.04.1",
+          "type": "library",
+          "purl": "pkg:deb/ubuntu/tzdata@2025b-0ubuntu0.24.04.1?arch=all&distro=ubuntu-24.04",
+          "licenses": [
+            "public-domain",
+            "ICU"
+          ]
+        },
+        {
+          "name": "ubuntu-keyring",
+          "version": "2023.11.28.1",
+          "type": "library",
+          "purl": "pkg:deb/ubuntu/ubuntu-keyring@2023.11.28.1?arch=all&distro=ubuntu-24.04",
+          "licenses": [
+            "GPL-2.0-or-later"
+          ]
+        },
+        {
+          "name": "unminimize",
+          "version": "0.2.1",
+          "type": "library",
+          "purl": "pkg:deb/ubuntu/unminimize@0.2.1?arch=amd64&distro=ubuntu-24.04",
+          "licenses": [
+            "GPL-2.0-or-later",
+            "GPL-2.0-only"
+          ]
+        },
+        {
+          "name": "util-linux",
+          "version": "2.39.3-9ubuntu6.4",
+          "type": "library",
+          "purl": "pkg:deb/ubuntu/util-linux@2.39.3-9ubuntu6.4?arch=amd64&distro=ubuntu-24.04",
+          "licenses": [
+            "GPL-2.0-or-later",
+            "GPL-2.0-only",
+            "GPL-3.0-or-later",
+            "public-domain",
+            "BSD-4-Clause",
+            "MIT",
+            "BSD-3-Clause",
+            "BSLA",
+            "LGPL-2.0-or-later",
+            "LGPL-2.1-or-later",
+            "LGPL-3.0-or-later",
+            "GPL-3.0-only",
+            "LGPL-2.0-only",
+            "LGPL-2.1-only",
+            "LGPL-3.0-only"
+          ]
+        },
+        {
+          "name": "wget",
+          "version": "1.21.4-1ubuntu4.1",
+          "type": "library",
+          "purl": "pkg:deb/ubuntu/wget@1.21.4-1ubuntu4.1?arch=amd64&distro=ubuntu-24.04",
+          "licenses": [
+            "GPL-3.0-only",
+            "GFDL-1.2-only"
+          ]
+        },
+        {
+          "name": "zlib1g",
+          "version": "1:1.3.dfsg-3.1ubuntu2.1",
+          "type": "library",
+          "purl": "pkg:deb/ubuntu/zlib1g@1.3.dfsg-3.1ubuntu2.1?arch=amd64&distro=ubuntu-24.04&epoch=1",
+          "licenses": [
+            "Zlib"
+          ]
+        }
+      ]
+    },
+    "scorecarddev": {
+      "analyzer": "scorecarddev",
+      "repository": "library/eclipse-temurin",
+      "source_repo": "https://github.com/adoptium/containers",
+      "scorecard_available": true,
+      "score": 9.1,
+      "checks": [
+        {
+          "name": "Code-Review",
+          "score": 10,
+          "reason": "all changesets reviewed"
+        },
+        {
+          "name": "Token-Permissions",
+          "score": 10,
+          "reason": "GitHub workflow tokens follow principle of least privilege"
+        },
+        {
+          "name": "Maintained",
+          "score": 10,
+          "reason": "29 commit(s) and 2 issue activity found in the last 90 days -- score normalized to 10"
+        },
+        {
+          "name": "Dangerous-Workflow",
+          "score": 10,
+          "reason": "no dangerous workflow patterns detected"
+        },
+        {
+          "name": "Binary-Artifacts",
+          "score": 10,
+          "reason": "no binaries found in the repo"
+        },
+        {
+          "name": "Packaging",
+          "score": -1,
+          "reason": "packaging workflow not detected"
+        },
+        {
+          "name": "Dependency-Update-Tool",
+          "score": 10,
+          "reason": "update tool detected"
+        },
+        {
+          "name": "Pinned-Dependencies",
+          "score": -1,
+          "reason": "internal error: internal error: invalid Dockerfile"
+        },
+        {
+          "name": "CII-Best-Practices",
+          "score": 0,
+          "reason": "no effort to earn an OpenSSF best practices badge detected"
+        },
+        {
+          "name": "License",
+          "score": 10,
+          "reason": "license file detected"
+        },
+        {
+          "name": "Vulnerabilities",
+          "score": 10,
+          "reason": "0 existing vulnerabilities detected"
+        },
+        {
+          "name": "Fuzzing",
+          "score": 0,
+          "reason": "project is not fuzzed"
+        },
+        {
+          "name": "Signed-Releases",
+          "score": -1,
+          "reason": "no releases found"
+        },
+        {
+          "name": "SAST",
+          "score": 10,
+          "reason": "SAST tool is run on all commits"
+        },
+        {
+          "name": "Branch-Protection",
+          "score": -1,
+          "reason": "internal error: error during branchesHandler.setup: internal error: some github tokens can't read classic branch protection rules: https://github.com/ossf/scorecard-action/blob/main/docs/authentication/fine-grained-auth-token.md"
+        },
+        {
+          "name": "Security-Policy",
+          "score": 10,
+          "reason": "security policy file detected"
+        },
+        {
+          "name": "CI-Tests",
+          "score": 10,
+          "reason": "30 out of 30 merged PRs checked by a CI test -- score normalized to 10"
+        },
+        {
+          "name": "Contributors",
+          "score": 10,
+          "reason": "project has 19 contributing companies or organizations"
+        }
+      ]
+    },
+    "size": {
+      "analyzer": "size",
+      "repository": "library/eclipse-temurin",
+      "tag": "17-jdk",
+      "multi_arch": true,
+      "total_compressed_bytes": 198332894,
+      "total_compressed_human": "189.1 MB",
+      "layer_count": 5,
+      "config_size_bytes": 0,
+      "layers": [],
+      "platforms": [
+        {
+          "platform": "linux/amd64",
+          "compressed_bytes": 198332894,
+          "compressed_human": "189.1 MB",
+          "layer_count": 5
+        },
+        {
+          "platform": "unknown/unknown",
+          "compressed_bytes": 3549627,
+          "compressed_human": "3.4 MB",
+          "layer_count": 2
+        },
+        {
+          "platform": "linux/arm/v7",
+          "compressed_bytes": 191247115,
+          "compressed_human": "182.4 MB",
+          "layer_count": 5
+        },
+        {
+          "platform": "unknown/unknown",
+          "compressed_bytes": 3489252,
+          "compressed_human": "3.3 MB",
+          "layer_count": 2
+        },
+        {
+          "platform": "linux/arm64/v8",
+          "compressed_bytes": 197485775,
+          "compressed_human": "188.3 MB",
+          "layer_count": 5
+        },
+        {
+          "platform": "unknown/unknown",
+          "compressed_bytes": 3681333,
+          "compressed_human": "3.5 MB",
+          "layer_count": 2
+        },
+        {
+          "platform": "linux/ppc64le",
+          "compressed_bytes": 203862984,
+          "compressed_human": "194.4 MB",
+          "layer_count": 5
+        },
+        {
+          "platform": "unknown/unknown",
+          "compressed_bytes": 3597475,
+          "compressed_human": "3.4 MB",
+          "layer_count": 2
+        },
+        {
+          "platform": "linux/riscv64",
+          "compressed_bytes": 193786112,
+          "compressed_human": "184.8 MB",
+          "layer_count": 5
+        },
+        {
+          "platform": "unknown/unknown",
+          "compressed_bytes": 3655031,
+          "compressed_human": "3.5 MB",
+          "layer_count": 2
+        },
+        {
+          "platform": "linux/s390x",
+          "compressed_bytes": 187682861,
+          "compressed_human": "179.0 MB",
+          "layer_count": 5
+        },
+        {
+          "platform": "unknown/unknown",
+          "compressed_bytes": 3495442,
+          "compressed_human": "3.3 MB",
+          "layer_count": 2
+        },
+        {
+          "platform": "windows/amd64",
+          "compressed_bytes": 2320771371,
+          "compressed_human": "2.2 GB",
+          "layer_count": 7
+        },
+        {
+          "platform": "windows/amd64",
+          "compressed_bytes": 2218652322,
+          "compressed_human": "2.1 GB",
+          "layer_count": 7
+        }
+      ]
+    },
+    "skopeo": {
+      "analyzer": "skopeo",
+      "repository": "library/eclipse-temurin",
+      "tag": "17-jdk",
+      "inspect": {},
+      "platforms": [
+        {
+          "architecture": "amd64",
+          "os": "linux",
+          "digest": "sha256:141e2309cee40399bf417e5bae83965c20feafff62c4730bebd38e7320ded82f",
+          "created": "2026-02-17T20:19:46.641644714Z",
+          "labels": {
+            "org.opencontainers.image.ref.name": "ubuntu",
+            "org.opencontainers.image.version": "24.04"
+          },
+          "layers_count": 5,
+          "user": ""
+        },
+        {
+          "architecture": "unknown",
+          "os": "unknown",
+          "digest": "sha256:27c4840e42819783cdfb1ebdcbde63b0db4bef85ff44c55450d0b93aafcdbe29",
+          "created": null,
+          "labels": {},
+          "layers_count": 2,
+          "user": ""
+        },
+        {
+          "architecture": "arm",
+          "os": "linux",
+          "digest": "sha256:cb4093cfc42815a176046da97c20ff500703c1e95dd02a41afb80fa27d01113c",
+          "variant": "v7",
+          "created": "2026-02-17T20:12:28.945117603Z",
+          "labels": {
+            "org.opencontainers.image.ref.name": "ubuntu",
+            "org.opencontainers.image.version": "24.04"
+          },
+          "layers_count": 5,
+          "user": ""
+        },
+        {
+          "architecture": "unknown",
+          "os": "unknown",
+          "digest": "sha256:0d9a37d0b39e45d2fbc62518492d39072fd3d406eb565b5d79765e340521a45f",
+          "created": null,
+          "labels": {},
+          "layers_count": 2,
+          "user": ""
+        },
+        {
+          "architecture": "arm64",
+          "os": "linux",
+          "digest": "sha256:406a82d496b0c16f074a7be9ddefcfa32d19fedd4207f0a67410a38386234202",
+          "variant": "v8",
+          "created": "2026-02-17T20:19:18.415984971Z",
+          "labels": {
+            "org.opencontainers.image.ref.name": "ubuntu",
+            "org.opencontainers.image.version": "24.04"
+          },
+          "layers_count": 5,
+          "user": ""
+        },
+        {
+          "architecture": "unknown",
+          "os": "unknown",
+          "digest": "sha256:b333c2a0f61962693db51efeb5057eb8ceefe15d2deeb82bda96641eeded84c5",
+          "created": null,
+          "labels": {},
+          "layers_count": 2,
+          "user": ""
+        },
+        {
+          "architecture": "ppc64le",
+          "os": "linux",
+          "digest": "sha256:d30461e74cd7b2e4abb6656ac1ab2ab7a6fb29d98566f8f85af042af0011b8f5",
+          "created": "2026-02-17T20:18:42.926067498Z",
+          "labels": {
+            "org.opencontainers.image.ref.name": "ubuntu",
+            "org.opencontainers.image.version": "24.04"
+          },
+          "layers_count": 5,
+          "user": ""
+        },
+        {
+          "architecture": "unknown",
+          "os": "unknown",
+          "digest": "sha256:4572ffd591c8296304ad5afd96c3da16766addc999e62d6570cf0a6e87ecb6d4",
+          "created": null,
+          "labels": {},
+          "layers_count": 2,
+          "user": ""
+        },
+        {
+          "architecture": "riscv64",
+          "os": "linux",
+          "digest": "sha256:85f58b247c7a0c9a0bdae6be47acf7946a645b8630960e87c06bbb0ae00c133d",
+          "created": "2026-02-17T23:57:10.125262701Z",
+          "labels": {
+            "org.opencontainers.image.ref.name": "ubuntu",
+            "org.opencontainers.image.version": "24.04"
+          },
+          "layers_count": 5,
+          "user": ""
+        },
+        {
+          "architecture": "unknown",
+          "os": "unknown",
+          "digest": "sha256:4d65d5badbfad279dc7d35e6cf170b617e22bdb0596ab18fe940074b3eb7f715",
+          "created": null,
+          "labels": {},
+          "layers_count": 2,
+          "user": ""
+        },
+        {
+          "architecture": "s390x",
+          "os": "linux",
+          "digest": "sha256:5e4fda68e8b9213f77be48f3b85a61a615950b5ff57fb6a4c8f595280a096438",
+          "created": "2026-02-17T20:13:23.809485688Z",
+          "labels": {
+            "org.opencontainers.image.ref.name": "ubuntu",
+            "org.opencontainers.image.version": "24.04"
+          },
+          "layers_count": 5,
+          "user": ""
+        },
+        {
+          "architecture": "unknown",
+          "os": "unknown",
+          "digest": "sha256:5e51cb4ca44fbc90ab7d66ec9cbe5327be3415fe4a1610bbc4711c969e16bc89",
+          "created": null,
+          "labels": {},
+          "layers_count": 2,
+          "user": ""
+        },
+        {
+          "architecture": "amd64",
+          "os": "windows",
+          "digest": "sha256:51042aa95c10446cfe073af7f0df6baff9e494a13fa8522d91473b85c22938ad",
+          "created": "2026-02-10T22:54:22.1987309Z",
+          "labels": {},
+          "layers_count": 7,
+          "user": ""
+        },
+        {
+          "architecture": "amd64",
+          "os": "windows",
+          "digest": "sha256:e8a0201e806b03acb05ee36aa876049990003ea80c75922a48e50961522023ac",
+          "created": "2026-02-10T23:01:59.8463019Z",
+          "labels": {},
+          "layers_count": 7,
+          "user": ""
+        }
+      ]
+    },
+    "trivy": {
+      "analyzer": "trivy",
+      "repository": "library/eclipse-temurin",
+      "tag": "17-jdk",
+      "trivy_version": "2",
+      "vulnerability_count": 75,
+      "critical_count": 0,
+      "high_count": 0,
+      "medium_count": 28,
+      "low_count": 47,
+      "unknown_count": 0,
+      "targets": [
+        {
+          "Target": "library/eclipse-temurin:17-jdk (ubuntu 24.04)",
+          "Vulnerabilities": [
+            {
+              "VulnerabilityID": "CVE-2025-1180",
+              "PkgName": "binutils",
+              "InstalledVersion": "2.42-4ubuntu2.8",
+              "FixedVersion": "",
+              "Severity": "MEDIUM",
+              "Title": "binutils: GNU Binutils ld elf-eh-frame.c _bfd_elf_write_section_eh_frame memory corruption",
+              "Description": "A vulnerability classified as problematic has been found in GNU Binutils 2.43. This affects the function _bfd_elf_write_section_eh_frame of the file bfd/elf-eh-frame.c of the component ld. The manipulation leads to memory corruption. It is possible to initiate the attack remotely. The complexity of an attack is rather high. The exploitability is told to be difficult. The exploit has been disclosed to the public and may be used. It is recommended to apply a patch to fix this issue."
+            },
+            {
+              "VulnerabilityID": "CVE-2017-13716",
+              "PkgName": "binutils",
+              "InstalledVersion": "2.42-4ubuntu2.8",
+              "FixedVersion": "",
+              "Severity": "LOW",
+              "Title": "binutils: Memory leak with the C++ symbol demangler routine in libiberty",
+              "Description": "The C++ symbol demangler routine in cplus-dem.c in libiberty, as distributed in GNU Binutils 2.29, allows remote attackers to cause a denial of service (excessive memory allocation and application crash) via a crafted file, as demonstrated by a call from the Binary File Descriptor (BFD) library (aka libbfd)."
+            },
+            {
+              "VulnerabilityID": "CVE-2025-1152",
+              "PkgName": "binutils",
+              "InstalledVersion": "2.42-4ubuntu2.8",
+              "FixedVersion": "",
+              "Severity": "LOW",
+              "Title": "binutils: GNU Binutils ld xstrdup.c xstrdup memory leak",
+              "Description": "A vulnerability classified as problematic has been found in GNU Binutils 2.43. Affected is the function xstrdup of the file xstrdup.c of the component ld. The manipulation leads to memory leak. It is possible to launch the attack remotely. The complexity of an attack is rather high. The exploitability is told to be difficult. The exploit has been disclosed to the public and may be used. It is recommended to apply a patch to fix this issue. The code maintainer explains: \"I'm not going to commit some of the leak fixes I've been working on to the 2.44 branch due to concern that would destabilise ld. All of the reported leaks in this bugzilla have been fixed on binutils master.\""
+            },
+            {
+              "VulnerabilityID": "CVE-2025-1180",
+              "PkgName": "binutils-common",
+              "InstalledVersion": "2.42-4ubuntu2.8",
+              "FixedVersion": "",
+              "Severity": "MEDIUM",
+              "Title": "binutils: GNU Binutils ld elf-eh-frame.c _bfd_elf_write_section_eh_frame memory corruption",
+              "Description": "A vulnerability classified as problematic has been found in GNU Binutils 2.43. This affects the function _bfd_elf_write_section_eh_frame of the file bfd/elf-eh-frame.c of the component ld. The manipulation leads to memory corruption. It is possible to initiate the attack remotely. The complexity of an attack is rather high. The exploitability is told to be difficult. The exploit has been disclosed to the public and may be used. It is recommended to apply a patch to fix this issue."
+            },
+            {
+              "VulnerabilityID": "CVE-2017-13716",
+              "PkgName": "binutils-common",
+              "InstalledVersion": "2.42-4ubuntu2.8",
+              "FixedVersion": "",
+              "Severity": "LOW",
+              "Title": "binutils: Memory leak with the C++ symbol demangler routine in libiberty",
+              "Description": "The C++ symbol demangler routine in cplus-dem.c in libiberty, as distributed in GNU Binutils 2.29, allows remote attackers to cause a denial of service (excessive memory allocation and application crash) via a crafted file, as demonstrated by a call from the Binary File Descriptor (BFD) library (aka libbfd)."
+            },
+            {
+              "VulnerabilityID": "CVE-2025-1152",
+              "PkgName": "binutils-common",
+              "InstalledVersion": "2.42-4ubuntu2.8",
+              "FixedVersion": "",
+              "Severity": "LOW",
+              "Title": "binutils: GNU Binutils ld xstrdup.c xstrdup memory leak",
+              "Description": "A vulnerability classified as problematic has been found in GNU Binutils 2.43. Affected is the function xstrdup of the file xstrdup.c of the component ld. The manipulation leads to memory leak. It is possible to launch the attack remotely. The complexity of an attack is rather high. The exploitability is told to be difficult. The exploit has been disclosed to the public and may be used. It is recommended to apply a patch to fix this issue. The code maintainer explains: \"I'm not going to commit some of the leak fixes I've been working on to the 2.44 branch due to concern that would destabilise ld. All of the reported leaks in this bugzilla have been fixed on binutils master.\""
+            },
+            {
+              "VulnerabilityID": "CVE-2025-1180",
+              "PkgName": "binutils-x86-64-linux-gnu",
+              "InstalledVersion": "2.42-4ubuntu2.8",
+              "FixedVersion": "",
+              "Severity": "MEDIUM",
+              "Title": "binutils: GNU Binutils ld elf-eh-frame.c _bfd_elf_write_section_eh_frame memory corruption",
+              "Description": "A vulnerability classified as problematic has been found in GNU Binutils 2.43. This affects the function _bfd_elf_write_section_eh_frame of the file bfd/elf-eh-frame.c of the component ld. The manipulation leads to memory corruption. It is possible to initiate the attack remotely. The complexity of an attack is rather high. The exploitability is told to be difficult. The exploit has been disclosed to the public and may be used. It is recommended to apply a patch to fix this issue."
+            },
+            {
+              "VulnerabilityID": "CVE-2017-13716",
+              "PkgName": "binutils-x86-64-linux-gnu",
+              "InstalledVersion": "2.42-4ubuntu2.8",
+              "FixedVersion": "",
+              "Severity": "LOW",
+              "Title": "binutils: Memory leak with the C++ symbol demangler routine in libiberty",
+              "Description": "The C++ symbol demangler routine in cplus-dem.c in libiberty, as distributed in GNU Binutils 2.29, allows remote attackers to cause a denial of service (excessive memory allocation and application crash) via a crafted file, as demonstrated by a call from the Binary File Descriptor (BFD) library (aka libbfd)."
+            },
+            {
+              "VulnerabilityID": "CVE-2025-1152",
+              "PkgName": "binutils-x86-64-linux-gnu",
+              "InstalledVersion": "2.42-4ubuntu2.8",
+              "FixedVersion": "",
+              "Severity": "LOW",
+              "Title": "binutils: GNU Binutils ld xstrdup.c xstrdup memory leak",
+              "Description": "A vulnerability classified as problematic has been found in GNU Binutils 2.43. Affected is the function xstrdup of the file xstrdup.c of the component ld. The manipulation leads to memory leak. It is possible to launch the attack remotely. The complexity of an attack is rather high. The exploitability is told to be difficult. The exploit has been disclosed to the public and may be used. It is recommended to apply a patch to fix this issue. The code maintainer explains: \"I'm not going to commit some of the leak fixes I've been working on to the 2.44 branch due to concern that would destabilise ld. All of the reported leaks in this bugzilla have been fixed on binutils master.\""
+            },
+            {
+              "VulnerabilityID": "CVE-2016-2781",
+              "PkgName": "coreutils",
+              "InstalledVersion": "9.4-3ubuntu6.1",
+              "FixedVersion": "",
+              "Severity": "LOW",
+              "Title": "coreutils: Non-privileged session can escape to the parent session in chroot",
+              "Description": "chroot in GNU coreutils, when used with --userspec, allows local users to escape to the parent session via a crafted TIOCSTI ioctl call, which pushes characters to the terminal's input buffer."
+            },
+            {
+              "VulnerabilityID": "CVE-2025-0167",
+              "PkgName": "curl",
+              "InstalledVersion": "8.5.0-2ubuntu10.6",
+              "FixedVersion": "",
+              "Severity": "LOW",
+              "Title": "When asked to use a `.netrc` file for credentials **and** to follow HT ...",
+              "Description": "When asked to use a `.netrc` file for credentials **and** to follow HTTP\nredirects, curl could leak the password used for the first host to the\nfollowed-to host under certain circumstances.\n\nThis flaw only manifests itself if the netrc file has a `default` entry that\nomits both login and password. A rare circumstance."
+            },
+            {
+              "VulnerabilityID": "CVE-2025-10148",
+              "PkgName": "curl",
+              "InstalledVersion": "8.5.0-2ubuntu10.6",
+              "FixedVersion": "",
+              "Severity": "LOW",
+              "Title": "curl: predictable WebSocket mask",
+              "Description": "curl's websocket code did not update the 32 bit mask pattern for each new\n outgoing frame as the specification says. Instead it used a fixed mask that\npersisted and was used throughout the entire connection.\n\nA predictable mask pattern allows for a malicious server to induce traffic\nbetween the two communicating parties that could be interpreted by an involved\nproxy (configured or transparent) as genuine, real, HTTP traffic with content\nand thereby poison its cache. That cached poisoned content could then be\nserved to all users of that proxy."
+            },
+            {
+              "VulnerabilityID": "CVE-2025-14524",
+              "PkgName": "curl",
+              "InstalledVersion": "8.5.0-2ubuntu10.6",
+              "FixedVersion": "",
+              "Severity": "LOW",
+              "Title": "When an OAuth2 bearer token is used for an HTTP(S) transfer, and that  ...",
+              "Description": "When an OAuth2 bearer token is used for an HTTP(S) transfer, and that transfer\nperforms a cross-protocol redirect to a second URL that uses an IMAP, LDAP,\nPOP3 or SMTP scheme, curl might wrongly pass on the bearer token to the new\ntarget host."
+            },
+            {
+              "VulnerabilityID": "CVE-2025-14819",
+              "PkgName": "curl",
+              "InstalledVersion": "8.5.0-2ubuntu10.6",
+              "FixedVersion": "",
+              "Severity": "LOW",
+              "Title": "When doing TLS related transfers with reused easy or multi handles and ...",
+              "Description": "When doing TLS related transfers with reused easy or multi handles and\naltering the  `CURLSSLOPT_NO_PARTIALCHAIN` option, libcurl could accidentally\nreuse a CA store cached in memory for which the partial chain option was\nreversed. Contrary to the user's wishes and expectations. This could make\nlibcurl find and accept a trust chain that it otherwise would not."
+            },
+            {
+              "VulnerabilityID": "CVE-2025-15079",
+              "PkgName": "curl",
+              "InstalledVersion": "8.5.0-2ubuntu10.6",
+              "FixedVersion": "",
+              "Severity": "LOW",
+              "Title": "When doing SSH-based transfers using either SCP or SFTP, and setting t ...",
+              "Description": "When doing SSH-based transfers using either SCP or SFTP, and setting the\nknown_hosts file, libcurl could still mistakenly accept connecting to hosts\n*not present* in the specified file if they were added as recognized in the\nlibssh *global* known_hosts file."
+            },
+            {
+              "VulnerabilityID": "CVE-2025-15224",
+              "PkgName": "curl",
+              "InstalledVersion": "8.5.0-2ubuntu10.6",
+              "FixedVersion": "",
+              "Severity": "LOW",
+              "Title": "When doing SSH-based transfers using either SCP or SFTP, and asked to  ...",
+              "Description": "When doing SSH-based transfers using either SCP or SFTP, and asked to do\npublic key authentication, curl would wrongly still ask and authenticate using\na locally running SSH agent."
+            },
+            {
+              "VulnerabilityID": "CVE-2025-9086",
+              "PkgName": "curl",
+              "InstalledVersion": "8.5.0-2ubuntu10.6",
+              "FixedVersion": "",
+              "Severity": "LOW",
+              "Title": "curl: libcurl: Curl out of bounds read for cookie path",
+              "Description": "1. A cookie is set using the `secure` keyword for `https://target` \n 2. curl is redirected to or otherwise made to speak with `http://target` (same \n   hostname, but using clear text HTTP) using the same cookie set \n 3. The same cookie name is set - but with just a slash as path (`path=\\\"/\\\",`).\n   Since this site is not secure, the cookie *should* just be ignored.\n4. A bug in the path comparison logic makes curl read outside a heap buffer\n   boundary\n\nThe bug either causes a crash or it potentially makes the comparison come to\nthe wrong conclusion and lets the clear-text site override the contents of the\nsecure cookie, contrary to expectations and depending on the memory contents\nimmediately following the single-byte allocation that holds the path.\n\nThe presumed and correct behavior would be to plainly ignore the second set of\nthe cookie since it was already set as secure on a secure host so overriding\nit on an insecure host should not be okay."
+            },
+            {
+              "VulnerabilityID": "CVE-2025-68972",
+              "PkgName": "dirmngr",
+              "InstalledVersion": "2.4.4-2ubuntu17.4",
+              "FixedVersion": "",
+              "Severity": "MEDIUM",
+              "Title": "gnupg: GnuPG: Signature bypass via form feed character in signed messages",
+              "Description": "In GnuPG through 2.4.8, if a signed message has \\f at the end of a plaintext line, an adversary can construct a modified message that places additional text after the signed material, such that signature verification of the modified message succeeds (although an \"invalid armor\" message is printed during verification). This is related to use of \\f as a marker to denote truncation of a long plaintext line."
+            },
+            {
+              "VulnerabilityID": "CVE-2022-3219",
+              "PkgName": "dirmngr",
+              "InstalledVersion": "2.4.4-2ubuntu17.4",
+              "FixedVersion": "",
+              "Severity": "LOW",
+              "Title": "gnupg: denial of service issue (resource consumption) using compressed packets",
+              "Description": "GnuPG can be made to spin on a relatively small input by (for example) crafting a public key with thousands of signatures attached, compressed down to just a few KB."
+            },
+            {
+              "VulnerabilityID": "CVE-2025-68972",
+              "PkgName": "gnupg",
+              "InstalledVersion": "2.4.4-2ubuntu17.4",
+              "FixedVersion": "",
+              "Severity": "MEDIUM",
+              "Title": "gnupg: GnuPG: Signature bypass via form feed character in signed messages",
+              "Description": "In GnuPG through 2.4.8, if a signed message has \\f at the end of a plaintext line, an adversary can construct a modified message that places additional text after the signed material, such that signature verification of the modified message succeeds (although an \"invalid armor\" message is printed during verification). This is related to use of \\f as a marker to denote truncation of a long plaintext line."
+            },
+            {
+              "VulnerabilityID": "CVE-2022-3219",
+              "PkgName": "gnupg",
+              "InstalledVersion": "2.4.4-2ubuntu17.4",
+              "FixedVersion": "",
+              "Severity": "LOW",
+              "Title": "gnupg: denial of service issue (resource consumption) using compressed packets",
+              "Description": "GnuPG can be made to spin on a relatively small input by (for example) crafting a public key with thousands of signatures attached, compressed down to just a few KB."
+            },
+            {
+              "VulnerabilityID": "CVE-2025-68972",
+              "PkgName": "gnupg-utils",
+              "InstalledVersion": "2.4.4-2ubuntu17.4",
+              "FixedVersion": "",
+              "Severity": "MEDIUM",
+              "Title": "gnupg: GnuPG: Signature bypass via form feed character in signed messages",
+              "Description": "In GnuPG through 2.4.8, if a signed message has \\f at the end of a plaintext line, an adversary can construct a modified message that places additional text after the signed material, such that signature verification of the modified message succeeds (although an \"invalid armor\" message is printed during verification). This is related to use of \\f as a marker to denote truncation of a long plaintext line."
+            },
+            {
+              "VulnerabilityID": "CVE-2022-3219",
+              "PkgName": "gnupg-utils",
+              "InstalledVersion": "2.4.4-2ubuntu17.4",
+              "FixedVersion": "",
+              "Severity": "LOW",
+              "Title": "gnupg: denial of service issue (resource consumption) using compressed packets",
+              "Description": "GnuPG can be made to spin on a relatively small input by (for example) crafting a public key with thousands of signatures attached, compressed down to just a few KB."
+            },
+            {
+              "VulnerabilityID": "CVE-2025-68972",
+              "PkgName": "gpg",
+              "InstalledVersion": "2.4.4-2ubuntu17.4",
+              "FixedVersion": "",
+              "Severity": "MEDIUM",
+              "Title": "gnupg: GnuPG: Signature bypass via form feed character in signed messages",
+              "Description": "In GnuPG through 2.4.8, if a signed message has \\f at the end of a plaintext line, an adversary can construct a modified message that places additional text after the signed material, such that signature verification of the modified message succeeds (although an \"invalid armor\" message is printed during verification). This is related to use of \\f as a marker to denote truncation of a long plaintext line."
+            },
+            {
+              "VulnerabilityID": "CVE-2022-3219",
+              "PkgName": "gpg",
+              "InstalledVersion": "2.4.4-2ubuntu17.4",
+              "FixedVersion": "",
+              "Severity": "LOW",
+              "Title": "gnupg: denial of service issue (resource consumption) using compressed packets",
+              "Description": "GnuPG can be made to spin on a relatively small input by (for example) crafting a public key with thousands of signatures attached, compressed down to just a few KB."
+            },
+            {
+              "VulnerabilityID": "CVE-2025-68972",
+              "PkgName": "gpg-agent",
+              "InstalledVersion": "2.4.4-2ubuntu17.4",
+              "FixedVersion": "",
+              "Severity": "MEDIUM",
+              "Title": "gnupg: GnuPG: Signature bypass via form feed character in signed messages",
+              "Description": "In GnuPG through 2.4.8, if a signed message has \\f at the end of a plaintext line, an adversary can construct a modified message that places additional text after the signed material, such that signature verification of the modified message succeeds (although an \"invalid armor\" message is printed during verification). This is related to use of \\f as a marker to denote truncation of a long plaintext line."
+            },
+            {
+              "VulnerabilityID": "CVE-2022-3219",
+              "PkgName": "gpg-agent",
+              "InstalledVersion": "2.4.4-2ubuntu17.4",
+              "FixedVersion": "",
+              "Severity": "LOW",
+              "Title": "gnupg: denial of service issue (resource consumption) using compressed packets",
+              "Description": "GnuPG can be made to spin on a relatively small input by (for example) crafting a public key with thousands of signatures attached, compressed down to just a few KB."
+            },
+            {
+              "VulnerabilityID": "CVE-2025-68972",
+              "PkgName": "gpgconf",
+              "InstalledVersion": "2.4.4-2ubuntu17.4",
+              "FixedVersion": "",
+              "Severity": "MEDIUM",
+              "Title": "gnupg: GnuPG: Signature bypass via form feed character in signed messages",
+              "Description": "In GnuPG through 2.4.8, if a signed message has \\f at the end of a plaintext line, an adversary can construct a modified message that places additional text after the signed material, such that signature verification of the modified message succeeds (although an \"invalid armor\" message is printed during verification). This is related to use of \\f as a marker to denote truncation of a long plaintext line."
+            },
+            {
+              "VulnerabilityID": "CVE-2022-3219",
+              "PkgName": "gpgconf",
+              "InstalledVersion": "2.4.4-2ubuntu17.4",
+              "FixedVersion": "",
+              "Severity": "LOW",
+              "Title": "gnupg: denial of service issue (resource consumption) using compressed packets",
+              "Description": "GnuPG can be made to spin on a relatively small input by (for example) crafting a public key with thousands of signatures attached, compressed down to just a few KB."
+            },
+            {
+              "VulnerabilityID": "CVE-2025-68972",
+              "PkgName": "gpgsm",
+              "InstalledVersion": "2.4.4-2ubuntu17.4",
+              "FixedVersion": "",
+              "Severity": "MEDIUM",
+              "Title": "gnupg: GnuPG: Signature bypass via form feed character in signed messages",
+              "Description": "In GnuPG through 2.4.8, if a signed message has \\f at the end of a plaintext line, an adversary can construct a modified message that places additional text after the signed material, such that signature verification of the modified message succeeds (although an \"invalid armor\" message is printed during verification). This is related to use of \\f as a marker to denote truncation of a long plaintext line."
+            },
+            {
+              "VulnerabilityID": "CVE-2022-3219",
+              "PkgName": "gpgsm",
+              "InstalledVersion": "2.4.4-2ubuntu17.4",
+              "FixedVersion": "",
+              "Severity": "LOW",
+              "Title": "gnupg: denial of service issue (resource consumption) using compressed packets",
+              "Description": "GnuPG can be made to spin on a relatively small input by (for example) crafting a public key with thousands of signatures attached, compressed down to just a few KB."
+            },
+            {
+              "VulnerabilityID": "CVE-2025-68972",
+              "PkgName": "gpgv",
+              "InstalledVersion": "2.4.4-2ubuntu17.4",
+              "FixedVersion": "",
+              "Severity": "MEDIUM",
+              "Title": "gnupg: GnuPG: Signature bypass via form feed character in signed messages",
+              "Description": "In GnuPG through 2.4.8, if a signed message has \\f at the end of a plaintext line, an adversary can construct a modified message that places additional text after the signed material, such that signature verification of the modified message succeeds (although an \"invalid armor\" message is printed during verification). This is related to use of \\f as a marker to denote truncation of a long plaintext line."
+            },
+            {
+              "VulnerabilityID": "CVE-2022-3219",
+              "PkgName": "gpgv",
+              "InstalledVersion": "2.4.4-2ubuntu17.4",
+              "FixedVersion": "",
+              "Severity": "LOW",
+              "Title": "gnupg: denial of service issue (resource consumption) using compressed packets",
+              "Description": "GnuPG can be made to spin on a relatively small input by (for example) crafting a public key with thousands of signatures attached, compressed down to just a few KB."
+            },
+            {
+              "VulnerabilityID": "CVE-2025-68972",
+              "PkgName": "keyboxd",
+              "InstalledVersion": "2.4.4-2ubuntu17.4",
+              "FixedVersion": "",
+              "Severity": "MEDIUM",
+              "Title": "gnupg: GnuPG: Signature bypass via form feed character in signed messages",
+              "Description": "In GnuPG through 2.4.8, if a signed message has \\f at the end of a plaintext line, an adversary can construct a modified message that places additional text after the signed material, such that signature verification of the modified message succeeds (although an \"invalid armor\" message is printed during verification). This is related to use of \\f as a marker to denote truncation of a long plaintext line."
+            },
+            {
+              "VulnerabilityID": "CVE-2022-3219",
+              "PkgName": "keyboxd",
+              "InstalledVersion": "2.4.4-2ubuntu17.4",
+              "FixedVersion": "",
+              "Severity": "LOW",
+              "Title": "gnupg: denial of service issue (resource consumption) using compressed packets",
+              "Description": "GnuPG can be made to spin on a relatively small input by (for example) crafting a public key with thousands of signatures attached, compressed down to just a few KB."
+            },
+            {
+              "VulnerabilityID": "CVE-2025-1180",
+              "PkgName": "libbinutils",
+              "InstalledVersion": "2.42-4ubuntu2.8",
+              "FixedVersion": "",
+              "Severity": "MEDIUM",
+              "Title": "binutils: GNU Binutils ld elf-eh-frame.c _bfd_elf_write_section_eh_frame memory corruption",
+              "Description": "A vulnerability classified as problematic has been found in GNU Binutils 2.43. This affects the function _bfd_elf_write_section_eh_frame of the file bfd/elf-eh-frame.c of the component ld. The manipulation leads to memory corruption. It is possible to initiate the attack remotely. The complexity of an attack is rather high. The exploitability is told to be difficult. The exploit has been disclosed to the public and may be used. It is recommended to apply a patch to fix this issue."
+            },
+            {
+              "VulnerabilityID": "CVE-2017-13716",
+              "PkgName": "libbinutils",
+              "InstalledVersion": "2.42-4ubuntu2.8",
+              "FixedVersion": "",
+              "Severity": "LOW",
+              "Title": "binutils: Memory leak with the C++ symbol demangler routine in libiberty",
+              "Description": "The C++ symbol demangler routine in cplus-dem.c in libiberty, as distributed in GNU Binutils 2.29, allows remote attackers to cause a denial of service (excessive memory allocation and application crash) via a crafted file, as demonstrated by a call from the Binary File Descriptor (BFD) library (aka libbfd)."
+            },
+            {
+              "VulnerabilityID": "CVE-2025-1152",
+              "PkgName": "libbinutils",
+              "InstalledVersion": "2.42-4ubuntu2.8",
+              "FixedVersion": "",
+              "Severity": "LOW",
+              "Title": "binutils: GNU Binutils ld xstrdup.c xstrdup memory leak",
+              "Description": "A vulnerability classified as problematic has been found in GNU Binutils 2.43. Affected is the function xstrdup of the file xstrdup.c of the component ld. The manipulation leads to memory leak. It is possible to launch the attack remotely. The complexity of an attack is rather high. The exploitability is told to be difficult. The exploit has been disclosed to the public and may be used. It is recommended to apply a patch to fix this issue. The code maintainer explains: \"I'm not going to commit some of the leak fixes I've been working on to the 2.44 branch due to concern that would destabilise ld. All of the reported leaks in this bugzilla have been fixed on binutils master.\""
+            },
+            {
+              "VulnerabilityID": "CVE-2025-1180",
+              "PkgName": "libctf-nobfd0",
+              "InstalledVersion": "2.42-4ubuntu2.8",
+              "FixedVersion": "",
+              "Severity": "MEDIUM",
+              "Title": "binutils: GNU Binutils ld elf-eh-frame.c _bfd_elf_write_section_eh_frame memory corruption",
+              "Description": "A vulnerability classified as problematic has been found in GNU Binutils 2.43. This affects the function _bfd_elf_write_section_eh_frame of the file bfd/elf-eh-frame.c of the component ld. The manipulation leads to memory corruption. It is possible to initiate the attack remotely. The complexity of an attack is rather high. The exploitability is told to be difficult. The exploit has been disclosed to the public and may be used. It is recommended to apply a patch to fix this issue."
+            },
+            {
+              "VulnerabilityID": "CVE-2017-13716",
+              "PkgName": "libctf-nobfd0",
+              "InstalledVersion": "2.42-4ubuntu2.8",
+              "FixedVersion": "",
+              "Severity": "LOW",
+              "Title": "binutils: Memory leak with the C++ symbol demangler routine in libiberty",
+              "Description": "The C++ symbol demangler routine in cplus-dem.c in libiberty, as distributed in GNU Binutils 2.29, allows remote attackers to cause a denial of service (excessive memory allocation and application crash) via a crafted file, as demonstrated by a call from the Binary File Descriptor (BFD) library (aka libbfd)."
+            },
+            {
+              "VulnerabilityID": "CVE-2025-1152",
+              "PkgName": "libctf-nobfd0",
+              "InstalledVersion": "2.42-4ubuntu2.8",
+              "FixedVersion": "",
+              "Severity": "LOW",
+              "Title": "binutils: GNU Binutils ld xstrdup.c xstrdup memory leak",
+              "Description": "A vulnerability classified as problematic has been found in GNU Binutils 2.43. Affected is the function xstrdup of the file xstrdup.c of the component ld. The manipulation leads to memory leak. It is possible to launch the attack remotely. The complexity of an attack is rather high. The exploitability is told to be difficult. The exploit has been disclosed to the public and may be used. It is recommended to apply a patch to fix this issue. The code maintainer explains: \"I'm not going to commit some of the leak fixes I've been working on to the 2.44 branch due to concern that would destabilise ld. All of the reported leaks in this bugzilla have been fixed on binutils master.\""
+            },
+            {
+              "VulnerabilityID": "CVE-2025-1180",
+              "PkgName": "libctf0",
+              "InstalledVersion": "2.42-4ubuntu2.8",
+              "FixedVersion": "",
+              "Severity": "MEDIUM",
+              "Title": "binutils: GNU Binutils ld elf-eh-frame.c _bfd_elf_write_section_eh_frame memory corruption",
+              "Description": "A vulnerability classified as problematic has been found in GNU Binutils 2.43. This affects the function _bfd_elf_write_section_eh_frame of the file bfd/elf-eh-frame.c of the component ld. The manipulation leads to memory corruption. It is possible to initiate the attack remotely. The complexity of an attack is rather high. The exploitability is told to be difficult. The exploit has been disclosed to the public and may be used. It is recommended to apply a patch to fix this issue."
+            },
+            {
+              "VulnerabilityID": "CVE-2017-13716",
+              "PkgName": "libctf0",
+              "InstalledVersion": "2.42-4ubuntu2.8",
+              "FixedVersion": "",
+              "Severity": "LOW",
+              "Title": "binutils: Memory leak with the C++ symbol demangler routine in libiberty",
+              "Description": "The C++ symbol demangler routine in cplus-dem.c in libiberty, as distributed in GNU Binutils 2.29, allows remote attackers to cause a denial of service (excessive memory allocation and application crash) via a crafted file, as demonstrated by a call from the Binary File Descriptor (BFD) library (aka libbfd)."
+            },
+            {
+              "VulnerabilityID": "CVE-2025-1152",
+              "PkgName": "libctf0",
+              "InstalledVersion": "2.42-4ubuntu2.8",
+              "FixedVersion": "",
+              "Severity": "LOW",
+              "Title": "binutils: GNU Binutils ld xstrdup.c xstrdup memory leak",
+              "Description": "A vulnerability classified as problematic has been found in GNU Binutils 2.43. Affected is the function xstrdup of the file xstrdup.c of the component ld. The manipulation leads to memory leak. It is possible to launch the attack remotely. The complexity of an attack is rather high. The exploitability is told to be difficult. The exploit has been disclosed to the public and may be used. It is recommended to apply a patch to fix this issue. The code maintainer explains: \"I'm not going to commit some of the leak fixes I've been working on to the 2.44 branch due to concern that would destabilise ld. All of the reported leaks in this bugzilla have been fixed on binutils master.\""
+            },
+            {
+              "VulnerabilityID": "CVE-2025-0167",
+              "PkgName": "libcurl4t64",
+              "InstalledVersion": "8.5.0-2ubuntu10.6",
+              "FixedVersion": "",
+              "Severity": "LOW",
+              "Title": "When asked to use a `.netrc` file for credentials **and** to follow HT ...",
+              "Description": "When asked to use a `.netrc` file for credentials **and** to follow HTTP\nredirects, curl could leak the password used for the first host to the\nfollowed-to host under certain circumstances.\n\nThis flaw only manifests itself if the netrc file has a `default` entry that\nomits both login and password. A rare circumstance."
+            },
+            {
+              "VulnerabilityID": "CVE-2025-10148",
+              "PkgName": "libcurl4t64",
+              "InstalledVersion": "8.5.0-2ubuntu10.6",
+              "FixedVersion": "",
+              "Severity": "LOW",
+              "Title": "curl: predictable WebSocket mask",
+              "Description": "curl's websocket code did not update the 32 bit mask pattern for each new\n outgoing frame as the specification says. Instead it used a fixed mask that\npersisted and was used throughout the entire connection.\n\nA predictable mask pattern allows for a malicious server to induce traffic\nbetween the two communicating parties that could be interpreted by an involved\nproxy (configured or transparent) as genuine, real, HTTP traffic with content\nand thereby poison its cache. That cached poisoned content could then be\nserved to all users of that proxy."
+            },
+            {
+              "VulnerabilityID": "CVE-2025-14524",
+              "PkgName": "libcurl4t64",
+              "InstalledVersion": "8.5.0-2ubuntu10.6",
+              "FixedVersion": "",
+              "Severity": "LOW",
+              "Title": "When an OAuth2 bearer token is used for an HTTP(S) transfer, and that  ...",
+              "Description": "When an OAuth2 bearer token is used for an HTTP(S) transfer, and that transfer\nperforms a cross-protocol redirect to a second URL that uses an IMAP, LDAP,\nPOP3 or SMTP scheme, curl might wrongly pass on the bearer token to the new\ntarget host."
+            },
+            {
+              "VulnerabilityID": "CVE-2025-14819",
+              "PkgName": "libcurl4t64",
+              "InstalledVersion": "8.5.0-2ubuntu10.6",
+              "FixedVersion": "",
+              "Severity": "LOW",
+              "Title": "When doing TLS related transfers with reused easy or multi handles and ...",
+              "Description": "When doing TLS related transfers with reused easy or multi handles and\naltering the  `CURLSSLOPT_NO_PARTIALCHAIN` option, libcurl could accidentally\nreuse a CA store cached in memory for which the partial chain option was\nreversed. Contrary to the user's wishes and expectations. This could make\nlibcurl find and accept a trust chain that it otherwise would not."
+            },
+            {
+              "VulnerabilityID": "CVE-2025-15079",
+              "PkgName": "libcurl4t64",
+              "InstalledVersion": "8.5.0-2ubuntu10.6",
+              "FixedVersion": "",
+              "Severity": "LOW",
+              "Title": "When doing SSH-based transfers using either SCP or SFTP, and setting t ...",
+              "Description": "When doing SSH-based transfers using either SCP or SFTP, and setting the\nknown_hosts file, libcurl could still mistakenly accept connecting to hosts\n*not present* in the specified file if they were added as recognized in the\nlibssh *global* known_hosts file."
+            },
+            {
+              "VulnerabilityID": "CVE-2025-15224",
+              "PkgName": "libcurl4t64",
+              "InstalledVersion": "8.5.0-2ubuntu10.6",
+              "FixedVersion": "",
+              "Severity": "LOW",
+              "Title": "When doing SSH-based transfers using either SCP or SFTP, and asked to  ...",
+              "Description": "When doing SSH-based transfers using either SCP or SFTP, and asked to do\npublic key authentication, curl would wrongly still ask and authenticate using\na locally running SSH agent."
+            },
+            {
+              "VulnerabilityID": "CVE-2025-9086",
+              "PkgName": "libcurl4t64",
+              "InstalledVersion": "8.5.0-2ubuntu10.6",
+              "FixedVersion": "",
+              "Severity": "LOW",
+              "Title": "curl: libcurl: Curl out of bounds read for cookie path",
+              "Description": "1. A cookie is set using the `secure` keyword for `https://target` \n 2. curl is redirected to or otherwise made to speak with `http://target` (same \n   hostname, but using clear text HTTP) using the same cookie set \n 3. The same cookie name is set - but with just a slash as path (`path=\\\"/\\\",`).\n   Since this site is not secure, the cookie *should* just be ignored.\n4. A bug in the path comparison logic makes curl read outside a heap buffer\n   boundary\n\nThe bug either causes a crash or it potentially makes the comparison come to\nthe wrong conclusion and lets the clear-text site override the contents of the\nsecure cookie, contrary to expectations and depending on the memory contents\nimmediately following the single-byte allocation that holds the path.\n\nThe presumed and correct behavior would be to plainly ignore the second set of\nthe cookie since it was already set as secure on a secure host so overriding\nit on an insecure host should not be okay."
+            },
+            {
+              "VulnerabilityID": "CVE-2025-66382",
+              "PkgName": "libexpat1",
+              "InstalledVersion": "2.6.1-2ubuntu0.4",
+              "FixedVersion": "",
+              "Severity": "MEDIUM",
+              "Title": "libexpat: libexpat: Denial of service via crafted file processing",
+              "Description": "In libexpat through 2.7.3, a crafted file with an approximate size of 2 MiB can lead to dozens of seconds of processing time."
+            },
+            {
+              "VulnerabilityID": "CVE-2024-2236",
+              "PkgName": "libgcrypt20",
+              "InstalledVersion": "1.10.3-2build1",
+              "FixedVersion": "",
+              "Severity": "LOW",
+              "Title": "libgcrypt: vulnerable to Marvin Attack",
+              "Description": "A timing-based side-channel flaw was found in libgcrypt's RSA implementation. This issue may allow a remote attacker to initiate a Bleichenbacher-style attack, which can lead to the decryption of RSA ciphertexts."
+            },
+            {
+              "VulnerabilityID": "CVE-2025-14831",
+              "PkgName": "libgnutls30t64",
+              "InstalledVersion": "3.8.3-1.1ubuntu3.4",
+              "FixedVersion": "3.8.3-1.1ubuntu3.5",
+              "Severity": "MEDIUM",
+              "Title": "gnutls: GnuTLS: Denial of Service via excessive resource consumption during certificate verification",
+              "Description": "A flaw was found in GnuTLS. This vulnerability allows a denial of service (DoS) by excessive CPU (Central Processing Unit) and memory consumption via specially crafted malicious certificates containing a large number of name constraints and subject alternative names (SANs)."
+            },
+            {
+              "VulnerabilityID": "CVE-2025-9820",
+              "PkgName": "libgnutls30t64",
+              "InstalledVersion": "3.8.3-1.1ubuntu3.4",
+              "FixedVersion": "3.8.3-1.1ubuntu3.5",
+              "Severity": "LOW",
+              "Title": "gnutls: Stack-based Buffer Overflow in gnutls_pkcs11_token_init() Function",
+              "Description": "A flaw was found in the GnuTLS library, specifically in the gnutls_pkcs11_token_init() function that handles PKCS#11 token initialization. When a token label longer than expected is processed, the function writes past the end of a fixed-size stack buffer. This programming error can cause the application using GnuTLS to crash or, in certain conditions, be exploited for code execution. As a result, systems or applications relying on GnuTLS may be vulnerable to a denial of service or local privilege escalation attacks."
+            },
+            {
+              "VulnerabilityID": "CVE-2025-1180",
+              "PkgName": "libgprofng0",
+              "InstalledVersion": "2.42-4ubuntu2.8",
+              "FixedVersion": "",
+              "Severity": "MEDIUM",
+              "Title": "binutils: GNU Binutils ld elf-eh-frame.c _bfd_elf_write_section_eh_frame memory corruption",
+              "Description": "A vulnerability classified as problematic has been found in GNU Binutils 2.43. This affects the function _bfd_elf_write_section_eh_frame of the file bfd/elf-eh-frame.c of the component ld. The manipulation leads to memory corruption. It is possible to initiate the attack remotely. The complexity of an attack is rather high. The exploitability is told to be difficult. The exploit has been disclosed to the public and may be used. It is recommended to apply a patch to fix this issue."
+            },
+            {
+              "VulnerabilityID": "CVE-2017-13716",
+              "PkgName": "libgprofng0",
+              "InstalledVersion": "2.42-4ubuntu2.8",
+              "FixedVersion": "",
+              "Severity": "LOW",
+              "Title": "binutils: Memory leak with the C++ symbol demangler routine in libiberty",
+              "Description": "The C++ symbol demangler routine in cplus-dem.c in libiberty, as distributed in GNU Binutils 2.29, allows remote attackers to cause a denial of service (excessive memory allocation and application crash) via a crafted file, as demonstrated by a call from the Binary File Descriptor (BFD) library (aka libbfd)."
+            },
+            {
+              "VulnerabilityID": "CVE-2025-1152",
+              "PkgName": "libgprofng0",
+              "InstalledVersion": "2.42-4ubuntu2.8",
+              "FixedVersion": "",
+              "Severity": "LOW",
+              "Title": "binutils: GNU Binutils ld xstrdup.c xstrdup memory leak",
+              "Description": "A vulnerability classified as problematic has been found in GNU Binutils 2.43. Affected is the function xstrdup of the file xstrdup.c of the component ld. The manipulation leads to memory leak. It is possible to launch the attack remotely. The complexity of an attack is rather high. The exploitability is told to be difficult. The exploit has been disclosed to the public and may be used. It is recommended to apply a patch to fix this issue. The code maintainer explains: \"I'm not going to commit some of the leak fixes I've been working on to the 2.44 branch due to concern that would destabilise ld. All of the reported leaks in this bugzilla have been fixed on binutils master.\""
+            },
+            {
+              "VulnerabilityID": "CVE-2025-8941",
+              "PkgName": "libpam-modules",
+              "InstalledVersion": "1.5.3-5ubuntu5.5",
+              "FixedVersion": "",
+              "Severity": "MEDIUM",
+              "Title": "linux-pam: Incomplete fix for CVE-2025-6020",
+              "Description": "A flaw was found in linux-pam. The pam_namespace module may improperly handle user-controlled paths, allowing local users to exploit symlink attacks and race conditions to elevate their privileges to root. This CVE provides a \"complete\" fix for CVE-2025-6020."
+            },
+            {
+              "VulnerabilityID": "CVE-2025-8941",
+              "PkgName": "libpam-modules-bin",
+              "InstalledVersion": "1.5.3-5ubuntu5.5",
+              "FixedVersion": "",
+              "Severity": "MEDIUM",
+              "Title": "linux-pam: Incomplete fix for CVE-2025-6020",
+              "Description": "A flaw was found in linux-pam. The pam_namespace module may improperly handle user-controlled paths, allowing local users to exploit symlink attacks and race conditions to elevate their privileges to root. This CVE provides a \"complete\" fix for CVE-2025-6020."
+            },
+            {
+              "VulnerabilityID": "CVE-2025-8941",
+              "PkgName": "libpam-runtime",
+              "InstalledVersion": "1.5.3-5ubuntu5.5",
+              "FixedVersion": "",
+              "Severity": "MEDIUM",
+              "Title": "linux-pam: Incomplete fix for CVE-2025-6020",
+              "Description": "A flaw was found in linux-pam. The pam_namespace module may improperly handle user-controlled paths, allowing local users to exploit symlink attacks and race conditions to elevate their privileges to root. This CVE provides a \"complete\" fix for CVE-2025-6020."
+            },
+            {
+              "VulnerabilityID": "CVE-2025-8941",
+              "PkgName": "libpam0g",
+              "InstalledVersion": "1.5.3-5ubuntu5.5",
+              "FixedVersion": "",
+              "Severity": "MEDIUM",
+              "Title": "linux-pam: Incomplete fix for CVE-2025-6020",
+              "Description": "A flaw was found in linux-pam. The pam_namespace module may improperly handle user-controlled paths, allowing local users to exploit symlink attacks and race conditions to elevate their privileges to root. This CVE provides a \"complete\" fix for CVE-2025-6020."
+            },
+            {
+              "VulnerabilityID": "CVE-2025-1180",
+              "PkgName": "libsframe1",
+              "InstalledVersion": "2.42-4ubuntu2.8",
+              "FixedVersion": "",
+              "Severity": "MEDIUM",
+              "Title": "binutils: GNU Binutils ld elf-eh-frame.c _bfd_elf_write_section_eh_frame memory corruption",
+              "Description": "A vulnerability classified as problematic has been found in GNU Binutils 2.43. This affects the function _bfd_elf_write_section_eh_frame of the file bfd/elf-eh-frame.c of the component ld. The manipulation leads to memory corruption. It is possible to initiate the attack remotely. The complexity of an attack is rather high. The exploitability is told to be difficult. The exploit has been disclosed to the public and may be used. It is recommended to apply a patch to fix this issue."
+            },
+            {
+              "VulnerabilityID": "CVE-2017-13716",
+              "PkgName": "libsframe1",
+              "InstalledVersion": "2.42-4ubuntu2.8",
+              "FixedVersion": "",
+              "Severity": "LOW",
+              "Title": "binutils: Memory leak with the C++ symbol demangler routine in libiberty",
+              "Description": "The C++ symbol demangler routine in cplus-dem.c in libiberty, as distributed in GNU Binutils 2.29, allows remote attackers to cause a denial of service (excessive memory allocation and application crash) via a crafted file, as demonstrated by a call from the Binary File Descriptor (BFD) library (aka libbfd)."
+            },
+            {
+              "VulnerabilityID": "CVE-2025-1152",
+              "PkgName": "libsframe1",
+              "InstalledVersion": "2.42-4ubuntu2.8",
+              "FixedVersion": "",
+              "Severity": "LOW",
+              "Title": "binutils: GNU Binutils ld xstrdup.c xstrdup memory leak",
+              "Description": "A vulnerability classified as problematic has been found in GNU Binutils 2.43. Affected is the function xstrdup of the file xstrdup.c of the component ld. The manipulation leads to memory leak. It is possible to launch the attack remotely. The complexity of an attack is rather high. The exploitability is told to be difficult. The exploit has been disclosed to the public and may be used. It is recommended to apply a patch to fix this issue. The code maintainer explains: \"I'm not going to commit some of the leak fixes I've been working on to the 2.44 branch due to concern that would destabilise ld. All of the reported leaks in this bugzilla have been fixed on binutils master.\""
+            },
+            {
+              "VulnerabilityID": "CVE-2026-0964",
+              "PkgName": "libssh-4",
+              "InstalledVersion": "0.10.6-2ubuntu0.2",
+              "FixedVersion": "0.10.6-2ubuntu0.3",
+              "Severity": "MEDIUM",
+              "Title": "libssh: Improper sanitation of paths received from SCP servers",
+              "Description": "No description is available for this CVE."
+            },
+            {
+              "VulnerabilityID": "CVE-2026-0967",
+              "PkgName": "libssh-4",
+              "InstalledVersion": "0.10.6-2ubuntu0.2",
+              "FixedVersion": "0.10.6-2ubuntu0.3",
+              "Severity": "MEDIUM",
+              "Title": "libssh: libssh: Denial of Service via inefficient regular expression processing",
+              "Description": "No description is available for this CVE."
+            },
+            {
+              "VulnerabilityID": "CVE-2026-0968",
+              "PkgName": "libssh-4",
+              "InstalledVersion": "0.10.6-2ubuntu0.2",
+              "FixedVersion": "0.10.6-2ubuntu0.3",
+              "Severity": "MEDIUM",
+              "Title": "libssh: libssh: Denial of Service due to malformed SFTP message",
+              "Description": "No description is available for this CVE."
+            },
+            {
+              "VulnerabilityID": "CVE-2025-8277",
+              "PkgName": "libssh-4",
+              "InstalledVersion": "0.10.6-2ubuntu0.2",
+              "FixedVersion": "0.10.6-2ubuntu0.3",
+              "Severity": "LOW",
+              "Title": "libssh: Memory Exhaustion via Repeated Key Exchange in libssh",
+              "Description": "A flaw was found in libssh's handling of key exchange (KEX) processes when a client repeatedly sends incorrect KEX guesses. The library fails to free memory during these rekey operations, which can gradually exhaust system memory. This issue can lead to crashes on the client side, particularly when using libgcrypt, which impacts application stability and availability."
+            },
+            {
+              "VulnerabilityID": "CVE-2026-0965",
+              "PkgName": "libssh-4",
+              "InstalledVersion": "0.10.6-2ubuntu0.2",
+              "FixedVersion": "0.10.6-2ubuntu0.3",
+              "Severity": "LOW",
+              "Title": "libssh: libssh: Denial of Service via improper configuration file handling",
+              "Description": "No description is available for this CVE."
+            },
+            {
+              "VulnerabilityID": "CVE-2026-0966",
+              "PkgName": "libssh-4",
+              "InstalledVersion": "0.10.6-2ubuntu0.2",
+              "FixedVersion": "0.10.6-2ubuntu0.3",
+              "Severity": "LOW",
+              "Title": "libssh: Buffer underflow in ssh_get_hexa() on invalid input",
+              "Description": "No description is available for this CVE."
+            },
+            {
+              "VulnerabilityID": "CVE-2024-56433",
+              "PkgName": "login",
+              "InstalledVersion": "1:4.13+dfsg1-4ubuntu3.2",
+              "FixedVersion": "",
+              "Severity": "LOW",
+              "Title": "shadow-utils: Default subordinate ID configuration in /etc/login.defs could lead to compromise",
+              "Description": "shadow-utils (aka shadow) 4.4 through 4.17.0 establishes a default /etc/subuid behavior (e.g., uid 100000 through 165535 for the first user account) that can realistically conflict with the uids of users defined on locally administered networks, potentially leading to account takeover, e.g., by leveraging newuidmap for access to an NFS home directory (or same-host resources in the case of remote logins by these local network users). NOTE: it may also be argued that system administrators should not have assigned uids, within local networks, that are within the range that can occur in /etc/subuid."
+            },
+            {
+              "VulnerabilityID": "CVE-2024-56433",
+              "PkgName": "passwd",
+              "InstalledVersion": "1:4.13+dfsg1-4ubuntu3.2",
+              "FixedVersion": "",
+              "Severity": "LOW",
+              "Title": "shadow-utils: Default subordinate ID configuration in /etc/login.defs could lead to compromise",
+              "Description": "shadow-utils (aka shadow) 4.4 through 4.17.0 establishes a default /etc/subuid behavior (e.g., uid 100000 through 165535 for the first user account) that can realistically conflict with the uids of users defined on locally administered networks, potentially leading to account takeover, e.g., by leveraging newuidmap for access to an NFS home directory (or same-host resources in the case of remote logins by these local network users). NOTE: it may also be argued that system administrators should not have assigned uids, within local networks, that are within the range that can occur in /etc/subuid."
+            },
+            {
+              "VulnerabilityID": "CVE-2025-45582",
+              "PkgName": "tar",
+              "InstalledVersion": "1.35+dfsg-3build1",
+              "FixedVersion": "",
+              "Severity": "MEDIUM",
+              "Title": "tar: Tar path traversal",
+              "Description": "GNU Tar through 1.35 allows file overwrite via directory traversal in crafted TAR archives, with a certain two-step process. First, the victim must extract an archive that contains a ../ symlink to a critical directory. Second, the victim must extract an archive that contains a critical file, specified via a relative pathname that begins with the symlink name and ends with that critical file's name. Here, the extraction follows the symlink and overwrites the critical file. This bypasses the protection mechanism of \"Member name contains '..'\" that would occur for a single TAR archive that attempted to specify the critical file via a ../ approach. For example, the first archive can contain \"x -> ../../../../../home/victim/.ssh\" and the second archive can contain x/authorized_keys. This can affect server applications that automatically extract any number of user-supplied TAR archives, and were relying on the blocking of traversal. This can also affect software installation processes in which \"tar xf\" is run more than once (e.g., when installing a package can automatically install two dependencies that are set up as untrusted tarballs instead of official packages). NOTE: the official GNU Tar manual has an otherwise-empty directory for each \"tar xf\" in its Security Rules of Thumb; however, third-party advice leads users to run \"tar xf\" more than once into the same directory."
+            },
+            {
+              "VulnerabilityID": "CVE-2021-31879",
+              "PkgName": "wget",
+              "InstalledVersion": "1.21.4-1ubuntu4.1",
+              "FixedVersion": "",
+              "Severity": "MEDIUM",
+              "Title": "wget: authorization header disclosure on redirect",
+              "Description": "GNU Wget through 1.21.1 does not omit the Authorization header upon a redirect to a different origin, a related issue to CVE-2018-1000007."
+            }
+          ]
+        }
+      ]
+    },
+    "versioning": {
+      "analyzer": "versioning",
+      "repository": "library/eclipse-temurin",
+      "total_tags": 2894,
+      "dominant_pattern": "named",
+      "semver_compliant_percentage": 0.0,
+      "patterns": [
+        {
+          "pattern": "named",
+          "count": 2882,
+          "percentage": 99.6,
+          "examples": [
+            "11-alpine",
+            "11-alpine-3.20",
+            "11-alpine-3.21",
+            "11-alpine-3.22",
+            "11-alpine-3.23",
+            "11-centos7",
+            "11-focal",
+            "11-jammy",
+            "11-jdk",
+            "11-jdk-alpine"
+          ]
+        },
+        {
+          "pattern": "numeric",
+          "count": 12,
+          "percentage": 0.4,
+          "examples": [
+            "11",
+            "16",
+            "17",
+            "18",
+            "19",
+            "20",
+            "21",
+            "22",
+            "23",
+            "24"
+          ]
+        }
+      ],
+      "variants": [
+        {
+          "name": "jdk",
+          "count": 1377,
+          "percentage": 47.6,
+          "examples": [
+            "11-jdk",
+            "11-jdk-alpine",
+            "11-jdk-alpine-3.20",
+            "11-jdk-alpine-3.21",
+            "11-jdk-alpine-3.22",
+            "11-jdk-alpine-3.23",
+            "11-jdk-centos7",
+            "11-jdk-focal",
+            "11-jdk-jammy",
+            "11-jdk-nanoserver"
+          ]
+        },
+        {
+          "name": "jre",
+          "count": 1338,
+          "percentage": 46.2,
+          "examples": [
+            "11-jre",
+            "11-jre-alpine",
+            "11-jre-alpine-3.20",
+            "11-jre-alpine-3.21",
+            "11-jre-alpine-3.22",
+            "11-jre-alpine-3.23",
+            "11-jre-centos7",
+            "11-jre-focal",
+            "11-jre-jammy",
+            "11-jre-nanoserver"
+          ]
+        },
+        {
+          "name": "windowsservercore",
+          "count": 738,
+          "percentage": 25.5,
+          "examples": [
+            "11-jdk-windowsservercore",
+            "11-jdk-windowsservercore-1809",
+            "11-jdk-windowsservercore-ltsc2016",
+            "11-jdk-windowsservercore-ltsc2022",
+            "11-jdk-windowsservercore-ltsc2025",
+            "11-jre-windowsservercore",
+            "11-jre-windowsservercore-1809",
+            "11-jre-windowsservercore-ltsc2016",
+            "11-jre-windowsservercore-ltsc2022",
+            "11-jre-windowsservercore-ltsc2025"
+          ]
+        },
+        {
+          "name": "alpine",
+          "count": 466,
+          "percentage": 16.1,
+          "examples": [
+            "11-alpine",
+            "11-alpine-3.20",
+            "11-alpine-3.21",
+            "11-alpine-3.22",
+            "11-alpine-3.23",
+            "11-jdk-alpine",
+            "11-jdk-alpine-3.20",
+            "11-jdk-alpine-3.21",
+            "11-jdk-alpine-3.22",
+            "11-jdk-alpine-3.23"
+          ]
+        },
+        {
+          "name": "minimal",
+          "count": 215,
+          "percentage": 7.4,
+          "examples": [
+            "11-jdk-ubi10-minimal",
+            "11-jdk-ubi9-minimal",
+            "11-jre-ubi10-minimal",
+            "11-jre-ubi9-minimal",
+            "11-ubi10-minimal",
+            "11-ubi9-minimal",
+            "11.0.17_8-jdk-ubi9-minimal",
+            "11.0.17_8-jre-ubi9-minimal",
+            "11.0.18_10-jdk-ubi9-minimal",
+            "11.0.18_10-jre-ubi9-minimal"
+          ]
+        },
+        {
+          "name": "jammy",
+          "count": 185,
+          "percentage": 6.4,
+          "examples": [
+            "11-jammy",
+            "11-jdk-jammy",
+            "11-jre-jammy",
+            "11.0.15_10-jdk-jammy",
+            "11.0.15_10-jre-jammy",
+            "11.0.16.1_1-jdk-jammy",
+            "11.0.16.1_1-jre-jammy",
+            "11.0.16_8-jdk-jammy",
+            "11.0.16_8-jre-jammy",
+            "11.0.17_8-jdk-jammy"
+          ]
+        },
+        {
+          "name": "ubi9",
+          "count": 165,
+          "percentage": 5.7,
+          "examples": [
+            "11-jdk-ubi9-minimal",
+            "11-jre-ubi9-minimal",
+            "11-ubi9-minimal",
+            "11.0.17_8-jdk-ubi9-minimal",
+            "11.0.17_8-jre-ubi9-minimal",
+            "11.0.18_10-jdk-ubi9-minimal",
+            "11.0.18_10-jre-ubi9-minimal",
+            "11.0.19_7-jdk-ubi9-minimal",
+            "11.0.19_7-jre-ubi9-minimal",
+            "11.0.20.1_1-jdk-ubi9-minimal"
+          ]
+        },
+        {
+          "name": "focal",
+          "count": 138,
+          "percentage": 4.8,
+          "examples": [
+            "11-focal",
+            "11-jdk-focal",
+            "11-jre-focal",
+            "11.0.12_7-jdk-focal",
+            "11.0.12_7-jre-focal",
+            "11.0.13_8-jdk-focal",
+            "11.0.13_8-jre-focal",
+            "11.0.14.1_1-jdk-focal",
+            "11.0.14.1_1-jre-focal",
+            "11.0.14_9-jdk-focal"
+          ]
+        },
+        {
+          "name": "noble",
+          "count": 100,
+          "percentage": 3.5,
+          "examples": [
+            "11-jdk-noble",
+            "11-jre-noble",
+            "11-noble",
+            "11.0.24_8-jdk-noble",
+            "11.0.24_8-jre-noble",
+            "11.0.25_9-jdk-noble",
+            "11.0.25_9-jre-noble",
+            "11.0.26_4-jdk-noble",
+            "11.0.26_4-jre-noble",
+            "11.0.27_6-jdk-noble"
+          ]
+        },
+        {
+          "name": "ubi10",
+          "count": 50,
+          "percentage": 1.7,
+          "examples": [
+            "11-jdk-ubi10-minimal",
+            "11-jre-ubi10-minimal",
+            "11-ubi10-minimal",
+            "11.0.28_6-jdk-ubi10-minimal",
+            "11.0.28_6-jre-ubi10-minimal",
+            "11.0.29_7-jdk-ubi10-minimal",
+            "11.0.29_7-jre-ubi10-minimal",
+            "11.0.30_7-jdk-ubi10-minimal",
+            "11.0.30_7-jre-ubi10-minimal",
+            "17-jdk-ubi10-minimal"
+          ]
+        }
+      ]
+    }
+  },
+  "metadata": {
+    "github.requester": "trivoallan",
+    "github.workflow": "Image Analysis",
+    "github.run_id": "22236055370",
+    "github.repository": "trivoallan/my-registry-analysis"
+  },
+  "playbooks": [
+    {
+      "playbook_name": "RegiS Default Playbook",
+      "score": 100,
+      "total_scorecards": 5,
+      "passed_scorecards": 5,
+      "pages": [
+        {
+          "title": "Overview",
+          "slug": "index",
+          "score": 0,
+          "total_scorecards": 0,
+          "passed_scorecards": 0,
+          "sections": [
+            {
+              "name": "",
+              "score": 0,
+              "total_scorecards": 0,
+              "passed_scorecards": 0,
+              "levels_summary": {},
+              "tags_summary": {},
+              "scorecards": [],
+              "widgets": [
+                {
+                  "label": "Recommandation",
+                  "value": "{{ 'GO' }}",
+                  "options": {
+                    "class": "recommandation-go",
+                    "align": "center"
+                  },
+                  "condition": {
+                    ">=": [
+                      {
+                        "var": "playbooks.0.pages.1.sections.1.score"
+                      },
+                      90
+                    ]
+                  },
+                  "resolved_value": "GO"
+                }
+              ],
+              "render_order": [
+                "widgets"
+              ]
+            },
+            {
+              "name": "",
+              "score": 0,
+              "total_scorecards": 0,
+              "passed_scorecards": 0,
+              "levels_summary": {},
+              "tags_summary": {},
+              "scorecards": [],
+              "widgets": [
+                {
+                  "label": "Overall Compliance",
+                  "value": "{{ playbooks.0.score }}%",
+                  "url": "compliance.html",
+                  "options": {
+                    "align": "center"
+                  },
+                  "resolved_value": "100%",
+                  "resolved_url": "compliance.html"
+                },
+                {
+                  "label": "Mandatory Requirements",
+                  "value": "{{ playbooks.0.pages.1.sections.1.passed_scorecards }} / {{ playbooks.0.pages.1.sections.1.total_scorecards }}",
+                  "url": "compliance.html",
+                  "options": {
+                    "align": "center"
+                  },
+                  "resolved_value": "3 / 3",
+                  "resolved_url": "compliance.html"
+                },
+                {
+                  "label": "Recommended Requirements",
+                  "value": "{{ playbooks.0.pages.1.sections.2.passed_scorecards }} / {{ playbooks.0.pages.1.sections.2.total_scorecards }}",
+                  "url": "compliance.html",
+                  "options": {
+                    "align": "center"
+                  },
+                  "resolved_value": "2 / 2",
+                  "resolved_url": "compliance.html"
+                }
+              ],
+              "render_order": [
+                "widgets"
+              ]
+            },
+            {
+              "name": "Request Status",
+              "score": 0,
+              "total_scorecards": 0,
+              "passed_scorecards": 0,
+              "levels_summary": {},
+              "tags_summary": {},
+              "scorecards": [],
+              "widgets": [
+                {
+                  "label": "Created on",
+                  "value": "{{ request.timestamp | format_datetime }}",
+                  "resolved_value": "2026-02-20 18:26:54"
+                },
+                {
+                  "label": "By",
+                  "value": "{{ request.metadata.user | default('Unknown') }}",
+                  "resolved_value": "Unknown"
+                }
+              ],
+              "render_order": [
+                "widgets"
+              ]
+            },
+            {
+              "name": "Requested Image",
+              "score": 0,
+              "total_scorecards": 0,
+              "passed_scorecards": 0,
+              "levels_summary": {},
+              "tags_summary": {},
+              "scorecards": [],
+              "widgets": [
+                {
+                  "label": "Registry",
+                  "value": "{{ request.registry }}",
+                  "resolved_value": "registry-1.docker.io"
+                },
+                {
+                  "label": "Repository",
+                  "value": "{{ request.repository }}",
+                  "resolved_value": "library/eclipse-temurin"
+                },
+                {
+                  "label": "Tag",
+                  "value": "{{ request.tag }}",
+                  "resolved_value": "17-jdk"
+                }
+              ],
+              "render_order": [
+                "widgets"
+              ]
+            },
+            {
+              "name": "Context",
+              "score": 0,
+              "total_scorecards": 0,
+              "passed_scorecards": 0,
+              "levels_summary": {},
+              "tags_summary": {},
+              "scorecards": [],
+              "widgets": [
+                {
+                  "template": "request/table.html",
+                  "options": {
+                    "title": "Request Parameters"
+                  }
+                },
+                {
+                  "template": "metadata/table.html",
+                  "options": {
+                    "title": "Additional Metadata"
+                  },
+                  "condition": {
+                    "!!": [
+                      {
+                        "var": "request.metadata"
+                      }
+                    ]
+                  }
+                }
+              ],
+              "render_order": [
+                "widgets"
+              ]
+            }
+          ]
+        },
+        {
+          "title": "Compliance",
+          "slug": "compliance",
+          "score": 100,
+          "total_scorecards": 5,
+          "passed_scorecards": 5,
+          "sections": [
+            {
+              "name": " ",
+              "score": 0,
+              "total_scorecards": 0,
+              "passed_scorecards": 0,
+              "levels_summary": {},
+              "tags_summary": {},
+              "scorecards": [],
+              "widgets": [
+                {
+                  "label": "Overall Compliance",
+                  "value": "{{ playbooks.0.score }}%",
+                  "options": {
+                    "align": "center"
+                  },
+                  "resolved_value": "100%"
+                },
+                {
+                  "label": "Mandatory Requirements",
+                  "value": "{{ playbooks.0.pages.1.sections.1.score }}%",
+                  "options": {
+                    "align": "center"
+                  },
+                  "resolved_value": "100%"
+                },
+                {
+                  "label": "Recommended Requirements",
+                  "value": "{{ playbooks.0.pages.1.sections.2.score }}%",
+                  "options": {
+                    "align": "center"
+                  },
+                  "resolved_value": "100%"
+                }
+              ],
+              "render_order": [
+                "widgets"
+              ]
+            },
+            {
+              "name": "Mandatory Requirements",
+              "score": 100,
+              "total_scorecards": 3,
+              "passed_scorecards": 3,
+              "levels_summary": {},
+              "tags_summary": {
+                "security": {
+                  "total": 3,
+                  "passed": 3,
+                  "percentage": 100
+                }
+              },
+              "scorecards": [
+                {
+                  "name": "no-root",
+                  "title": "Image must not run as root.",
+                  "level": "critical",
+                  "tags": [
+                    "security"
+                  ],
+                  "analyzers": [
+                    "skopeo"
+                  ],
+                  "passed": true,
+                  "status": "passed",
+                  "condition": "{\"!=\": [{\"var\": \"results.skopeo.platforms.0.user\"}, \"root\"]}",
+                  "details": "results.skopeo.platforms.0.user (MISSING) != root"
+                },
+                {
+                  "name": "no-critical",
+                  "title": "No CRITICAL vulnerabilities found by Trivy.",
+                  "level": "critical",
+                  "tags": [
+                    "security"
+                  ],
+                  "analyzers": [
+                    "trivy"
+                  ],
+                  "passed": true,
+                  "status": "passed",
+                  "condition": "{\"==\": [{\"var\": \"results.trivy.critical_count\"}, 0]}",
+                  "details": "results.trivy.critical_count (0) == 0"
+                },
+                {
+                  "name": "trusted-domain",
+                  "title": "Image must originate from a trusted domain.",
+                  "level": null,
+                  "tags": [
+                    "security"
+                  ],
+                  "analyzers": [],
+                  "passed": true,
+                  "status": "passed",
+                  "condition": "{\"in\": [{\"var\": \"request.registry\"}, [\"docker.io\", \"registry-1.docker.io\", \"quay.io\", \"ghcr.io\"]]}",
+                  "details": "request.registry (registry-1.docker.io) in ['docker.io', 'registry-1.docker.io', 'quay.io', 'ghcr.io']"
+                }
+              ],
+              "render_order": [
+                "tags",
+                "scorecards"
+              ],
+              "widgets": []
+            },
+            {
+              "name": "Recommended Requirements",
+              "score": 100,
+              "total_scorecards": 2,
+              "passed_scorecards": 2,
+              "levels_summary": {},
+              "tags_summary": {
+                "freshness": {
+                  "total": 1,
+                  "passed": 1,
+                  "percentage": 100
+                },
+                "security": {
+                  "total": 1,
+                  "passed": 1,
+                  "percentage": 100
+                }
+              },
+              "scorecards": [
+                {
+                  "name": "no-high",
+                  "title": "No HIGH vulnerabilities found by Trivy.",
+                  "level": "warning",
+                  "tags": [
+                    "security"
+                  ],
+                  "analyzers": [
+                    "trivy"
+                  ],
+                  "passed": true,
+                  "status": "passed",
+                  "condition": "{\"==\": [{\"var\": \"results.trivy.high_count\"}, 0]}",
+                  "details": "results.trivy.high_count (0) == 0"
+                },
+                {
+                  "name": "age",
+                  "title": "Image should be less than 30 days old.",
+                  "level": "warning",
+                  "tags": [
+                    "freshness"
+                  ],
+                  "analyzers": [
+                    "freshness"
+                  ],
+                  "passed": true,
+                  "status": "passed",
+                  "condition": "{\"<\": [{\"var\": \"results.freshness.age_days\"}, 30]}",
+                  "details": "results.freshness.age_days (2) < 30"
+                }
+              ],
+              "render_order": [
+                "tags",
+                "scorecards"
+              ],
+              "widgets": []
+            }
+          ]
+        },
+        {
+          "title": "Security",
+          "slug": "security",
+          "score": 0,
+          "total_scorecards": 0,
+          "passed_scorecards": 0,
+          "sections": [
+            {
+              "name": "Vulnerabilities",
+              "score": 0,
+              "total_scorecards": 0,
+              "passed_scorecards": 0,
+              "levels_summary": {},
+              "tags_summary": {},
+              "scorecards": [],
+              "widgets": [
+                {
+                  "template": "analyzers/trivy/cards.html"
+                },
+                {
+                  "template": "analyzers/trivy/table.html",
+                  "options": {
+                    "title": "Top HIGH and CRITICAL vulnerabilities",
+                    "collapsed": true,
+                    "limit": 25
+                  }
+                }
+              ],
+              "render_order": [
+                "widgets"
+              ]
+            },
+            {
+              "name": "Provenance",
+              "score": 0,
+              "total_scorecards": 0,
+              "passed_scorecards": 0,
+              "levels_summary": {},
+              "tags_summary": {},
+              "scorecards": [],
+              "widgets": [
+                {
+                  "template": "analyzers/provenance/cards.html"
+                },
+                {
+                  "template": "analyzers/provenance/table.html",
+                  "options": {
+                    "title": "Provenance Details",
+                    "collapsed": true
+                  }
+                }
+              ],
+              "render_order": [
+                "widgets"
+              ]
+            }
+          ]
+        },
+        {
+          "title": "Supply Chain & Quality",
+          "slug": "supply-chain",
+          "score": 0,
+          "total_scorecards": 0,
+          "passed_scorecards": 0,
+          "sections": [
+            {
+              "name": "Software Bill of Materials (SBOM)",
+              "score": 0,
+              "total_scorecards": 0,
+              "passed_scorecards": 0,
+              "levels_summary": {},
+              "tags_summary": {},
+              "scorecards": [],
+              "widgets": [
+                {
+                  "template": "analyzers/sbom/cards.html"
+                },
+                {
+                  "template": "analyzers/sbom/table.html",
+                  "options": {
+                    "title": "Component Inventory Preview",
+                    "collapsed": true,
+                    "limit": 50
+                  }
+                }
+              ],
+              "render_order": [
+                "widgets"
+              ]
+            },
+            {
+              "name": "OpenSSF Scorecard",
+              "score": 0,
+              "total_scorecards": 0,
+              "passed_scorecards": 0,
+              "levels_summary": {},
+              "tags_summary": {},
+              "scorecards": [],
+              "widgets": [
+                {
+                  "template": "analyzers/scorecarddev/cards.html"
+                },
+                {
+                  "template": "analyzers/scorecarddev/table.html",
+                  "options": {
+                    "title": "Detailed Check Results",
+                    "collapsed": true
+                  }
+                }
+              ],
+              "render_order": [
+                "widgets"
+              ]
+            }
+          ]
+        },
+        {
+          "title": "Best Practices",
+          "slug": "best-practices",
+          "score": 0,
+          "total_scorecards": 0,
+          "passed_scorecards": 0,
+          "sections": [
+            {
+              "name": "Dockerfile Linting",
+              "score": 0,
+              "total_scorecards": 0,
+              "passed_scorecards": 0,
+              "levels_summary": {},
+              "tags_summary": {},
+              "scorecards": [],
+              "widgets": [
+                {
+                  "template": "analyzers/hadolint/cards.html"
+                },
+                {
+                  "template": "analyzers/hadolint/table.html",
+                  "options": {
+                    "title": "Linting Issues & Recommendations",
+                    "collapsed": true
+                  }
+                }
+              ],
+              "render_order": [
+                "widgets"
+              ]
+            }
+          ]
+        },
+        {
+          "title": "Insights & Lifecycle",
+          "slug": "insights",
+          "score": 0,
+          "total_scorecards": 0,
+          "passed_scorecards": 0,
+          "sections": [
+            {
+              "name": "Image Freshness",
+              "score": 0,
+              "total_scorecards": 0,
+              "passed_scorecards": 0,
+              "levels_summary": {},
+              "tags_summary": {},
+              "scorecards": [],
+              "widgets": [
+                {
+                  "template": "analyzers/freshness/cards.html"
+                },
+                {
+                  "template": "analyzers/freshness/table.html",
+                  "options": {
+                    "title": "Release Details",
+                    "collapsed": true
+                  }
+                }
+              ],
+              "render_order": [
+                "widgets"
+              ]
+            },
+            {
+              "name": "Popularity & Community",
+              "score": 0,
+              "total_scorecards": 0,
+              "passed_scorecards": 0,
+              "levels_summary": {},
+              "tags_summary": {},
+              "scorecards": [],
+              "widgets": [
+                {
+                  "template": "analyzers/popularity/cards.html"
+                },
+                {
+                  "template": "analyzers/popularity/table.html",
+                  "options": {
+                    "title": "Registry Stats",
+                    "collapsed": true
+                  }
+                }
+              ],
+              "render_order": [
+                "widgets"
+              ]
+            },
+            {
+              "name": "Lifecycle (EndOfLife)",
+              "score": 0,
+              "total_scorecards": 0,
+              "passed_scorecards": 0,
+              "levels_summary": {},
+              "tags_summary": {},
+              "scorecards": [],
+              "widgets": [
+                {
+                  "template": "analyzers/endoflife/cards.html"
+                },
+                {
+                  "template": "analyzers/endoflife/table.html",
+                  "options": {
+                    "title": "Version Support Status",
+                    "collapsed": true
+                  }
+                }
+              ],
+              "render_order": [
+                "widgets"
+              ]
+            }
+          ]
+        },
+        {
+          "title": "Technical Details",
+          "slug": "metadata",
+          "score": 0,
+          "total_scorecards": 0,
+          "passed_scorecards": 0,
+          "sections": [
+            {
+              "name": "Size & Layers",
+              "score": 0,
+              "total_scorecards": 0,
+              "passed_scorecards": 0,
+              "levels_summary": {},
+              "tags_summary": {},
+              "scorecards": [],
+              "widgets": [
+                {
+                  "template": "analyzers/size/cards.html"
+                },
+                {
+                  "template": "analyzers/size/table.html",
+                  "options": {
+                    "title": "Layer Distribution",
+                    "collapsed": true
+                  }
+                }
+              ],
+              "render_order": [
+                "widgets"
+              ]
+            },
+            {
+              "name": "Registry Metadata",
+              "score": 0,
+              "total_scorecards": 0,
+              "passed_scorecards": 0,
+              "levels_summary": {},
+              "tags_summary": {},
+              "scorecards": [],
+              "widgets": [
+                {
+                  "template": "analyzers/skopeo/cards.html"
+                },
+                {
+                  "template": "analyzers/skopeo/table.html",
+                  "options": {
+                    "title": "Inspect Details",
+                    "collapsed": true
+                  }
+                }
+              ],
+              "render_order": [
+                "widgets"
+              ]
+            },
+            {
+              "name": "Versioning Analysis",
+              "score": 0,
+              "total_scorecards": 0,
+              "passed_scorecards": 0,
+              "levels_summary": {},
+              "tags_summary": {},
+              "scorecards": [],
+              "widgets": [
+                {
+                  "template": "analyzers/versioning/cards.html"
+                },
+                {
+                  "template": "analyzers/versioning/table.html",
+                  "options": {
+                    "title": "Tag Logic & Patterns",
+                    "collapsed": true
+                  }
+                }
+              ],
+              "render_order": [
+                "widgets"
+              ]
+            }
+          ]
+        }
+      ],
+      "slug": null,
+      "_meta": {
+        "source_name": "default"
+      }
+    }
+  ],
+  "playbook": {
+    "playbook_name": "RegiS Default Playbook",
+    "score": 100,
+    "total_scorecards": 5,
+    "passed_scorecards": 5,
+    "pages": [
+      {
+        "title": "Overview",
+        "slug": "index",
+        "score": 0,
+        "total_scorecards": 0,
+        "passed_scorecards": 0,
+        "sections": [
+          {
+            "name": "",
+            "score": 0,
+            "total_scorecards": 0,
+            "passed_scorecards": 0,
+            "levels_summary": {},
+            "tags_summary": {},
+            "scorecards": [],
+            "widgets": [
+              {
+                "label": "Recommandation",
+                "value": "{{ 'GO' }}",
+                "options": {
+                  "class": "recommandation-go",
+                  "align": "center"
+                },
+                "condition": {
+                  ">=": [
+                    {
+                      "var": "playbooks.0.pages.1.sections.1.score"
+                    },
+                    90
+                  ]
+                },
+                "resolved_value": "GO"
+              }
+            ],
+            "render_order": [
+              "widgets"
+            ]
+          },
+          {
+            "name": "",
+            "score": 0,
+            "total_scorecards": 0,
+            "passed_scorecards": 0,
+            "levels_summary": {},
+            "tags_summary": {},
+            "scorecards": [],
+            "widgets": [
+              {
+                "label": "Overall Compliance",
+                "value": "{{ playbooks.0.score }}%",
+                "url": "compliance.html",
+                "options": {
+                  "align": "center"
+                },
+                "resolved_value": "100%",
+                "resolved_url": "compliance.html"
+              },
+              {
+                "label": "Mandatory Requirements",
+                "value": "{{ playbooks.0.pages.1.sections.1.passed_scorecards }} / {{ playbooks.0.pages.1.sections.1.total_scorecards }}",
+                "url": "compliance.html",
+                "options": {
+                  "align": "center"
+                },
+                "resolved_value": "3 / 3",
+                "resolved_url": "compliance.html"
+              },
+              {
+                "label": "Recommended Requirements",
+                "value": "{{ playbooks.0.pages.1.sections.2.passed_scorecards }} / {{ playbooks.0.pages.1.sections.2.total_scorecards }}",
+                "url": "compliance.html",
+                "options": {
+                  "align": "center"
+                },
+                "resolved_value": "2 / 2",
+                "resolved_url": "compliance.html"
+              }
+            ],
+            "render_order": [
+              "widgets"
+            ]
+          },
+          {
+            "name": "Request Status",
+            "score": 0,
+            "total_scorecards": 0,
+            "passed_scorecards": 0,
+            "levels_summary": {},
+            "tags_summary": {},
+            "scorecards": [],
+            "widgets": [
+              {
+                "label": "Created on",
+                "value": "{{ request.timestamp | format_datetime }}",
+                "resolved_value": "2026-02-20 18:26:54"
+              },
+              {
+                "label": "By",
+                "value": "{{ request.metadata.user | default('Unknown') }}",
+                "resolved_value": "Unknown"
+              }
+            ],
+            "render_order": [
+              "widgets"
+            ]
+          },
+          {
+            "name": "Requested Image",
+            "score": 0,
+            "total_scorecards": 0,
+            "passed_scorecards": 0,
+            "levels_summary": {},
+            "tags_summary": {},
+            "scorecards": [],
+            "widgets": [
+              {
+                "label": "Registry",
+                "value": "{{ request.registry }}",
+                "resolved_value": "registry-1.docker.io"
+              },
+              {
+                "label": "Repository",
+                "value": "{{ request.repository }}",
+                "resolved_value": "library/eclipse-temurin"
+              },
+              {
+                "label": "Tag",
+                "value": "{{ request.tag }}",
+                "resolved_value": "17-jdk"
+              }
+            ],
+            "render_order": [
+              "widgets"
+            ]
+          },
+          {
+            "name": "Context",
+            "score": 0,
+            "total_scorecards": 0,
+            "passed_scorecards": 0,
+            "levels_summary": {},
+            "tags_summary": {},
+            "scorecards": [],
+            "widgets": [
+              {
+                "template": "request/table.html",
+                "options": {
+                  "title": "Request Parameters"
+                }
+              },
+              {
+                "template": "metadata/table.html",
+                "options": {
+                  "title": "Additional Metadata"
+                },
+                "condition": {
+                  "!!": [
+                    {
+                      "var": "request.metadata"
+                    }
+                  ]
+                }
+              }
+            ],
+            "render_order": [
+              "widgets"
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Compliance",
+        "slug": "compliance",
+        "score": 100,
+        "total_scorecards": 5,
+        "passed_scorecards": 5,
+        "sections": [
+          {
+            "name": " ",
+            "score": 0,
+            "total_scorecards": 0,
+            "passed_scorecards": 0,
+            "levels_summary": {},
+            "tags_summary": {},
+            "scorecards": [],
+            "widgets": [
+              {
+                "label": "Overall Compliance",
+                "value": "{{ playbooks.0.score }}%",
+                "options": {
+                  "align": "center"
+                },
+                "resolved_value": "100%"
+              },
+              {
+                "label": "Mandatory Requirements",
+                "value": "{{ playbooks.0.pages.1.sections.1.score }}%",
+                "options": {
+                  "align": "center"
+                },
+                "resolved_value": "100%"
+              },
+              {
+                "label": "Recommended Requirements",
+                "value": "{{ playbooks.0.pages.1.sections.2.score }}%",
+                "options": {
+                  "align": "center"
+                },
+                "resolved_value": "100%"
+              }
+            ],
+            "render_order": [
+              "widgets"
+            ]
+          },
+          {
+            "name": "Mandatory Requirements",
+            "score": 100,
+            "total_scorecards": 3,
+            "passed_scorecards": 3,
+            "levels_summary": {},
+            "tags_summary": {
+              "security": {
+                "total": 3,
+                "passed": 3,
+                "percentage": 100
+              }
+            },
+            "scorecards": [
+              {
+                "name": "no-root",
+                "title": "Image must not run as root.",
+                "level": "critical",
+                "tags": [
+                  "security"
+                ],
+                "analyzers": [
+                  "skopeo"
+                ],
+                "passed": true,
+                "status": "passed",
+                "condition": "{\"!=\": [{\"var\": \"results.skopeo.platforms.0.user\"}, \"root\"]}",
+                "details": "results.skopeo.platforms.0.user (MISSING) != root"
+              },
+              {
+                "name": "no-critical",
+                "title": "No CRITICAL vulnerabilities found by Trivy.",
+                "level": "critical",
+                "tags": [
+                  "security"
+                ],
+                "analyzers": [
+                  "trivy"
+                ],
+                "passed": true,
+                "status": "passed",
+                "condition": "{\"==\": [{\"var\": \"results.trivy.critical_count\"}, 0]}",
+                "details": "results.trivy.critical_count (0) == 0"
+              },
+              {
+                "name": "trusted-domain",
+                "title": "Image must originate from a trusted domain.",
+                "level": null,
+                "tags": [
+                  "security"
+                ],
+                "analyzers": [],
+                "passed": true,
+                "status": "passed",
+                "condition": "{\"in\": [{\"var\": \"request.registry\"}, [\"docker.io\", \"registry-1.docker.io\", \"quay.io\", \"ghcr.io\"]]}",
+                "details": "request.registry (registry-1.docker.io) in ['docker.io', 'registry-1.docker.io', 'quay.io', 'ghcr.io']"
+              }
+            ],
+            "render_order": [
+              "tags",
+              "scorecards"
+            ],
+            "widgets": []
+          },
+          {
+            "name": "Recommended Requirements",
+            "score": 100,
+            "total_scorecards": 2,
+            "passed_scorecards": 2,
+            "levels_summary": {},
+            "tags_summary": {
+              "freshness": {
+                "total": 1,
+                "passed": 1,
+                "percentage": 100
+              },
+              "security": {
+                "total": 1,
+                "passed": 1,
+                "percentage": 100
+              }
+            },
+            "scorecards": [
+              {
+                "name": "no-high",
+                "title": "No HIGH vulnerabilities found by Trivy.",
+                "level": "warning",
+                "tags": [
+                  "security"
+                ],
+                "analyzers": [
+                  "trivy"
+                ],
+                "passed": true,
+                "status": "passed",
+                "condition": "{\"==\": [{\"var\": \"results.trivy.high_count\"}, 0]}",
+                "details": "results.trivy.high_count (0) == 0"
+              },
+              {
+                "name": "age",
+                "title": "Image should be less than 30 days old.",
+                "level": "warning",
+                "tags": [
+                  "freshness"
+                ],
+                "analyzers": [
+                  "freshness"
+                ],
+                "passed": true,
+                "status": "passed",
+                "condition": "{\"<\": [{\"var\": \"results.freshness.age_days\"}, 30]}",
+                "details": "results.freshness.age_days (2) < 30"
+              }
+            ],
+            "render_order": [
+              "tags",
+              "scorecards"
+            ],
+            "widgets": []
+          }
+        ]
+      },
+      {
+        "title": "Security",
+        "slug": "security",
+        "score": 0,
+        "total_scorecards": 0,
+        "passed_scorecards": 0,
+        "sections": [
+          {
+            "name": "Vulnerabilities",
+            "score": 0,
+            "total_scorecards": 0,
+            "passed_scorecards": 0,
+            "levels_summary": {},
+            "tags_summary": {},
+            "scorecards": [],
+            "widgets": [
+              {
+                "template": "analyzers/trivy/cards.html"
+              },
+              {
+                "template": "analyzers/trivy/table.html",
+                "options": {
+                  "title": "Top HIGH and CRITICAL vulnerabilities",
+                  "collapsed": true,
+                  "limit": 25
+                }
+              }
+            ],
+            "render_order": [
+              "widgets"
+            ]
+          },
+          {
+            "name": "Provenance",
+            "score": 0,
+            "total_scorecards": 0,
+            "passed_scorecards": 0,
+            "levels_summary": {},
+            "tags_summary": {},
+            "scorecards": [],
+            "widgets": [
+              {
+                "template": "analyzers/provenance/cards.html"
+              },
+              {
+                "template": "analyzers/provenance/table.html",
+                "options": {
+                  "title": "Provenance Details",
+                  "collapsed": true
+                }
+              }
+            ],
+            "render_order": [
+              "widgets"
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Supply Chain & Quality",
+        "slug": "supply-chain",
+        "score": 0,
+        "total_scorecards": 0,
+        "passed_scorecards": 0,
+        "sections": [
+          {
+            "name": "Software Bill of Materials (SBOM)",
+            "score": 0,
+            "total_scorecards": 0,
+            "passed_scorecards": 0,
+            "levels_summary": {},
+            "tags_summary": {},
+            "scorecards": [],
+            "widgets": [
+              {
+                "template": "analyzers/sbom/cards.html"
+              },
+              {
+                "template": "analyzers/sbom/table.html",
+                "options": {
+                  "title": "Component Inventory Preview",
+                  "collapsed": true,
+                  "limit": 50
+                }
+              }
+            ],
+            "render_order": [
+              "widgets"
+            ]
+          },
+          {
+            "name": "OpenSSF Scorecard",
+            "score": 0,
+            "total_scorecards": 0,
+            "passed_scorecards": 0,
+            "levels_summary": {},
+            "tags_summary": {},
+            "scorecards": [],
+            "widgets": [
+              {
+                "template": "analyzers/scorecarddev/cards.html"
+              },
+              {
+                "template": "analyzers/scorecarddev/table.html",
+                "options": {
+                  "title": "Detailed Check Results",
+                  "collapsed": true
+                }
+              }
+            ],
+            "render_order": [
+              "widgets"
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Best Practices",
+        "slug": "best-practices",
+        "score": 0,
+        "total_scorecards": 0,
+        "passed_scorecards": 0,
+        "sections": [
+          {
+            "name": "Dockerfile Linting",
+            "score": 0,
+            "total_scorecards": 0,
+            "passed_scorecards": 0,
+            "levels_summary": {},
+            "tags_summary": {},
+            "scorecards": [],
+            "widgets": [
+              {
+                "template": "analyzers/hadolint/cards.html"
+              },
+              {
+                "template": "analyzers/hadolint/table.html",
+                "options": {
+                  "title": "Linting Issues & Recommendations",
+                  "collapsed": true
+                }
+              }
+            ],
+            "render_order": [
+              "widgets"
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Insights & Lifecycle",
+        "slug": "insights",
+        "score": 0,
+        "total_scorecards": 0,
+        "passed_scorecards": 0,
+        "sections": [
+          {
+            "name": "Image Freshness",
+            "score": 0,
+            "total_scorecards": 0,
+            "passed_scorecards": 0,
+            "levels_summary": {},
+            "tags_summary": {},
+            "scorecards": [],
+            "widgets": [
+              {
+                "template": "analyzers/freshness/cards.html"
+              },
+              {
+                "template": "analyzers/freshness/table.html",
+                "options": {
+                  "title": "Release Details",
+                  "collapsed": true
+                }
+              }
+            ],
+            "render_order": [
+              "widgets"
+            ]
+          },
+          {
+            "name": "Popularity & Community",
+            "score": 0,
+            "total_scorecards": 0,
+            "passed_scorecards": 0,
+            "levels_summary": {},
+            "tags_summary": {},
+            "scorecards": [],
+            "widgets": [
+              {
+                "template": "analyzers/popularity/cards.html"
+              },
+              {
+                "template": "analyzers/popularity/table.html",
+                "options": {
+                  "title": "Registry Stats",
+                  "collapsed": true
+                }
+              }
+            ],
+            "render_order": [
+              "widgets"
+            ]
+          },
+          {
+            "name": "Lifecycle (EndOfLife)",
+            "score": 0,
+            "total_scorecards": 0,
+            "passed_scorecards": 0,
+            "levels_summary": {},
+            "tags_summary": {},
+            "scorecards": [],
+            "widgets": [
+              {
+                "template": "analyzers/endoflife/cards.html"
+              },
+              {
+                "template": "analyzers/endoflife/table.html",
+                "options": {
+                  "title": "Version Support Status",
+                  "collapsed": true
+                }
+              }
+            ],
+            "render_order": [
+              "widgets"
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Technical Details",
+        "slug": "metadata",
+        "score": 0,
+        "total_scorecards": 0,
+        "passed_scorecards": 0,
+        "sections": [
+          {
+            "name": "Size & Layers",
+            "score": 0,
+            "total_scorecards": 0,
+            "passed_scorecards": 0,
+            "levels_summary": {},
+            "tags_summary": {},
+            "scorecards": [],
+            "widgets": [
+              {
+                "template": "analyzers/size/cards.html"
+              },
+              {
+                "template": "analyzers/size/table.html",
+                "options": {
+                  "title": "Layer Distribution",
+                  "collapsed": true
+                }
+              }
+            ],
+            "render_order": [
+              "widgets"
+            ]
+          },
+          {
+            "name": "Registry Metadata",
+            "score": 0,
+            "total_scorecards": 0,
+            "passed_scorecards": 0,
+            "levels_summary": {},
+            "tags_summary": {},
+            "scorecards": [],
+            "widgets": [
+              {
+                "template": "analyzers/skopeo/cards.html"
+              },
+              {
+                "template": "analyzers/skopeo/table.html",
+                "options": {
+                  "title": "Inspect Details",
+                  "collapsed": true
+                }
+              }
+            ],
+            "render_order": [
+              "widgets"
+            ]
+          },
+          {
+            "name": "Versioning Analysis",
+            "score": 0,
+            "total_scorecards": 0,
+            "passed_scorecards": 0,
+            "levels_summary": {},
+            "tags_summary": {},
+            "scorecards": [],
+            "widgets": [
+              {
+                "template": "analyzers/versioning/cards.html"
+              },
+              {
+                "template": "analyzers/versioning/table.html",
+                "options": {
+                  "title": "Tag Logic & Patterns",
+                  "collapsed": true
+                }
+              }
+            ],
+            "render_order": [
+              "widgets"
+            ]
+          }
+        ]
+      }
+    ],
+    "slug": null,
+    "_meta": {
+      "source_name": "default"
+    }
+  }
+}

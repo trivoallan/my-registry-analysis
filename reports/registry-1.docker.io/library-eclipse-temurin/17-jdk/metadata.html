@@ -1,0 +1,1377 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>regis-cli Report — library/eclipse-temurin:17-jdk</title>
+<style>
+  @import url("https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css");
+
+:root {
+    --pico-font-size: 16px;
+}
+
+body {
+    padding: 0;
+    margin: 0;
+}
+
+#layout-wrapper {
+    display: flex;
+    min-height: 100vh;
+}
+
+#sidebar {
+    width: 280px;
+    background: var(--pico-card-background-color);
+    border-right: 1px solid var(--pico-muted-border-color);
+    padding: 1.5rem;
+    height: 100vh;
+    position: sticky;
+    top: 0;
+    overflow-y: auto;
+}
+
+#sidebar nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+#sidebar nav details {
+    border-bottom: none;
+    margin-bottom: 1rem;
+}
+
+#sidebar nav summary {
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    opacity: 0.6;
+    margin-bottom: 0.5rem;
+}
+
+#sidebar nav a {
+    display: block;
+    padding: 0.4rem 0.8rem;
+    border-radius: var(--pico-border-radius);
+    text-decoration: none;
+    color: var(--pico-color);
+    font-size: 0.95rem;
+    transition: background 0.2s;
+}
+
+#sidebar nav a:hover {
+    background: var(--pico-primary-background);
+    color: var(--pico-primary-inverse);
+    font-weight: bold;
+}
+
+#sidebar nav a.active {
+    background: var(--pico-primary-background);
+    color: var(--pico-primary-inverse);
+    font-weight: bold;
+}
+
+main.container {
+    flex: 1;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem 3rem;
+}
+
+header {
+    margin-bottom: 3rem;
+}
+
+header h1 {
+    margin-bottom: 0.5rem;
+}
+
+.meta {
+    font-size: 0.9rem;
+    opacity: 0.8;
+}
+
+article {
+    margin-bottom: 2rem;
+}
+
+.playbook-section {
+    margin-bottom: 1.5rem;
+    padding-left: 1rem;
+    border-left: 3px solid var(--pico-muted-border-color);
+}
+
+.section-hint {
+    font-size: 0.9rem;
+    opacity: 0.8;
+    margin-top: -1rem;
+    margin-bottom: 1rem;
+}
+
+.badge {
+    display: inline-block;
+    padding: 0.2rem 0.6rem;
+    border-radius: 4px;
+    font-size: 0.8rem;
+    font-weight: bold;
+    background: var(--pico-secondary-background);
+    color: var(--pico-secondary-inverse);
+    margin-right: 0.3rem;
+    white-space: nowrap;
+}
+
+.badge.success {
+    background: #22c55e;
+    color: white;
+}
+
+.badge.error {
+    background: #ef4444;
+    color: white;
+}
+
+.badge.outline {
+    background: transparent;
+    border: 1px solid var(--pico-muted-border-color);
+    color: inherit;
+}
+
+.status-passed {
+    color: #22c55e;
+}
+
+.status-failed {
+    color: #ef4444;
+}
+
+summary {
+    font-weight: bold;
+}
+
+footer {
+    text-align: center;
+    border-top: 1px solid var(--pico-muted-border-color);
+    padding-top: 2rem;
+    margin-top: 4rem;
+}
+
+.playbook-section .recommandation-nogo {
+    color: #ef4444;
+}
+
+.playbook-section .recommandation-go {
+    color: #22c55e;
+}
+
+header h1 {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+    text-align: center;
+}
+
+header h2 {
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
+    text-align: center;
+}
+</style>
+</head>
+<body>
+<div id="layout-wrapper">
+  <!-- Sidebar -->
+  <aside id="sidebar">
+    <nav>
+      
+      
+      <details open inner>
+        <summary>Navigation</summary>
+        <ul>
+          
+          <li>
+            <a href="index.html" >
+              Overview
+            </a>
+          </li>
+          
+          <li>
+            <a href="compliance.html" >
+              Compliance
+            </a>
+          </li>
+          
+          <li>
+            <a href="security.html" >
+              Security
+            </a>
+          </li>
+          
+          <li>
+            <a href="supply-chain.html" >
+              Supply Chain &amp; Quality
+            </a>
+          </li>
+          
+          <li>
+            <a href="best-practices.html" >
+              Best Practices
+            </a>
+          </li>
+          
+          <li>
+            <a href="insights.html" >
+              Insights &amp; Lifecycle
+            </a>
+          </li>
+          
+          <li>
+            <a href="metadata.html" aria-current="page" class="active">
+              Technical Details
+            </a>
+          </li>
+          
+        </ul>
+      </details>
+      
+
+      
+    </nav>
+  </aside>
+
+  <!-- Main Content -->
+  <main class="container">
+    <header>
+      <h1>registry-1.docker.io/library/eclipse-temurin:17-jdk</h1>
+      
+    </header>
+
+    
+    
+    
+
+    
+        <section id="playbook-0">
+            
+
+
+
+<article>
+
+
+    
+        
+
+        
+            <div class="playbook-section">
+                <h4>Size &amp; Layers</h4>
+                
+
+            
+
+                
+                <!-- prettier-ignore-start -->
+                
+                <div style="margin-bottom: calc(2 * var(--pico-spacing));">
+                    
+                    
+                        
+                        
+                        
+                        
+                        
+
+                        
+                            
+                            <div class="widget-template " style="padding: var(--pico-spacing); background: var(--pico-card-background-color); border-radius: var(--pico-border-radius); box-shadow: var(--pico-card-box-shadow); text-align: left; margin-bottom: calc(3 * var(--pico-spacing));">
+                                
+
+                                
+
+<div class="grid">
+    <div style="text-align: center; padding: var(--pico-spacing); background: var(--pico-card-background-color); border-radius: var(--pico-border-radius); box-shadow: var(--pico-card-box-shadow);">
+        <strong style="font-size: 0.9rem; text-transform: uppercase; letter-spacing: 0.05em; opacity: 0.8;">TOTAL SIZE</strong><br>
+        <span style="font-size: 2rem; font-weight: bold; line-height: 1;">
+            
+                189.1 MB
+            
+        </span>
+    </div>
+    <div style="text-align: center; padding: var(--pico-spacing); background: var(--pico-card-background-color); border-radius: var(--pico-border-radius); box-shadow: var(--pico-card-box-shadow);">
+        <strong style="font-size: 0.9rem; text-transform: uppercase; letter-spacing: 0.05em; opacity: 0.8;">LAYERS</strong><br>
+        <span style="font-size: 2.5rem; font-weight: bold; line-height: 1;">5</span>
+    </div>
+    
+    <div style="text-align: center; padding: var(--pico-spacing); background: var(--pico-card-background-color); border-radius: var(--pico-border-radius); box-shadow: var(--pico-card-box-shadow);">
+        <strong style="font-size: 0.9rem; text-transform: uppercase; letter-spacing: 0.05em; opacity: 0.8;">PLATFORMS</strong><br>
+        <span style="font-size: 2.5rem; font-weight: bold; line-height: 1;">14</span>
+    </div>
+    
+</div>
+
+
+                                
+                            </div>
+                        
+                    
+                        
+                        
+                        
+                        
+                        
+
+                        
+                            
+                            <div class="widget-template " style="padding: var(--pico-spacing); background: var(--pico-card-background-color); border-radius: var(--pico-border-radius); box-shadow: var(--pico-card-box-shadow); text-align: left; margin-bottom: calc(3 * var(--pico-spacing));">
+                                
+                                <details>
+                                    <summary style="font-weight: bold; color: var(--pico-secondary); margin-bottom: 0.5rem; font-size: 1.125rem;">Layer Distribution</summary>
+                                
+
+                                
+
+    
+    <div class="overflow-auto">
+        <table class="striped">
+            <thead>
+                <tr>
+                    <th>Platform</th>
+                    <th>Compressed Size</th>
+                    <th>Layers</th>
+                </tr>
+            </thead>
+            <tbody>
+                
+                <tr>
+                    <td><strong>linux/amd64</strong></td>
+                    <td><code>189.1 MB</code></td>
+                    <td>5</td>
+                </tr>
+                
+                <tr>
+                    <td><strong>unknown/unknown</strong></td>
+                    <td><code>3.4 MB</code></td>
+                    <td>2</td>
+                </tr>
+                
+                <tr>
+                    <td><strong>linux/arm/v7</strong></td>
+                    <td><code>182.4 MB</code></td>
+                    <td>5</td>
+                </tr>
+                
+                <tr>
+                    <td><strong>unknown/unknown</strong></td>
+                    <td><code>3.3 MB</code></td>
+                    <td>2</td>
+                </tr>
+                
+                <tr>
+                    <td><strong>linux/arm64/v8</strong></td>
+                    <td><code>188.3 MB</code></td>
+                    <td>5</td>
+                </tr>
+                
+                <tr>
+                    <td><strong>unknown/unknown</strong></td>
+                    <td><code>3.5 MB</code></td>
+                    <td>2</td>
+                </tr>
+                
+                <tr>
+                    <td><strong>linux/ppc64le</strong></td>
+                    <td><code>194.4 MB</code></td>
+                    <td>5</td>
+                </tr>
+                
+                <tr>
+                    <td><strong>unknown/unknown</strong></td>
+                    <td><code>3.4 MB</code></td>
+                    <td>2</td>
+                </tr>
+                
+                <tr>
+                    <td><strong>linux/riscv64</strong></td>
+                    <td><code>184.8 MB</code></td>
+                    <td>5</td>
+                </tr>
+                
+                <tr>
+                    <td><strong>unknown/unknown</strong></td>
+                    <td><code>3.5 MB</code></td>
+                    <td>2</td>
+                </tr>
+                
+                <tr>
+                    <td><strong>linux/s390x</strong></td>
+                    <td><code>179.0 MB</code></td>
+                    <td>5</td>
+                </tr>
+                
+                <tr>
+                    <td><strong>unknown/unknown</strong></td>
+                    <td><code>3.3 MB</code></td>
+                    <td>2</td>
+                </tr>
+                
+                <tr>
+                    <td><strong>windows/amd64</strong></td>
+                    <td><code>2.2 GB</code></td>
+                    <td>7</td>
+                </tr>
+                
+                <tr>
+                    <td><strong>windows/amd64</strong></td>
+                    <td><code>2.1 GB</code></td>
+                    <td>7</td>
+                </tr>
+                
+            </tbody>
+        </table>
+    </div>
+    
+
+    
+
+
+                                
+                                </details>
+                                
+                            </div>
+                        
+                    
+                    
+                </div>
+                <!-- prettier-ignore-end -->
+                <hr>
+                
+
+                
+                
+
+                
+                
+
+                
+                
+
+                
+                
+
+            
+        </div>
+        <hr>
+
+        
+            <div class="playbook-section">
+                <h4>Registry Metadata</h4>
+                
+
+            
+
+                
+                <!-- prettier-ignore-start -->
+                
+                <div style="margin-bottom: calc(2 * var(--pico-spacing));">
+                    
+                    
+                        
+                        
+                        
+                        
+                        
+
+                        
+                            
+                            <div class="widget-template " style="padding: var(--pico-spacing); background: var(--pico-card-background-color); border-radius: var(--pico-border-radius); box-shadow: var(--pico-card-box-shadow); text-align: left; margin-bottom: calc(3 * var(--pico-spacing));">
+                                
+
+                                
+
+<div class="grid">
+    <div style="text-align: center; padding: var(--pico-spacing); background: var(--pico-card-background-color); border-radius: var(--pico-border-radius); box-shadow: var(--pico-card-box-shadow);">
+        <strong style="font-size: 0.9rem; text-transform: uppercase; letter-spacing: 0.05em; opacity: 0.8;">PLATFORMS</strong><br>
+        <span style="font-size: 2rem; font-weight: bold; line-height: 1;">14</span>
+    </div>
+    
+    <div style="text-align: center; padding: var(--pico-spacing); background: var(--pico-card-background-color); border-radius: var(--pico-border-radius); box-shadow: var(--pico-card-box-shadow);">
+        <strong style="font-size: 0.9rem; text-transform: uppercase; letter-spacing: 0.05em; opacity: 0.8;">ROOT USER</strong><br>
+        
+        <span style="font-size: 2rem; font-weight: bold; line-height: 1; color: var(--pico-del-color);">
+            YES (14)
+        </span>
+    </div>
+</div>
+
+
+                                
+                            </div>
+                        
+                    
+                        
+                        
+                        
+                        
+                        
+
+                        
+                            
+                            <div class="widget-template " style="padding: var(--pico-spacing); background: var(--pico-card-background-color); border-radius: var(--pico-border-radius); box-shadow: var(--pico-card-box-shadow); text-align: left; margin-bottom: calc(3 * var(--pico-spacing));">
+                                
+                                <details>
+                                    <summary style="font-weight: bold; color: var(--pico-secondary); margin-bottom: 0.5rem; font-size: 1.125rem;">Inspect Details</summary>
+                                
+
+                                
+
+<div class="overflow-auto">
+    <table class="striped">
+        <thead>
+            <tr>
+                <th>Platform</th>
+                <th>Digest</th>
+                <th>User</th>
+                <th>Created</th>
+                <th>Layers</th>
+            </tr>
+        </thead>
+        <tbody>
+            
+            <tr>
+                <td>
+                    <strong>linux/amd64</strong>
+                    
+                </td>
+                <td>
+                    
+                        <code title="sha256:141e2309cee40399bf417e5bae83965c20feafff62c4730bebd38e7320ded82f">sha256:141e2...</code>
+                    
+                </td>
+                <td>
+                    
+                        <span class="badge danger">root</span>
+                    
+                </td>
+                <td><small>2026-02-17T20:19:46.641644714Z</small></td>
+                <td>5</td>
+            </tr>
+            
+            <tr>
+                <td>
+                    <strong>unknown/unknown</strong>
+                    
+                </td>
+                <td>
+                    
+                        <code title="sha256:27c4840e42819783cdfb1ebdcbde63b0db4bef85ff44c55450d0b93aafcdbe29">sha256:27c48...</code>
+                    
+                </td>
+                <td>
+                    
+                        <span class="badge danger">root</span>
+                    
+                </td>
+                <td><small>-</small></td>
+                <td>2</td>
+            </tr>
+            
+            <tr>
+                <td>
+                    <strong>linux/arm</strong>
+                    <small>(v7)</small>
+                </td>
+                <td>
+                    
+                        <code title="sha256:cb4093cfc42815a176046da97c20ff500703c1e95dd02a41afb80fa27d01113c">sha256:cb409...</code>
+                    
+                </td>
+                <td>
+                    
+                        <span class="badge danger">root</span>
+                    
+                </td>
+                <td><small>2026-02-17T20:12:28.945117603Z</small></td>
+                <td>5</td>
+            </tr>
+            
+            <tr>
+                <td>
+                    <strong>unknown/unknown</strong>
+                    
+                </td>
+                <td>
+                    
+                        <code title="sha256:0d9a37d0b39e45d2fbc62518492d39072fd3d406eb565b5d79765e340521a45f">sha256:0d9a3...</code>
+                    
+                </td>
+                <td>
+                    
+                        <span class="badge danger">root</span>
+                    
+                </td>
+                <td><small>-</small></td>
+                <td>2</td>
+            </tr>
+            
+            <tr>
+                <td>
+                    <strong>linux/arm64</strong>
+                    <small>(v8)</small>
+                </td>
+                <td>
+                    
+                        <code title="sha256:406a82d496b0c16f074a7be9ddefcfa32d19fedd4207f0a67410a38386234202">sha256:406a8...</code>
+                    
+                </td>
+                <td>
+                    
+                        <span class="badge danger">root</span>
+                    
+                </td>
+                <td><small>2026-02-17T20:19:18.415984971Z</small></td>
+                <td>5</td>
+            </tr>
+            
+            <tr>
+                <td>
+                    <strong>unknown/unknown</strong>
+                    
+                </td>
+                <td>
+                    
+                        <code title="sha256:b333c2a0f61962693db51efeb5057eb8ceefe15d2deeb82bda96641eeded84c5">sha256:b333c...</code>
+                    
+                </td>
+                <td>
+                    
+                        <span class="badge danger">root</span>
+                    
+                </td>
+                <td><small>-</small></td>
+                <td>2</td>
+            </tr>
+            
+            <tr>
+                <td>
+                    <strong>linux/ppc64le</strong>
+                    
+                </td>
+                <td>
+                    
+                        <code title="sha256:d30461e74cd7b2e4abb6656ac1ab2ab7a6fb29d98566f8f85af042af0011b8f5">sha256:d3046...</code>
+                    
+                </td>
+                <td>
+                    
+                        <span class="badge danger">root</span>
+                    
+                </td>
+                <td><small>2026-02-17T20:18:42.926067498Z</small></td>
+                <td>5</td>
+            </tr>
+            
+            <tr>
+                <td>
+                    <strong>unknown/unknown</strong>
+                    
+                </td>
+                <td>
+                    
+                        <code title="sha256:4572ffd591c8296304ad5afd96c3da16766addc999e62d6570cf0a6e87ecb6d4">sha256:4572f...</code>
+                    
+                </td>
+                <td>
+                    
+                        <span class="badge danger">root</span>
+                    
+                </td>
+                <td><small>-</small></td>
+                <td>2</td>
+            </tr>
+            
+            <tr>
+                <td>
+                    <strong>linux/riscv64</strong>
+                    
+                </td>
+                <td>
+                    
+                        <code title="sha256:85f58b247c7a0c9a0bdae6be47acf7946a645b8630960e87c06bbb0ae00c133d">sha256:85f58...</code>
+                    
+                </td>
+                <td>
+                    
+                        <span class="badge danger">root</span>
+                    
+                </td>
+                <td><small>2026-02-17T23:57:10.125262701Z</small></td>
+                <td>5</td>
+            </tr>
+            
+            <tr>
+                <td>
+                    <strong>unknown/unknown</strong>
+                    
+                </td>
+                <td>
+                    
+                        <code title="sha256:4d65d5badbfad279dc7d35e6cf170b617e22bdb0596ab18fe940074b3eb7f715">sha256:4d65d...</code>
+                    
+                </td>
+                <td>
+                    
+                        <span class="badge danger">root</span>
+                    
+                </td>
+                <td><small>-</small></td>
+                <td>2</td>
+            </tr>
+            
+            <tr>
+                <td>
+                    <strong>linux/s390x</strong>
+                    
+                </td>
+                <td>
+                    
+                        <code title="sha256:5e4fda68e8b9213f77be48f3b85a61a615950b5ff57fb6a4c8f595280a096438">sha256:5e4fd...</code>
+                    
+                </td>
+                <td>
+                    
+                        <span class="badge danger">root</span>
+                    
+                </td>
+                <td><small>2026-02-17T20:13:23.809485688Z</small></td>
+                <td>5</td>
+            </tr>
+            
+            <tr>
+                <td>
+                    <strong>unknown/unknown</strong>
+                    
+                </td>
+                <td>
+                    
+                        <code title="sha256:5e51cb4ca44fbc90ab7d66ec9cbe5327be3415fe4a1610bbc4711c969e16bc89">sha256:5e51c...</code>
+                    
+                </td>
+                <td>
+                    
+                        <span class="badge danger">root</span>
+                    
+                </td>
+                <td><small>-</small></td>
+                <td>2</td>
+            </tr>
+            
+            <tr>
+                <td>
+                    <strong>windows/amd64</strong>
+                    
+                </td>
+                <td>
+                    
+                        <code title="sha256:51042aa95c10446cfe073af7f0df6baff9e494a13fa8522d91473b85c22938ad">sha256:51042...</code>
+                    
+                </td>
+                <td>
+                    
+                        <span class="badge danger">root</span>
+                    
+                </td>
+                <td><small>2026-02-10T22:54:22.1987309Z</small></td>
+                <td>7</td>
+            </tr>
+            
+            <tr>
+                <td>
+                    <strong>windows/amd64</strong>
+                    
+                </td>
+                <td>
+                    
+                        <code title="sha256:e8a0201e806b03acb05ee36aa876049990003ea80c75922a48e50961522023ac">sha256:e8a02...</code>
+                    
+                </td>
+                <td>
+                    
+                        <span class="badge danger">root</span>
+                    
+                </td>
+                <td><small>2026-02-10T23:01:59.8463019Z</small></td>
+                <td>7</td>
+            </tr>
+            
+        </tbody>
+    </table>
+</div>
+
+
+
+
+                                
+                                </details>
+                                
+                            </div>
+                        
+                    
+                    
+                </div>
+                <!-- prettier-ignore-end -->
+                <hr>
+                
+
+                
+                
+
+                
+                
+
+                
+                
+
+                
+                
+
+            
+        </div>
+        <hr>
+
+        
+            <div class="playbook-section">
+                <h4>Versioning Analysis</h4>
+                
+
+            
+
+                
+                <!-- prettier-ignore-start -->
+                
+                <div style="margin-bottom: calc(2 * var(--pico-spacing));">
+                    
+                    
+                        
+                        
+                        
+                        
+                        
+
+                        
+                            
+                            <div class="widget-template " style="padding: var(--pico-spacing); background: var(--pico-card-background-color); border-radius: var(--pico-border-radius); box-shadow: var(--pico-card-box-shadow); text-align: left; margin-bottom: calc(3 * var(--pico-spacing));">
+                                
+
+                                
+
+<div class="grid">
+    <div style="text-align: center; padding: var(--pico-spacing); background: var(--pico-card-background-color); border-radius: var(--pico-border-radius); box-shadow: var(--pico-card-box-shadow);">
+        <strong style="font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.05em; opacity: 0.8;">DOMINANT PATTERN</strong><br>
+        <span style="font-size: 1.5rem; font-weight: bold; line-height: 1;">named</span>
+    </div>
+    <div style="text-align: center; padding: var(--pico-spacing); background: var(--pico-card-background-color); border-radius: var(--pico-border-radius); box-shadow: var(--pico-card-box-shadow);">
+        <strong style="font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.05em; opacity: 0.8;">SEMVER COMPLIANCE</strong><br>
+        <span style="font-size: 2rem; font-weight: bold; line-height: 1; color: var(--pico-del-color);">
+            0.0%
+        </span>
+    </div>
+    <div style="text-align: center; padding: var(--pico-spacing); background: var(--pico-card-background-color); border-radius: var(--pico-border-radius); box-shadow: var(--pico-card-box-shadow);">
+        <strong style="font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.05em; opacity: 0.8;">TOTAL TAGS</strong><br>
+        <span style="font-size: 2rem; font-weight: bold; line-height: 1;">2894</span>
+    </div>
+</div>
+
+
+                                
+                            </div>
+                        
+                    
+                        
+                        
+                        
+                        
+                        
+
+                        
+                            
+                            <div class="widget-template " style="padding: var(--pico-spacing); background: var(--pico-card-background-color); border-radius: var(--pico-border-radius); box-shadow: var(--pico-card-box-shadow); text-align: left; margin-bottom: calc(3 * var(--pico-spacing));">
+                                
+                                <details>
+                                    <summary style="font-weight: bold; color: var(--pico-secondary); margin-bottom: 0.5rem; font-size: 1.125rem;">Tag Logic &amp; Patterns</summary>
+                                
+
+                                
+
+
+
+    
+    <details style="margin-bottom: 1rem;">
+        <summary>Patterns Distribution</summary>
+        <div class="overflow-auto" style="margin-top: 1rem;">
+            <table class="striped">
+                <thead>
+                    <tr>
+                        <th>Pattern</th>
+                        <th># Tags</th>
+                        <th>%</th>
+                        <th>Examples</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    
+                    <tr>
+                        <td><strong>named</strong></td>
+                        <td>2882</td>
+                        <td>99.6%</td>
+                        <td>
+                            
+                            <code>11-alpine</code>, 
+                            
+                            <code>11-alpine-3.20</code>, 
+                            
+                            <code>11-alpine-3.21</code>, 
+                            
+                            <code>11-alpine-3.22</code>, 
+                            
+                            <code>11-alpine-3.23</code>, 
+                            
+                            <code>11-centos7</code>, 
+                            
+                            <code>11-focal</code>, 
+                            
+                            <code>11-jammy</code>, 
+                            
+                            <code>11-jdk</code>, 
+                            
+                            <code>11-jdk-alpine</code>
+                            
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td><strong>numeric</strong></td>
+                        <td>12</td>
+                        <td>0.4%</td>
+                        <td>
+                            
+                            <code>11</code>, 
+                            
+                            <code>16</code>, 
+                            
+                            <code>17</code>, 
+                            
+                            <code>18</code>, 
+                            
+                            <code>19</code>, 
+                            
+                            <code>20</code>, 
+                            
+                            <code>21</code>, 
+                            
+                            <code>22</code>, 
+                            
+                            <code>23</code>, 
+                            
+                            <code>24</code>
+                            
+                        </td>
+                    </tr>
+                    
+                </tbody>
+            </table>
+        </div>
+    </details>
+    
+
+    
+    <div class="overflow-auto">
+        <table class="striped">
+            <thead>
+                <tr>
+                    <th>OS/Distro Variant</th>
+                    <th># Tags</th>
+                    <th>%</th>
+                    <th>Examples</th>
+                </tr>
+            </thead>
+            <tbody>
+                
+                <tr>
+                    <td><strong>jdk</strong></td>
+                    <td>1377</td>
+                    <td>47.6%</td>
+                    <td>
+                        
+                        <code>11-jdk</code>, 
+                        
+                        <code>11-jdk-alpine</code>, 
+                        
+                        <code>11-jdk-alpine-3.20</code>, 
+                        
+                        <code>11-jdk-alpine-3.21</code>, 
+                        
+                        <code>11-jdk-alpine-3.22</code>, 
+                        
+                        <code>11-jdk-alpine-3.23</code>, 
+                        
+                        <code>11-jdk-centos7</code>, 
+                        
+                        <code>11-jdk-focal</code>, 
+                        
+                        <code>11-jdk-jammy</code>, 
+                        
+                        <code>11-jdk-nanoserver</code>
+                        
+                    </td>
+                </tr>
+                
+                <tr>
+                    <td><strong>jre</strong></td>
+                    <td>1338</td>
+                    <td>46.2%</td>
+                    <td>
+                        
+                        <code>11-jre</code>, 
+                        
+                        <code>11-jre-alpine</code>, 
+                        
+                        <code>11-jre-alpine-3.20</code>, 
+                        
+                        <code>11-jre-alpine-3.21</code>, 
+                        
+                        <code>11-jre-alpine-3.22</code>, 
+                        
+                        <code>11-jre-alpine-3.23</code>, 
+                        
+                        <code>11-jre-centos7</code>, 
+                        
+                        <code>11-jre-focal</code>, 
+                        
+                        <code>11-jre-jammy</code>, 
+                        
+                        <code>11-jre-nanoserver</code>
+                        
+                    </td>
+                </tr>
+                
+                <tr>
+                    <td><strong>windowsservercore</strong></td>
+                    <td>738</td>
+                    <td>25.5%</td>
+                    <td>
+                        
+                        <code>11-jdk-windowsservercore</code>, 
+                        
+                        <code>11-jdk-windowsservercore-1809</code>, 
+                        
+                        <code>11-jdk-windowsservercore-ltsc2016</code>, 
+                        
+                        <code>11-jdk-windowsservercore-ltsc2022</code>, 
+                        
+                        <code>11-jdk-windowsservercore-ltsc2025</code>, 
+                        
+                        <code>11-jre-windowsservercore</code>, 
+                        
+                        <code>11-jre-windowsservercore-1809</code>, 
+                        
+                        <code>11-jre-windowsservercore-ltsc2016</code>, 
+                        
+                        <code>11-jre-windowsservercore-ltsc2022</code>, 
+                        
+                        <code>11-jre-windowsservercore-ltsc2025</code>
+                        
+                    </td>
+                </tr>
+                
+                <tr>
+                    <td><strong>alpine</strong></td>
+                    <td>466</td>
+                    <td>16.1%</td>
+                    <td>
+                        
+                        <code>11-alpine</code>, 
+                        
+                        <code>11-alpine-3.20</code>, 
+                        
+                        <code>11-alpine-3.21</code>, 
+                        
+                        <code>11-alpine-3.22</code>, 
+                        
+                        <code>11-alpine-3.23</code>, 
+                        
+                        <code>11-jdk-alpine</code>, 
+                        
+                        <code>11-jdk-alpine-3.20</code>, 
+                        
+                        <code>11-jdk-alpine-3.21</code>, 
+                        
+                        <code>11-jdk-alpine-3.22</code>, 
+                        
+                        <code>11-jdk-alpine-3.23</code>
+                        
+                    </td>
+                </tr>
+                
+                <tr>
+                    <td><strong>minimal</strong></td>
+                    <td>215</td>
+                    <td>7.4%</td>
+                    <td>
+                        
+                        <code>11-jdk-ubi10-minimal</code>, 
+                        
+                        <code>11-jdk-ubi9-minimal</code>, 
+                        
+                        <code>11-jre-ubi10-minimal</code>, 
+                        
+                        <code>11-jre-ubi9-minimal</code>, 
+                        
+                        <code>11-ubi10-minimal</code>, 
+                        
+                        <code>11-ubi9-minimal</code>, 
+                        
+                        <code>11.0.17_8-jdk-ubi9-minimal</code>, 
+                        
+                        <code>11.0.17_8-jre-ubi9-minimal</code>, 
+                        
+                        <code>11.0.18_10-jdk-ubi9-minimal</code>, 
+                        
+                        <code>11.0.18_10-jre-ubi9-minimal</code>
+                        
+                    </td>
+                </tr>
+                
+                <tr>
+                    <td><strong>jammy</strong></td>
+                    <td>185</td>
+                    <td>6.4%</td>
+                    <td>
+                        
+                        <code>11-jammy</code>, 
+                        
+                        <code>11-jdk-jammy</code>, 
+                        
+                        <code>11-jre-jammy</code>, 
+                        
+                        <code>11.0.15_10-jdk-jammy</code>, 
+                        
+                        <code>11.0.15_10-jre-jammy</code>, 
+                        
+                        <code>11.0.16.1_1-jdk-jammy</code>, 
+                        
+                        <code>11.0.16.1_1-jre-jammy</code>, 
+                        
+                        <code>11.0.16_8-jdk-jammy</code>, 
+                        
+                        <code>11.0.16_8-jre-jammy</code>, 
+                        
+                        <code>11.0.17_8-jdk-jammy</code>
+                        
+                    </td>
+                </tr>
+                
+                <tr>
+                    <td><strong>ubi9</strong></td>
+                    <td>165</td>
+                    <td>5.7%</td>
+                    <td>
+                        
+                        <code>11-jdk-ubi9-minimal</code>, 
+                        
+                        <code>11-jre-ubi9-minimal</code>, 
+                        
+                        <code>11-ubi9-minimal</code>, 
+                        
+                        <code>11.0.17_8-jdk-ubi9-minimal</code>, 
+                        
+                        <code>11.0.17_8-jre-ubi9-minimal</code>, 
+                        
+                        <code>11.0.18_10-jdk-ubi9-minimal</code>, 
+                        
+                        <code>11.0.18_10-jre-ubi9-minimal</code>, 
+                        
+                        <code>11.0.19_7-jdk-ubi9-minimal</code>, 
+                        
+                        <code>11.0.19_7-jre-ubi9-minimal</code>, 
+                        
+                        <code>11.0.20.1_1-jdk-ubi9-minimal</code>
+                        
+                    </td>
+                </tr>
+                
+                <tr>
+                    <td><strong>focal</strong></td>
+                    <td>138</td>
+                    <td>4.8%</td>
+                    <td>
+                        
+                        <code>11-focal</code>, 
+                        
+                        <code>11-jdk-focal</code>, 
+                        
+                        <code>11-jre-focal</code>, 
+                        
+                        <code>11.0.12_7-jdk-focal</code>, 
+                        
+                        <code>11.0.12_7-jre-focal</code>, 
+                        
+                        <code>11.0.13_8-jdk-focal</code>, 
+                        
+                        <code>11.0.13_8-jre-focal</code>, 
+                        
+                        <code>11.0.14.1_1-jdk-focal</code>, 
+                        
+                        <code>11.0.14.1_1-jre-focal</code>, 
+                        
+                        <code>11.0.14_9-jdk-focal</code>
+                        
+                    </td>
+                </tr>
+                
+                <tr>
+                    <td><strong>noble</strong></td>
+                    <td>100</td>
+                    <td>3.5%</td>
+                    <td>
+                        
+                        <code>11-jdk-noble</code>, 
+                        
+                        <code>11-jre-noble</code>, 
+                        
+                        <code>11-noble</code>, 
+                        
+                        <code>11.0.24_8-jdk-noble</code>, 
+                        
+                        <code>11.0.24_8-jre-noble</code>, 
+                        
+                        <code>11.0.25_9-jdk-noble</code>, 
+                        
+                        <code>11.0.25_9-jre-noble</code>, 
+                        
+                        <code>11.0.26_4-jdk-noble</code>, 
+                        
+                        <code>11.0.26_4-jre-noble</code>, 
+                        
+                        <code>11.0.27_6-jdk-noble</code>
+                        
+                    </td>
+                </tr>
+                
+                <tr>
+                    <td><strong>ubi10</strong></td>
+                    <td>50</td>
+                    <td>1.7%</td>
+                    <td>
+                        
+                        <code>11-jdk-ubi10-minimal</code>, 
+                        
+                        <code>11-jre-ubi10-minimal</code>, 
+                        
+                        <code>11-ubi10-minimal</code>, 
+                        
+                        <code>11.0.28_6-jdk-ubi10-minimal</code>, 
+                        
+                        <code>11.0.28_6-jre-ubi10-minimal</code>, 
+                        
+                        <code>11.0.29_7-jdk-ubi10-minimal</code>, 
+                        
+                        <code>11.0.29_7-jre-ubi10-minimal</code>, 
+                        
+                        <code>11.0.30_7-jdk-ubi10-minimal</code>, 
+                        
+                        <code>11.0.30_7-jre-ubi10-minimal</code>, 
+                        
+                        <code>17-jdk-ubi10-minimal</code>
+                        
+                    </td>
+                </tr>
+                
+            </tbody>
+        </table>
+    </div>
+    
+
+
+                                
+                                </details>
+                                
+                            </div>
+                        
+                    
+                    
+                </div>
+                <!-- prettier-ignore-end -->
+                <hr>
+                
+
+                
+                
+
+                
+                
+
+                
+                
+
+                
+                
+
+            
+        </div>
+        
+
+        
+
+        
+    
+</article>
+        </section>
+
+        
+        
+            
+                
+            
+                
+            
+                
+            
+        
+    
+
+    
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+
+    <footer>
+      <small>
+        Generated by <strong>regis-cli</strong> ·
+        <a href="report.json" target="_blank">JSON Report</a>
+      </small>
+    </footer>
+  </main>
+</div>
+</body>
+</html>

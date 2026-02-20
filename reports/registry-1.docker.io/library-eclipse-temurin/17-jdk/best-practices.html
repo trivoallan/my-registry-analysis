@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>regis-cli Report — library/eclipse-temurin:17-jdk</title>
+<style>
+  @import url("https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css");
+
+:root {
+    --pico-font-size: 16px;
+}
+
+body {
+    padding: 0;
+    margin: 0;
+}
+
+#layout-wrapper {
+    display: flex;
+    min-height: 100vh;
+}
+
+#sidebar {
+    width: 280px;
+    background: var(--pico-card-background-color);
+    border-right: 1px solid var(--pico-muted-border-color);
+    padding: 1.5rem;
+    height: 100vh;
+    position: sticky;
+    top: 0;
+    overflow-y: auto;
+}
+
+#sidebar nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+#sidebar nav details {
+    border-bottom: none;
+    margin-bottom: 1rem;
+}
+
+#sidebar nav summary {
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    opacity: 0.6;
+    margin-bottom: 0.5rem;
+}
+
+#sidebar nav a {
+    display: block;
+    padding: 0.4rem 0.8rem;
+    border-radius: var(--pico-border-radius);
+    text-decoration: none;
+    color: var(--pico-color);
+    font-size: 0.95rem;
+    transition: background 0.2s;
+}
+
+#sidebar nav a:hover {
+    background: var(--pico-primary-background);
+    color: var(--pico-primary-inverse);
+    font-weight: bold;
+}
+
+#sidebar nav a.active {
+    background: var(--pico-primary-background);
+    color: var(--pico-primary-inverse);
+    font-weight: bold;
+}
+
+main.container {
+    flex: 1;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem 3rem;
+}
+
+header {
+    margin-bottom: 3rem;
+}
+
+header h1 {
+    margin-bottom: 0.5rem;
+}
+
+.meta {
+    font-size: 0.9rem;
+    opacity: 0.8;
+}
+
+article {
+    margin-bottom: 2rem;
+}
+
+.playbook-section {
+    margin-bottom: 1.5rem;
+    padding-left: 1rem;
+    border-left: 3px solid var(--pico-muted-border-color);
+}
+
+.section-hint {
+    font-size: 0.9rem;
+    opacity: 0.8;
+    margin-top: -1rem;
+    margin-bottom: 1rem;
+}
+
+.badge {
+    display: inline-block;
+    padding: 0.2rem 0.6rem;
+    border-radius: 4px;
+    font-size: 0.8rem;
+    font-weight: bold;
+    background: var(--pico-secondary-background);
+    color: var(--pico-secondary-inverse);
+    margin-right: 0.3rem;
+    white-space: nowrap;
+}
+
+.badge.success {
+    background: #22c55e;
+    color: white;
+}
+
+.badge.error {
+    background: #ef4444;
+    color: white;
+}
+
+.badge.outline {
+    background: transparent;
+    border: 1px solid var(--pico-muted-border-color);
+    color: inherit;
+}
+
+.status-passed {
+    color: #22c55e;
+}
+
+.status-failed {
+    color: #ef4444;
+}
+
+summary {
+    font-weight: bold;
+}
+
+footer {
+    text-align: center;
+    border-top: 1px solid var(--pico-muted-border-color);
+    padding-top: 2rem;
+    margin-top: 4rem;
+}
+
+.playbook-section .recommandation-nogo {
+    color: #ef4444;
+}
+
+.playbook-section .recommandation-go {
+    color: #22c55e;
+}
+
+header h1 {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+    text-align: center;
+}
+
+header h2 {
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
+    text-align: center;
+}
+</style>
+</head>
+<body>
+<div id="layout-wrapper">
+  <!-- Sidebar -->
+  <aside id="sidebar">
+    <nav>
+      
+      
+      <details open inner>
+        <summary>Navigation</summary>
+        <ul>
+          
+          <li>
+            <a href="index.html" >
+              Overview
+            </a>
+          </li>
+          
+          <li>
+            <a href="compliance.html" >
+              Compliance
+            </a>
+          </li>
+          
+          <li>
+            <a href="security.html" >
+              Security
+            </a>
+          </li>
+          
+          <li>
+            <a href="supply-chain.html" >
+              Supply Chain &amp; Quality
+            </a>
+          </li>
+          
+          <li>
+            <a href="best-practices.html" aria-current="page" class="active">
+              Best Practices
+            </a>
+          </li>
+          
+          <li>
+            <a href="insights.html" >
+              Insights &amp; Lifecycle
+            </a>
+          </li>
+          
+          <li>
+            <a href="metadata.html" >
+              Technical Details
+            </a>
+          </li>
+          
+        </ul>
+      </details>
+      
+
+      
+    </nav>
+  </aside>
+
+  <!-- Main Content -->
+  <main class="container">
+    <header>
+      <h1>registry-1.docker.io/library/eclipse-temurin:17-jdk</h1>
+      
+    </header>
+
+    
+    
+    
+
+    
+        <section id="playbook-0">
+            
+
+
+
+<article>
+
+
+    
+        
+
+        
+            <div class="playbook-section">
+                <h4>Dockerfile Linting</h4>
+                
+
+            
+
+                
+                <!-- prettier-ignore-start -->
+                
+                <div style="margin-bottom: calc(2 * var(--pico-spacing));">
+                    
+                    
+                        
+                        
+                        
+                        
+                        
+
+                        
+                            
+                            <div class="widget-template " style="padding: var(--pico-spacing); background: var(--pico-card-background-color); border-radius: var(--pico-border-radius); box-shadow: var(--pico-card-box-shadow); text-align: left; margin-bottom: calc(3 * var(--pico-spacing));">
+                                
+
+                                
+
+<div class="grid">
+    <div style="text-align: center; padding: var(--pico-spacing); background: var(--pico-card-background-color); border-radius: var(--pico-border-radius); box-shadow: var(--pico-card-box-shadow);">
+        <strong style="font-size: 0.9rem; text-transform: uppercase; letter-spacing: 0.05em; opacity: 0.8;">STATUS</strong><br>
+        
+            <span style="font-size: 2rem; font-weight: bold; line-height: 1; color: var(--pico-del-color);">FAILED</span>
+        
+    </div>
+    
+        
+            
+            <div style="text-align: center; padding: var(--pico-spacing); background: var(--pico-card-background-color); border-radius: var(--pico-border-radius); box-shadow: var(--pico-card-box-shadow);">
+                <strong style="font-size: 0.9rem; text-transform: uppercase; letter-spacing: 0.05em; opacity: 0.8;">error</strong><br>
+                <span style="font-size: 2rem; font-weight: bold; line-height: 1; color: var(--pico-del-color);">
+                    1
+                </span>
+            </div>
+            
+        
+            
+            <div style="text-align: center; padding: var(--pico-spacing); background: var(--pico-card-background-color); border-radius: var(--pico-border-radius); box-shadow: var(--pico-card-box-shadow);">
+                <strong style="font-size: 0.9rem; text-transform: uppercase; letter-spacing: 0.05em; opacity: 0.8;">warning</strong><br>
+                <span style="font-size: 2rem; font-weight: bold; line-height: 1; color: var(--pico-del-color);">
+                    3
+                </span>
+            </div>
+            
+        
+            
+            <div style="text-align: center; padding: var(--pico-spacing); background: var(--pico-card-background-color); border-radius: var(--pico-border-radius); box-shadow: var(--pico-card-box-shadow);">
+                <strong style="font-size: 0.9rem; text-transform: uppercase; letter-spacing: 0.05em; opacity: 0.8;">info</strong><br>
+                <span style="font-size: 2rem; font-weight: bold; line-height: 1; ">
+                    5
+                </span>
+            </div>
+            
+        
+            
+        
+    
+</div>
+
+
+                                
+                            </div>
+                        
+                    
+                        
+                        
+                        
+                        
+                        
+
+                        
+                            
+                            <div class="widget-template " style="padding: var(--pico-spacing); background: var(--pico-card-background-color); border-radius: var(--pico-border-radius); box-shadow: var(--pico-card-box-shadow); text-align: left; margin-bottom: calc(3 * var(--pico-spacing));">
+                                
+                                <details>
+                                    <summary style="font-weight: bold; color: var(--pico-secondary); margin-bottom: 0.5rem; font-size: 1.125rem;">Linting Issues &amp; Recommendations</summary>
+                                
+
+                                
+
+
+
+
+
+    
+        <div class="overflow-auto">
+            <table class="striped">
+                <thead>
+                    <tr>
+                        <th>Level</th>
+                        <th>Code</th>
+                        <th>Line</th>
+                        <th>Message</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    
+                    <tr>
+                        <td>
+                            
+                                <span class="badge danger">Error</span>
+                            
+                        </td>
+                        <td><code>DL3020</code></td>
+                        <td>6</td>
+                        <td>Use COPY instead of ADD for files and folders</td>
+                    </tr>
+                    
+                    <tr>
+                        <td>
+                            
+                                <span class="badge info">Info</span>
+                            
+                        </td>
+                        <td><code>DL3059</code></td>
+                        <td>9</td>
+                        <td>Multiple consecutive `RUN` instructions. Consider consolidation.</td>
+                    </tr>
+                    
+                    <tr>
+                        <td>
+                            
+                                <span class="badge info">Info</span>
+                            
+                        </td>
+                        <td><code>DL3059</code></td>
+                        <td>10</td>
+                        <td>Multiple consecutive `RUN` instructions. Consider consolidation.</td>
+                    </tr>
+                    
+                    <tr>
+                        <td>
+                            
+                                <span class="badge warning">Warning</span>
+                            
+                        </td>
+                        <td><code>DL3008</code></td>
+                        <td>11</td>
+                        <td>Pin versions in apt get install. Instead of `apt-get install &lt;package&gt;` use `apt-get install &lt;package&gt;=&lt;version&gt;`</td>
+                    </tr>
+                    
+                    <tr>
+                        <td>
+                            
+                                <span class="badge warning">Warning</span>
+                            
+                        </td>
+                        <td><code>DL4006</code></td>
+                        <td>13</td>
+                        <td>Set the SHELL option -o pipefail before RUN with a pipe in it. If you are using /bin/sh in an alpine image or if your shell is symlinked to busybox then consider explicitly setting your SHELL to /bin/ash, or disable this check</td>
+                    </tr>
+                    
+                    <tr>
+                        <td>
+                            
+                                <span class="badge info">Info</span>
+                            
+                        </td>
+                        <td><code>SC2086</code></td>
+                        <td>13</td>
+                        <td>Double quote to prevent globbing and word splitting.</td>
+                    </tr>
+                    
+                    <tr>
+                        <td>
+                            
+                                <span class="badge warning">Warning</span>
+                            
+                        </td>
+                        <td><code>DL4006</code></td>
+                        <td>14</td>
+                        <td>Set the SHELL option -o pipefail before RUN with a pipe in it. If you are using /bin/sh in an alpine image or if your shell is symlinked to busybox then consider explicitly setting your SHELL to /bin/ash, or disable this check</td>
+                    </tr>
+                    
+                    <tr>
+                        <td>
+                            
+                                <span class="badge info">Info</span>
+                            
+                        </td>
+                        <td><code>DL3059</code></td>
+                        <td>16</td>
+                        <td>Multiple consecutive `RUN` instructions. Consider consolidation.</td>
+                    </tr>
+                    
+                    <tr>
+                        <td>
+                            
+                                <span class="badge info">Info</span>
+                            
+                        </td>
+                        <td><code>DL3059</code></td>
+                        <td>17</td>
+                        <td>Multiple consecutive `RUN` instructions. Consider consolidation.</td>
+                    </tr>
+                    
+                </tbody>
+            </table>
+        </div>
+        
+    
+
+    
+    <details>
+        <summary>Reconstructed Dockerfile</summary>
+        <pre><code style="font-size: 0.85rem;">FROM scratch
+ARG RELEASE
+ARG LAUNCHPAD_BUILD_ARCH
+LABEL org.opencontainers.image.ref.name=ubuntu
+LABEL org.opencontainers.image.version=24.04
+ADD file:1ae27d2ef4369361104b699712f3897141e394785df5d193d67b44626f57eb87 in /
+CMD [&#34;/bin/bash&#34;]
+RUN ENV JAVA_HOME=/opt/java/openjdk
+RUN ENV PATH=/opt/java/openjdk/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+RUN ENV LANG=en_US.UTF-8 LANGUAGE=en_US:en LC_ALL=en_US.UTF-8
+RUN RUN /bin/sh -c set -eux;     apt-get update;     DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends         curl         wget         gnupg         fontconfig         ca-certificates p11-kit         binutils         tzdata         locales     ;     echo &#34;en_US.UTF-8 UTF-8&#34; &gt;&gt; /etc/locale.gen;     locale-gen en_US.UTF-8;     rm -rf /var/lib/apt/lists/* # buildkit
+RUN ENV JAVA_VERSION=jdk-17.0.18+8
+RUN RUN /bin/sh -c set -eux;     ARCH=&#34;$(dpkg --print-architecture)&#34;;     case &#34;${ARCH}&#34; in        amd64)          ESUM=&#39;0c94cbb54325c40dcf026143eb621562017db5525727f2d9131a11250f72c450&#39;;          BINARY_URL=&#39;https://github.com/adoptium/temurin17-binaries/releases/download/jdk-17.0.18%2B8/OpenJDK17U-jdk_x64_linux_hotspot_17.0.18_8.tar.gz&#39;;          ;;        arm64)          ESUM=&#39;592a6702b3a07a0e0b82cb38aaab149bfce1b0c24d6b57ddb410bd9009333095&#39;;          BINARY_URL=&#39;https://github.com/adoptium/temurin17-binaries/releases/download/jdk-17.0.18%2B8/OpenJDK17U-jdk_aarch64_linux_hotspot_17.0.18_8.tar.gz&#39;;          ;;        armhf)          ESUM=&#39;21050b8325b62cb3fca4f871aadbddc04c67e21f3ab57236439aa951cbcb17ae&#39;;          BINARY_URL=&#39;https://github.com/adoptium/temurin17-binaries/releases/download/jdk-17.0.18%2B8/OpenJDK17U-jdk_arm_linux_hotspot_17.0.18_8.tar.gz&#39;;          ;;        ppc64el)          ESUM=&#39;5ab89fbde560e1a09386f389dd7881715b896f49c6e9aa974f72d551337dba5e&#39;;          BINARY_URL=&#39;https://github.com/adoptium/temurin17-binaries/releases/download/jdk-17.0.18%2B8/OpenJDK17U-jdk_ppc64le_linux_hotspot_17.0.18_8.tar.gz&#39;;          ;;        riscv64)          ESUM=&#39;485f49ec3f7048b466c3b8e5b543932c8aae845a1ba95ebb30fc527019371ed4&#39;;          BINARY_URL=&#39;https://github.com/adoptium/temurin17-binaries/releases/download/jdk-17.0.18%2B8/OpenJDK17U-jdk_riscv64_linux_hotspot_17.0.18_8.tar.gz&#39;;          ;;        s390x)          ESUM=&#39;3693469655bcfa2fa5e70907245a2b3bc4236db7d9fa1b9feb0ab7abd235da09&#39;;          BINARY_URL=&#39;https://github.com/adoptium/temurin17-binaries/releases/download/jdk-17.0.18%2B8/OpenJDK17U-jdk_s390x_linux_hotspot_17.0.18_8.tar.gz&#39;;          ;;        *)          echo &#34;Unsupported arch: ${ARCH}&#34;;          exit 1;          ;;     esac;     wget --progress=dot:giga -O /tmp/openjdk.tar.gz ${BINARY_URL};     wget --progress=dot:giga -O /tmp/openjdk.tar.gz.sig ${BINARY_URL}.sig;     export GNUPGHOME=&#34;$(mktemp -d)&#34;;     gpg --batch --keyserver keyserver.ubuntu.com --recv-keys 3B04D753C9050D9A5D343F39843C48A565F8F04B;     gpg --batch --verify /tmp/openjdk.tar.gz.sig /tmp/openjdk.tar.gz;     rm -rf &#34;${GNUPGHOME}&#34; /tmp/openjdk.tar.gz.sig;     echo &#34;${ESUM} */tmp/openjdk.tar.gz&#34; | sha256sum -c -;     mkdir -p &#34;$JAVA_HOME&#34;;     tar --extract         --file /tmp/openjdk.tar.gz         --directory &#34;$JAVA_HOME&#34;         --strip-components 1         --no-same-owner     ;     rm -f /tmp/openjdk.tar.gz ${JAVA_HOME}/lib/src.zip;     find &#34;$JAVA_HOME/lib&#34; -name &#39;*.so&#39; -exec dirname &#39;{}&#39; &#39;;&#39; | sort -u &gt; /etc/ld.so.conf.d/docker-openjdk.conf;     ldconfig;     java -Xshare:dump; # buildkit
+RUN RUN /bin/sh -c set -eux;     echo &#34;Verifying install ...&#34;;     fileEncoding=&#34;$(echo &#39;System.out.println(System.getProperty(&#34;file.encoding&#34;))&#39; | jshell -s -)&#34;; [ &#34;$fileEncoding&#34; = &#39;UTF-8&#39; ]; rm -rf ~/.java;     echo &#34;javac --version&#34;; javac --version;     echo &#34;java --version&#34;; java --version;     echo &#34;Complete.&#34; # buildkit
+RUN COPY --chmod=755 entrypoint.sh /__cacert_entrypoint.sh # buildkit
+RUN ENTRYPOINT [&#34;/__cacert_entrypoint.sh&#34;]
+RUN CMD [&#34;jshell&#34;]</code></pre>
+    </details>
+    
+
+
+                                
+                                </details>
+                                
+                            </div>
+                        
+                    
+                    
+                </div>
+                <!-- prettier-ignore-end -->
+                <hr>
+                
+
+                
+                
+
+                
+                
+
+                
+                
+
+                
+                
+
+            
+        </div>
+        
+
+        
+
+        
+    
+</article>
+        </section>
+
+        
+        
+            
+                
+            
+        
+    
+
+    
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+
+    <footer>
+      <small>
+        Generated by <strong>regis-cli</strong> ·
+        <a href="report.json" target="_blank">JSON Report</a>
+      </small>
+    </footer>
+  </main>
+</div>
+</body>
+</html>
