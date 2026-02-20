@@ -1,6 +1,10 @@
 name: Default Security Scorecard
 description: Basic security and freshness checks.
 
+links:
+  - name: Nouvelle analyse
+    url: 
+
 levels:
   - name: critical
     color: "#ff0000"
